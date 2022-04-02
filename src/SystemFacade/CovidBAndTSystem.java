@@ -9,6 +9,7 @@ import WebServiceAPI.IWebServices;
 import WebServiceAPI.ServicesForUser;
 import WebServiceAPI.WebServices;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -38,7 +39,7 @@ public class CovidBAndTSystem {
         WebServices.setKey(key);
     }
 
-    public void login(){
+    public void login() throws IOException, InterruptedException {
         this.loginSubsystem = new LoginSubsystem(new ServicesForUser());
         loginSubsystem.login();
     }

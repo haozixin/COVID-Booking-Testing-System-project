@@ -4,15 +4,14 @@ package LoginSubsystem;
 import WebServiceAPI.IWebServices;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * The class is responsible for loginSubsystem
  */
 public class LoginSubsystem {
-    private ArrayList<User> userArrayList;
-    private IWebServices serviceForUser;
+
+    private final IWebServices serviceForUser;
 
 
     /**
@@ -25,13 +24,21 @@ public class LoginSubsystem {
     /**
      * Do login logic
      */
-    public void login() {
-        System.out.println("I am in login subsystem");
-        getToken();
+    public void login() throws IOException, InterruptedException {
+        display();
+        int code = authentication();
+
+        //TODO:需要优化
+        if (code == 200){
+            System.out.println("successful login");
+        }else{
+            //TODO:不同状态码应该有不同的反馈，但不用if else写，不好扩展，可以写一个类装状态码，功能为code与“含义”的转换
+            System.out.println("failed");
+        }
     }
 
 
-    private void getToken(){
+    private int authentication() throws IOException, InterruptedException {
         String userName, password;
 
         System.out.print("Input your userName: ");
@@ -41,23 +48,19 @@ public class LoginSubsystem {
         System.out.print("Input your password: ");
         password = s.next();
 
-        serviceForUser.authentication(userName,password);
+        // get token
+        String token = serviceForUser.getToken(userName,password);
+
+        // verify token and return status code
+        return serviceForUser.verifyToken(token);
     }
 
-    /**
-     * you can add your own users account as well
-     */
-    private void addUser() {
-    }
+//    /**
+//     * you can add your own users account as well
+//     */
+//    private void addUser() {
+//    }
 
-    /**
-     * setter
-     * Get all users through web services and stored as user instance
-     */
-    public void setUserArrayList(User user) {
-        //TODO: 判断是否为空，已存在于列表中等特殊情况
-        this.userArrayList.add(user);
-    }
 
     private void display() {
         //TODO: output better GUI for login system here

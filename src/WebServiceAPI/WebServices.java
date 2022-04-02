@@ -28,13 +28,18 @@ public abstract class WebServices implements IWebServices {
      * will be implemented on a concrete class
      */
     @Override
-    public String authentication(String userName, String password){return null;}
+    public String getToken(String userName, String password) throws IOException, InterruptedException {return null;}
 
     /**
      * will be implemented on a concrete class
      */
     @Override
-    public void getAllUsers() {}
+    public void getAllUsers() throws IOException, InterruptedException {}
+
+    @Override
+    public int verifyToken(String token) throws IOException, InterruptedException {
+        return 0;
+    }
 
     /**
      * will be implemented on a concrete class
@@ -42,4 +47,5 @@ public abstract class WebServices implements IWebServices {
     @Override
     public void otherInterface() {
     }
+
 }

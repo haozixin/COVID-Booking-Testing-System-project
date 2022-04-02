@@ -19,7 +19,9 @@ public interface IWebServices {
      * @param password provide password
      * @return A string Token
      */
-    String authentication(String userName, String password);
+    String getToken(String userName, String password) throws IOException, InterruptedException;
+
+    int verifyToken(String token) throws IOException, InterruptedException;
 
     //Sample noisy interface
     void otherInterface();

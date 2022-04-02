@@ -1,5 +1,6 @@
 import SystemFacade.CovidBAndTSystem;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Application {
@@ -7,10 +8,11 @@ public class Application {
 
         // system start/initial
         CovidBAndTSystem system = new CovidBAndTSystem();
-        system.login();
-
-
-
+        try {
+            system.login();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
