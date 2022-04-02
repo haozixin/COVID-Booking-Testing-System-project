@@ -13,7 +13,7 @@ public class APISampleMain {
     NOTE: In order to access the web service, you will need to include your API key in the Authorization header of all requests you make.
     Your personal API key can be obtained here: https://fit3077.com
    */
-    private static final String myApiKey = "hzNMQKz7MBKmgNLG6tQFtBzddLGf6q";
+    private static final String myApiKey = "Your-api-key";
 
     // Provide the root URL for the web service. All web service request URLs start with this root URL.
     private static final String rootUrl = "https://fit3077.com/api/v1";
@@ -228,3 +228,27 @@ public class APISampleMain {
         System.out.println("----\n\n");
     }
 }
+
+
+/*
+{"id":"ecc52cc1-a3e4-4037-a80f-62d3799645f4","givenName":"Mary","familyName":"Brown","userName":"mbrown123","phoneNumber":"0410000000","isCustomer":true,"isReceptionist":false,"isHealthcareWorker":true,"additionalInfo":{}}
+{"id":"b1e0f080-0a8d-4ab0-9c8c-39a607cd5bc9","givenName":"James","familyName":"Li","userName":"jamesli42","phoneNumber":"0410000001","isCustomer":true,"isReceptionist":false,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"bb495c2c-3e30-4e4a-80e7-3954c448d128","givenName":"Alina","familyName":"Gupta","userName":"lina_g","phoneNumber":"0410000002","isCustomer":true,"isReceptionist":false,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"984e7871-ed81-4f75-9524-3d1870788b1f","givenName":"Junwei","familyName":"Wang","userName":"iamthewei","phoneNumber":"0410000003","isCustomer":false,"isReceptionist":true,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"a753826d-3c66-4f89-8136-9af896b5bfd9","givenName":"Jerry","familyName":"Mander","userName":"jrymdr","phoneNumber":"0410000004","isCustomer":true,"isReceptionist":true,"isHealthcareWorker":true,"additionalInfo":{}}
+{"id":"d1580eb7-5ddb-4037-a4e6-d9b94fe493dd","givenName":"Ahmed","familyName":"Asif","userName":"aasif","phoneNumber":"0410000005","isCustomer":true,"isReceptionist":false,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"2919e042-d7ec-468a-9f58-30c5250d411b","givenName":"Kevin","familyName":"Kim","userName":"kevink","phoneNumber":"0410000006","isCustomer":false,"isReceptionist":true,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"3e541287-2ea2-4dad-b729-761d8f36059f","givenName":"Neil","familyName":"West","userName":"neilly","phoneNumber":"0410000007","isCustomer":true,"isReceptionist":false,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"9e3d2d23-61ee-460c-9b5d-d9882f0acb9e","givenName":"Kerri","familyName":"James","userName":"simplyawesome","phoneNumber":"0410000008","isCustomer":false,"isReceptionist":true,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"03163bcb-9825-47dc-8839-dfa7d264430f","givenName":"Nisha","familyName":"Patel","userName":"nishp94","phoneNumber":"041000009","isCustomer":false,"isReceptionist":true,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"70e136be-40ec-4e4b-8682-ac457f43a3cf","givenName":"Irene","familyName":"Young","userName":"iamyoung99","phoneNumber":"0410000010","isCustomer":true,"isReceptionist":false,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"14f4d87f-61e3-44e6-a0eb-292ec5546faf","givenName":"Greta","familyName":"Gutierrez","userName":"gretag13","phoneNumber":"0410000012","isCustomer":true,"isReceptionist":true,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"d90f9f94-7603-4231-805c-eb62158ad3c6","givenName":"Benjamin","familyName":"Ye","userName":"bigben","phoneNumber":"0410000013","isCustomer":true,"isReceptionist":true,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"1ed84243-50ac-437e-872e-39dbce04c5a4","givenName":"Angie","familyName":"Yoon","userName":"ayyy100","phoneNumber":"0410000014","isCustomer":true,"isReceptionist":false,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"2f8179cb-8325-4760-98ef-5b3f781ad596","givenName":"Ronald","familyName":"Low","userName":"ronlow","phoneNumber":"0410000015","isCustomer":false,"isReceptionist":true,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"4ad8f1ed-4883-4c44-a9ab-a50bdee96ff9","givenName":"Dmitri","familyName":"Antonovich","userName":"danto87","phoneNumber":"0410000016","isCustomer":false,"isReceptionist":true,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"f5449b1f-6f55-408a-88ee-194958f52219","givenName":"Daniella","familyName":"Brun","userName":"brunella","phoneNumber":"0410000017","isCustomer":true,"isReceptionist":true,"isHealthcareWorker":false,"additionalInfo":{}}
+{"id":"9bf9d775-8c70-4b26-ad1c-4120c2abf446","givenName":"Fred","familyName":"Mercure","userName":"freddiem","phoneNumber":"0410000018","isCustomer":false,"isReceptionist":true,"isHealthcareWorker":true,"additionalInfo":{}}
+{"id":"8678bb27-7582-49e8-a981-47b517201886","givenName":"zixin","familyName":"string","userName":"string","phoneNumber":"string","isCustomer":true,"isReceptionist":false,"isHealthcareWorker":true,"additionalInfo":{}}
+----
+ */

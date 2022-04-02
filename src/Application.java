@@ -1,9 +1,18 @@
-import SystemFacade.CovidBAndTSystemFacade;
+import SystemFacade.CovidBAndTSystem;
+
+import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("Client");
-        CovidBAndTSystemFacade covidBAndTSystemFacade = new CovidBAndTSystemFacade();
-        covidBAndTSystemFacade.function();
+
+        // system start/initial
+        CovidBAndTSystem system = new CovidBAndTSystem();
+        system.login();
+
+
+
+
+
     }
+
 }

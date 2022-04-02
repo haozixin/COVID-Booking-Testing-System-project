@@ -5,11 +5,16 @@ import LoginSubsystem.LoginSubsystem;
 import OnsiteBookingSubsystem.OnsiteBookingSubsystem;
 import OnsiteTestingSubsystem.OnsiteTestingSubsystem;
 import SearchForSitesSubsystem.SearchForSitesSubsystem;
+import WebServiceAPI.IWebServices;
+import WebServiceAPI.ServicesForUser;
+import WebServiceAPI.WebServices;
+
+import java.util.Scanner;
 
 /**
  * Facade for all subsystem
  */
-public class CovidBAndTSystemFacade {
+public class CovidBAndTSystem {
 
     private LoginSubsystem loginSubsystem;
     private HomeBookingSubsystem homeBookingSubsystem;
@@ -17,16 +22,25 @@ public class CovidBAndTSystemFacade {
     private OnsiteTestingSubsystem onsiteTestingSubsystem;
     private SearchForSitesSubsystem searchForSitesSubsystem;
 
-    public CovidBAndTSystemFacade() {
-        loginSubsystem = new LoginSubsystem();
-        homeBookingSubsystem = new HomeBookingSubsystem();
-        onsiteBookingSubsystem = new OnsiteBookingSubsystem();
-        onsiteTestingSubsystem = new OnsiteTestingSubsystem();
-        searchForSitesSubsystem = new SearchForSitesSubsystem();
+
+    /**
+     * Constructor
+     */
+    public CovidBAndTSystem() {
+        startSystem();
+        this.loginSubsystem = new LoginSubsystem(new ServicesForUser());
     }
 
-    public LoginSubsystem getLoginSubsystem() {
-        return loginSubsystem;
+    private void startSystem(){
+        System.out.print("Input your API-key to initial the system: ");
+        Scanner s = new Scanner(System.in);
+        String key = s.next();
+        WebServices.setKey(key);
+    }
+
+    public void login(){
+        this.loginSubsystem = new LoginSubsystem(new ServicesForUser());
+        loginSubsystem.login();
     }
 
     /**
@@ -34,7 +48,6 @@ public class CovidBAndTSystemFacade {
      */
     public void function(){
         System.out.println("I am Facade");
-        getLoginSubsystem().function();
         System.out.println("----------");
     }
 
