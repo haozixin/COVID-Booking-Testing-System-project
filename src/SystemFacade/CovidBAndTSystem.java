@@ -14,8 +14,13 @@ import java.util.Scanner;
 
 /**
  * Facade for all subsystem
+ *
+ * Each subsystem interacts with each other in such a way, just as in a smart home,
+ * when the central controller is switched to "movie mode", the lights are dimmed, the curtains are closed, the TV is turned on, etc.
+ * (a method of each system is called)
  */
 public class CovidBAndTSystem {
+
 
     private LoginSubsystem loginSubsystem;
     private HomeBookingSubsystem homeBookingSubsystem;
