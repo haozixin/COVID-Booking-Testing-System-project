@@ -23,7 +23,6 @@ public interface IWebServices {
 
     int verifyToken(String token) throws IOException, InterruptedException;
 
-    //Sample noisy interface
-    void otherInterface();
+    String getTestingSites() throws IOException, InterruptedException;
 
 }

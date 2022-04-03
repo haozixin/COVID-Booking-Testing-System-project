@@ -2,8 +2,6 @@ package WebServiceAPI;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 /**
  * Following the Default Adapter pattern,
@@ -41,11 +39,7 @@ public abstract class WebServices implements IWebServices {
         return 0;
     }
 
-    /**
-     * will be implemented on a concrete class
-     */
     @Override
-    public void otherInterface() {
+    public String getTestingSites() throws IOException, InterruptedException {return null;
     }
-
 }

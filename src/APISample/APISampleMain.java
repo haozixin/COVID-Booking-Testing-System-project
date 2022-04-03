@@ -13,7 +13,7 @@ public class APISampleMain {
     NOTE: In order to access the web service, you will need to include your API key in the Authorization header of all requests you make.
     Your personal API key can be obtained here: https://fit3077.com
    */
-    private static final String myApiKey = "Your-api-key";
+    private static final String myApiKey = "hzNMQKz7MBKmgNLG6tQFtBzddLGf6q";
 
     // Provide the root URL for the web service. All web service request URLs start with this root URL.
     private static final String rootUrl = "https://fit3077.com/api/v1";
@@ -251,4 +251,10 @@ public class APISampleMain {
 {"id":"9bf9d775-8c70-4b26-ad1c-4120c2abf446","givenName":"Fred","familyName":"Mercure","userName":"freddiem","phoneNumber":"0410000018","isCustomer":false,"isReceptionist":true,"isHealthcareWorker":true,"additionalInfo":{}}
 {"id":"8678bb27-7582-49e8-a981-47b517201886","givenName":"zixin","familyName":"string","userName":"string","phoneNumber":"string","isCustomer":true,"isReceptionist":false,"isHealthcareWorker":true,"additionalInfo":{}}
 ----
+
+{"id":"7fbd25ee-5b64-4720-b1f6-4f6d4731260e","name":"Monash University - Clayton","description":"RAT and PCR testing available. COVID testing available Monday to Friday by appointment. Pre-register online https://testtracker.covid19.dhhs.vic.gov.au/citizen-prefill; Then call 03 5871 0777 (option 6) to make your appointment time.","websiteUrl":null,"phoneNumber":"0358710777","address":{"latitude":-37,"longitude":145,"unitNumber":"133","street":"Wellington Road","street2":null,"suburb":"Clayton","state":"VIC","postcode":"3168","additionalInfo":{}},"createdAt":"2022-03-17T00:14:12.678Z","updatedAt":"2022-03-17T00:14:12.678Z","additionalInfo":{}}
+"7fbd25ee-5b64-4720-b1f6-4f6d4731260e"
+START_OBJECT
+{"id":"ccad0b5b-0786-42d2-802d-3497c5eda14e","name":"4Cyte Pathology - Mount Waverley Drive-Through","description":null,"websiteUrl":"https://www.4cyte.com.au/OurLocations.php","phoneNumber":"0466725058","address":{"latitude":-37,"longitude":145,"unitNumber":"533","street":"Blackburn Road","street2":null,"suburb":"Mount Waverley","state":"VIC","postcode":"3149","additionalInfo":{}},"createdAt":"2022-03-17T00:14:12.678Z","updatedAt":"2022-03-17T00:14:12.678Z","additionalInfo":{}}
+"ccad0b5b-0786-42d2-802d-3497c5eda14e"
  */
