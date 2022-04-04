@@ -1,6 +1,7 @@
 import SystemFacade.CovidBAndTSystem;
 import WebServiceAPI.IWebServices;
 import WebServiceAPI.ServicesForSites;
+import enums.ResponseStatus;
 
 import java.io.IOException;
 import java.util.ArrayList;
