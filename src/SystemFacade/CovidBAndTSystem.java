@@ -33,7 +33,7 @@ public class CovidBAndTSystem {
      */
     public CovidBAndTSystem() {
         startSystem();
-        this.loginSubsystem = new LoginSubsystem(new Services("/user"));
+        this.loginSubsystem = new LoginSubsystem(new Services());
     }
 
     private void startSystem(){
@@ -44,7 +44,7 @@ public class CovidBAndTSystem {
     }
 
     public void login() throws IOException, InterruptedException {
-        this.loginSubsystem = new LoginSubsystem(new Services("/user"));
+        this.loginSubsystem = new LoginSubsystem(new Services());
         loginSubsystem.login();
     }
 

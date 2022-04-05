@@ -19,7 +19,7 @@ public class LoginSubsystemTest {
 
     @org.junit.Test
     public void display() {
-        LoginSubsystem loginSubsystem = new LoginSubsystem(new Services("/user"));
+        LoginSubsystem loginSubsystem = new LoginSubsystem(new Services());
         loginSubsystem.display();
     }
 }
