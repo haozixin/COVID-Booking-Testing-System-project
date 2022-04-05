@@ -25,4 +25,12 @@ public enum ResponseStatus {
     public String getDescription() {
         return description;
     }
+    public static String matchCode(int code){
+        for (ResponseStatus i : ResponseStatus.values()){
+            if (i.getCode()==code){
+                return i.getDescription();
+            }
+        }
+        return "Sorry, we don't know about this response code";
+    }
 }

@@ -1,9 +1,6 @@
 package LoginSubsystem;
 
-import SystemFacade.CovidBAndTSystem;
-import WebServiceAPI.ServicesForUser;
-
-import static org.junit.Assert.*;
+import WebServiceAPI.Services;
 
 public class LoginSubsystemTest {
 
@@ -22,7 +19,7 @@ public class LoginSubsystemTest {
 
     @org.junit.Test
     public void display() {
-        LoginSubsystem loginSubsystem = new LoginSubsystem(new ServicesForUser());
+        LoginSubsystem loginSubsystem = new LoginSubsystem(new Services("/user"));
         loginSubsystem.display();
     }
 }

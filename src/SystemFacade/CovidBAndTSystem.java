@@ -1,12 +1,11 @@
 package SystemFacade;
 
-import HomeBookingSubsystem.HomeBookingSubsystem;
+import BookingSubsystem.HomeBookingSubsystem;
 import LoginSubsystem.LoginSubsystem;
-import OnsiteBookingSubsystem.OnsiteBookingSubsystem;
+import BookingSubsystem.OnsiteBookingSubsystem;
 import OnsiteTestingSubsystem.OnsiteTestingSubsystem;
 import SearchForSitesSubsystem.SearchForSitesSubsystem;
-import WebServiceAPI.IWebServices;
-import WebServiceAPI.ServicesForUser;
+import WebServiceAPI.Services;
 import WebServiceAPI.WebServices;
 
 import java.io.IOException;
@@ -34,7 +33,7 @@ public class CovidBAndTSystem {
      */
     public CovidBAndTSystem() {
         startSystem();
-        this.loginSubsystem = new LoginSubsystem(new ServicesForUser());
+        this.loginSubsystem = new LoginSubsystem(new Services("/user"));
     }
 
     private void startSystem(){
@@ -45,7 +44,7 @@ public class CovidBAndTSystem {
     }
 
     public void login() throws IOException, InterruptedException {
-        this.loginSubsystem = new LoginSubsystem(new ServicesForUser());
+        this.loginSubsystem = new LoginSubsystem(new Services("/user"));
         loginSubsystem.login();
     }
 

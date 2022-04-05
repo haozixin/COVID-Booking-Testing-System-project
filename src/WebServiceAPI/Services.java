@@ -2,6 +2,7 @@ package WebServiceAPI;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import enums.Path;
 import enums.ResponseStatus;
 
 import java.io.IOException;
@@ -13,35 +14,32 @@ import java.net.http.HttpResponse;
 /**
  * This class will implement Web Services about "user"
  */
-public class ServicesForUser extends WebServices{
-    public static final String SUCCESS_202 = "SUCCESS_202";
-
-    private String usersUrl = rootUrl + "/user";
+public class Services extends WebServices{
 
 
 
-    // Haven't used
+    /**
+     * get all xx data(based on parameter)
+     * return ObjectNode[] jsonNodes that contains data
+     */
     @Override
-    public void getAllUsers() throws IOException, InterruptedException {
+    public ObjectNode[] getAllData(String path) throws IOException, InterruptedException {
 
-
+        String url = rootUrl + path;
         HttpRequest request = HttpRequest
-                .newBuilder(URI.create(usersUrl))
+                .newBuilder(URI.create(url))
                 .setHeader("Authorization", myApiKey)
                 .GET()
                 .build();
 
-        HttpResponse<String> response = null;
-
-        response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        System.out.println("\n----");
-        System.out.println(request.uri());
-        if (response != null) {
-            System.out.println("Response code: " + response.statusCode());
-        }
-        if (response != null) {
-            System.out.println("Full JSON response: " + response.body());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == ResponseStatus.CODE_200.getCode()) {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            ObjectNode[] jsonNodes = new ObjectMapper().readValue(response.body(), ObjectNode[].class);
+            return jsonNodes;
+        }else{
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            return null;
         }
 
     }
@@ -55,6 +53,8 @@ public class ServicesForUser extends WebServices{
     @Override
     public String getToken(String userName, String password) throws IOException, InterruptedException {
 
+        String url = rootUrl + Path.USER;
+
         String jsonString = "{" +
                 "\"userName\":\"" + userName + "\"," +
                 "\"password\":\"" + password + "\"" +
@@ -62,7 +62,7 @@ public class ServicesForUser extends WebServices{
 
         // Note the POST() method being used here, and the request body is supplied to it.
         // A request body needs to be supplied to this endpoint, otherwise a 400 Bad Request error will be returned.
-        String usersLoginUrl = usersUrl + "/login";
+        String usersLoginUrl = url + "/login";
         client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create(usersLoginUrl + "?jwt=true")) // Return a JWT so we can use it in Part 5 later.
                 .setHeader("Authorization", myApiKey)
@@ -84,7 +84,7 @@ public class ServicesForUser extends WebServices{
 
 
 
-        if (response.statusCode()==200){
+        if (response.statusCode()==ResponseStatus.CODE_200.getCode()){
             return token;
         }
         else {
@@ -96,12 +96,13 @@ public class ServicesForUser extends WebServices{
 
     @Override
     public int verifyToken(String token) throws IOException, InterruptedException {
+        String url = rootUrl + Path.USER;
 
         String jsonString = "{\"jwt\":\"" + token + "\"}";
 
         // Note the POST() method being used here, and the request body is supplied to it.
         // A request body needs to be supplied to this endpoint, otherwise a 400 Bad Request error will be returned.
-        String usersVerifyTokenUrl = usersUrl + "/verify-token";
+        String usersVerifyTokenUrl = url + "/verify-token";
         client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create(usersVerifyTokenUrl)) // Return a JWT so we can use it in Part 5 later.
                 .setHeader("Authorization", myApiKey)

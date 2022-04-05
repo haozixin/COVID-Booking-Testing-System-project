@@ -1,11 +1,11 @@
 package LoginSubsystem;
 
 
-import WebServiceAPI.IWebServices;
+import WebServiceAPI.WebServices;
+import enums.ResponseStatus;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class LoginSubsystem {
 
-    private final IWebServices serviceForUser;
+    private final WebServices serviceForUser;
     private List<String> dashBoard;
     private static final String systemName = "Login Subsystem";
 
@@ -22,7 +22,7 @@ public class LoginSubsystem {
     /**
      * Constructor
      */
-    public LoginSubsystem(IWebServices iWebServices) {
+    public LoginSubsystem(WebServices iWebServices) {
         serviceForUser = iWebServices;
         setDashBoard(64, 5);
     }
@@ -36,7 +36,7 @@ public class LoginSubsystem {
 
 
         //TODO:需要优化
-        if (code == 200) {
+        if (code == ResponseStatus.CODE_200.getCode()) {
             System.out.println("successful login");
         } else {
             //TODO:不同状态码应该有不同的反馈，但不用if else写，不好扩展，可以写一个类装状态码，功能为code与“含义”的转换

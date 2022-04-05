@@ -1,5 +1,7 @@
 package WebServiceAPI;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import java.io.IOException;
 import java.net.http.HttpClient;
 
@@ -9,7 +11,7 @@ import java.net.http.HttpClient;
  * IWebServices is a kind of Adaptee
  * All methods here will be empty method
  */
-public abstract class WebServices implements IWebServices {
+public abstract class WebServices{
     //myApiKey can **ever never** be shown in code and push to git
     protected static String myApiKey;
 
@@ -22,24 +24,23 @@ public abstract class WebServices implements IWebServices {
         myApiKey = key;
     }
 
-    /**
-     * will be implemented on a concrete class
-     */
-    @Override
+
+
+
     public String getToken(String userName, String password) throws IOException, InterruptedException {return null;}
 
-    /**
-     * will be implemented on a concrete class
-     */
-    @Override
-    public void getAllUsers() throws IOException, InterruptedException {}
 
-    @Override
+
     public int verifyToken(String token) throws IOException, InterruptedException {
         return 0;
     }
 
-    @Override
-    public String getTestingSites() throws IOException, InterruptedException {return null;
-    }
+
+
+    // like database basic function
+    public ObjectNode[] getAllData(String path) throws IOException, InterruptedException {return null;}
+
+
+
+
 }
