@@ -1,12 +1,10 @@
-package SystemFacade;
-
-import BookingSubsystem.HomeBookingSubsystem;
-import LoginSubsystem.LoginSubsystem;
-import BookingSubsystem.OnsiteBookingSubsystem;
-import OnsiteTestingSubsystem.OnsiteTestingSubsystem;
-import SearchForSitesSubsystem.SearchForSitesSubsystem;
-import WebServiceAPI.Services;
-import WebServiceAPI.WebServices;
+import bookingSubsystem.HomeBookingSubsystem;
+import loginSubsystem.LoginSubsystem;
+import bookingSubsystem.OnsiteBookingSubsystem;
+import onsiteTestingSubsystem.OnsiteTestingSubsystem;
+import searchForSitesSubsystem.SearchForSitesSubsystem;
+import webServiceAPI.Services;
+import webServiceAPI.WebServices;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -37,10 +35,7 @@ public class CovidBAndTSystem {
     }
 
     private void startSystem(){
-        System.out.print("Input your API-key to initial the system: ");
-        Scanner s = new Scanner(System.in);
-        String key = s.next();
-        WebServices.setKey(key);
+
     }
 
     public void login() throws IOException, InterruptedException {

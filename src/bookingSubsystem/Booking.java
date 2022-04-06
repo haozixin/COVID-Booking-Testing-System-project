@@ -1,4 +1,4 @@
-package BookingSubsystem;
+package bookingSubsystem;
 
 public abstract class Booking {
 }

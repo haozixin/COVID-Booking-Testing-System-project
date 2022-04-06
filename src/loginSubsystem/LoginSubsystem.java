@@ -1,7 +1,7 @@
-package LoginSubsystem;
+package loginSubsystem;
 
 
-import WebServiceAPI.WebServices;
+import webServiceAPI.WebServices;
 import enums.ResponseStatus;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package SearchForSitesSubsystem;
+package searchForSitesSubsystem;
 
 public class SearchForSitesSubsystem {
     public SearchForSitesSubsystem() {

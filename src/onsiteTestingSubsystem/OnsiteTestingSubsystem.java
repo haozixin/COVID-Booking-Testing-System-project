@@ -1,4 +1,4 @@
-package OnsiteTestingSubsystem;
+package onsiteTestingSubsystem;
 
 public class OnsiteTestingSubsystem {
     public OnsiteTestingSubsystem() {

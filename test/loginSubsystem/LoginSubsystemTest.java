@@ -1,6 +1,6 @@
-package LoginSubsystem;
+package loginSubsystem;
 
-import WebServiceAPI.Services;
+import webServiceAPI.Services;
 
 public class LoginSubsystemTest {
 

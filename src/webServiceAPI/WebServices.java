@@ -1,6 +1,7 @@
-package WebServiceAPI;
+package webServiceAPI;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import utility.MyConfig;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -13,16 +14,14 @@ import java.net.http.HttpClient;
  */
 public abstract class WebServices{
     //myApiKey can **ever never** be shown in code and push to git
-    protected static String myApiKey;
+    protected static String myApiKey = MyConfig.getMyConf("API_key");
 
     // Provide the root URL for the web service. All web service request URLs start with this root URL.
-    protected static final String rootUrl = "https://fit3077.com/api/v1";
+    protected static final String rootUrl = MyConfig.getMyConf("rootUrl");
 
     protected static HttpClient client = HttpClient.newHttpClient();
 
-    public static void setKey(String key){
-        myApiKey = key;
-    }
+
 
 
 
