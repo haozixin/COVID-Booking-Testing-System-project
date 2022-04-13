@@ -1,7 +1,18 @@
-import enums.ResponseStatus;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import searchForSitesSubsystem.TestingSite;
+
+
+import java.io.IOException;
+
 
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
+
+
+
+
 
         //TODO: 需要设计确定整个情景的business process ， 做简单的GUI
 // 1
@@ -21,6 +32,9 @@ public class Application {
 //        } catch (IOException | InterruptedException e) {
 //            e.printStackTrace();
 //        }
+
+
+
 
 
 

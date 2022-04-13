@@ -19,8 +19,9 @@ public class Services extends WebServices{
 
 
     /**
-     * get all xx data(based on parameter)
+     * get all xx data(based on different parameter/path)
      * return ObjectNode[] jsonNodes that contains data
+     * @param path the path of the operation to be performed (e.g. /users/login), see enums.Path or documentation for more details
      */
     @Override
     public ObjectNode[] getAllData(String path) throws IOException, InterruptedException {

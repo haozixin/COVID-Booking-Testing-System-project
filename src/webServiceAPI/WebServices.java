@@ -1,7 +1,7 @@
 package webServiceAPI;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import utility.MyConfig;
+import utility.Utility;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -14,10 +14,10 @@ import java.net.http.HttpClient;
  */
 public abstract class WebServices{
     //myApiKey can **ever never** be shown in code and push to git
-    protected static String myApiKey = MyConfig.getMyConf("API_key");
+    protected static String myApiKey = Utility.getMyConf("API_key").toString();
 
     // Provide the root URL for the web service. All web service request URLs start with this root URL.
-    protected static final String rootUrl = MyConfig.getMyConf("rootUrl");
+    protected static final String rootUrl = Utility.getMyConf("rootUrl");
 
     protected static HttpClient client = HttpClient.newHttpClient();
 
