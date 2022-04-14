@@ -10,9 +10,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
-public class Utility{
+public class Utility {
     public static Properties myProp = new Properties();
     public static InputStream myResource = Utility.class.getResourceAsStream("/myConfig.properties");
+
     static {
         try {
             myProp.load(myResource);
@@ -45,7 +46,6 @@ public class Utility{
             System.out.println(s);
         }
     }
-
 
 
 }

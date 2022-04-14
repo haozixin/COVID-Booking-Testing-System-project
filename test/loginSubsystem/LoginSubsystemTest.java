@@ -2,6 +2,8 @@ package loginSubsystem;
 
 import webServiceAPI.Services;
 
+import java.io.IOException;
+
 public class LoginSubsystemTest {
 
     @org.junit.Before
@@ -13,8 +15,9 @@ public class LoginSubsystemTest {
     }
 
     @org.junit.Test
-    public void login() {
-
+    public void login() throws IOException, InterruptedException {
+        LoginSubsystem loginSubsystem = new LoginSubsystem(new Services());
+        loginSubsystem.login();
     }
 
     @org.junit.Test

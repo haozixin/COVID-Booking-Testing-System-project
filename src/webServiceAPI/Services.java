@@ -121,4 +121,34 @@ public class Services extends WebServices{
 
         return response.statusCode();
     }
+
+    //TODO: Jayden check - signup
+    public int signup(String userName, String password) throws IOException, InterruptedException {
+        String url = rootUrl + Path.USER;
+
+        String jsonString = "{" +
+                "\"userName\":\"" + userName + "\"," +
+                "\"password\":\"" + password + "\"" +
+                "}";
+
+        // Note the POST() method being used here, and the request body is supplied to it.
+        // A request body needs to be supplied to this endpoint, otherwise a 400 Bad Request error will be returned.
+        String usersSignupUrl = url + "/signup";
+        client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder(URI.create(usersSignupUrl)) // Return a JWT so we can use it in Part 5 later.
+                .setHeader("Authorization", myApiKey)
+                .header("Content-Type","application/json") // This header needs to be set when sending a JSON request body.
+                .POST(HttpRequest.BodyPublishers.ofString(jsonString))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println("\n----");
+        System.out.println(request.uri());
+        System.out.println("Response code: " + response.statusCode());
+        System.out.println("Full JSON response: " + response.body()); // This endpoint does not return a JSON response upon success.
+        System.out.println("----\n\n");
+
+        return response.statusCode();
+    }
 }

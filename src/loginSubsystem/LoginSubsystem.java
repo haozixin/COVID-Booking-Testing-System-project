@@ -34,7 +34,6 @@ public class LoginSubsystem {
         display();
         int code = authentication();
 
-
         //TODO:需要优化
         if (code == ResponseStatus.CODE_200.getCode()) {
             System.out.println("successful login");
@@ -115,6 +114,11 @@ public class LoginSubsystem {
             System.out.println(i);
         }
         System.out.println("----------You are doing Login system operation---------");
+    }
+
+    public void signUp(){
+        //TODO: Jayden.
+
     }
 
 }
