@@ -26,16 +26,24 @@ public class Utility{
         return myProp.getProperty(props);
     }
 
-    public static ArrayList<String> displayMessage(String name, ObjectNode jsonNode) {
+    public static String displayMessage(String name, JsonNode jsonNode) {
+        StringBuilder message2 = new StringBuilder();
         ArrayList<String> message = new ArrayList<>();
-        message.add("|----------------------------"+name+"--------------------------|");
+        message2.append("|----------------------------").append(name).append("--------------------------|\n");
         // display a formatted message
         Iterator<Map.Entry<String, JsonNode>> temp = jsonNode.fields();
         for (Iterator<Map.Entry<String, JsonNode>> it = temp; it.hasNext(); ) {
             Map.Entry<String, JsonNode> entry = it.next();
-            message.add(entry.getKey() + " ==> " + entry.getValue());
+            message2.append(entry.getKey()).append(" ==> ").append(entry.getValue()).append("\n");
         }
-        return message;
+
+        return message2.toString();
+    }
+
+    public static void printArrayList(ArrayList<String> message) {
+        for (String s : message) {
+            System.out.println(s);
+        }
     }
 
 

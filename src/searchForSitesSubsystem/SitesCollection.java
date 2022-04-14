@@ -2,6 +2,7 @@ package searchForSitesSubsystem;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
+import utility.Utility;
 import webServiceAPI.Services;
 import webServiceAPI.WebServices;
 
@@ -49,15 +50,6 @@ public class SitesCollection {
         return testingSites;
     }
 
-    public void showList() throws IOException, InterruptedException {
-        WebServices webServices = new Services();
-        ObjectNode[] objectNode = webServices.getAllData(Path.SITE.getPath());
-        for (ObjectNode node : objectNode) {
-
-        }
-
-
-    }
 
     /**
      * Update the jsonNodes array with the new data from the web service
@@ -76,6 +68,12 @@ public class SitesCollection {
             addTestingSite(testingSite);
         }
 
+    }
+
+    public void printList() {
+        for (TestingSite testingSite : testingSites) {
+            System.out.println(testingSite);
+        }
     }
 
 

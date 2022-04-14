@@ -13,6 +13,7 @@ import java.net.http.HttpClient;
  * All methods here will be empty method
  */
 public abstract class WebServices{
+    //TODO: 如果以后没有更多的服务需要子类继承WebServices， 将这个类改成接口
     //myApiKey can **ever never** be shown in code and push to git
     protected static String myApiKey = Utility.getMyConf("API_key").toString();
 
@@ -38,6 +39,9 @@ public abstract class WebServices{
 
     // like database basic function
     public ObjectNode[] getAllData(String path) throws IOException, InterruptedException {return null;}
+
+    //add Data to WebServer
+    public ObjectNode addData(String path, ObjectNode data) throws IOException, InterruptedException {return null;}
 
 
 
