@@ -3,6 +3,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import enums.Path;
 import searchForSitesSubsystem.TestingSite;
+import users.CurrentUser;
+import users.Customer;
 
 
 import java.io.IOException;
@@ -10,6 +12,8 @@ import java.io.IOException;
 
 public class Application {
     public static void main(String[] args) throws IOException, InterruptedException {
+        CurrentUser currentUser = new Customer();
+
 
 
 

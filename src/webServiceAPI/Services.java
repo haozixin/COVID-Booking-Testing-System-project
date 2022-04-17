@@ -14,13 +14,13 @@ import java.net.http.HttpResponse;
 /**
  * This class will implement Web Services about "user"
  */
-public class Services extends WebServices{
-
+public class Services extends WebServices {
 
 
     /**
      * get all xx data(based on different parameter/path)
      * return ObjectNode[] jsonNodes that contains data
+     *
      * @param path the path of the operation to be performed (e.g. /users/login), see enums.Path or documentation for more details
      */
     @Override
@@ -38,22 +38,22 @@ public class Services extends WebServices{
             System.out.println(ResponseStatus.matchCode(response.statusCode()));
             ObjectNode[] jsonNodes = new ObjectMapper().readValue(response.body(), ObjectNode[].class);
             return jsonNodes;
-        }else{
+        } else {
             System.out.println(ResponseStatus.matchCode(response.statusCode()));
             return null;
         }
-
     }
 
     /**
      * override the parents' method
+     *
      * @param userName
      * @param password
      * @return
      */
     @Override
     public String getToken(String userName, String password) throws IOException, InterruptedException {
-
+        //TODO: 重构（解决System.out.println的问题）
         String url = rootUrl + Path.USER;
 
         String jsonString = "{" +
@@ -67,7 +67,7 @@ public class Services extends WebServices{
         client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create(usersLoginUrl + "?jwt=true")) // Return a JWT so we can use it in Part 5 later.
                 .setHeader("Authorization", myApiKey)
-                .header("Content-Type","application/json") // This header needs to be set when sending a JSON request body.
+                .header("Content-Type", "application/json") // This header needs to be set when sending a JSON request body.
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
 
@@ -83,12 +83,9 @@ public class Services extends WebServices{
         String token = jsonNode.get("jwt").textValue();
 
 
-
-
-        if (response.statusCode()==ResponseStatus.CODE_200.getCode()){
+        if (response.statusCode() == ResponseStatus.CODE_200.getCode()) {
             return token;
-        }
-        else {
+        } else {
             return null;
         }
 
@@ -97,6 +94,8 @@ public class Services extends WebServices{
 
     @Override
     public int verifyToken(String token) throws IOException, InterruptedException {
+
+        //TODO: 重构（解决System.out.println的问题）
         String url = rootUrl + Path.USER;
 
         String jsonString = "{\"jwt\":\"" + token + "\"}";
@@ -107,7 +106,7 @@ public class Services extends WebServices{
         client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(URI.create(usersVerifyTokenUrl)) // Return a JWT so we can use it in Part 5 later.
                 .setHeader("Authorization", myApiKey)
-                .header("Content-Type","application/json") // This header needs to be set when sending a JSON request body.
+                .header("Content-Type", "application/json") // This header needs to be set when sending a JSON request body.
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
 
@@ -122,22 +121,14 @@ public class Services extends WebServices{
         return response.statusCode();
     }
 
-    //TODO: Jayden check - signup
-    public int signup(String userName, String password) throws IOException, InterruptedException {
-        String url = rootUrl + Path.USER;
+    @Override
+    public int postData(String path, String jsonString) throws IOException, InterruptedException {
+        String url = rootUrl + path;
 
-        String jsonString = "{" +
-                "\"userName\":\"" + userName + "\"," +
-                "\"password\":\"" + password + "\"" +
-                "}";
-
-        // Note the POST() method being used here, and the request body is supplied to it.
-        // A request body needs to be supplied to this endpoint, otherwise a 400 Bad Request error will be returned.
-        String usersSignupUrl = url + "/signup";
-        client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder(URI.create(usersSignupUrl)) // Return a JWT so we can use it in Part 5 later.
+        // webservice call - post request
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url)) // Return a JWT so we can use it in Part 5 later.
                 .setHeader("Authorization", myApiKey)
-                .header("Content-Type","application/json") // This header needs to be set when sending a JSON request body.
+                .header("Content-Type", "application/json") // This header needs to be set when sending a JSON request body.
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
 

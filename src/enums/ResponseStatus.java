@@ -2,6 +2,7 @@ package enums;
 
 public enum ResponseStatus {
     CODE_200(200, "The request succeeded"),
+    CODE_201(201, "New object successfully created."),
     CODE_400(400,"Bad Request - invalid XX is provided"),
     CODE_404(404,"Not Fount"),
     CODE_204(204,"No Content - It was successfully deleted"),

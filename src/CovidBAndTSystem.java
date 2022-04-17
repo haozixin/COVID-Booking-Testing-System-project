@@ -51,7 +51,7 @@ public class CovidBAndTSystem {
         System.out.println("----------");
     }
 
-    //TODO: GUI - 用户交互界面
+
 
 
 

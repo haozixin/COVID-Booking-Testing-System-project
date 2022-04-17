@@ -1,6 +1,7 @@
 package webServiceAPI;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import enums.Path;
 import utility.Utility;
 
 import java.io.IOException;
@@ -43,7 +44,13 @@ public abstract class WebServices{
     //add Data to WebServer
     public ObjectNode addData(String path, ObjectNode data) throws IOException, InterruptedException {return null;}
 
-
-
-
+    /**
+     *
+     * @param path URL path
+     * @param jsonString a correct json string that can be parsed by Jackson and you want to add to the server
+     * @return response state code
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public abstract int postData(String path, String jsonString) throws IOException, InterruptedException;
 }
