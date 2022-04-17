@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Location {
+    public static final String SUBURB_FIELD = "suburb";
     private ObjectNode address;
     private final String name = "Address";
 
@@ -17,6 +18,12 @@ public class Location {
     public Location(ObjectNode jsonNode) {
         this.address = jsonNode;
     }
+
+    public String getSuburb(){
+        return address.get(SUBURB_FIELD).asText();
+    }
+
+
 
 
     @Override

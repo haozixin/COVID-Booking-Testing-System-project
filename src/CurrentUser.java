@@ -1,5 +1,3 @@
-package loginSubsystem;
-
 public class CurrentUser {
     private String token;
 

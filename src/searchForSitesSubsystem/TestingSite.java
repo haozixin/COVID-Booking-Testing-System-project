@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class TestingSite {
+    public static final String ADDRESS_FIELD = "address";
     private final String name = "Testing Site";
     private ObjectNode testingSite;
     private Location location;
@@ -28,16 +29,44 @@ public class TestingSite {
     }
 
     private void setLocation(){
-        JsonNode locationJsonNode = testingSite.get("address");
+        JsonNode locationJsonNode = testingSite.get(ADDRESS_FIELD);
         location = new Location((ObjectNode) locationJsonNode);
     }
 
-    public Location getLocation() {
+    private Location getLocation() {
         return location;
+    }
+
+    private String getSuburb(){
+        return location.getSuburb();
+    }
+
+    private String getId(){
+        return testingSite.get("id").asText();
     }
 
     @Override
     public String toString() {
         return Utility.displayMessage(name, testingSite);
+    }
+
+    /**
+     *  override equals method
+     *  (contains method and remove method in Collection class will call this method)
+     * @param obj object to compare
+     * @return boolean value, true if equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if((!(obj instanceof TestingSite))){
+            return false;
+        }
+        // same instance
+        if(obj==this){
+            return true;
+        }
+        // if id is same, it is the same testing site
+        TestingSite testingSite = (TestingSite) obj;
+        return testingSite.getId().equals(this.getId());
     }
 }

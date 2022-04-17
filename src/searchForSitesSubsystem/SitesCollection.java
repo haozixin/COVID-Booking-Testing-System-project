@@ -9,6 +9,7 @@ import webServiceAPI.WebServices;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class SitesCollection {
     private static final String name = "TestingSite Collection";
@@ -75,6 +76,22 @@ public class SitesCollection {
             System.out.println(testingSite);
         }
     }
+
+    /**
+     * Get the testing site by suburb name / type of facility (such as Drive Through, Walk-in, Clinics, GPs or Hospitals)
+     *
+     * @param filter <String, String> where the key is the name of the field(user want to filter by which field) and the value is the value of the field(user's input)
+     * @return filteredList,  an array list of testing sites that meets the filter
+     */
+    public ArrayList<TestingSite> filterBy(HashMap<String, String> filter) {
+        ArrayList<TestingSite> filteredList = new ArrayList<>();
+        for (TestingSite testingSite : testingSites) {
+            //TODO: jayden
+        }
+        return filteredList;
+    }
+
+
 
 
     private void getSiteByName(String name) {

@@ -16,4 +16,24 @@ public class locationTest {
 
 
     }
+
+    @Test
+    public void getSuburb() throws JsonProcessingException {
+        // test-data
+        String json = "{ \"latitude\": -37, " +
+                "\"longitude\": 145, " +
+                "\"unitNumber\": \"533\", " +
+                "\"street\": \"Blackburn Road\", " +
+                "\"street2\": null, " +
+                "\"suburb\": \"Mount Waverley\"," +
+                "\"state\": \"VIC\"," +
+                "\"postcode\": \"3149\", " +
+                "\"additionalInfo\": {}}";
+
+        ObjectNode testData = new ObjectMapper().readValue(json, ObjectNode.class);
+        Location loc = new Location(testData);
+        System.out.println(loc.getSuburb());
+//        System.out.println(testData.get("longitude"));
+
+    }
 }
