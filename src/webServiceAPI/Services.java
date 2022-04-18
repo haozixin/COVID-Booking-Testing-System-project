@@ -54,7 +54,7 @@ public class Services extends WebServices {
     @Override
     public String getToken(String userName, String password) throws IOException, InterruptedException {
         //TODO: 重构（解决System.out.println的问题）
-        String url = rootUrl + Path.USER;
+        String url = rootUrl + Path.USER_LOGIN.getPath();
 
         String jsonString = "{" +
                 "\"userName\":\"" + userName + "\"," +
@@ -63,9 +63,8 @@ public class Services extends WebServices {
 
         // Note the POST() method being used here, and the request body is supplied to it.
         // A request body needs to be supplied to this endpoint, otherwise a 400 Bad Request error will be returned.
-        String usersLoginUrl = url + "/login";
         client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder(URI.create(usersLoginUrl + "?jwt=true")) // Return a JWT so we can use it in Part 5 later.
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url + "?jwt=true")) // Return a JWT so we can use it in Part 5 later.
                 .setHeader("Authorization", myApiKey)
                 .header("Content-Type", "application/json") // This header needs to be set when sending a JSON request body.
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
@@ -96,15 +95,14 @@ public class Services extends WebServices {
     public int verifyToken(String token) throws IOException, InterruptedException {
 
         //TODO: 重构（解决System.out.println的问题）
-        String url = rootUrl + Path.USER;
+        String url = rootUrl + Path.VERIFY_TOKEN.getPath();
 
         String jsonString = "{\"jwt\":\"" + token + "\"}";
 
         // Note the POST() method being used here, and the request body is supplied to it.
         // A request body needs to be supplied to this endpoint, otherwise a 400 Bad Request error will be returned.
-        String usersVerifyTokenUrl = url + "/verify-token";
         client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder(URI.create(usersVerifyTokenUrl)) // Return a JWT so we can use it in Part 5 later.
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url)) // Return a JWT so we can use it in Part 5 later.
                 .setHeader("Authorization", myApiKey)
                 .header("Content-Type", "application/json") // This header needs to be set when sending a JSON request body.
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
@@ -141,5 +139,15 @@ public class Services extends WebServices {
         System.out.println("----\n\n");
 
         return response.statusCode();
+    }
+
+    @Override
+    public int putData(String path, String jsonString) throws IOException, InterruptedException {
+        return 0;
+    }
+
+    @Override
+    public int deleteData(String path, String jsonString, String id) throws IOException, InterruptedException {
+        return 0;
     }
 }

@@ -1,5 +1,6 @@
 package users;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -11,7 +12,6 @@ import java.util.Scanner;
 /**
  * This class is like an agent that can be used by actors to contact with the system.(will be more security)
  * The current user is the user that is currently logged in. (might be the resident or the Administrators/receptionist ...)
- *
  */
 public abstract class CurrentUser {
 
@@ -28,15 +28,25 @@ public abstract class CurrentUser {
 
     protected static final String IS_HEALTHCARE_WORKER_FIELD = "isHealthcareWorker";
 
+    public static final String PHONE_NUMBER_FIELD = "phoneNumber";
+
+    public static final String PASSWORD_FIELD = "password";
+
+    public static final String USER_NAME_FIELD = "userName";
+
+    public static final String FAMILY_NAME_FIELD = "familyName";
+
+    public static final String GIVEN_NAME_FIELD = "givenName";
+
     //    private static HashMap<String, Object> attributesTemplate = new HashMap<>();
     static {
         // empty template for the attributes
         // update values when needed in other places of the code
-        attributesTemplate.put("givenName", "String");
-        attributesTemplate.put("familyName", "String");
-        attributesTemplate.put("userName", "String");
-        attributesTemplate.put("password", "String");
-        attributesTemplate.put("phoneNumber", "String");
+        attributesTemplate.put(GIVEN_NAME_FIELD, "String");
+        attributesTemplate.put(FAMILY_NAME_FIELD, "String");
+        attributesTemplate.put(USER_NAME_FIELD, "String");
+        attributesTemplate.put(PASSWORD_FIELD, "String");
+        attributesTemplate.put(PHONE_NUMBER_FIELD, "String");
         attributesTemplate.put(IS_CUSTOMER_FIELD, false);
         attributesTemplate.put(IS_ADMIN_FIELD, false);
         attributesTemplate.put(IS_HEALTHCARE_WORKER_FIELD, false);
@@ -46,11 +56,12 @@ public abstract class CurrentUser {
     }
 
     /**
-     *  used for user who is doing signup
+     * used for user who is doing signup
+     *
      * @param
      * @return return a JSON String converted from ObjectNode, which is the current user info that is going to be saved in the system
      */
-    protected String buildRequestBody(){
+    public String buildRequestBody() {
         // 1. the role of user will be set to true when the instance of the class is created
 
         // 2. update other data from user's input
@@ -58,7 +69,7 @@ public abstract class CurrentUser {
             String key = it.next();
             // the value of the key is the type of String
             if (attributesTemplate.get(key).isTextual()) {
-                System.out.print(key+" : ");
+                System.out.print(key + " : ");
                 Scanner s = new Scanner(System.in);
                 String value = s.next();
                 attributesTemplate.put(key, value);
@@ -70,47 +81,21 @@ public abstract class CurrentUser {
     }
 
 
-    /**
-     *  Constructor 1 - get an ObjectNode from outside
-     * @param currentUserInfo ObjectNode of this user
-     */
-    public CurrentUser(ObjectNode currentUserInfo) {
-        this.currentUserInfo = currentUserInfo;
+    public CurrentUser() {
     }
 
-    public CurrentUser(){}
+//
+//    public String convertToJson() {
+//        // 将Java对象转换为JSON对象
+//        ObjectMapper mapper = new ObjectMapper();
+//        String json = null;
+//        try {
+//            json = mapper.writeValueAsString(this);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//        return json;
+//    }
 
-
-    public void setCurrentUserInfo(ObjectNode currentUserInfo) {
-        this.currentUserInfo = currentUserInfo;
-    }
-
-    /**
-     * Constructor 2 - get a token from outside
-     * used for user who is doing login
-     * @param token JSON web Token - get it from the system(issued by the system)
-     */
-    public CurrentUser(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    /*
-        public String convertToJson() {
-        // 将Java对象转换为JSON对象
-        ObjectMapper mapper = new ObjectMapper();
-        String json = null;
-        try {
-            json = mapper.writeValueAsString(this);
-        }
-        catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return json;
-    }
-     */
 
 }

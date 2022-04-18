@@ -2,9 +2,12 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import enums.Path;
+import loginSubsystem.LoginSubsystem;
 import searchForSitesSubsystem.TestingSite;
 import users.CurrentUser;
 import users.Customer;
+import webServiceAPI.Services;
+import webServiceAPI.WebServices;
 
 
 import java.io.IOException;
@@ -12,12 +15,9 @@ import java.io.IOException;
 
 public class Application {
     public static void main(String[] args) throws IOException, InterruptedException {
-        CurrentUser currentUser = new Customer();
 
-
-
-
-
+        LoginSubsystem loginSubsystem = new LoginSubsystem(new Services());
+        loginSubsystem.login();
 
         //TODO: 需要设计确定整个情景的business process ， 做简单的GUI
 // 1

@@ -53,4 +53,10 @@ public abstract class WebServices{
      * @throws InterruptedException
      */
     public abstract int postData(String path, String jsonString) throws IOException, InterruptedException;
+
+    public abstract int putData(String path, String jsonString) throws IOException, InterruptedException;
+
+    public abstract int deleteData(String path, String jsonString, String id) throws IOException, InterruptedException;
+
+
 }
