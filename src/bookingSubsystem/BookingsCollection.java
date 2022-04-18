@@ -50,7 +50,8 @@ public class BookingsCollection {
      */
     public String getStatusByPin(String pincode) {
         for (Booking booking : bookings) {
-            if (booking.getPinCode().equals(pincode)) {
+            String temp = booking.getPinCode();
+            if (temp.equals(pincode)) {
                 return booking.getStatus();
             }
         }

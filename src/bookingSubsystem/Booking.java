@@ -16,8 +16,7 @@ public class Booking {
      * @return String pincode
      */
     public String getPinCode(){
-        System.out.println(bookingInfo.get(SMS_PIN_FIELD).toString());
-        return bookingInfo.get(SMS_PIN_FIELD).toString();
+        return bookingInfo.get(SMS_PIN_FIELD).asText();
     }
 
     /**
@@ -25,7 +24,6 @@ public class Booking {
      * @return
      */
     public String getStatus(){
-        System.out.println(bookingInfo.get(STATUS_FIELD).toString());
         return bookingInfo.get(STATUS_FIELD).toString();
     }
 }
