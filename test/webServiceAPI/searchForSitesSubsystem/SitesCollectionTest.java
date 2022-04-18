@@ -1,6 +1,7 @@
-package searchForSitesSubsystem;
+package webServiceAPI.searchForSitesSubsystem;
 
 import org.junit.Test;
+import searchForSitesSubsystem.SitesCollection;
 
 import java.io.IOException;
 

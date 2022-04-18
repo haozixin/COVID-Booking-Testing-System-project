@@ -23,20 +23,11 @@ public abstract class WebServices{
 
     protected static HttpClient client = HttpClient.newHttpClient();
 
-
-
-
-
-
     public String getToken(String userName, String password) throws IOException, InterruptedException {return null;}
-
-
 
     public int verifyToken(String token) throws IOException, InterruptedException {
         return 0;
     }
-
-
 
     // like database basic function
     public ObjectNode[] getAllData(String path) throws IOException, InterruptedException {return null;}
@@ -57,6 +48,8 @@ public abstract class WebServices{
     public abstract int putData(String path, String jsonString) throws IOException, InterruptedException;
 
     public abstract int deleteData(String path, String jsonString, String id) throws IOException, InterruptedException;
+
+    //通过找到booking --》 再返回status
 
 
 }

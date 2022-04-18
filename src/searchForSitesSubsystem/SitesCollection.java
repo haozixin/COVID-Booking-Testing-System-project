@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class SitesCollection {
-    private static final String name = "TestingSite Collection";
+    private static final String name = "TestingSites Collection";
     private ArrayList<TestingSite> testingSites = new ArrayList<>();
     private static SitesCollection instance = null;
 
