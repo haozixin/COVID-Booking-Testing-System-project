@@ -5,10 +5,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Properties;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Utility {
     public static Properties myProp = new Properties();
@@ -46,6 +45,18 @@ public class Utility {
             System.out.println(s);
         }
     }
+
+    /**
+     * used for the Services.java, show a formatted error message
+     * @param response response body (only for errors respond) from the server
+     */
+    public static void resolveError(ObjectNode response){
+    	System.out.println("Error in the request: ");
+    	response.get("error").forEach(System.out::println);
+        System.out.println("Tips: ");
+        response.get("message").forEach(System.out::println);
+    }
+
 
 
 }

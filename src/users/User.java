@@ -13,7 +13,7 @@ import java.util.Scanner;
  * This class is like an agent that can be used by actors to contact with the system.(will be more security)
  * The current user is the user that is currently logged in. (might be the resident or the Administrators/receptionist ...)
  */
-public abstract class CurrentUser {
+public abstract class User {
 
     // class name
     public static final String name = "users.CurrentUser";
@@ -74,14 +74,13 @@ public abstract class CurrentUser {
                 String value = s.next();
                 attributesTemplate.put(key, value);
             }
-
         }
 
         return attributesTemplate.toString();
     }
 
 
-    public CurrentUser() {
+    public User() {
     }
 
 //
@@ -96,6 +95,8 @@ public abstract class CurrentUser {
 //        }
 //        return json;
 //    }
+
+
 
 
 }

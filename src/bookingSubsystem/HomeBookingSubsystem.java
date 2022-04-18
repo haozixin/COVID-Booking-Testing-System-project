@@ -1,6 +1,6 @@
 package bookingSubsystem;
 
-public class HomeBookingSubsystem extends Booking{
+public class HomeBookingSubsystem {
     public HomeBookingSubsystem() {
     }
 }

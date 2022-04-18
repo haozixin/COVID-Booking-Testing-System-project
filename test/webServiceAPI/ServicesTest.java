@@ -3,7 +3,7 @@ package webServiceAPI;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import org.junit.Test;
-import users.CurrentUser;
+import users.User;
 import users.Customer;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class ServicesTest {
     @Test
     public void postData() throws IOException, InterruptedException {
         WebServices service = new Services();
-        CurrentUser user = new Customer();
+        User user = new Customer();
         String jsonString = user.buildRequestBody();
         int responseNumber = service.postData(Path.USER.getPath(), jsonString);
         System.out.println("In ServiceTest : " + responseNumber);

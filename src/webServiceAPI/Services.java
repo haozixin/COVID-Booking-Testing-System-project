@@ -1,9 +1,11 @@
 package webServiceAPI;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import enums.ResponseStatus;
+import utility.Utility;
 
 import java.io.IOException;
 import java.net.URI;
@@ -40,6 +42,8 @@ public class Services extends WebServices {
             return jsonNodes;
         } else {
             System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
+            Utility.resolveError(errorJsonNode);
             return null;
         }
     }
@@ -72,19 +76,23 @@ public class Services extends WebServices {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println("\n----");
-        System.out.println(request.uri());
-        System.out.println("Response code: " + response.statusCode());
-        System.out.println("Full JSON response: " + response.body()); // The JWT token that has just been issued will be returned since we set ?jwt=true.
-        System.out.println("----\n\n");
+//        System.out.println("\n----");
+//        System.out.println(request.uri());
+//        System.out.println("Response code: " + response.statusCode());
+//        System.out.println("Full JSON response: " + response.body()); // The JWT token that has just been issued will be returned since we set ?jwt=true.
+//        System.out.println("----\n\n");
 
         ObjectNode jsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
         String token = jsonNode.get("jwt").textValue();
 
 
         if (response.statusCode() == ResponseStatus.CODE_200.getCode()) {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
             return token;
         } else {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
+            Utility.resolveError(errorJsonNode);
             return null;
         }
 
@@ -110,11 +118,21 @@ public class Services extends WebServices {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println("\n----");
-        System.out.println(request.uri());
-        System.out.println("Response code: " + response.statusCode());
-        System.out.println("Full JSON response: " + response.body()); // This endpoint does not return a JSON response upon success.
-        System.out.println("----\n\n");
+        if (response.statusCode() == ResponseStatus.CODE_200.getCode()) {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+
+        } else {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
+            Utility.resolveError(errorJsonNode);
+
+        }
+
+//        System.out.println("\n----");
+//        System.out.println(request.uri());
+//        System.out.println("Response code: " + response.statusCode());
+//        System.out.println("Full JSON response: " + response.body()); // This endpoint does not return a JSON response upon success.
+//        System.out.println("----\n\n");
 
         return response.statusCode();
     }
@@ -132,11 +150,20 @@ public class Services extends WebServices {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println("\n----");
-        System.out.println(request.uri());
-        System.out.println("Response code: " + response.statusCode());
-        System.out.println("Full JSON response: " + response.body()); // This endpoint does not return a JSON response upon success.
-        System.out.println("----\n\n");
+        if (response.statusCode() == ResponseStatus.CODE_201.getCode()) {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+
+        } else {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
+            Utility.resolveError(errorJsonNode);
+        }
+
+//        System.out.println("\n----");
+//        System.out.println(request.uri());
+//        System.out.println("Response code: " + response.statusCode());
+//        System.out.println("Full JSON response: " + response.body()); // This endpoint does not return a JSON response upon success.
+//        System.out.println("----\n\n");
 
         return response.statusCode();
     }

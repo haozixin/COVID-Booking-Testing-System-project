@@ -1,11 +1,5 @@
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import enums.Path;
 import loginSubsystem.LoginSubsystem;
-import searchForSitesSubsystem.TestingSite;
-import users.CurrentUser;
-import users.Customer;
 import webServiceAPI.Services;
 import webServiceAPI.WebServices;
 
@@ -16,8 +10,11 @@ import java.io.IOException;
 public class Application {
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        LoginSubsystem loginSubsystem = new LoginSubsystem(new Services());
-        loginSubsystem.login();
+        WebServices service = new Services();
+        Booking booking = new Booking("f3dc6047-1e2f-4c65-909f-37189cfd98df","7fbd25ee-5b64-4720-b1f6-4f6d4731260e","Testdata2", "2022-01-01 12:00:00");
+        String jsonString = booking.buildRequestBody();
+        int responseNumber = service.postData(Path.BOOKING.getPath(), jsonString);
+        System.out.println("In ServiceTest : " + responseNumber);
 
         //TODO: 需要设计确定整个情景的business process ， 做简单的GUI
 // 1
