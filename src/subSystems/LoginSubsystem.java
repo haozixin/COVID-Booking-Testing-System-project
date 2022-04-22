@@ -6,7 +6,7 @@ import actions.SignUp;
 import actors.Actor;
 import engine.actions.Actions;
 import utility.Utility;
-import webServiceAPI.Services;
+import webServiceAPI.ServicesAdapter;
 
 /**
  * The class is responsible for loginSubsystem
@@ -18,7 +18,7 @@ public class LoginSubsystem extends CovidBAndTSystem{
 
     public LoginSubsystem() {
         super();
-        serviceForUser = new Services();
+        serviceForUser = new ServicesAdapter();
         actions = new Actions();
         dashBoard = Utility.setDashboard(64,5, systemName);
 

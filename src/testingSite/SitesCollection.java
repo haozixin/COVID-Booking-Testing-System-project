@@ -2,8 +2,8 @@ package testingSite;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
-import webServiceAPI.Services;
-import webServiceAPI.WebServices;
+import webServiceAPI.ServicesAdapter;
+import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class SitesCollection {
      * @return true if the update was successful, false otherwise
      */
     public void update() throws IOException, InterruptedException {
-        WebServices ws = new Services();
+        WebServicesTarget ws = new ServicesAdapter();
         ObjectNode[] objectNode = ws.getAllData(Path.SITE.getPath());
         // remove all the testing sites(old data)
         clearTestingSites();

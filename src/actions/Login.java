@@ -3,15 +3,14 @@ package actions;
 import actors.Actor;
 import engine.actions.Action;
 import enums.ResponseStatus;
-import utility.Utility;
-import webServiceAPI.Services;
-import webServiceAPI.WebServices;
+import webServiceAPI.ServicesAdapter;
+import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Login extends Action {
-    private WebServices webServices = new Services();
+    private WebServicesTarget webServicesTarget = new ServicesAdapter();
     String token;
 
 
@@ -27,7 +26,7 @@ public class Login extends Action {
         // display where the user is now
         display();
 
-        int code = authentication(webServices);
+        int code = authentication(webServicesTarget);
 
         if (code == ResponseStatus.CODE_200.getCode()) {
             // if login success, set state to logged in
@@ -40,7 +39,7 @@ public class Login extends Action {
         }
     }
 
-    private int authentication(WebServices serviceForUser) throws IOException, InterruptedException {
+    private int authentication(WebServicesTarget serviceForUser) throws IOException, InterruptedException {
         String userName, password;
 
         System.out.print("Input your userName: ");

@@ -3,13 +3,8 @@ package subSystems;
 import engine.Display;
 import engine.actions.Action;
 import engine.actions.Actions;
-import subSystems.HomeBookingSubsystem;
-import subSystems.LoginSubsystem;
-import subSystems.OnsiteBookingSubsystem;
-import subSystems.OnsiteTestingSubsystem;
-import subSystems.SearchForSitesSubsystem;
 import actors.Actor;
-import webServiceAPI.WebServices;
+import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +20,7 @@ import java.util.Map;
  */
 public abstract class CovidBAndTSystem {
 
-    protected WebServices serviceForUser;
+    protected WebServicesTarget serviceForUser;
     protected ArrayList<String> dashBoard;
     protected Actor actor;
     protected Display display;

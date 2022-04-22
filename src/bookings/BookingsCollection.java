@@ -2,8 +2,8 @@ package bookings;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
-import webServiceAPI.Services;
-import webServiceAPI.WebServices;
+import webServiceAPI.ServicesAdapter;
+import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class BookingsCollection {
     }
 
     public void update() throws IOException, InterruptedException {
-        WebServices ws = new Services();
+        WebServicesTarget ws = new ServicesAdapter();
         ObjectNode[] objectNode = ws.getAllData(Path.BOOKING.getPath());
         clearBookings();
 
