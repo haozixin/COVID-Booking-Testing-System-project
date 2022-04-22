@@ -12,7 +12,6 @@ import engine.actions.Actions;
 public class Customer extends Actor {
     private final Menu menu = new Menu();
 
-
     @Override
     public Action playTurn(Actions actions, Action lastAction, Display display) {
 
