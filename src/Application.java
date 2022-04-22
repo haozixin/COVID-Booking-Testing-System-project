@@ -3,7 +3,7 @@ import engine.DataPublisher;
 import subSystems.CovidBAndTSystem;
 import subSystems.LoginSubsystem;
 import subSystems.SearchForSitesSubsystem;
-import testingSite.SitesCollection;
+import testingSites.SitesCollection;
 
 import java.io.IOException;
 

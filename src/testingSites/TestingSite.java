@@ -37,25 +37,22 @@ public class TestingSite {
         return location;
     }
 
-    public String getSuburb(){
-        return location.getSuburb();
-    }
+//    public String getSuburb(){
+//        return location.getSuburb();
+//    }
 
-    public String getFacilityType(){
-        try {
-            return testingSiteInfo.findValue(FACILITY_TYPE_FIELD).asText();
-        } catch (NullPointerException e) {
-            System.out.println("There is no correct facility Type field in additionalInfo for this testing site!");
-            return null;
-        }
-
-    }
+//    public String getFacilityType(){
+//        try {
+//            return testingSiteInfo.findValue(FACILITY_TYPE_FIELD).asText();
+//        } catch (NullPointerException e) {
+//            return null;
+//        }
+//    }
 
     public String findValue(String field){
         try {
             return testingSiteInfo.findValue(field).asText();
         } catch (NullPointerException e) {
-            System.out.println("There is no correct specified field for this testing site!");
             return null;
         }
     }

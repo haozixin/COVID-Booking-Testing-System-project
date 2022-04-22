@@ -2,7 +2,7 @@ package actions;
 
 import actors.Actor;
 import engine.actions.Action;
-import testingSite.SitesCollection;
+import testingSites.SitesCollection;
 import utility.Utility;
 
 import java.io.IOException;

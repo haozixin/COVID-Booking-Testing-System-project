@@ -2,9 +2,10 @@ package actions;
 
 import actors.Actor;
 import engine.actions.Action;
-import testingSite.Location;
-import testingSite.SitesCollection;
-import testingSite.TestingSite;
+import testingSites.Location;
+import testingSites.SitesCollection;
+import testingSites.TestingSite;
+
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -4,7 +4,7 @@ import actors.Actor;
 import engine.actions.Action;
 import enums.Path;
 import enums.ResponseStatus;
-import user.User;
+import users.User;
 import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;

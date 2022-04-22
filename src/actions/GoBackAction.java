@@ -2,7 +2,6 @@ package actions;
 
 import actors.Actor;
 import engine.actions.Action;
-import user.User;
 
 import java.io.IOException;
 
