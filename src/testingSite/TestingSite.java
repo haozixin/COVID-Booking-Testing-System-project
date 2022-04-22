@@ -1,4 +1,4 @@
-package searchForSitesSubsystem;
+package testingSite;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -12,10 +12,10 @@ public class TestingSite {
     private Location location;
 
 
+
     public TestingSite(ObjectNode siteJsonNode) {
         this.testingSiteInfo = siteJsonNode;
         setLocation();
-
     }
 
 
@@ -36,7 +36,7 @@ public class TestingSite {
         return location.getSuburb();
     }
 
-    private String getId(){
+    public String getId(){
         return testingSiteInfo.get("id").asText();
     }
 

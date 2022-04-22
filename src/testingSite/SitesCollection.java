@@ -1,14 +1,12 @@
-package searchForSitesSubsystem;
+package testingSite;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
-import utility.Utility;
 import webServiceAPI.Services;
 import webServiceAPI.WebServices;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class SitesCollection {
