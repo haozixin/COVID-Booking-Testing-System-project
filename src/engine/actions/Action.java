@@ -9,6 +9,7 @@ import java.io.IOException;
  * Base class for Actions.  These represent things that the player can do.
  */
 public abstract class Action {
+    protected String name;
 
     /**
      * Perform the Action.

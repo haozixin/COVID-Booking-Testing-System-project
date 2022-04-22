@@ -43,4 +43,8 @@ public class Display  {
         String s = keyboard.next();
         return s.charAt(0);
     }
+
+    public String readString() {
+        return keyboard.nextLine().trim();
+    }
 }

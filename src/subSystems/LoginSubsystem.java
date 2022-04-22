@@ -1,8 +1,8 @@
 package subSystems;
 
 
-import actions.Login;
-import actions.SignUp;
+import actions.LoginAction;
+import actions.SignUpAction;
 import actors.Actor;
 import engine.actions.Actions;
 import utility.Utility;
@@ -18,18 +18,12 @@ public class LoginSubsystem extends CovidBAndTSystem{
 
     public LoginSubsystem() {
         super();
-        serviceForUser = new ServicesAdapter();
-        actions = new Actions();
         dashBoard = Utility.setDashboard(64,5, systemName);
-
-
     }
 
 
     public void display() {
-        //TODO: output better GUI for login system here
         Utility.printArrayList(dashBoard);
-
     }
 
 
@@ -52,8 +46,8 @@ public class LoginSubsystem extends CovidBAndTSystem{
         {
             actions.clear();
         // TODO: add actions
-            actions.add(new Login());
-            actions.add(new SignUp());
+            actions.add(new LoginAction());
+            actions.add(new SignUpAction());
 
         super.processActorTurn(actor);
     }

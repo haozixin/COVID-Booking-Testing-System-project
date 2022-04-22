@@ -4,12 +4,17 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utility.Utility;
 
+import java.util.HashMap;
+
 public class TestingSite {
     public static final String ADDRESS_FIELD = "address";
+    public static final String FACILITY_TYPE_FIELD = "facilityType";
     private final String name = "Testing Site";
     // store all information of testing site by using ObjectNode testingSite
     private ObjectNode testingSiteInfo;
     private Location location;
+
+
 
 
 
@@ -32,14 +37,37 @@ public class TestingSite {
         return location;
     }
 
-    private String getSuburb(){
+    public String getSuburb(){
         return location.getSuburb();
     }
 
-    public String getId(){
+    public String getFacilityType(){
+        try {
+            return testingSiteInfo.findValue(FACILITY_TYPE_FIELD).asText();
+        } catch (NullPointerException e) {
+            System.out.println("There is no correct facility Type field in additionalInfo for this testing site!");
+            return null;
+        }
+
+    }
+
+    public String findValue(String field){
+        try {
+            return testingSiteInfo.findValue(field).asText();
+        } catch (NullPointerException e) {
+            System.out.println("There is no correct specified field for this testing site!");
+            return null;
+        }
+    }
+
+    private String getId(){
         return testingSiteInfo.get("id").asText();
     }
 
+    /**
+     * override toString method
+     * @return a formated string value of testing site
+     */
     @Override
     public String toString() {
         return Utility.displayMessage(name, testingSiteInfo);

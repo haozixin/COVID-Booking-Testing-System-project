@@ -20,7 +20,12 @@ public class Location {
     }
 
     public String getSuburb(){
-        return address.get(SUBURB_FIELD).asText();
+        try {
+            return address.get(SUBURB_FIELD).asText();
+        } catch (NullPointerException e) {
+            System.out.println("There is no relative suburb field in address!");
+            return null;
+        }
     }
 
 

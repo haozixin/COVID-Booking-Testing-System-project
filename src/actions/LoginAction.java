@@ -4,29 +4,36 @@ import actors.Actor;
 import engine.Display;
 import engine.actions.Action;
 import enums.ResponseStatus;
+import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Login extends Action {
-    private WebServicesTarget webServicesTarget = new ServicesAdapter();
+public class LoginAction extends Action {
+    private WebServicesTarget webServicesTarget;
     String token;
+    String name;
 
 
     /**
      * Constructor
      */
-    public Login() {
+    public LoginAction() {
         token = null;
+        name = "Login system operation";
+        webServicesTarget = new ServicesAdapter();
+
     }
+
+
 
 
     @Override
     public String execute(Actor actor) throws IOException, InterruptedException {
         // display where the user is now
-        display();
+        Utility.displayAction(name);
 
         boolean result = authentication(webServicesTarget);
 
@@ -59,9 +66,6 @@ public class Login extends Action {
         return serviceForUser.verifyToken(token);
     }
 
-    private void display() {
-        System.out.println("----------You are doing Login system operation---------");
-    }
 
 
 

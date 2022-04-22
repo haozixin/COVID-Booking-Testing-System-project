@@ -5,21 +5,26 @@ import engine.actions.Action;
 import enums.Path;
 import enums.ResponseStatus;
 import user.User;
+import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 
-public class SignUp extends Action {
-    private WebServicesTarget webServicesTarget = new ServicesAdapter();
+public class SignUpAction extends Action {
+    private WebServicesTarget webServicesTarget;
     private User user;
 
+    public SignUpAction() {
+        webServicesTarget = new ServicesAdapter();
+        user = new User();
+        name = "Sign Up operation";
+    }
 
     @Override
     public String execute(Actor actor) throws IOException, InterruptedException {
-        display();
+        Utility.displayAction(name);
 
-        user = new User();
         String jsonNodes = user.buildRequestBody();
         boolean code = webServicesTarget.postData(Path.SIGN_UP.getPath(), jsonNodes);
         System.out.println("Details: "+user);
@@ -29,9 +34,7 @@ public class SignUp extends Action {
         return null;
     }
 
-    private void display() {
-        System.out.println("----------You are doing Sign Up operation---------");
-    }
+
 
     @Override
     public String menuDescription(Actor actor) {

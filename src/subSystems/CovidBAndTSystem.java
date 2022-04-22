@@ -1,9 +1,11 @@
 package subSystems;
 
+import actions.GoBackAction;
 import engine.Display;
 import engine.actions.Action;
 import engine.actions.Actions;
 import actors.Actor;
+import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
@@ -33,7 +35,9 @@ public abstract class CovidBAndTSystem {
     }
 
     public CovidBAndTSystem() {
-        this.display = new Display();
+        display = new Display();
+        serviceForUser = new ServicesAdapter();
+        actions = new Actions();
     }
 
     public abstract void run();

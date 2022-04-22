@@ -96,6 +96,10 @@ public class Utility {
         return dashBoard;
     }
 
+    public static void displayAction(String name){
+        System.out.println("----------You are doing "+name+"---------");
+    }
+
 
 
 }

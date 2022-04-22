@@ -3,7 +3,6 @@ package testingSite;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.DataSubscriber;
 import enums.Path;
-import enums.Query;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
@@ -13,10 +12,23 @@ import java.util.HashMap;
 
 public class SitesCollection implements DataSubscriber {
     private static final String name = "TestingSites Collection";
+    public static final String FILTER_IS_ALL = "all";
     private ArrayList<TestingSite> testingSites = new ArrayList<>();
     private static SitesCollection instance = null;
 
+
+    private ArrayList<HashMap<String, String>> factors;
+    // factors used for filtering, if more factors are needed, only need to add them(Field name) into filterFields in constructor
+    private ArrayList<String> filterFields;
+
+
+
+
     private SitesCollection() {
+        factors = new ArrayList<>();
+        filterFields = new ArrayList<>();
+        filterFields.add(Location.SUBURB_FIELD);
+        filterFields.add(TestingSite.FACILITY_TYPE_FIELD);
     }
 
     public static SitesCollection getInstance() {
@@ -54,9 +66,10 @@ public class SitesCollection implements DataSubscriber {
 
     /**
      * Update the jsonNodes array with the new data from the web service
+     *
+     * @return true if the update was successful, false otherwise
      * @throws IOException
      * @throws InterruptedException
-     * @return true if the update was successful, false otherwise
      */
     @Override
     public void update() throws IOException, InterruptedException {
@@ -70,6 +83,7 @@ public class SitesCollection implements DataSubscriber {
             addTestingSite(testingSite);
         }
 
+        initHashMap();
     }
 
     public void printList() {
@@ -78,29 +92,78 @@ public class SitesCollection implements DataSubscriber {
         }
     }
 
+    private void initHashMap() {
+
+        for (String field : filterFields) {
+            HashMap<String, String> keyMap = new HashMap<String, String>();
+            keyMap.put(FILTER_IS_ALL, field);
+            for (TestingSite testingSite : testingSites) {
+                if (testingSite.findValue(field) != null) {
+                    keyMap.put(testingSite.findValue(field), field);
+                }
+            }
+            factors.add(keyMap);
+        }
+//        HashMap<String, String> keyToSuburbMap = new HashMap<String, String>();
+//        HashMap<String, String> keyToFacilityTypeMap = new HashMap<String, String>();
+//
+//        keyToSuburbMap.put("all",Location.SUBURB_FIELD);
+//        keyToFacilityTypeMap.put("all",TestingSite.FACILITY_TYPE_FIELD);
+//
+//
+//        for (TestingSite testingSite : testingSites) {
+//            String value = testingSite.getSuburb();
+//
+//            // Eliminate the non-existent and prevent duplication
+//            if (value != null) {
+//                keyToSuburbMap.put( value, Location.SUBURB_FIELD);
+//            }
+//            value = testingSite.getFacilityType();
+//            if (value != null) {
+//                keyToFacilityTypeMap.put(value, TestingSite.FACILITY_TYPE_FIELD);
+//            }
+//
+//        }
+//
+//        factors.add(keyToSuburbMap);
+//        factors.add(keyToFacilityTypeMap);
+    }
+
+
+    public void displayFactors() {
+        for (HashMap<String, String> hashMap : factors) {
+            System.out.println(hashMap);
+        }
+    }
+
     /**
      * Get the testing site by suburb name / type of facility (such as Drive Through, Walk-in, Clinics, GPs or Hospitals)
+     * if user input is "all", return all the testing sites
      *
-     * @param filter <String, String> where the key is the name of the field(user want to filter by which field) and the value is the value of the field(user's input)
+     * @param field ArrayList<String, String> where the key is the name of the field(user want to filter by which field) and the value is the value of the field(user's input)
      * @return filteredList,  an array list of testing sites that meets the filter
      */
-    public ArrayList<TestingSite> filterBy(HashMap<String, String> filter) {
+    public ArrayList<TestingSite> filter(String field, String value) {
+
+        if (value.equals(FILTER_IS_ALL)) {
+            return testingSites;
+        }
+
         ArrayList<TestingSite> filteredList = new ArrayList<>();
         for (TestingSite testingSite : testingSites) {
-            //TODO: jayden
+            // if testingSite.findValue(field) is null, then the testing site doesn't have the field
+            if (testingSite.findValue(field) != null ){
+                if (testingSite.findValue(field).equals(value)) {
+                    filteredList.add(testingSite);
+                }
+            }
         }
         return filteredList;
     }
 
 
 
-
-    private void getSiteByName(String name) {
-//        for (ObjectNode node : jsonNodes) {
-//            if (node.get("name").asText().equals(name)) {
-//
-//            }
-//        }
-
+    public ArrayList<HashMap<String, String>> getFactors() {
+        return factors;
     }
 }

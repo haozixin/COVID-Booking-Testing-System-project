@@ -2,7 +2,7 @@ package loginSubsystem;
 
 import java.io.IOException;
 
-public class LoginSubsystemTest {
+public class LoginActionSubsystemTest {
 
     @org.junit.Before
     public void setUp() throws Exception {
