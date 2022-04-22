@@ -94,7 +94,7 @@ public class ServicesAdapter implements WebServicesTarget {
      * Authenticating a user's credentials using the POST /user/login endpoint
      * @param userName the userName the user login
      * @param password the password the user login
-     * @return
+     * @return the string contains token
      */
     @Override
     public String getToken(String userName, String password) throws IOException, InterruptedException {
@@ -165,6 +165,4 @@ public class ServicesAdapter implements WebServicesTarget {
             return false;
         }
     }
-
-
 }
