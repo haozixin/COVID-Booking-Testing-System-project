@@ -26,9 +26,9 @@ public class Login extends Action {
         // display where the user is now
         display();
 
-        int code = authentication(webServicesTarget);
+        boolean result = authentication(webServicesTarget);
 
-        if (code == ResponseStatus.CODE_200.getCode()) {
+        if (result) {
             // if login success, set state to logged in
             actor.setLogged(true);
             // store token
@@ -39,7 +39,7 @@ public class Login extends Action {
         }
     }
 
-    private int authentication(WebServicesTarget serviceForUser) throws IOException, InterruptedException {
+    private boolean authentication(WebServicesTarget serviceForUser) throws IOException, InterruptedException {
         String userName, password;
 
         System.out.print("Input your userName: ");
