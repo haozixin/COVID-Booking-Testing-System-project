@@ -3,7 +3,7 @@ package webServiceAPI;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import enums.Query;
-import utility.Utility;
+import utility.*;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -36,21 +36,22 @@ public interface WebServicesTarget {
 
 
     /**
-     *
+     * like database basic function
+     * post the data to web service and update the database
      * @param path URL path
      * @param jsonString a correct json string that can be parsed by Jackson and you want to add to the server
-     * @return response state code
+     * @return boolean value: true-success, false-failure
      * @throws IOException
      * @throws InterruptedException
      */
     boolean postData(String path, String jsonString) throws IOException, InterruptedException;
 
     /**
-     *  do same things with put or patch web request
+     * do same things with put or patch web request
      * @param path sub URL path
      * @param jsonString schema of the data
      * @param id the id of the data
-     * @return
+     * @return boolean value: true-success, false-failure
      * @throws IOException
      * @throws InterruptedException
      */
@@ -60,11 +61,11 @@ public interface WebServicesTarget {
 //    boolean patchData(String path, String jsonString, String id) throws IOException, InterruptedException;
 
     /**
-     *
-     * @param path
-     * @param id
-     * @param query
-     * @return
+     * get the specific data according to specific id
+     * @param path URL path
+     * @param id the id of the data
+     * @param query the query of the operation to be performed (e.g. ?id=1), see enums.Query or documentation for more details
+     * @return objectNode contains the specific data
      * @throws IOException
      * @throws InterruptedException
      */

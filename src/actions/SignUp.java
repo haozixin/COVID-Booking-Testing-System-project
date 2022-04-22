@@ -5,8 +5,8 @@ import engine.actions.Action;
 import enums.Path;
 import enums.ResponseStatus;
 import users.User;
-import webServiceAPI.Services;
-import webServiceAPI.WebServices;
+import webServiceAPI.ServicesAdapter;
+import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 

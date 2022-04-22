@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import enums.Query;
 import enums.ResponseStatus;
-import utility.Utility;
+import utility.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -35,7 +35,13 @@ public class ServicesAdapter implements WebServicesTarget {
         client = HttpClient.newHttpClient();
     }
 
-
+    /**
+     * fetch all data according to url
+     * return ObjectNode array containing all data.
+     *
+     * @param path the path of the operation to be performed (e.g. /users/login), see enums.Path or documentation for more details
+     * @param query the query of the operation to be performed (e.g. ?id=1), see enums.Query or documentation for more details
+     */
     @Override
     public ObjectNode[] getAllData(String path, String query) throws IOException, InterruptedException {
         if (query == null) {
@@ -62,7 +68,7 @@ public class ServicesAdapter implements WebServicesTarget {
      * return ObjectNode jsonNode that contains data
      *
      * @param path the path of the operation to be performed (e.g. /users/login), see enums.Path or documentation for more details
-     * @param id   the id of that you are interested in
+     * @param id the id of the data
      */
     @Override
     public ObjectNode getSpecificData(String path, String id, String query) throws IOException, InterruptedException {
@@ -85,9 +91,9 @@ public class ServicesAdapter implements WebServicesTarget {
 
     /**
      * override the parents' method
-     *
-     * @param userName
-     * @param password
+     * Authenticating a user's credentials using the POST /user/login endpoint
+     * @param userName the userName the user login
+     * @param password the password the user login
      * @return
      */
     @Override
@@ -145,6 +151,7 @@ public class ServicesAdapter implements WebServicesTarget {
         HttpResponse<String> response = webServicesAdaptee.putRequest(url, myApiKey, jsonString, client );
         return dealingResult(response, ResponseStatus.CODE_200.getCode());
     }
+
 
     private boolean dealingResult(HttpResponse<String> response, int successCode) throws JsonProcessingException {
         if (response.statusCode() == successCode) {
