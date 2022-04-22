@@ -16,8 +16,10 @@ API_key = your API key
 (without the quotes for values)
 ---
 
-
 2. set project structure (if using IntelliJ to run it)  
 click *file*->*project structure*->*project structure*
 ![img_2.png](readme_img/img_2.png)
 ![](readme_img/img_3.png)
+
+-------------------------------------------------------------
+

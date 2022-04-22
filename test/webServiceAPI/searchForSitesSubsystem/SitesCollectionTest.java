@@ -1,7 +1,7 @@
 package webServiceAPI.searchForSitesSubsystem;
 
 import org.junit.Test;
-import testingSite.SitesCollection;
+import testingSites.SitesCollection;
 
 import java.io.IOException;
 

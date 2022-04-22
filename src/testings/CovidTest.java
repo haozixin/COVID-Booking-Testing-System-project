@@ -1,4 +1,4 @@
-package testing;
+package testings;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 

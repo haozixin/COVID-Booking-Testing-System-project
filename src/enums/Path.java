@@ -2,10 +2,10 @@ package enums;
 
 public enum Path {
 
-    USER("/user"),
-    SIGN_UP("/user"),
-    USER_LOGIN("/user/login"),
-    VERIFY_TOKEN("/user/verify-token"),
+    USER("/users"),
+    SIGN_UP("/users"),
+    USER_LOGIN("/users/login"),
+    VERIFY_TOKEN("/users/verify-token"),
     SITE("/testing-site"),
     BOOKING("/booking"),
     TEST("/covid-test"),

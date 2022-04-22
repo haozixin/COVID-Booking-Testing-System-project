@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import testingSite.TestingSite;
+import testingSites.TestingSite;
 
-import user.User;
+import users.User;
 import utility.Utility;
 
 import java.util.Iterator;
@@ -19,7 +19,7 @@ public class Booking {
     public static final String name = "Booking";
 
     public static final String CUSTOMER_FIELD = "customer";
-    public static final String TESTING_SITE_FIELD = "testingSite";
+    public static final String TESTING_SITE_FIELD = "testingSites";
     public static final String USER_ID_FIELD = "customerId";
     public static final String TESTING_SITE_ID_FIELD = "testingSiteId";
 

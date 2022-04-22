@@ -1,4 +1,4 @@
-package testingSite;
+package testingSites;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.DataSubscriber;
