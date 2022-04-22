@@ -26,6 +26,7 @@ public enum ResponseStatus {
     public String getDescription() {
         return description;
     }
+
     public static String matchCode(int code){
         for (ResponseStatus i : ResponseStatus.values()){
             if (i.getCode()==code){

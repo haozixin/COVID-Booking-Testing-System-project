@@ -11,7 +11,7 @@ import webServiceAPI.WebServices;
 import java.io.IOException;
 
 public class SignUp extends Action {
-    private WebServices webServices = new Services();
+    private WebServicesTarget webServicesTarget = new ServicesAdapter();
     private User user;
 
 
@@ -21,9 +21,9 @@ public class SignUp extends Action {
 
         user = new User();
         String jsonNodes = user.buildRequestBody();
-        int code =  webServices.postData(Path.SIGN_UP.getPath(), jsonNodes);
+        boolean code = webServicesTarget.postData(Path.SIGN_UP.getPath(), jsonNodes);
         System.out.println("Details: "+user);
-        if (code == ResponseStatus.CODE_201.getCode()) {
+        if (code) {
             return "You have successfully signed up";
         }
         return null;
