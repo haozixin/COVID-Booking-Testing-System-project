@@ -2,6 +2,7 @@ package webServiceAPI;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
+import enums.Query;
 import utility.Utility;
 
 import java.io.IOException;
@@ -20,8 +21,17 @@ public interface WebServicesTarget {
 
     boolean verifyToken(String token) throws IOException, InterruptedException;
 
-    // like database basic function
-    ObjectNode[] getAllData(String path) throws IOException, InterruptedException;
+
+    /**
+     * like database basic function
+     * get all xx data(based on different parameter/path)
+     * return ObjectNode[] jsonNodes that contains data
+     *
+     * if the query is null - it will return all data
+     * @param path the path of the operation to be performed (e.g. /users/login), see enums.Path or documentation for more details
+     * @param query the query of the operation to be performed (e.g. ?id=1), see enums.Query or documentation for more details
+     */
+    ObjectNode[] getAllData(String path, String query) throws IOException, InterruptedException;
 
 
 
@@ -49,5 +59,14 @@ public interface WebServicesTarget {
     // cannot implement - java don't support PATCH method
 //    boolean patchData(String path, String jsonString, String id) throws IOException, InterruptedException;
 
-    ObjectNode getSpecificData(String path, String id) throws IOException, InterruptedException;
+    /**
+     *
+     * @param path
+     * @param id
+     * @param query
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    ObjectNode getSpecificData(String path, String id, String query) throws IOException, InterruptedException;
 }

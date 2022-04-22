@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
+import enums.Query;
 import enums.ResponseStatus;
 import utility.Utility;
 
@@ -34,16 +35,13 @@ public class ServicesAdapter implements WebServicesTarget {
         client = HttpClient.newHttpClient();
     }
 
-    /**
-     * get all xx data(based on different parameter/path)
-     * return ObjectNode[] jsonNodes that contains data
-     *
-     * @param path the path of the operation to be performed (e.g. /users/login), see enums.Path or documentation for more details
-     */
-    @Override
-    public ObjectNode[] getAllData(String path) throws IOException, InterruptedException {
 
-        String url = rootUrl + path;
+    @Override
+    public ObjectNode[] getAllData(String path, String query) throws IOException, InterruptedException {
+        if (query == null) {
+            query = "";
+        }
+        String url = rootUrl + path + query;
 
         HttpResponse<String> response = webServicesAdaptee.getRequest(url, myApiKey, client);
 
@@ -67,8 +65,11 @@ public class ServicesAdapter implements WebServicesTarget {
      * @param id   the id of that you are interested in
      */
     @Override
-    public ObjectNode getSpecificData(String path, String id) throws IOException, InterruptedException {
-        String url = rootUrl + path + "/" + id;
+    public ObjectNode getSpecificData(String path, String id, String query) throws IOException, InterruptedException {
+        if (query == null) {
+            query = "";
+        }
+        String url = rootUrl + path + "/" + id + query;
 
         HttpResponse<String> response = webServicesAdaptee.getRequest(url, myApiKey, client);
 
@@ -141,7 +142,7 @@ public class ServicesAdapter implements WebServicesTarget {
     public boolean putData(String path, String jsonString, String id) throws IOException, InterruptedException {
         String url = rootUrl + path + "/" + id;
         // webservice call - post request
-        HttpResponse<String> response = webServicesAdaptee.postRequest(url, myApiKey, jsonString, client );
+        HttpResponse<String> response = webServicesAdaptee.putRequest(url, myApiKey, jsonString, client );
         return dealingResult(response, ResponseStatus.CODE_200.getCode());
     }
 

@@ -1,14 +1,16 @@
 package bookings;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.DataSubscriber;
 import enums.Path;
+import enums.Query;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class BookingsCollection {
+public class BookingsCollection implements DataSubscriber {
     public static final String name = "Bookings Collection";
     private ArrayList<Booking> bookings = new ArrayList<>();
     private static BookingsCollection instance = null;
@@ -31,9 +33,10 @@ public class BookingsCollection {
         bookings.clear();
     }
 
+    @Override
     public void update() throws IOException, InterruptedException {
         WebServicesTarget ws = new ServicesAdapter();
-        ObjectNode[] objectNode = ws.getAllData(Path.BOOKING.getPath());
+        ObjectNode[] objectNode = ws.getAllData(Path.BOOKING.getPath(), null);
         clearBookings();
 
         for (ObjectNode node : objectNode) {

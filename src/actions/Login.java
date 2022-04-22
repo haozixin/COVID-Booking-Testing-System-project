@@ -1,6 +1,7 @@
 package actions;
 
 import actors.Actor;
+import engine.Display;
 import engine.actions.Action;
 import enums.ResponseStatus;
 import webServiceAPI.ServicesAdapter;
@@ -18,6 +19,7 @@ public class Login extends Action {
      * Constructor
      */
     public Login() {
+        token = null;
     }
 
 

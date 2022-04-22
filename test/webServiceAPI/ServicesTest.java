@@ -13,7 +13,7 @@ public class ServicesTest {
 
         WebServicesTarget service = new ServicesAdapter();
 
-        ObjectNode[] jsonNodes = service.getAllData(Path.SITE.getPath());
+        ObjectNode[] jsonNodes = service.getAllData(Path.SITE.getPath(),null);
 
         for (ObjectNode node : jsonNodes) {
             System.out.println(node.toString());

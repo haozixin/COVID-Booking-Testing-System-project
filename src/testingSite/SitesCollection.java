@@ -1,7 +1,9 @@
 package testingSite;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.DataSubscriber;
 import enums.Path;
+import enums.Query;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
@@ -9,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SitesCollection {
+public class SitesCollection implements DataSubscriber {
     private static final String name = "TestingSites Collection";
     private ArrayList<TestingSite> testingSites = new ArrayList<>();
     private static SitesCollection instance = null;
@@ -56,9 +58,10 @@ public class SitesCollection {
      * @throws InterruptedException
      * @return true if the update was successful, false otherwise
      */
+    @Override
     public void update() throws IOException, InterruptedException {
         WebServicesTarget ws = new ServicesAdapter();
-        ObjectNode[] objectNode = ws.getAllData(Path.SITE.getPath());
+        ObjectNode[] objectNode = ws.getAllData(Path.SITE.getPath(), null);
         // remove all the testing sites(old data)
         clearTestingSites();
         // add the new testing sites
