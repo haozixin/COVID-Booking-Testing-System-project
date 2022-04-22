@@ -1,4 +1,4 @@
-package searchForSitesSubsystem;
+package testingSite;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -22,8 +22,6 @@ public class Location {
     public String getSuburb(){
         return address.get(SUBURB_FIELD).asText();
     }
-
-
 
 
     @Override

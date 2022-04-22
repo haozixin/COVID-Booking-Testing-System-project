@@ -1,11 +1,9 @@
 package webServiceAPI.searchForSitesSubsystem;
 
 import org.junit.Test;
-import searchForSitesSubsystem.SitesCollection;
+import testingSite.SitesCollection;
 
 import java.io.IOException;
-
-import static org.junit.Assert.*;
 
 public class SitesCollectionTest {
 

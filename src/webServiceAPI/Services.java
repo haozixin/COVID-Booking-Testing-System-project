@@ -8,7 +8,9 @@ import enums.ResponseStatus;
 import utility.Utility;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -40,6 +42,41 @@ public class Services extends WebServices {
             System.out.println(ResponseStatus.matchCode(response.statusCode()));
             ObjectNode[] jsonNodes = new ObjectMapper().readValue(response.body(), ObjectNode[].class);
             return jsonNodes;
+        } else {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
+            Utility.resolveError(errorJsonNode);
+            return null;
+        }
+    }
+
+
+    // This request will succeed (assuming there was at least one user object returned in the array from Part 2.
+
+    /**
+     * fetch a particular resource by ID(based on different parameter/path)
+     * return ObjectNode jsonNode that contains data
+     *
+     * @param path the path of the operation to be performed (e.g. /users/login), see enums.Path or documentation for more details
+     * @param id   the id of that you are interested in
+     */
+    @Override
+    public ObjectNode getResource(String path, String id) throws IOException, InterruptedException {
+        String url = rootUrl + path;
+        String usersIdUrl = url + "/" + id;
+        client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest
+                .newBuilder(URI.create(usersIdUrl))
+                .setHeader("Authorization", myApiKey)
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == ResponseStatus.CODE_200.getCode()) {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            ObjectNode jsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
+            return jsonNode;
         } else {
             System.out.println(ResponseStatus.matchCode(response.statusCode()));
             ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
@@ -87,7 +124,7 @@ public class Services extends WebServices {
 
 
         if (response.statusCode() == ResponseStatus.CODE_200.getCode()) {
-            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            System.out.println("For get token: " + ResponseStatus.matchCode(response.statusCode()));
             return token;
         } else {
             System.out.println(ResponseStatus.matchCode(response.statusCode()));
@@ -118,7 +155,7 @@ public class Services extends WebServices {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response.statusCode() == ResponseStatus.CODE_200.getCode()) {
-            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            System.out.println("For verify the token: "+ResponseStatus.matchCode(response.statusCode()));
 
         } else {
             System.out.println(ResponseStatus.matchCode(response.statusCode()));
@@ -168,13 +205,58 @@ public class Services extends WebServices {
         return response.statusCode();
     }
 
+
     @Override
-    public int putData(String path, String jsonString) throws IOException, InterruptedException {
-        return 0;
+    public boolean putData(String path, String jsonString, String id) throws IOException, InterruptedException {
+        String url = rootUrl + path + "/" + id;
+
+
+        // webservice call - post request
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url)) // Return a JWT so we can use it in Part 5 later.
+                .setHeader("Authorization", myApiKey)
+                .header("Content-Type", "application/json") // This header needs to be set when sending a JSON request body.
+                .PUT(HttpRequest.BodyPublishers.ofString(jsonString))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() == ResponseStatus.CODE_200.getCode()) {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            return true;
+
+        } else {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
+            Utility.resolveError(errorJsonNode);
+            return false;
+        }
+
     }
 
     @Override
-    public int deleteData(String path, String jsonString, String id) throws IOException, InterruptedException {
-        return 0;
+    public boolean patchData(String path, String jsonString, String id) throws IOException, InterruptedException {
+        String url = rootUrl + path + "/" + id;
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestMethod("PATCH");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Authorization", myApiKey);
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+        connection.connect();
+        int responseCode = connection.getResponseCode();
+        if (responseCode == ResponseStatus.CODE_200.getCode()) {
+            System.out.println(ResponseStatus.matchCode(responseCode));
+            return true;
+
+        } else {
+            System.out.println(ResponseStatus.matchCode(responseCode));
+            ObjectNode errorJsonNode = new ObjectMapper().readValue(connection.getResponseMessage(), ObjectNode.class);
+            // pass the error message to the Utility class to get a better formatted error message
+            Utility.resolveError(errorJsonNode);
+            return false;
+        }
+
     }
+
+
 }

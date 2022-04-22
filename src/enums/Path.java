@@ -3,6 +3,7 @@ package enums;
 public enum Path {
 
     USER("/user"),
+    SIGN_UP("/user"),
     USER_LOGIN("/user/login"),
     VERIFY_TOKEN("/user/verify-token"),
     SITE("/testing-site"),

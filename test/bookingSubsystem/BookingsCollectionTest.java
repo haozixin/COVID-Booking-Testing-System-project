@@ -1,5 +1,6 @@
 package bookingSubsystem;
 
+import bookings.BookingsCollection;
 import junit.framework.TestCase;
 
 import java.io.IOException;

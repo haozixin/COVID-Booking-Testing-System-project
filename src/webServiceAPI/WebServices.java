@@ -16,12 +16,14 @@ import java.net.http.HttpClient;
 public abstract class WebServices{
     //TODO: 如果以后没有更多的服务需要子类继承WebServices， 将这个类改成接口
     //myApiKey can **ever never** be shown in code and push to git
-    protected static String myApiKey = Utility.getMyConf("API_key").toString();
+    protected static String myApiKey = Utility.getMyConf("API_key");
 
     // Provide the root URL for the web service. All web service request URLs start with this root URL.
     protected static final String rootUrl = Utility.getMyConf("rootUrl");
 
     protected static HttpClient client = HttpClient.newHttpClient();
+
+
 
     public String getToken(String userName, String password) throws IOException, InterruptedException {return null;}
 
@@ -32,8 +34,7 @@ public abstract class WebServices{
     // like database basic function
     public ObjectNode[] getAllData(String path) throws IOException, InterruptedException {return null;}
 
-    //add Data to WebServer
-    public ObjectNode addData(String path, ObjectNode data) throws IOException, InterruptedException {return null;}
+
 
     /**
      *
@@ -45,11 +46,18 @@ public abstract class WebServices{
      */
     public abstract int postData(String path, String jsonString) throws IOException, InterruptedException;
 
-    public abstract int putData(String path, String jsonString) throws IOException, InterruptedException;
+    /**
+     *  do same things with put or patch web request
+     * @param path sub URL path
+     * @param jsonString schema of the data
+     * @param id the id of the data
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public abstract boolean putData(String path, String jsonString, String id) throws IOException, InterruptedException;
 
-    public abstract int deleteData(String path, String jsonString, String id) throws IOException, InterruptedException;
+    public abstract boolean patchData(String path, String jsonString, String id) throws IOException, InterruptedException;
 
-    //通过找到booking --》 再返回status
-
-
+    public abstract ObjectNode getResource(String path, String id) throws IOException, InterruptedException;
 }

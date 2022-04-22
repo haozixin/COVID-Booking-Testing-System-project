@@ -1,4 +1,4 @@
-package bookingSubsystem;
+package bookings;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
@@ -7,7 +7,6 @@ import webServiceAPI.WebServices;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class BookingsCollection {
     public static final String name = "Bookings Collection";
@@ -48,10 +47,11 @@ public class BookingsCollection {
      * @paramn String pincode to find the related status
      * @return String status
      */
-    public String getStatusByPin(String pincode) {
+    public Booking getStatusByPin(String pincode) {
         for (Booking booking : bookings) {
-            if (booking.getPinCode().equals(pincode)) {
-                return booking.getStatus();
+            String temp = booking.getPinCode();
+            if (temp.equals(pincode)) {
+                return booking;
             }
         }
         return null;
