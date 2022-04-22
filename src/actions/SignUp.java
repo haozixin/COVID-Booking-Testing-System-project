@@ -1,11 +1,10 @@
 package actions;
 
 import actors.Actor;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.actions.Action;
 import enums.Path;
 import enums.ResponseStatus;
-import user.User;
+import users.User;
 import webServiceAPI.Services;
 import webServiceAPI.WebServices;
 

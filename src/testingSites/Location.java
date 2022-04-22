@@ -1,12 +1,7 @@
-package testingSite;
+package testingSites;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utility.Utility;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 
 public class Location {
     public static final String SUBURB_FIELD = "suburb";

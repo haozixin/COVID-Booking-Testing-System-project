@@ -1,4 +1,4 @@
-package testing;
+package testings;
 
 public interface ICovidTestingType {
 }
