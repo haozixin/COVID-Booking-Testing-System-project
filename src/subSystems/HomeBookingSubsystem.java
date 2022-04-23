@@ -1,16 +1,12 @@
 package subSystems;
 
 import actors.Actor;
-import engine.Display;
-import engine.actions.Action;
-import engine.actions.Actions;
-
-import java.io.IOException;
 
 public class HomeBookingSubsystem extends CovidBAndTSystem{
 
     public HomeBookingSubsystem() {
         super();
+        systemName = "Home-Booking Subsystem";
     }
 
     @Override
@@ -20,7 +16,7 @@ public class HomeBookingSubsystem extends CovidBAndTSystem{
             throw new IllegalStateException();
 
         // This loop is basically the whole system
-        while (actor.getLogged()) {
+        while (!actor.getIsGoBack()) {
             processActorTurn(actor);
         }
 

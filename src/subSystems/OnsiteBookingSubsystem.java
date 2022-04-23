@@ -1,11 +1,6 @@
 package subSystems;
 
 import actors.Actor;
-import engine.Display;
-import engine.actions.Action;
-import engine.actions.Actions;
-
-import java.io.IOException;
 
 public class OnsiteBookingSubsystem extends CovidBAndTSystem{
 
@@ -20,7 +15,7 @@ public class OnsiteBookingSubsystem extends CovidBAndTSystem{
             throw new IllegalStateException();
 
         // This loop is basically the whole system
-        while (actor.getLogged()) {
+        while (actor.getLoginState()) {
             processActorTurn(actor);
         }
 

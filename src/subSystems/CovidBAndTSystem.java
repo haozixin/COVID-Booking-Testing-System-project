@@ -5,6 +5,7 @@ import engine.Display;
 import engine.actions.Action;
 import engine.actions.Actions;
 import actors.Actor;
+import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
@@ -21,7 +22,7 @@ import java.util.Map;
  * (a method of each system is called)
  */
 public abstract class CovidBAndTSystem {
-
+    protected String systemName;
     protected WebServicesTarget serviceForUser;
     protected ArrayList<String> dashBoard;
     protected Actor actor;
@@ -41,6 +42,15 @@ public abstract class CovidBAndTSystem {
     }
 
     public abstract void run();
+
+    public String getSystemName(){
+        return systemName;
+    }
+
+    //TODO: change name
+    public void display() {
+        Utility.printArrayList(dashBoard);
+    }
 
     protected void processActorTurn(Actor actor){
 

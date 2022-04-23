@@ -1,12 +1,12 @@
 package subSystems;
 
 
+import actions.GoBackAction;
+import actions.GoSubsystem;
 import actions.LoginAction;
 import actions.SignUpAction;
 import actors.Actor;
-import engine.actions.Actions;
 import utility.*;
-import webServiceAPI.ServicesAdapter;
 
 /**
  * The class is responsible for loginSubsystem
@@ -14,17 +14,14 @@ import webServiceAPI.ServicesAdapter;
 public class LoginSubsystem extends CovidBAndTSystem{
 
 
-    private static final String systemName = "Login Subsystem";
 
     public LoginSubsystem() {
         super();
-        dashBoard = Utility.setDashboard(64,5, systemName);
+        systemName = "Login Subsystem";
+        dashBoard = Utility.setDashboard(80,5, systemName);
     }
 
 
-    public void display() {
-        Utility.printArrayList(dashBoard);
-    }
 
 
     @Override
@@ -33,10 +30,12 @@ public class LoginSubsystem extends CovidBAndTSystem{
         if (actor == null)
             throw new IllegalStateException();
 
-        // This loop is basically the whole system
-        while (!actor.getLogged()) {
+        // if the user logged in or wants to go back, the loop will stop
+        while (!actor.getIsGoBack()) {
             display();
             processActorTurn(actor);
+            //after each time the actor chose go back action, we need to reset the actor's wantsGoBack attibute back to false
+
         }
 
     }
@@ -48,6 +47,7 @@ public class LoginSubsystem extends CovidBAndTSystem{
         // TODO: add actions
             actions.add(new LoginAction());
             actions.add(new SignUpAction());
+            actions.add(new GoBackAction());
 
         super.processActorTurn(actor);
     }

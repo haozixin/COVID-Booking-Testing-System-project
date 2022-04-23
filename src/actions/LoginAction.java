@@ -1,9 +1,7 @@
 package actions;
 
 import actors.Actor;
-import engine.Display;
 import engine.actions.Action;
-import enums.ResponseStatus;
 import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
@@ -39,7 +37,7 @@ public class LoginAction extends Action {
 
         if (result) {
             // if login success, set state to logged in
-            actor.setLogged(true);
+            actor.setLoginState(true);
             // store token
             actor.setToken(token);
             return "successful login";
