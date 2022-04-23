@@ -70,4 +70,15 @@ public interface WebServicesTarget {
      * @throws InterruptedException
      */
     ObjectNode getSpecificData(String path, String id, String query) throws IOException, InterruptedException;
+
+    /**
+     *  patch the specific data according to specific id and specific data in the correct path
+     * @param path URL path
+     * @param jsonString    schema of the specific data (e.g. "{\"isReceptionist\": true}")
+     * @param id the id of the object/entity
+     * @return boolean value: true-success, false-failure
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    boolean patchData(String path, String jsonString, String id) throws IOException, InterruptedException;
 }

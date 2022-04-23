@@ -54,7 +54,7 @@ public abstract class CovidBAndTSystem {
             e.printStackTrace();
         }
         display.println(result);
-    };
+    }
 
 
 }

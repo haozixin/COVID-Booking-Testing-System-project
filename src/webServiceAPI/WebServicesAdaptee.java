@@ -80,6 +80,20 @@ public class WebServicesAdaptee {
         return response;
     }
 
+    public HttpResponse<String> patchRequest(String url, String myApiKey, String jsonString, HttpClient client) throws IOException, InterruptedException {
+
+        HttpRequest request2 = HttpRequest.newBuilder(URI.create(url))
+                .setHeader("Authorization", myApiKey)
+                .header("Content-Type","application/json") // This header needs to be set when sending a JSON request body.
+                .header("Accept","application/json")
+                .method("PATCH",HttpRequest.BodyPublishers.ofString(jsonString))
+                .build();
+        HttpResponse<String> response = client.send(request2, HttpResponse.BodyHandlers.ofString());
+        return response;
+    }
+
+
+
 
 
 

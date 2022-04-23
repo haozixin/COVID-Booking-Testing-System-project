@@ -147,11 +147,18 @@ public class ServicesAdapter implements WebServicesTarget {
     @Override
     public boolean putData(String path, String jsonString, String id) throws IOException, InterruptedException {
         String url = rootUrl + path + "/" + id;
-        // webservice call - post request
+        // webservice call - put request
         HttpResponse<String> response = webServicesAdaptee.putRequest(url, myApiKey, jsonString, client );
         return dealingResult(response, ResponseStatus.CODE_200.getCode());
     }
 
+    @Override
+    public boolean patchData(String path, String jsonString, String id) throws IOException, InterruptedException {
+        String url = rootUrl + path + "/" + id;
+        // webservice call - patch request
+        HttpResponse<String> response = webServicesAdaptee.patchRequest(url, myApiKey, jsonString, client );
+        return dealingResult(response, ResponseStatus.CODE_200.getCode());
+    }
 
     private boolean dealingResult(HttpResponse<String> response, int successCode) throws JsonProcessingException {
         if (response.statusCode() == successCode) {
@@ -165,4 +172,7 @@ public class ServicesAdapter implements WebServicesTarget {
             return false;
         }
     }
+
+
+
 }

@@ -100,6 +100,7 @@ public class Booking {
 
     /**
      * before let the user to create a new booking, we need to set a template(which attributes are required) for the booking
+     * When use create a new object of booking, the attributes will be reset based on the template
      */
     private void initialSchema(){
         bookingInfo = new ObjectMapper().createObjectNode();
