@@ -1,7 +1,5 @@
 import actors.Actor;
 import engine.DataPublisher;
-import enums.UserRoles;
-import subSystems.CovidBAndTSystem;
 import subSystems.HomeBookingSubsystem;
 import subSystems.LoginSubsystem;
 import subSystems.SearchForSitesSubsystem;
@@ -41,7 +39,7 @@ public class Application {
         // step 2 - add subscriber to the publisher and do initial notify
         // add subscriber to the data publisher
         dataPublisher.subscribe(SitesCollection.getInstance());
-        // ...(more in the future)
+        // ...(more in the future)(easier to extend)
 
         // notify the data publisher
         dataPublisher.notifySubscribers();
@@ -49,12 +47,12 @@ public class Application {
 
         // step 3 - add user/actor and subsystems to the main system
         // add user to the main system
-        mainSystem.setActor(actor);
+        mainSystem.addActor(actor);
 
         mainSystem.addSubSystem(new LoginSubsystem());
         mainSystem.addSubSystem(new SearchForSitesSubsystem());
         mainSystem.addSubSystem(new HomeBookingSubsystem());
-        // ...(more in the future)
+        // ...(more in the future)(easier to extend)
 
         // step 4 - run the main system
         mainSystem.run();

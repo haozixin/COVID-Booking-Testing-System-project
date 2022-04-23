@@ -1,6 +1,5 @@
 package subSystems;
 
-import actions.GoBackAction;
 import engine.Display;
 import engine.actions.Action;
 import engine.actions.Actions;
@@ -15,11 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Facade for all subsystem
  *
- * Each subsystem interacts with each other in such a way, just as in a smart home,
- * when the central controller is switched to "movie mode", the lights are dimmed, the curtains are closed, the TV is turned on, etc.
- * (a method of each system is called)
+ * Abstract class for Subsystems
+ * functions are control the whole subsystem running and the actions and menu displaying
  */
 public abstract class CovidBAndTSystem {
     protected String systemName;
@@ -35,23 +32,49 @@ public abstract class CovidBAndTSystem {
         this.actor = actor;
     }
 
+    /**
+     * Constructor
+     * Initialize elements of the subsystem that would be used in the running of the system
+     */
     public CovidBAndTSystem() {
         display = new Display();
         serviceForUser = new ServicesAdapter();
         actions = new Actions();
     }
 
-    public abstract void run();
+    /**
+     * the core of subsystem
+     */
+    public void run(){
+        if (actor == null)
+            throw new IllegalStateException();
 
+        // if the actor wants to go back, then the loop will end
+        while (!actor.getIsGoBack()) {
+            showDashBoard();
+            processActorTurn(actor);
+        }
+    }
+
+    /**
+     * Get the name of the subsystem
+     * @return
+     */
     public String getSystemName(){
         return systemName;
     }
 
-    //TODO: change name
-    public void display() {
+    /**
+     * Display the dash board for the subsystem
+     */
+    protected void showDashBoard() {
         Utility.printArrayList(dashBoard);
     }
 
+    /**
+     * arrange the actions(user could choose from menu) for the actor here
+     * @param actor the actor who is going to take the turn
+     */
     protected void processActorTurn(Actor actor){
 
         Action action = actor.playTurn(actions, lastActionMap.get(actor), display);

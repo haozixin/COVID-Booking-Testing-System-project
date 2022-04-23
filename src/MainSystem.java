@@ -26,22 +26,22 @@ public class MainSystem {
 
 
     public MainSystem() {
-        dashBoard = Utility.setDashboard(100,5, systemName);
+        dashBoard = Utility.setDashboard(100, 5, systemName);
         mainMenu = new Menu();
         actions = new Actions();
         systems = new ArrayList<>();
         display = new Display();
     }
 
-    public void addSubSystem(CovidBAndTSystem system){
+    public void addSubSystem(CovidBAndTSystem system) {
         systems.add(system);
     }
 
-    public void setActor(Actor actor){
+    public void addActor(Actor actor) {
         this.actor = actor;
     }
 
-    public void showDashBoard() {
+    private void showDashBoard() {
         Utility.printArrayList(dashBoard);
     }
 
@@ -50,7 +50,7 @@ public class MainSystem {
         if (actor == null)
             throw new IllegalStateException();
 
-        while (!actor.getLoginState()){
+        while (!actor.getLoginState()) {
             showDashBoard();
             actions.clear();
             for (CovidBAndTSystem system : systems) {
@@ -68,9 +68,6 @@ public class MainSystem {
             display.println(result);
         }
     }
-
-
-
 
 
 }

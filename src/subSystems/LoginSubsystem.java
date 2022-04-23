@@ -13,31 +13,10 @@ import utility.*;
  */
 public class LoginSubsystem extends CovidBAndTSystem{
 
-
-
     public LoginSubsystem() {
         super();
         systemName = "Login Subsystem";
         dashBoard = Utility.setDashboard(80,5, systemName);
-    }
-
-
-
-
-    @Override
-    public void run()
-        {
-        if (actor == null)
-            throw new IllegalStateException();
-
-        // if the user logged in or wants to go back, the loop will stop
-        while (!actor.getIsGoBack()) {
-            display();
-            processActorTurn(actor);
-            //after each time the actor chose go back action, we need to reset the actor's wantsGoBack attibute back to false
-
-        }
-
     }
 
     @Override

@@ -14,21 +14,10 @@ public class SearchForSitesSubsystem extends CovidBAndTSystem {
         dashBoard = Utility.setDashboard(100,5, systemName);
     }
 
-
-    @Override
-    public void run() {
-        if (actor == null)
-            throw new IllegalStateException();
-
-        // if the actor wants to go back, then the loop will end
-        while (!actor.getIsGoBack()) {
-            display();
-            processActorTurn(actor);
-
-
-        }
-    }
-
+    /**
+     * arrange the actions(user could choose from menu) for the actor here
+     * @param actor the actor who is going to take the turn
+     */
     @Override
     protected void processActorTurn(Actor actor) {
         actions.clear();
