@@ -24,11 +24,14 @@ public class Booking {
     public static final String TESTING_SITE_ID_FIELD = "testingSiteId";
 
     public static final String SMS_PIN_FIELD = "smsPin";
+    public static final String ID_FIELD = "id";
     public static final String STATUS_FIELD = "status";
     public static final String START_TIME_FIELD = "startTime";
     public static final String NOTES_FIELD = "notes";
     public static final String ADDITIONAL_INFO_FIELD = "additionalInfo";
-    public static final String NEED_QR_CODE_FIELD = "needQRCode";
+    public static final String QR_CODE_FIELD = "QRCode";
+    public static final String URL_FIELD = "url";
+    public static final String HAS_RAT_KIT_FIELD = "hasRATKit";
     private ObjectNode bookingInfo;
     private ObjectNode additionalInfo = new ObjectMapper().createObjectNode();
 
@@ -68,6 +71,10 @@ public class Booking {
      */
     public String getPinCode() {
         return bookingInfo.get(SMS_PIN_FIELD).asText();
+    }
+
+    private String getID() {
+        return bookingInfo.get(ID_FIELD).asText();
     }
 
     @Override
@@ -121,25 +128,28 @@ public class Booking {
         bookingInfo = new ObjectMapper().createObjectNode();
         bookingInfo.put(NOTES_FIELD, "String");
         // if user DOESN'T need to use QR code, we just set the field to false.
-        setNeedQRCode(true);
     }
 
     /**
      * the function could be used when users need to mark that customers don't need QR code to be scanned(since they already have RAT kit)
      */
-    public void setNeedQRCode(boolean ifNeedQRCode) {
+    public void updateRATKitInfo(String QRCode, String url, boolean hasRATKit) {
 
-        additionalInfo.put(NEED_QR_CODE_FIELD, ifNeedQRCode);
+        additionalInfo.put(QR_CODE_FIELD, QRCode);
+        additionalInfo.put(URL_FIELD, url);
+        additionalInfo.put(HAS_RAT_KIT_FIELD, false);
         bookingInfo.putPOJO(ADDITIONAL_INFO_FIELD, additionalInfo);
     }
 
-    private void generateURL() {
-        //TODO: 什么算dummy url; 怎么写。。需要问
+    private String generateQRCode() {
+        //Unique QR Code
+        String QRCode = "Dummy QR Code(" +getID()+")";
+        return QRCode;
     }
 
-    private void generateQRCode() {
-        //TODO: 什么算dummy QRcode; 怎么写。。需要问
+    private String generateURL() {
+        //Unique url
+        String url = "https://" + getID() +"/Dummy URL";
+        return url;
     }
-
-
 }
