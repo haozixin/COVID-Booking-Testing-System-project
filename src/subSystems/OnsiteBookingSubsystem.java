@@ -1,5 +1,6 @@
 package subSystems;
 
+import actions.CheckBooking;
 import actions.GoBackAction;
 import actors.Actor;
 
@@ -16,6 +17,7 @@ public class OnsiteBookingSubsystem extends CovidBAndTSystem{
         {
             actions.clear();
             actions.add(new GoBackAction());
+            actions.add(new CheckBooking());
 
         super.processActorTurn(actor);
     }

@@ -1,4 +1,5 @@
 import actors.Actor;
+import bookings.BookingsCollection;
 import engine.DataPublisher;
 import subSystems.HomeBookingSubsystem;
 import subSystems.LoginSubsystem;
@@ -40,6 +41,7 @@ public class Application {
         // step 2 - add subscriber to the publisher and do initial notify
         // add subscriber to the data publisher
         dataPublisher.subscribe(SitesCollection.getInstance());
+        dataPublisher.subscribe(BookingsCollection.getInstance());
         // ...(more in the future)(easier to extend)
 
         // notify the data publisher

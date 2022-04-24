@@ -14,11 +14,13 @@ public class Test extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "LoginAction";
+        return "check the booking";
     }
 
-    @Override
-    public String hotkey() {
-        return "z";
-    }
+//    @Override
+//    public String hotkey() {
+//        return "z";
+//    }
+
+
 }

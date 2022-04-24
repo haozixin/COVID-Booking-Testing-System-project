@@ -71,8 +71,6 @@ public class Booking {
         return bookingInfo.get(SMS_PIN_FIELD).asText();
     }
 
-
-
     @Override
     public String toString() {
         return Utility.displayMessage(name, bookingInfo);

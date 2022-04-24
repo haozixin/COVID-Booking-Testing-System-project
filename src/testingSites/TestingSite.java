@@ -29,8 +29,12 @@ public class TestingSite {
     }
 
     private void setLocation(){
-        JsonNode locationJsonNode = testingSiteInfo.get(ADDRESS_FIELD);
-        location = new Location((ObjectNode) locationJsonNode);
+        try {
+            JsonNode locationJsonNode = testingSiteInfo.get(ADDRESS_FIELD);
+        } catch (NullPointerException e) {
+            System.out.println("There is no testing site!");
+            location = null;
+        }
     }
 
     private Location getLocation() {
