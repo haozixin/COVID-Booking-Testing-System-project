@@ -32,7 +32,7 @@ public class TestingSite {
         try {
             JsonNode locationJsonNode = testingSiteInfo.get(ADDRESS_FIELD);
         } catch (NullPointerException e) {
-            System.out.println("There is no testing site!");
+            System.out.println("For this testing site, the address field is null!");
             location = null;
         }
     }

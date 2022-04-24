@@ -31,7 +31,7 @@ public class CheckBooking extends Action {
 
         b = bookingsCollection.getStatusByPin(value);
 
-        System.out.println(b.toString());
+        System.out.println(b.display());
         return "function running successfully";
     }
 
