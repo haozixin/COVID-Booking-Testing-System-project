@@ -3,6 +3,7 @@ import engine.DataPublisher;
 import subSystems.CovidBAndTSystem;
 import subSystems.LoginSubsystem;
 import subSystems.SearchForSitesSubsystem;
+import subSystems.OnsiteBookingSubsystem;
 import testingSites.SitesCollection;
 
 import java.io.IOException;
@@ -20,9 +21,9 @@ public class Application {
         dataPublisher.subscribe(SitesCollection.getInstance());
         dataPublisher.notifySubscribers();
 
-        CovidBAndTSystem searchForSitesSubsystem = new SearchForSitesSubsystem();
-        searchForSitesSubsystem.addUser(actor);
-        searchForSitesSubsystem.run();
+        CovidBAndTSystem OnsiteBookingSubsystem = new OnsiteBookingSubsystem();
+        OnsiteBookingSubsystem.addUser(actor);
+        OnsiteBookingSubsystem.run();
 
 
 

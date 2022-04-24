@@ -49,6 +49,8 @@ public class ServicesAdapter implements WebServicesTarget {
         }
         String url = rootUrl + path + query;
 
+        System.out.println(url);
+
         HttpResponse<String> response = webServicesAdaptee.getRequest(url, myApiKey, client);
 
         boolean result = dealingResult(response, ResponseStatus.CODE_200.getCode());

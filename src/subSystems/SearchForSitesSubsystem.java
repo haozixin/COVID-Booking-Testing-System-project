@@ -1,6 +1,7 @@
 package subSystems;
 
 import actions.SearchSiteAction;
+import actions.Test;
 import actions.ViewSiteListAction;
 import actions.GoBackAction;
 import actors.Actor;
@@ -37,6 +38,7 @@ public class SearchForSitesSubsystem extends CovidBAndTSystem {
         actions.add(new ViewSiteListAction());
         actions.add(new SearchSiteAction());
         actions.add(new GoBackAction());
+        actions.add(new Test());
         super.processActorTurn(actor);
     }
 }
