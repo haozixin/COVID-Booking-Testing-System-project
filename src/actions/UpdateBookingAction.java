@@ -12,9 +12,13 @@ public class UpdateBookingAction extends Action {
 
     @Override
     public String execute(Actor actor) throws IOException, InterruptedException {
+        System.out.println("Do you have the RAT Kit?(y/n)");
+        Scanner s = new Scanner(System.in);
+        String answer = s.next();
 
+        if (answer.equals("y")) {
 
-
+        }
         return null;
     }
 
