@@ -42,14 +42,29 @@ public class InterviewAction extends Action {
         for (String symptom : symptomFields) {
             System.out.println("Does the customer have a " +symptom+" ? (y/n): ");
             Scanner s = new Scanner(System.in);
-            answer = s.nextLine().trim();
-            if (answer =="y") {
+            answer = s.next();
+            if (answer.equals("y")) {
                 no_of_yes += 1;
             }
         }
 
-//        //TODO: 做一个interview的流程， 问几个问题， 根据答案来推荐做哪种测试， 然后再问医师的决定，记录并上传”决定“
-        return "success";
+        if (no_of_yes >= 3) {
+            System.out.println("According to the symptoms, our testing type suggestion: PCR");
+        }
+        else {
+            System.out.println("According to the symptoms, our testing type suggestion: RAT");
+            }
+
+        System.out.println("\nYour final testing type decision is(PCR/RAT): ");
+        Scanner s = new Scanner(System.in);
+        answer = s.next();
+
+        while(!(answer.equals("RAT") || answer.equals("PCR"))){
+            System.out.println("Error, please input the correct testing type");
+            System.out.println("\nYour final testing type decision is(PCR/RAT): ");
+            answer = s.next();
+        }
+        return "Confirmed the testing type";
     }
 
     @Override
