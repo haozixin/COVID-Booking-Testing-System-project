@@ -11,7 +11,7 @@ public class SearchForSitesSubsystem extends CovidBAndTSystem {
     public SearchForSitesSubsystem() {
         super();
         systemName = "Search for testing sites Subsystem";
-        dashBoard = Utility.setDashboard(100,5, systemName);
+        setDashBoard();
     }
 
     /**

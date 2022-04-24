@@ -33,7 +33,7 @@ public abstract class CovidBAndTSystem {
     }
 
     /**
-     * Constructor
+     * Common constructor for child classes
      * Initialize elements of the subsystem that would be used in the running of the system
      */
     public CovidBAndTSystem() {
@@ -69,6 +69,10 @@ public abstract class CovidBAndTSystem {
      */
     protected void showDashBoard() {
         Utility.printArrayList(dashBoard);
+    }
+
+    protected void setDashBoard(){
+        dashBoard = Utility.setDashboard(90,5, systemName);
     }
 
     /**

@@ -2,6 +2,7 @@ import actors.Actor;
 import engine.DataPublisher;
 import subSystems.HomeBookingSubsystem;
 import subSystems.LoginSubsystem;
+import subSystems.OnsiteBookingSubsystem;
 import subSystems.SearchForSitesSubsystem;
 import testingSites.SitesCollection;
 
@@ -51,7 +52,7 @@ public class Application {
 
         mainSystem.addSubSystem(new LoginSubsystem());
         mainSystem.addSubSystem(new SearchForSitesSubsystem());
-        mainSystem.addSubSystem(new HomeBookingSubsystem());
+        mainSystem.addSubSystem(new OnsiteBookingSubsystem());
         // ...(more in the future)(easier to extend)
 
         // step 4 - run the main system

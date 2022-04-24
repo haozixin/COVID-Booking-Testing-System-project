@@ -16,7 +16,7 @@ public class LoginSubsystem extends CovidBAndTSystem{
     public LoginSubsystem() {
         super();
         systemName = "Login Subsystem";
-        dashBoard = Utility.setDashboard(80,5, systemName);
+        setDashBoard();
     }
 
     @Override

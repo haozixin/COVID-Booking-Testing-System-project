@@ -10,14 +10,6 @@ public class Display  {
 
     private Scanner keyboard = new Scanner(System.in);
 
-    /**
-     * Display a displayable object.
-     *
-     * @param printable the object to display
-     */
-    public void print(Printable printable) {
-        System.out.print(printable.getDisplayChar());
-    }
 
     /**
      * Prints a String and then terminates the line.
