@@ -1,9 +1,6 @@
 import actors.Actor;
 import engine.DataPublisher;
-import subSystems.HomeBookingSubsystem;
-import subSystems.LoginSubsystem;
-import subSystems.OnsiteBookingSubsystem;
-import subSystems.SearchForSitesSubsystem;
+import subSystems.*;
 import testingSites.SitesCollection;
 
 import java.io.IOException;
@@ -53,6 +50,7 @@ public class Application {
         mainSystem.addSubSystem(new LoginSubsystem());
         mainSystem.addSubSystem(new SearchForSitesSubsystem());
         mainSystem.addSubSystem(new OnsiteBookingSubsystem());
+        mainSystem.addSubSystem(new OnsiteTestingSubsystem());
         // ...(more in the future)(easier to extend)
 
         // step 4 - run the main system

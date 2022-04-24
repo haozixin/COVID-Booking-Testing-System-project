@@ -78,6 +78,7 @@ public class Booking {
         return Utility.displayMessage(name, bookingInfo);
     }
 
+
     /**
      * (creating new entity by actor will be done by this method(collect user's input). It can avoid errors because of the missing required attributes.
      * and we don't need to change every outside places if there are more or less fields required on Web side)
