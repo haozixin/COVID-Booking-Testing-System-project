@@ -16,6 +16,8 @@ import java.util.Scanner;
  * User class is used to deal with user data
  */
 public class User {
+
+    public static String className = "User";
     private ObjectNode currentUserInfo;
 
     public static final String PHONE_NUMBER_FIELD = "phoneNumber";
@@ -27,6 +29,8 @@ public class User {
     public static final String FAMILY_NAME_FIELD = "familyName";
 
     public static final String GIVEN_NAME_FIELD = "givenName";
+
+    public static final String BOOKINGS = "bookings";
 
     // when there is more roles, we only add one enums in UserRoles.java
     public static HashMap<Character, String> keyToRoleMap;
@@ -134,6 +138,7 @@ public class User {
         } catch (NullPointerException e) {
             return null;
         }
-
     }
+
+
 }

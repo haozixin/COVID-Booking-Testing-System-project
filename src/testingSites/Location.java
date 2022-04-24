@@ -26,6 +26,6 @@ public class Location {
 
     @Override
     public String toString() {
-        return Utility.displayMessage(name, address);
+        return Utility.formatMessage(name, address);
     }
 }

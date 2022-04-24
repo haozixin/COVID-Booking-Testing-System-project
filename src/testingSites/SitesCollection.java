@@ -186,6 +186,7 @@ public class SitesCollection implements DataSubscriber {
                 testingSite.updateWaitingTime();
             }
         }
+
     }
 
 

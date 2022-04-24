@@ -1,10 +1,10 @@
 package users;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.DataSubscriber;
 import enums.Path;
-import testingSites.SitesCollection;
-import testingSites.TestingSite;
+import enums.Query;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
@@ -65,6 +65,23 @@ public class UserCollection implements DataSubscriber {
         return null;
     }
 
+    /**
+     *
+     * @param userName
+     */
+    public JsonNode searchForBooking(String userName) throws IOException, InterruptedException {
+
+        for (User user : users) {
+            if (user.getUserName().equals(userName)) {
+                String userId = user.getUserId();
+                WebServicesTarget ws = new ServicesAdapter();
+                ObjectNode data = ws.getSpecificData(Path.USER.getPath(), userId, Query.BOOKINGS_IN_USER_OR_SITE.getQuery());
+                JsonNode list =  data.get(User.BOOKINGS);
+                return list;
+            }
+        }
+        return null;
+    }
 
 
 }

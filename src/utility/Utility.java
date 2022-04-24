@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Utility {
@@ -27,19 +25,45 @@ public class Utility {
         return myProp.getProperty(props);
     }
 
-    public static String displayMessage(String name, JsonNode jsonNode) {
-        StringBuilder message2 = new StringBuilder();
-        ArrayList<String> message = new ArrayList<>();
-        message2.append("|----------------------------").append(name).append("--------------------------|\n");
+    /**
+     * Display the json object in a formatted way
+     * @param name the name of the object
+     * @param jsonNode  the json object
+     * @return return the formatted string
+     */
+    public static String formatMessage(String name, JsonNode jsonNode) {
+        StringBuilder message = new StringBuilder();
+        message.append("|----------------------------").append(name).append("--------------------------|\n");
         // display a formatted message
         Iterator<Map.Entry<String, JsonNode>> temp = jsonNode.fields();
         for (Iterator<Map.Entry<String, JsonNode>> it = temp; it.hasNext(); ) {
             Map.Entry<String, JsonNode> entry = it.next();
-            message2.append(entry.getKey()).append(" ==> ").append(entry.getValue()).append("\n");
+            message.append(entry.getKey()).append(" ==> ").append(entry.getValue()).append("\n");
         }
 
-        return message2.toString();
+        return message.toString();
     }
+
+    /**
+     *  display the json object(value is a list and Nested json object) in a formatted way - [{}...{}]
+     * @param name
+     * @param jsonNode
+     */
+    public static void displayJsonList(String name, JsonNode jsonNode){
+        StringBuilder message = new StringBuilder();
+        if (jsonNode != null) {
+            for (JsonNode node : jsonNode) {
+                System.out.println(formatMessage(name, node));
+            }
+        }
+        else{
+            System.out.println("There is no data to print");
+        }
+
+
+    }
+
+
 
     public static void printArrayList(ArrayList<String> message) {
         for (String s : message) {

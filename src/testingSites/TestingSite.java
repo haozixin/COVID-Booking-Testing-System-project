@@ -8,7 +8,6 @@ import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class TestingSite {
     public static final String ADDRESS_FIELD = "address";
@@ -69,7 +68,7 @@ public class TestingSite {
      */
     @Override
     public String toString() {
-        return Utility.displayMessage(name, testingSiteInfo);
+        return Utility.formatMessage(name, testingSiteInfo);
     }
 
     /**
@@ -94,6 +93,7 @@ public class TestingSite {
     }
 
     public void updateWaitingTime() throws IOException, InterruptedException {
+        // update local data
         try{
             String value = testingSiteInfo.findValue(WAITING_TIMES_FIELD).asText();
             int newValue = Integer.parseInt(value)+5;

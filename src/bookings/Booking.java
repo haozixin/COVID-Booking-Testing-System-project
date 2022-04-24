@@ -1,12 +1,9 @@
 package bookings;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import testingSites.TestingSite;
 
-import users.User;
 import utility.Utility;
 
 import java.text.SimpleDateFormat;
@@ -16,10 +13,8 @@ import java.util.Scanner;
 
 public class Booking {
 
-    public static final String name = "Booking";
+    public static final String className = "Booking";
 
-    public static final String CUSTOMER_FIELD = "customer";
-    public static final String TESTING_SITE_FIELD = "testingSites";
     public static final String USER_ID_FIELD = "customerId";
     public static final String TESTING_SITE_ID_FIELD = "testingSiteId";
 
@@ -73,7 +68,7 @@ public class Booking {
         return bookingInfo.get(SMS_PIN_FIELD).asText();
     }
 
-    private String getID() {
+    public String getID() {
         return bookingInfo.get(ID_FIELD).asText();
     }
 
@@ -83,7 +78,7 @@ public class Booking {
     }
 
     public String display() {
-        return Utility.displayMessage(name, bookingInfo);
+        return Utility.formatMessage(className, bookingInfo);
     }
 
 
@@ -152,4 +147,5 @@ public class Booking {
         String url = "https://" + getID() +"/Dummy URL";
         return url;
     }
+
 }

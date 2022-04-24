@@ -110,6 +110,11 @@ public class Actor{
         }
     }
 
+    public String getIdFromToken() throws JsonProcessingException {
+        ObjectNode jsonObject = parseToken(token);
+        return jsonObject.get("sub").asText();
+    }
+
 
 
     public void setWantsGoBack(boolean wantsGoBack) {

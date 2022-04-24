@@ -66,13 +66,10 @@ public class BookingsCollection implements DataSubscriber {
         return null;
     }
 
-    public boolean createNewBooking() throws IOException, InterruptedException {
+    public boolean createNewBooking(String customerId, String siteId) throws IOException, InterruptedException {
         WebServicesTarget webService = new ServicesAdapter();
         SitesCollection sites = SitesCollection.getInstance();
 
-        System.out.println("-----Provide customer's basic information that will be used to create a new booking-----");
-        String customerId = findCustomer();
-        String siteId = findSite();
 
         if (customerId != null && siteId != null) {
             Booking booking = new Booking(customerId, siteId);
@@ -88,26 +85,10 @@ public class BookingsCollection implements DataSubscriber {
 
     }
 
-    private String findCustomer() {
-        UserCollection users = UserCollection.getInstance();
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Please input the customer's userName : ");
-        // we use nextLine(), because there might be space in the name
-        String userInput = scanner.nextLine().trim();
-        try {
-            return users.findUser(userInput).getUserId();
-        } catch (NullPointerException e) {
-            return null;
-        }
 
-    }
 
-    private String findSite() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Please input the Site's id that is selected by the customer : ");
-        // we use nextLine(), because there might be space in the name
-        String userInput = scanner.next();
-        return userInput;
-    }
+
+
+
 
 }
