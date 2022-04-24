@@ -41,7 +41,6 @@ public class BookingTestAction extends Action {
         }
         return "Update(local and web side) data unsuccessfully";
 
-
     }
 
 
