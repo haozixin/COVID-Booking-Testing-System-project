@@ -20,22 +20,34 @@ import java.util.Set;
 public class Actor{
     // singleton
     private static Actor instance;
-    private final Menu menu = new Menu();
+    private Menu menu;
     private Set<String> roles = new HashSet<>();
-
-
-
     // class name
     public static final String name = "CurrentUser";
     // to judge if the user is logged in or not
     // true is logged in, false is not logged in
-    private boolean isLogged = false;
+    private boolean isLogged;
+
 
 
     // to judge if the user wants to go back to the previous menu
-    private boolean wantsGoBack = false;
-
+    private boolean wantsGoBack;
+    // when the user is logged in, he/she will get the token from the server
     private String token;
+
+    public Actor() {
+        menu = new Menu();
+        isLogged = false;
+        wantsGoBack = false;
+    }
+
+    /**
+     *  set the current user's information that we get from the token
+     * @param token
+     */
+    public void setDetailInfo(String token) {
+        this.token = token;
+    }
 
     public void setLoginState(boolean logged) {
         this.isLogged = logged;
@@ -49,8 +61,6 @@ public class Actor{
         this.token = token;
     }
 
-    private Actor() {
-    }
 
     public static Actor getInstance(){
         if(instance == null){
@@ -98,8 +108,8 @@ public class Actor{
                 roles.add(value);
             }
         }
-
     }
+
 
 
     public void setWantsGoBack(boolean wantsGoBack) {

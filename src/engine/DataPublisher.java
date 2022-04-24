@@ -3,9 +3,12 @@ package engine;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This class is used to publish data to the DataCollector.
+ * when the data in web side is changed, the publisher need to be called to update data.
+ */
 public class DataPublisher {
     private ArrayList<DataSubscriber> subscribers;
-    private boolean mainState;
 
     public DataPublisher() {
         this.subscribers = new ArrayList<>();
@@ -32,13 +35,6 @@ public class DataPublisher {
         }
     }
 
-    public boolean getMainState() {
-        return mainState;
-    }
-
-    public void setMainState(boolean mainState) {
-        this.mainState = mainState;
-    }
 
 
 }

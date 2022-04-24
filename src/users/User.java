@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 /**
- *  User class is used to deal with user data
+ * User class is used to deal with user data
  */
 public class User {
     private ObjectNode currentUserInfo;
@@ -33,18 +33,19 @@ public class User {
 
     /**
      * Constructor 1 - get data through parameters (from web server)
+     *
      * @param currentUserInfo
      */
     public User(ObjectNode currentUserInfo) {
         this.currentUserInfo = currentUserInfo;
     }
 
-    static{
+    static {
         keyToRoleMap = new HashMap<Character, String>();
         int counter = 1;
         // if there is more role in the system, we just need add more roles here
         for (String role : UserRoles.getAllRoles()) {
-            keyToRoleMap.put((char)counter, role);
+            keyToRoleMap.put((char) counter, role);
             counter++;
         }
     }
@@ -54,6 +55,7 @@ public class User {
      * used by user who is doing signup
      * (creating new entity by actor will be done by this method(collect user's input). It can avoid errors because of the missing required attributes.
      * and we don't need to change every outside places if there are more or less fields required on Web side)
+     *
      * @param
      * @return return a JSON String converted from ObjectNode, which is the current user info that is going to be saved in the system
      */
@@ -99,7 +101,7 @@ public class User {
      * uesd by constructor 2
      * is for post or put request (make a new entity)
      */
-    protected void initialSchema(){
+    protected void initialSchema() {
         currentUserInfo = new ObjectMapper().createObjectNode();
         currentUserInfo.put(GIVEN_NAME_FIELD, "String");
         currentUserInfo.put(FAMILY_NAME_FIELD, "String");
@@ -115,5 +117,23 @@ public class User {
     @Override
     public String toString() {
         return currentUserInfo.toString();
+    }
+
+    public String getUserName() {
+        try {
+            return currentUserInfo.get(USER_NAME_FIELD).asText();
+        } catch (NullPointerException e) {
+            return null;
+        }
+
+    }
+
+    public String getUserId() {
+        try {
+            return currentUserInfo.get("id").asText();
+        } catch (NullPointerException e) {
+            return null;
+        }
+
     }
 }

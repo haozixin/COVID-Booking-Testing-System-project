@@ -7,25 +7,43 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.actions.Action;
 import enums.Path;
+import testingSites.SitesCollection;
+import users.UserCollection;
+import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class BookingTestAction extends Action {
-    private WebServicesTarget webService;
-    public Booking booking;
+    private SitesCollection sites;
+    private BookingsCollection bookings;
+
 
     public BookingTestAction() {
-        webService = new ServicesAdapter();
+        name = "Booking Test Action";
+
+        sites = SitesCollection.getInstance();
+        bookings = BookingsCollection.getInstance();
     }
 
     @Override
     public String execute(Actor actor) throws IOException, InterruptedException {
-        booking = new Booking();
-        webService.postData(Path.BOOKING.getPath(), booking.toString());
-        return "Post data successfully";
+        Utility.displayAction(name);
+
+
+        sites.printList();
+        boolean isSuccessful = bookings.createNewBooking();
+        if (isSuccessful) {
+
+            return "Update(local and web side) data successfully";
+        }
+        return "Update(local and web side) data unsuccessfully";
+
+
     }
+
 
     @Override
     public String menuDescription(Actor actor) {

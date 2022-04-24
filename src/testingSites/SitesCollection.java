@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.DataSubscriber;
 import enums.Path;
 import webServiceAPI.ServicesAdapter;
+import webServiceAPI.WebServicesAdaptee;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class SitesCollection implements DataSubscriber {
     private SitesCollection() {
         factors = new ArrayList<>();
         filterFields = new ArrayList<>();
+
         filterFields.add(Location.SUBURB_FIELD);
         filterFields.add(TestingSite.FACILITY_TYPE_FIELD);
     }
@@ -82,8 +84,7 @@ public class SitesCollection implements DataSubscriber {
             TestingSite testingSite = new TestingSite(node);
             addTestingSite(testingSite);
         }
-
-        initHashMap();
+        initFilterFields();
     }
 
     public void printList() {
@@ -92,7 +93,14 @@ public class SitesCollection implements DataSubscriber {
         }
     }
 
-    private void initHashMap() {
+    /**
+     * filterFields is an array of strings that represent the fields that will be used for filtering
+     * factors is an array of hashmaps that represent the values that will be used for filtering
+     *
+     * the function is to initialize thefactors arrays(put value that gets from the whole data)
+     *
+     */
+    private void initFilterFields() {
 
         for (String field : filterFields) {
             HashMap<String, String> keyMap = new HashMap<String, String>();
@@ -166,4 +174,19 @@ public class SitesCollection implements DataSubscriber {
     public ArrayList<HashMap<String, String>> getFactors() {
         return factors;
     }
+
+    /**
+     *  update the waiting time field of the testing site
+     *  update local testing site list and then patch the data to the server to make the consistency
+     * @param siteId the id of the testing site
+     */
+    public void updateWaitingTime(String siteId) throws IOException, InterruptedException {
+        for (TestingSite testingSite : testingSites) {
+            if (testingSite.getId().equals(siteId)) {
+                testingSite.updateWaitingTime();
+            }
+        }
+    }
+
+
 }

@@ -140,6 +140,7 @@ public class ServicesAdapter implements WebServicesTarget {
         String url = rootUrl + path;
         // webservice call - post request
         HttpResponse<String> response = webServicesAdaptee.postRequest(url, myApiKey, jsonString, client );
+        System.out.println(response.body());
         return dealingResult(response, ResponseStatus.CODE_201.getCode());
     }
 
@@ -149,6 +150,7 @@ public class ServicesAdapter implements WebServicesTarget {
         String url = rootUrl + path + "/" + id;
         // webservice call - put request
         HttpResponse<String> response = webServicesAdaptee.putRequest(url, myApiKey, jsonString, client );
+
         return dealingResult(response, ResponseStatus.CODE_200.getCode());
     }
 
@@ -162,7 +164,7 @@ public class ServicesAdapter implements WebServicesTarget {
 
     private boolean dealingResult(HttpResponse<String> response, int successCode) throws JsonProcessingException {
         if (response.statusCode() == successCode) {
-            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            //System.out.println(ResponseStatus.matchCode(response.statusCode()));
             return true;
 
         } else {
