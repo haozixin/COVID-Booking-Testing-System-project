@@ -1,6 +1,7 @@
 package subSystems;
 
 import actions.GoBackAction;
+import actions.InterviewAction;
 import actors.Actor;
 
 public class OnsiteTestingSubsystem extends CovidBAndTSystem {
@@ -16,6 +17,7 @@ public class OnsiteTestingSubsystem extends CovidBAndTSystem {
         actions.clear();
 
         actions.add(new GoBackAction());
+        actions.add(new InterviewAction());
 
         super.processActorTurn(actor);
     }
