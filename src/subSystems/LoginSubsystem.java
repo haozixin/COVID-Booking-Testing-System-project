@@ -1,44 +1,22 @@
 package subSystems;
 
 
+import actions.GoBackAction;
+import actions.GoSubsystem;
 import actions.LoginAction;
 import actions.SignUpAction;
 import actors.Actor;
-import engine.actions.Actions;
 import utility.*;
-import webServiceAPI.ServicesAdapter;
 
 /**
  * The class is responsible for loginSubsystem
  */
 public class LoginSubsystem extends CovidBAndTSystem{
 
-
-    private static final String systemName = "Login Subsystem";
-
     public LoginSubsystem() {
         super();
-        dashBoard = Utility.setDashboard(64,5, systemName);
-    }
-
-
-    public void display() {
-        Utility.printArrayList(dashBoard);
-    }
-
-
-    @Override
-    public void run()
-        {
-        if (actor == null)
-            throw new IllegalStateException();
-
-        // This loop is basically the whole system
-        while (!actor.getLogged()) {
-            display();
-            processActorTurn(actor);
-        }
-
+        systemName = "Login Subsystem";
+        setDashBoard();
     }
 
     @Override
@@ -48,6 +26,7 @@ public class LoginSubsystem extends CovidBAndTSystem{
         // TODO: add actions
             actions.add(new LoginAction());
             actions.add(new SignUpAction());
+            actions.add(new GoBackAction());
 
         super.processActorTurn(actor);
     }

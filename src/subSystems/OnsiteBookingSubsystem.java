@@ -1,38 +1,21 @@
 package subSystems;
 
+import actions.GoBackAction;
 import actors.Actor;
-import engine.Display;
-import engine.actions.Action;
-import engine.actions.Actions;
-
-import java.io.IOException;
 
 public class OnsiteBookingSubsystem extends CovidBAndTSystem{
 
     public OnsiteBookingSubsystem() {
         super();
-    }
-
-    @Override
-    public void run()
-        {
-        if (actor == null)
-            throw new IllegalStateException();
-
-        // This loop is basically the whole system
-        while (actor.getLogged()) {
-            processActorTurn(actor);
-        }
-
+        systemName = "Onsite Booking Subsystem";
+        setDashBoard();
     }
 
     @Override
     protected void processActorTurn(Actor actor)
         {
             actions.clear();
-
-        // TODO: add actions
-        //
+            actions.add(new GoBackAction());
 
         super.processActorTurn(actor);
     }

@@ -7,8 +7,11 @@ import engine.Display;
 import engine.Menu;
 import engine.actions.Action;
 import engine.actions.Actions;
+import users.User;
 
 import java.util.Base64;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class is like an agent that can be used by actors to contact with the system.(will be more security)
@@ -18,25 +21,27 @@ public class Actor{
     // singleton
     private static Actor instance;
     private final Menu menu = new Menu();
+    private Set<String> roles = new HashSet<>();
 
 
 
     // class name
     public static final String name = "CurrentUser";
     // to judge if the user is logged in or not
+    // true is logged in, false is not logged in
     private boolean isLogged = false;
 
 
     // to judge if the user wants to go back to the previous menu
-    private boolean isGoBack = false;
+    private boolean wantsGoBack = false;
 
     private String token;
 
-    public void setLogged(boolean logged) {
+    public void setLoginState(boolean logged) {
         this.isLogged = logged;
     }
 
-    public boolean getLogged(){
+    public boolean getLoginState(){
         return isLogged;
     }
 
@@ -84,12 +89,24 @@ public class Actor{
         return jsonObject;
     }
 
+    public void getRoleFromToken() throws JsonProcessingException {
 
-    public void setGoBack(boolean goBack) {
-        isGoBack = goBack;
+        ObjectNode jsonObject = parseToken(token);
+        for (String value : User.keyToRoleMap.values()) {
+            boolean isTheRole = jsonObject.get(value).asBoolean();
+            if (isTheRole) {
+                roles.add(value);
+            }
+        }
+
+    }
+
+
+    public void setWantsGoBack(boolean wantsGoBack) {
+        this.wantsGoBack = wantsGoBack;
     }
 
     public boolean getIsGoBack() {
-        return isGoBack;
+        return wantsGoBack;
     }
 }

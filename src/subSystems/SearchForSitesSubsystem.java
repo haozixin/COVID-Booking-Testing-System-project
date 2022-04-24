@@ -8,29 +8,17 @@ import actors.Actor;
 import utility.Utility;
 
 public class SearchForSitesSubsystem extends CovidBAndTSystem {
-    private static final String systemName = "Search for testing sites Subsystem";
 
     public SearchForSitesSubsystem() {
         super();
-        dashBoard = Utility.setDashboard(100,5, systemName);
+        systemName = "Search for testing sites Subsystem";
+        setDashBoard();
     }
 
-    public void display() {
-        Utility.printArrayList(dashBoard);
-    }
-
-    @Override
-    public void run() {
-        if (actor == null)
-            throw new IllegalStateException();
-
-        // This loop is basically the whole system
-        while (!actor.getIsGoBack()) {
-            display();
-            processActorTurn(actor);
-        }
-    }
-
+    /**
+     * arrange the actions(user could choose from menu) for the actor here
+     * @param actor the actor who is going to take the turn
+     */
     @Override
     protected void processActorTurn(Actor actor) {
         actions.clear();

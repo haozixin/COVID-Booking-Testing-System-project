@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.DataSubscriber;
 import engine.Display;
 import engine.actions.Action;
+import enums.UserRoles;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,12 +18,6 @@ import java.util.Scanner;
 public class User {
     private ObjectNode currentUserInfo;
 
-    public static final String IS_CUSTOMER_FIELD = "isCustomer";
-
-    public static final String IS_ADMIN_FIELD = "isReceptionist";
-
-    public static final String IS_HEALTHCARE_WORKER_FIELD = "isHealthcareWorker";
-
     public static final String PHONE_NUMBER_FIELD = "phoneNumber";
 
     public static final String PASSWORD_FIELD = "password";
@@ -32,7 +28,8 @@ public class User {
 
     public static final String GIVEN_NAME_FIELD = "givenName";
 
-    HashMap<Character, String> keyToRoleMap = new HashMap<Character, String>();
+    // when there is more roles, we only add one enums in UserRoles.java
+    public static HashMap<Character, String> keyToRoleMap;
 
     /**
      * Constructor 1 - get data through parameters (from web server)
@@ -41,6 +38,17 @@ public class User {
     public User(ObjectNode currentUserInfo) {
         this.currentUserInfo = currentUserInfo;
     }
+
+    static{
+        keyToRoleMap = new HashMap<Character, String>();
+        int counter = 1;
+        // if there is more role in the system, we just need add more roles here
+        for (String role : UserRoles.getAllRoles()) {
+            keyToRoleMap.put((char)counter, role);
+            counter++;
+        }
+    }
+
 
     /**
      * used by user who is doing signup
@@ -52,7 +60,7 @@ public class User {
     public String buildRequestBody() {
         // 1. the role of user will be set to true
 
-        // 2. get user's input
+        // 2. get user's input to set user's role (i.e. admin, customer, healthcare worker)
         System.out.println(keyToRoleMap);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please choose your role(please input the sequence number): ");
@@ -61,9 +69,6 @@ public class User {
             System.out.println("please enter correct number. ");
         }
         currentUserInfo.put(keyToRoleMap.get(choice), true);
-
-
-
 
 
         // 3. update other data from user's input
@@ -77,8 +82,6 @@ public class User {
                 currentUserInfo.put(key, value);
             }
         }
-
-
         return currentUserInfo.toString();
     }
 
@@ -86,18 +89,15 @@ public class User {
      * Constructor 2 - get data and create a new entity through actor's input
      */
     public User() {
-        // if there is more role in the system, we just need add more roles here
-        keyToRoleMap.put('1', IS_ADMIN_FIELD);
-        keyToRoleMap.put('2', IS_CUSTOMER_FIELD);
-        keyToRoleMap.put('3', IS_HEALTHCARE_WORKER_FIELD);
-
         // initial attributes Template(Schema)
         initialSchema();
     }
 
 
     /**
-     * override the method to make IS_CUstomer_FIELD true/ IS_ADMIN_FIELD true/ IS_HEALTHCARE_WORKER_FIELD true
+     * initial attributes Template(Schema)
+     * uesd by constructor 2
+     * is for post or put request (make a new entity)
      */
     protected void initialSchema(){
         currentUserInfo = new ObjectMapper().createObjectNode();
@@ -107,9 +107,9 @@ public class User {
         currentUserInfo.put(PASSWORD_FIELD, "String");
         currentUserInfo.put(PHONE_NUMBER_FIELD, "String");
         // we assume that the user is a customer by default
-        currentUserInfo.put(IS_CUSTOMER_FIELD, true);
-        currentUserInfo.put(IS_ADMIN_FIELD, false);
-        currentUserInfo.put(IS_HEALTHCARE_WORKER_FIELD, false);
+        currentUserInfo.put(UserRoles.IS_CUSTOMER_FIELD.getName(), true);
+        currentUserInfo.put(UserRoles.IS_ADMIN_FIELD.getName(), false);
+        currentUserInfo.put(UserRoles.IS_HEALTHCARE_WORKER_FIELD.getName(), false);
     }
 
     @Override
