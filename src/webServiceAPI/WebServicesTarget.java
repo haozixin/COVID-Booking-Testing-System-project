@@ -44,7 +44,7 @@ public interface WebServicesTarget {
      * @throws IOException
      * @throws InterruptedException
      */
-    boolean postData(String path, String jsonString) throws IOException, InterruptedException;
+    ObjectNode postData(String path, String jsonString) throws IOException, InterruptedException;
 
     /**
      * do same things with put or patch web request

@@ -76,11 +76,12 @@ public class BookingsCollection implements DataSubscriber {
 
         if (customerId != null && siteId != null) {
             Booking booking = new Booking(customerId, siteId);
-            webService.postData(Path.BOOKING.getPath(), booking.toString());
+            ObjectNode response = webService.postData(Path.BOOKING.getPath(), booking.toString());
+            Booking tempBooking = new Booking(response);
             sites.updateWaitingTime(siteId);
 
             update();
-            System.out.println("Please remember the PIN code");
+            System.out.println("Please remember the PIN code" + tempBooking.getPinCode());
             return true;
         }
         return false;

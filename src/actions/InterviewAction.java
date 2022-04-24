@@ -49,10 +49,10 @@ public class InterviewAction extends Action {
         }
 
         if (no_of_yes >= 3) {
-            System.out.println("According to the symptoms, our testing type suggestion: PCR");
+            System.out.println("According to the symptoms, our testing type suggestion is: PCR");
         }
         else {
-            System.out.println("According to the symptoms, our testing type suggestion: RAT");
+            System.out.println("According to the symptoms, our testing type suggestion is: RAT");
             }
 
         System.out.println("\nYour final testing type decision is(PCR/RAT): ");
@@ -61,7 +61,7 @@ public class InterviewAction extends Action {
 
         while(!(answer.equals("RAT") || answer.equals("PCR"))){
             System.out.println("Error, please input the correct testing type");
-            System.out.println("\nYour final testing type decision is(PCR/RAT): ");
+            System.out.println("\nYour(healthcare workers) final testing type decision is(PCR/RAT): ");
             answer = s.next();
         }
         return "Confirmed the testing type";

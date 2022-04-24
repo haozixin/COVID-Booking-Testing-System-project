@@ -136,12 +136,23 @@ public class ServicesAdapter implements WebServicesTarget {
 
 
     @Override
-    public boolean postData(String path, String jsonString) throws IOException, InterruptedException {
+    public ObjectNode postData(String path, String jsonString) throws IOException, InterruptedException {
         String url = rootUrl + path;
         // webservice call - post request
         HttpResponse<String> response = webServicesAdaptee.postRequest(url, myApiKey, jsonString, client );
-        System.out.println(response.body());
-        return dealingResult(response, ResponseStatus.CODE_201.getCode());
+
+
+        if (response.statusCode() == ResponseStatus.CODE_201.getCode()) {
+            //System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            return new ObjectMapper().readValue(response.body(), ObjectNode.class);
+
+
+        } else {
+            System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
+            Utility.resolveError(errorJsonNode);
+            return null;
+        }
     }
 
 

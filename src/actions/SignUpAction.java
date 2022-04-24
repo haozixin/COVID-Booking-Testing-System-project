@@ -1,6 +1,7 @@
 package actions;
 
 import actors.Actor;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.actions.Action;
 import enums.Path;
 import enums.ResponseStatus;
@@ -26,9 +27,9 @@ public class SignUpAction extends Action {
         Utility.displayAction(name);
 
         String jsonNodes = user.buildRequestBody();
-        boolean code = webServicesTarget.postData(Path.SIGN_UP.getPath(), jsonNodes);
+        ObjectNode node = webServicesTarget.postData(Path.SIGN_UP.getPath(), jsonNodes);
         System.out.println("Details: "+user);
-        if (code) {
+        if (node!=null) {
             return "You have successfully signed up";
         }
         return null;
