@@ -55,13 +55,11 @@ public class Booking {
      * @throws JsonProcessingException
      */
     public Booking() throws JsonProcessingException {
-
         // initial attributes Template(Schema)
         initialSchema();
         // get data from users (input)
         buildRequestBody();
     }
-
 
     /**
      * extract the pincode of the booking
@@ -71,10 +69,12 @@ public class Booking {
         return bookingInfo.get(SMS_PIN_FIELD).asText();
     }
 
-
-
     @Override
     public String toString() {
+        return bookingInfo.toString();
+    }
+
+    public String display() {
         return Utility.displayMessage(name, bookingInfo);
     }
 
