@@ -1,5 +1,6 @@
 package engine;
 
+import bookings.Booking;
 import com.fasterxml.jackson.databind.JsonNode;
 import testingSites.TestingSite;
 
@@ -28,7 +29,7 @@ public interface DataCollection {
     /**
      * prints the list of entities to the console
      */
-    void printList();
+    void printWholeList();
 
     /**
      *  fills the list with the data from the json file by using one factor at a time
@@ -55,6 +56,7 @@ public interface DataCollection {
      */
     default Entity getStatusByPin(String pinCode){return null;}
 
-    default String createNewEntity(String customerId, String siteId) throws IOException, InterruptedException {return null;}
+    default String createOnsiteBooking(String type, String customerId, String siteId) throws IOException, InterruptedException {return null;}
+    default Booking createHomeBooking(String type, String customerId, String siteId, boolean hasRATKit) throws IOException, InterruptedException {return null;}
 
 }

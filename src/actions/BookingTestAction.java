@@ -28,13 +28,14 @@ public class BookingTestAction extends Action {
         Utility.displayAction(name);
 
 
-        sites.printList();
+        sites.printWholeList();
 
         System.out.println("-----Provide customer's basic information that will be used to create a new booking-----");
+
         String customerId = findCustomer();
         String siteId = findSite();
 
-        String pinCode = bookings.createNewEntity(customerId, siteId);
+        String pinCode = bookings.createOnsiteBooking(BookingsCollection.ONSITE_BOOKING_TYPE, customerId, siteId);
         if (pinCode != null) {
             messagePinCode(pinCode);
             return "Update(local and web side) data successfully";

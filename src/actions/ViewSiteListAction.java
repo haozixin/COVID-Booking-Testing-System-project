@@ -20,7 +20,7 @@ public class ViewSiteListAction extends Action {
     @Override
     public String execute(Actor actor) throws IOException, InterruptedException {
         Utility.displayAction(name);
-        sitesCollection.printList();
+        sitesCollection.printWholeList();
         return null;
     }
 

@@ -1,7 +1,7 @@
 package subSystems;
 
 import actions.GoBackAction;
-import actions.HomeBooking;
+import actions.HomeBookingAction;
 import actors.Actor;
 
 public class HomeBookingSubsystem extends CovidBAndTSystem{
@@ -9,6 +9,7 @@ public class HomeBookingSubsystem extends CovidBAndTSystem{
     public HomeBookingSubsystem() {
         super();
         systemName = "Home-Booking Subsystem";
+        setDashBoard();
     }
 
     @Override
@@ -17,7 +18,7 @@ public class HomeBookingSubsystem extends CovidBAndTSystem{
             actions.clear();
         // TODO: add actions
         actions.add(new GoBackAction());
-        actions.add(new HomeBooking());
+        actions.add(new HomeBookingAction());
 
 
         super.processActorTurn(actor);

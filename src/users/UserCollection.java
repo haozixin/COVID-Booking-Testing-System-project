@@ -107,7 +107,7 @@ public class UserCollection implements DataSubscriber, DataCollection {
     }
 
     @Override
-    public void printList() {
+    public void printWholeList() {
         for (User user : users) {
             System.out.println(user);
         }

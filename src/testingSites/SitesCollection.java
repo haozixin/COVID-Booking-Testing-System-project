@@ -103,9 +103,9 @@ public class SitesCollection implements DataSubscriber, DataCollection {
     }
 
     @Override
-    public void printList() {
+    public void printWholeList() {
         for (TestingSite testingSite : testingSites) {
-            System.out.println(testingSite);
+            testingSite.display();
         }
     }
 

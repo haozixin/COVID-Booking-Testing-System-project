@@ -10,6 +10,6 @@ public class SitesCollectionTest {
     @Test
     public void update() throws IOException, InterruptedException {
         SitesCollection.getInstance().update();
-        SitesCollection.getInstance().printList();
+        SitesCollection.getInstance().printWholeList();
     }
 }

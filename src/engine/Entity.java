@@ -104,7 +104,7 @@ public abstract class Entity {
      */
     protected abstract void initialSchema();
 
-    protected String getEntityInfo(){
+    public String getEntityInfo(){
         return entityInfo.toString();
     }
 
@@ -115,6 +115,7 @@ public abstract class Entity {
             return null;
         }
     }
+
 
 
 }
