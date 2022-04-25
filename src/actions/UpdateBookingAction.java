@@ -24,6 +24,6 @@ public class UpdateBookingAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Update the booking";
+        return "Update the booking info";
     }
 }
