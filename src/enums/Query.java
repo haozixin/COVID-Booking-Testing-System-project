@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * frequently used queries
+ */
 public enum Query {
 
 

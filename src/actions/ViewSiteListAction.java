@@ -1,6 +1,7 @@
 package actions;
 
 import actors.Actor;
+import engine.DataCollection;
 import engine.actions.Action;
 import testingSites.SitesCollection;
 import utility.Utility;
@@ -8,7 +9,7 @@ import utility.Utility;
 import java.io.IOException;
 
 public class ViewSiteListAction extends Action {
-    SitesCollection sitesCollection;
+    DataCollection sitesCollection;
     String name;
 
     public ViewSiteListAction() {

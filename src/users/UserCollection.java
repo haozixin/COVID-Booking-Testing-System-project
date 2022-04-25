@@ -2,22 +2,28 @@ package users;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.DataCollection;
 import engine.DataSubscriber;
+import engine.Entity;
 import enums.Path;
 import enums.Query;
+import testingSites.TestingSite;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
-public class UserCollection implements DataSubscriber {
+public class UserCollection implements DataSubscriber, DataCollection {
     private final ArrayList<User> users;
     private static UserCollection instance = null;
 
+
     private UserCollection() {
         users = new ArrayList<>();
+
     }
 
     public static UserCollection getInstance() {
@@ -55,8 +61,8 @@ public class UserCollection implements DataSubscriber {
         users.add(user);
     }
 
-
-    public User findUser(String userName) {
+    @Override
+    public Entity findEntity(String userName) {
         for (User user : users) {
             if (user.getUserName().equals(userName)) {
                 return user;
@@ -65,21 +71,30 @@ public class UserCollection implements DataSubscriber {
         return null;
     }
 
-    /**
-     *
-     * @param userName
-     */
-    public JsonNode searchForBooking(String userName) throws IOException, InterruptedException {
-
+    @Override
+    public JsonNode searchForEntity(String userName, String query) throws IOException, InterruptedException {
         for (User user : users) {
             if (user.getUserName().equals(userName)) {
-                String userId = user.getUserId();
+                String userId = user.getEntityId();
                 WebServicesTarget ws = new ServicesAdapter();
-                ObjectNode data = ws.getSpecificData(Path.USER.getPath(), userId, Query.BOOKINGS_IN_USER_OR_SITE.getQuery());
+                ObjectNode data = ws.getSpecificData(Path.USER.getPath(), userId, query);
                 JsonNode list =  data.get(User.BOOKINGS);
                 return list;
             }
         }
+        return null;
+    }
+
+    @Override
+    public void printList() {
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
+    @Override
+    public ArrayList<TestingSite> filterByOnFactor(String field, String value) {
+        // haven't used this yet
         return null;
     }
 

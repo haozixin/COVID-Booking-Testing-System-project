@@ -2,17 +2,15 @@ package actions;
 
 import actors.Actor;
 import bookings.Booking;
+import engine.DataCollection;
 import engine.actions.Action;
-import testingSites.Location;
-import testingSites.TestingSite;
+import enums.Query;
 import testings.CovidTest;
-import users.User;
 import users.UserCollection;
 import utility.Utility;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -22,7 +20,7 @@ import java.util.Scanner;
  */
 public class InterviewAction extends Action {
     private ArrayList<String> symptomFields;
-    private UserCollection users;
+    private DataCollection users;
 
 
     public InterviewAction() {
@@ -52,8 +50,8 @@ public class InterviewAction extends Action {
         Scanner s = new Scanner(System.in);
         System.out.print("Please input the customer's userName to get their booking: ");
         String userName = s.next();
-        String customerId = users.findUser(userName).getUserId();
-        Utility.displayJsonList(Booking.className, users.searchForBooking(userName));
+        String customerId = users.findEntity(userName).getEntityId();
+        Utility.displayJsonList("Booking", users.searchForEntity(userName, Query.BOOKINGS_IN_USER_OR_SITE.getQuery()));
         String actorId = actor.getIdFromToken();
 
 

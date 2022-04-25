@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * frequently used response status and code
+ */
 public enum ResponseStatus {
     CODE_200(200, "The request succeeded"),
     CODE_201(201, "New object successfully created."),

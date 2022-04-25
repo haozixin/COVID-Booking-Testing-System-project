@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * Enum for the different paths used frequently in the system
+ */
 public enum Path {
 
     USER("/user"),

@@ -1,6 +1,7 @@
 package actions;
 
 import actors.Actor;
+import engine.DataCollection;
 import engine.actions.Action;
 import testingSites.Location;
 import testingSites.SitesCollection;
@@ -13,10 +14,11 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class SearchSiteAction extends Action {
-    private SitesCollection sitesCollection;
-
+    private DataCollection sitesCollection;
+    private ArrayList<HashMap<String, String>> factors;
     public SearchSiteAction() {
         sitesCollection = SitesCollection.getInstance();
+        factors = SitesCollection.factors;
     }
 
     @Override
@@ -27,16 +29,16 @@ public class SearchSiteAction extends Action {
         ArrayList<TestingSite> temp1 = new ArrayList<>();
         ArrayList<TestingSite> temp2 = new ArrayList<>();
 
-        for (int i = 0; i < sitesCollection.getFactors().size(); i++) {
-            HashMap<String, String> iterator = sitesCollection.getFactors().get(i);
+        for (int i = 0; i < SitesCollection.factors.size(); i++) {
+            HashMap<String, String> iterator = factors.get(i);
             if (iterator.containsValue(Location.SUBURB_FIELD)){
 
-                System.out.print("Enter the value of "+Location.SUBURB_FIELD+" by reference " + sitesCollection.getFactors().get(i).keySet()+ " : ");
+                System.out.print("Enter the value of "+Location.SUBURB_FIELD+" by reference " + factors.get(i).keySet()+ " : ");
                 value = s.nextLine().trim();
                 temp1.addAll(filterBySuburb(value));
             }
             if (iterator.containsValue(TestingSite.FACILITY_TYPE_FIELD)){
-                System.out.print("Enter the value of "+TestingSite.FACILITY_TYPE_FIELD+" by reference " + sitesCollection.getFactors().get(i).keySet()+ " : ");
+                System.out.print("Enter the value of "+TestingSite.FACILITY_TYPE_FIELD+" by reference " + factors.get(i).keySet()+ " : ");
                 value = s.nextLine().trim();
                 temp2.addAll(filterByType(value));
             }
@@ -54,11 +56,11 @@ public class SearchSiteAction extends Action {
     }
 
     private ArrayList<TestingSite> filterBySuburb(String value){
-        return sitesCollection.filter(Location.SUBURB_FIELD, value);
+        return sitesCollection.filterByOnFactor(Location.SUBURB_FIELD, value);
     }
 
     private ArrayList<TestingSite> filterByType(String value){
-        return sitesCollection.filter(TestingSite.FACILITY_TYPE_FIELD, value);
+        return sitesCollection.filterByOnFactor(TestingSite.FACILITY_TYPE_FIELD, value);
     }
 
     @Override

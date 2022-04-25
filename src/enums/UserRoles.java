@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * Enum for user roles.
+ */
 public enum UserRoles {
     IS_CUSTOMER_FIELD("isCustomer"),
     IS_ADMIN_FIELD("isReceptionist"),

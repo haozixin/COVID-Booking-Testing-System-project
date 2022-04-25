@@ -1,24 +1,19 @@
 package actions;
 
 import actors.Actor;
-import bookings.Booking;
 import bookings.BookingsCollection;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.DataCollection;
 import engine.actions.Action;
-import enums.Path;
 import testingSites.SitesCollection;
 import users.UserCollection;
 import utility.Utility;
-import webServiceAPI.ServicesAdapter;
-import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class BookingTestAction extends Action {
-    private SitesCollection sites;
-    private BookingsCollection bookings;
+    private DataCollection sites;
+    private DataCollection bookings;
 
 
     public BookingTestAction() {
@@ -39,7 +34,7 @@ public class BookingTestAction extends Action {
         String customerId = findCustomer();
         String siteId = findSite();
 
-        String pinCode = bookings.createNewBooking(customerId, siteId);
+        String pinCode = bookings.createNewEntity(customerId, siteId);
         if (pinCode != null) {
             messagePinCode(pinCode);
             return "Update(local and web side) data successfully";
@@ -49,13 +44,13 @@ public class BookingTestAction extends Action {
     }
 
     private String findCustomer() {
-        UserCollection users = UserCollection.getInstance();
+        DataCollection users = UserCollection.getInstance();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please input the customer's userName : ");
         // we use nextLine(), because there might be space in the name
         String userInput = scanner.nextLine().trim();
         try {
-            return users.findUser(userInput).getUserId();
+            return users.findEntity(userInput).getEntityId();
         } catch (NullPointerException e) {
             return null;
         }

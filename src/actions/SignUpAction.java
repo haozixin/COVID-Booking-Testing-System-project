@@ -2,6 +2,7 @@ package actions;
 
 import actors.Actor;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.Entity;
 import engine.actions.Action;
 import enums.Path;
 import enums.ResponseStatus;
@@ -14,20 +15,20 @@ import java.io.IOException;
 
 public class SignUpAction extends Action {
     private WebServicesTarget webServicesTarget;
-    private User user;
+    private Entity user;
 
     public SignUpAction() {
         webServicesTarget = new ServicesAdapter();
-        user = new User();
+
         name = "Sign Up operation";
     }
 
     @Override
     public String execute(Actor actor) throws IOException, InterruptedException {
         Utility.displayAction(name);
+        String jsonNode = User.createNewEntity();
 
-        String jsonNodes = user.buildRequestBody();
-        ObjectNode node = webServicesTarget.postData(Path.SIGN_UP.getPath(), jsonNodes);
+        ObjectNode node = webServicesTarget.postData(Path.SIGN_UP.getPath(), jsonNode);
         System.out.println("Details: "+user);
         if (node!=null) {
             return "You have successfully signed up";

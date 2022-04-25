@@ -2,12 +2,10 @@ package users;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import engine.DataSubscriber;
-import engine.Display;
-import engine.actions.Action;
+import engine.Entity;
 import enums.UserRoles;
+import utility.Utility;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -15,10 +13,9 @@ import java.util.Scanner;
 /**
  * User class is used to deal with user data
  */
-public class User {
+public class User extends Entity {
 
     public static String className = "User";
-    private ObjectNode currentUserInfo;
 
     public static final String PHONE_NUMBER_FIELD = "phoneNumber";
 
@@ -33,15 +30,16 @@ public class User {
     public static final String BOOKINGS = "bookings";
 
     // when there is more roles, we only add one enums in UserRoles.java
+    // stores isCustomer, isHealthcareProvider, ...
     public static HashMap<Character, String> keyToRoleMap;
 
     /**
      * Constructor 1 - get data through parameters (from web server)
      *
-     * @param currentUserInfo
+     * @param entityInfo
      */
-    public User(ObjectNode currentUserInfo) {
-        this.currentUserInfo = currentUserInfo;
+    public User(ObjectNode entityInfo) {
+        super(entityInfo);
     }
 
     static {
@@ -56,47 +54,27 @@ public class User {
 
 
     /**
-     * used by user who is doing signup
-     * (creating new entity by actor will be done by this method(collect user's input). It can avoid errors because of the missing required attributes.
-     * and we don't need to change every outside places if there are more or less fields required on Web side)
-     *
-     * @param
-     * @return return a JSON String converted from ObjectNode, which is the current user info that is going to be saved in the system
+     * Constructor 2 - get data and create a new entity through actor's input
      */
-    public String buildRequestBody() {
-        // 1. the role of user will be set to true
-
-        // 2. get user's input to set user's role (i.e. admin, customer, healthcare worker)
-        System.out.println(keyToRoleMap);
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please choose your role(please input the sequence number): ");
-        Character choice = scanner.next().charAt(0);
-        while (!keyToRoleMap.containsKey(choice)) {
-            System.out.println("please enter correct number. ");
-        }
-        currentUserInfo.put(keyToRoleMap.get(choice), true);
-
-
-        // 3. update other data from user's input
-        for (Iterator<String> it = currentUserInfo.fieldNames(); it.hasNext(); ) {
-            String key = it.next();
-            // the value of the key is the type of String
-            if (currentUserInfo.get(key).isTextual()) {
-                System.out.print(key + " : ");
-                Scanner s = new Scanner(System.in);
-                String value = s.next();
-                currentUserInfo.put(key, value);
-            }
-        }
-        return currentUserInfo.toString();
+    private User() {
+        // initial attributes Template(Schema)
+        initialSchema();
+        // update other data from user's input
+        addValueToSchema();
     }
 
     /**
-     * Constructor 2 - get data and create a new entity through actor's input
+     * Only way to create a new user - Serialization the entity(from Object to String)
+     * @return
      */
-    public User() {
-        // initial attributes Template(Schema)
-        initialSchema();
+    public static String createNewEntity() {
+        User user = new User();
+        return user.getEntityInfo();
+    }
+
+    @Override
+    public String display() {
+        return Utility.formatMessage(className, entityInfo);
     }
 
 
@@ -105,39 +83,27 @@ public class User {
      * uesd by constructor 2
      * is for post or put request (make a new entity)
      */
-    protected void initialSchema() {
-        currentUserInfo = new ObjectMapper().createObjectNode();
-        currentUserInfo.put(GIVEN_NAME_FIELD, "String");
-        currentUserInfo.put(FAMILY_NAME_FIELD, "String");
-        currentUserInfo.put(USER_NAME_FIELD, "String");
-        currentUserInfo.put(PASSWORD_FIELD, "String");
-        currentUserInfo.put(PHONE_NUMBER_FIELD, "String");
-        // we assume that the user is a customer by default
-        currentUserInfo.put(UserRoles.IS_CUSTOMER_FIELD.getName(), true);
-        currentUserInfo.put(UserRoles.IS_ADMIN_FIELD.getName(), false);
-        currentUserInfo.put(UserRoles.IS_HEALTHCARE_WORKER_FIELD.getName(), false);
-    }
-
     @Override
-    public String toString() {
-        return currentUserInfo.toString();
+    protected void initialSchema() {
+        entityInfo = new ObjectMapper().createObjectNode();
+        entityInfo.put(GIVEN_NAME_FIELD, "String");
+        entityInfo.put(FAMILY_NAME_FIELD, "String");
+        entityInfo.put(USER_NAME_FIELD, "String");
+        entityInfo.put(PASSWORD_FIELD, "String");
+        entityInfo.put(PHONE_NUMBER_FIELD, "String");
+        // we assume that the user is a customer by default
+        entityInfo.put(UserRoles.IS_CUSTOMER_FIELD.getName(), true);
+        entityInfo.put(UserRoles.IS_ADMIN_FIELD.getName(), false);
+        entityInfo.put(UserRoles.IS_HEALTHCARE_WORKER_FIELD.getName(), false);
     }
 
     public String getUserName() {
         try {
-            return currentUserInfo.get(USER_NAME_FIELD).asText();
+            return entityInfo.get(USER_NAME_FIELD).asText();
         } catch (NullPointerException e) {
             return null;
         }
 
-    }
-
-    public String getUserId() {
-        try {
-            return currentUserInfo.get("id").asText();
-        } catch (NullPointerException e) {
-            return null;
-        }
     }
 
 
