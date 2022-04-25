@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+/**
+ * Utility class for common methods.
+ */
 public class Utility {
 
     public static Properties myProp = new Properties();
@@ -20,7 +23,11 @@ public class Utility {
         }
     }
 
-
+    /**
+     *  Get the value of a property from the properties file
+     * @param props the properties file
+     * @return the value of the property
+     */
     public static String getMyConf(String props) {
         return myProp.getProperty(props);
     }
@@ -45,12 +52,11 @@ public class Utility {
     }
 
     /**
-     *  display the json object(value is a list and Nested json object) in a formatted way - [{}...{}]
-     * @param name
-     * @param jsonNode
+     *  Display the json object(value is a list and Nested json object) in a formatted way - [{}...{}]
+     * @param name the name of the object
+     * @param jsonNode the json object
      */
     public static void displayJsonList(String name, JsonNode jsonNode){
-        StringBuilder message = new StringBuilder();
         if (jsonNode != null) {
             for (JsonNode node : jsonNode) {
                 System.out.println(formatMessage(name, node));
@@ -59,12 +65,13 @@ public class Utility {
         else{
             System.out.println("There is no data to print");
         }
-
-
     }
 
 
-
+    /**
+     * Display the ArrayList in a formatted way - [..., ..., ...]
+     * @param message An ArrayList
+     */
     public static void printArrayList(ArrayList<String> message) {
         for (String s : message) {
             System.out.println(s);
@@ -120,6 +127,10 @@ public class Utility {
         return dashBoard;
     }
 
+    /**
+     * Display what is the users' operation they are doing (can be reused by all kinds of system)
+     * @param name
+     */
     public static void displayAction(String name){
         System.out.println("----------You are doing "+name+"---------");
     }

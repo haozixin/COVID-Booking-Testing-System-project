@@ -17,8 +17,23 @@ import java.net.http.HttpClient;
 public interface WebServicesTarget {
 
 
+    /**
+     *  Get Token from the server
+     * @param userName  user name
+     * @param password  password
+     * @return token
+     * @throws IOException
+     * @throws InterruptedException
+     */
     String getToken(String userName, String password) throws IOException, InterruptedException;
 
+    /**
+     *  Verify the token
+     * @param token the token that you want to verify
+     * @return boolean value: true-success, false-failure
+     * @throws IOException
+     * @throws InterruptedException
+     */
     boolean verifyToken(String token) throws IOException, InterruptedException;
 
 

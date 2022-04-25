@@ -25,6 +25,9 @@ public class MainSystem {
     private Display display;
 
 
+    /**
+     * Constructor of mainSystem
+     */
     public MainSystem() {
         dashBoard = Utility.setDashboard(100, 5, systemName);
         mainMenu = new Menu();
@@ -33,18 +36,33 @@ public class MainSystem {
         display = new Display();
     }
 
+    /**
+     *  add a sub-system to the system list
+     * @param system sub-system
+     */
     public void addSubSystem(CovidBAndTSystem system) {
         systems.add(system);
     }
 
+    /**
+     * set the actor(like agent for real actor) for the system
+     * @param actor actor
+     */
     public void addActor(Actor actor) {
         this.actor = actor;
     }
 
+    /**
+     * show the dashboard of the system
+     * help the user to know where is he/she
+     */
     private void showDashBoard() {
         Utility.printArrayList(dashBoard);
     }
 
+    /**
+     * the engine of the system
+     */
     public void run() {
 
         if (actor == null)

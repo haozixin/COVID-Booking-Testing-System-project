@@ -7,24 +7,24 @@ import users.UserCollection;
 
 import java.io.IOException;
 
+/**
+ * @Author: Zixin Hao, Jayden Yang
+ * @Date: 2022-4-26
+ * @Version: 1.0
+ * @Class: Application
+ * @Description: The main class of the application.
+ * @Function List: see the check_list document in the doc folder.
+ *
+ */
 public class Application {
+    /**
+     * The main method of the application.
+     * Program entrance.
+     * @param args
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws IOException, InterruptedException {
-
-//        Actor actor = Actor.getInstance();
-//        CovidBAndTSystem loginSubsystem = new LoginSubsystem();
-//        loginSubsystem.addUser(actor);
-//        loginSubsystem.run();
-
-
-//        Actor actor = Actor.getInstance();
-//        DataPublisher dataPublisher = new DataPublisher();
-//        dataPublisher.subscribe(SitesCollection.getInstance());
-//        dataPublisher.notifySubscribers();
-//
-//        CovidBAndTSystem searchForSitesSubsystem = new SearchForSitesSubsystem();
-//        searchForSitesSubsystem.addUser(actor);
-//        searchForSitesSubsystem.run();
-        //----------------------------------------------------------------------------------------------------------------------
 
 
         // step 1  - create elements

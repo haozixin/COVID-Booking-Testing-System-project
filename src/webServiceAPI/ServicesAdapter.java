@@ -15,19 +15,26 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 /**
- * This class will implement Web Services about "user"
+ * This class will adapter Web Services API to our application.
  */
 public class ServicesAdapter implements WebServicesTarget {
 
-    // Provide the root URL for the web service. All web service request URLs start with this root URL.
+    /**
+     * Provide the root URL for the web service. All web service request URLs start with this root URL.
+     */
     private final String rootUrl;
-    //myApiKey can **ever never** be shown in code and push to git
+    /**
+     * myApiKey can **ever never** be shown in code and push to git
+     */
     private final String myApiKey;
 
     private HttpClient client;
 
     private WebServicesAdaptee webServicesAdaptee;
 
+    /**
+     * Constructor for ServicesAdapter
+     */
     public ServicesAdapter() {
         webServicesAdaptee = new WebServicesAdaptee();
         myApiKey = Utility.getMyConf("API_key");
@@ -59,9 +66,6 @@ public class ServicesAdapter implements WebServicesTarget {
         return null;
 
     }
-
-
-    // This request will succeed (assuming there was at least one user object returned in the array from Part 2.
 
     /**
      * fetch a particular resource by ID(based on different parameter/path)

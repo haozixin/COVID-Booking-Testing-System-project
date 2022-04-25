@@ -97,6 +97,10 @@ public class User extends Entity {
         entityInfo.put(UserRoles.IS_HEALTHCARE_WORKER_FIELD.getName(), false);
     }
 
+    /**
+     * Get userName field value
+     * @return  String userName
+     */
     public String getUserName() {
         try {
             return entityInfo.get(USER_NAME_FIELD).asText();

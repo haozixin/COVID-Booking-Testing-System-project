@@ -13,10 +13,10 @@ public class WebServicesAdaptee {
 
     /**
      * This method is used to make a GET request to the API.
-     * @param url
-     * @param myApiKey
-     * @param client
-     * @return
+     * @param url    The URL of the API.
+     * @param myApiKey The API key - should in your configration file.
+     * @param client The HttpClient.
+     * @return The response from the API.
      * @throws IOException
      * @throws InterruptedException
      */
@@ -35,9 +35,9 @@ public class WebServicesAdaptee {
      * This method is used to make a POST request to the API.
      * @param url     The URL of the API.
      * @param myApiKey The API key.
-     * @param jsonString
-     * @param client
-     * @return
+     * @param jsonString The JSON string to be sent to the API.
+     * @param client The HttpClient.
+     * @return The response from the API.
      * @throws IOException
      * @throws InterruptedException
      */
@@ -59,11 +59,11 @@ public class WebServicesAdaptee {
 
     /**
      * This method is used to make a PUT request to the API.
-     * @param url
-     * @param myApiKey
-     * @param jsonString
-     * @param client
-     * @return
+     * @param url    The URL of the API.
+     * @param myApiKey The API key.
+     * @param jsonString    The JSON string to be sent to the API.
+     * @param client The HttpClient.
+     * @return The response from the API.
      * @throws IOException
      * @throws InterruptedException
      */
@@ -80,6 +80,16 @@ public class WebServicesAdaptee {
         return response;
     }
 
+    /**
+     * PATCH HTTP request
+     * @param url   The URL of the API.
+     * @param myApiKey The API key.
+     * @param jsonString The JSON string to be sent to the API.
+     * @param client The HttpClient.
+     * @return The response from the API.
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public HttpResponse<String> patchRequest(String url, String myApiKey, String jsonString, HttpClient client) throws IOException, InterruptedException {
 
         HttpRequest request2 = HttpRequest.newBuilder(URI.create(url))

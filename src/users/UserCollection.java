@@ -6,26 +6,33 @@ import engine.DataCollection;
 import engine.DataSubscriber;
 import engine.Entity;
 import enums.Path;
-import enums.Query;
 import testingSites.TestingSite;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-
+/**
+ * User collection class.
+ * It is a collection of users - used to store all users in the system pulled from web server.
+ */
 public class UserCollection implements DataSubscriber, DataCollection {
     private final ArrayList<User> users;
     private static UserCollection instance = null;
 
-
+    /**
+     * Private Constructor for the singleton pattern
+     */
     private UserCollection() {
         users = new ArrayList<>();
 
     }
 
+    /**
+     * Get the instance of the user collection
+     * @return the instance of the user collection
+     */
     public static UserCollection getInstance() {
         if (instance == null) {
             instance = new UserCollection();
@@ -45,7 +52,7 @@ public class UserCollection implements DataSubscriber, DataCollection {
         WebServicesTarget ws = new ServicesAdapter();
         ObjectNode[] objectNode = ws.getAllData(Path.USER.getPath(), null);
         // remove all the testing sites(old data)
-        clearTestingSites();
+        clearUsers();
         // add the new testing sites
         for (ObjectNode node : objectNode) {
             User user = new User(node);
@@ -53,14 +60,27 @@ public class UserCollection implements DataSubscriber, DataCollection {
         }
     }
 
-    private void clearTestingSites() {
+    /**
+     * Clear the users from the user collection
+     * For update date (we need to clean up the container before the update)
+     */
+    private void clearUsers() {
         users.clear();
     }
 
+    /**
+     * Add a user to the user collection
+     * @param user the user to add
+     */
     private void addUser(User user) {
         users.add(user);
     }
 
+    /**
+     * Get the user by the user name
+     * @param userName the user name
+     * @return A User object
+     */
     @Override
     public Entity findEntity(String userName) {
         for (User user : users) {
@@ -70,6 +90,7 @@ public class UserCollection implements DataSubscriber, DataCollection {
         }
         return null;
     }
+
 
     @Override
     public JsonNode searchForEntity(String userName, String query) throws IOException, InterruptedException {

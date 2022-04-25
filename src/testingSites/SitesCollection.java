@@ -31,7 +31,9 @@ public class SitesCollection implements DataSubscriber, DataCollection {
      */
     public static ArrayList<HashMap<String, String>> factors;
 
-    // singleton pattern
+    /**
+     * Private constructor for singleton
+     */
     private SitesCollection() {
         factors = new ArrayList<>();
         filterFields = new ArrayList<>();
@@ -40,6 +42,10 @@ public class SitesCollection implements DataSubscriber, DataCollection {
         filterFields.add(TestingSite.FACILITY_TYPE_FIELD);
     }
 
+    /**
+     * Get the instance of the testing sites collection
+     * @return the instance of the testing sites collection
+     */
     public static SitesCollection getInstance() {
         if (instance == null) {
             instance = new SitesCollection();
@@ -47,10 +53,17 @@ public class SitesCollection implements DataSubscriber, DataCollection {
         return instance;
     }
 
+    /**
+     * Add a testing site to the collection
+     * @param testingSite the testing site to be added
+     */
     private void addTestingSite(TestingSite testingSite) {
         testingSites.add(testingSite);
     }
 
+    /**
+     * Clear the testing sites contained in the collection
+     */
     private void clearTestingSites() {
         testingSites.clear();
     }

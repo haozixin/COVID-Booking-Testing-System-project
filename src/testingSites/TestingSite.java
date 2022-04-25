@@ -10,6 +10,10 @@ import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 
+/**
+ * TestingSite class
+ * An Entity that represents a Testing Site
+ */
 public class TestingSite extends Entity {
     public static final String className = "Booking";
     public static final String ADDRESS_FIELD = "address";
@@ -17,16 +21,22 @@ public class TestingSite extends Entity {
     public static final String ADDITIONAL_INFO_FIELD = "additionalInfo";
     public static final String WAITING_TIMES_FIELD = "waitingTimes(min)";
 
-
     private Location location;
 
+    /**
+     * Constructor 1 of Entity - receives and wraps a json object
+     * Used for deserialization - the json object is wrapped in an entity
+     * @param siteJsonNode - the json object to be wrapped
+     */
     public TestingSite(ObjectNode siteJsonNode) {
         super(siteJsonNode);
         setLocation();
     }
 
 
-
+    /**
+     * set the location of the Testing Site
+     */
     private void setLocation(){
         try {
             JsonNode locationJsonNode = entityInfo.get(ADDRESS_FIELD);
@@ -38,6 +48,10 @@ public class TestingSite extends Entity {
     }
 
 
+    /**
+     * Display the Testing Site in a readable format
+     * @return the Testing Site's information
+     */
     public String display() {
         return Utility.formatMessage(className, entityInfo);
     }
@@ -48,7 +62,11 @@ public class TestingSite extends Entity {
         // haven't used for A2
     }
 
-
+    /**
+     * update Waiting Time for the Testing Site
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void updateWaitingTime() throws IOException, InterruptedException {
         // update local data
         try{
