@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class SitesCollection implements DataSubscriber {
     private static final String name = "TestingSites Collection";
     public static final String FILTER_IS_ALL = "all";
-    private ArrayList<TestingSite> testingSites = new ArrayList<>();
+    private final ArrayList<TestingSite> testingSites = new ArrayList<>();
     private static SitesCollection instance = null;
 
 

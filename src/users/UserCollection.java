@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 public class UserCollection implements DataSubscriber {
-    private ArrayList<User> users;
+    private final ArrayList<User> users;
     private static UserCollection instance = null;
 
     private UserCollection() {

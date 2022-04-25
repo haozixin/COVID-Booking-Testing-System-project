@@ -1,5 +1,7 @@
 package subSystems;
 
+import actions.GoBackAction;
+import actions.HomeBooking;
 import actors.Actor;
 
 public class HomeBookingSubsystem extends CovidBAndTSystem{
@@ -14,7 +16,9 @@ public class HomeBookingSubsystem extends CovidBAndTSystem{
         {
             actions.clear();
         // TODO: add actions
-        //
+        actions.add(new GoBackAction());
+        actions.add(new HomeBooking());
+
 
         super.processActorTurn(actor);
     }

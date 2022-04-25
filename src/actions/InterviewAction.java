@@ -44,7 +44,7 @@ public class InterviewAction extends Action {
     @Override
     public String execute(Actor actor) throws IOException, InterruptedException {
 
-        //TODO：
+
         String suggestion = conductInterview();
 
         // Step1

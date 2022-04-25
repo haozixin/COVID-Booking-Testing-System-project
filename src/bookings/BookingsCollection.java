@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class BookingsCollection implements DataSubscriber {
     public static final String name = "Bookings Collection";
-    private ArrayList<Booking> bookings = new ArrayList<>();
+    private final ArrayList<Booking> bookings = new ArrayList<>();
     private static BookingsCollection instance = null;
 
     private BookingsCollection() {
@@ -66,7 +66,7 @@ public class BookingsCollection implements DataSubscriber {
         return null;
     }
 
-    public boolean createNewBooking(String customerId, String siteId) throws IOException, InterruptedException {
+    public String createNewBooking(String customerId, String siteId) throws IOException, InterruptedException {
         WebServicesTarget webService = new ServicesAdapter();
         SitesCollection sites = SitesCollection.getInstance();
 
@@ -78,10 +78,10 @@ public class BookingsCollection implements DataSubscriber {
             sites.updateWaitingTime(siteId);
 
             update();
-            System.out.println("Please remember the PIN code" + tempBooking.getPinCode());
-            return true;
+
+            return tempBooking.getPinCode();
         }
-        return false;
+        return null;
 
     }
 

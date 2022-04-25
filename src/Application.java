@@ -55,6 +55,7 @@ public class Application {
         mainSystem.addSubSystem(new SearchForSitesSubsystem());
         mainSystem.addSubSystem(new OnsiteBookingSubsystem());
         mainSystem.addSubSystem(new OnsiteTestingSubsystem());
+        mainSystem.addSubSystem(new HomeBookingSubsystem());
         // ...(more in the future)(easier to extend)
 
         // step 4 - run the main system

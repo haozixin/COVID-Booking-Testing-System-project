@@ -39,9 +39,9 @@ public class BookingTestAction extends Action {
         String customerId = findCustomer();
         String siteId = findSite();
 
-        boolean isSuccessful = bookings.createNewBooking(customerId, siteId);
-        if (isSuccessful) {
-
+        String pinCode = bookings.createNewBooking(customerId, siteId);
+        if (pinCode != null) {
+            messagePinCode(pinCode);
             return "Update(local and web side) data successfully";
         }
         return "Update(local and web side) data unsuccessfully";
@@ -62,12 +62,27 @@ public class BookingTestAction extends Action {
 
     }
 
+    /**
+     * Find the site id from the user input
+     * only return the site that provide booking and testing services
+     * @return site id that is provided to choose
+     */
     private String findSite() {
+        // TODO: only return the site that provide booking and testing services
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please input the Site's id that is selected by the customer : ");
         // we use nextLine(), because there might be space in the name
         String userInput = scanner.next();
         return userInput;
+    }
+
+    /**
+     * We use this method to simulate the system send a message with PIN code to the customer's phone
+     * As a user/resident, the PIN that they received can be passed to the on-site facility staff to check the status of their booking
+     * (assuming that the resident does not have direct access to the online system).
+     */
+    private void messagePinCode(String pinCode) {
+        System.out.println("Customer has passed the PIN code to the on-site facility staff: " + pinCode);
     }
 
 
