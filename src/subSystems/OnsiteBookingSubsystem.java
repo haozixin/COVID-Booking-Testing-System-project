@@ -17,9 +17,13 @@ public class OnsiteBookingSubsystem extends CovidBAndTSystem{
     protected void processActorTurn(Actor actor)
         {
             actions.clear();
+
+            if (actor.isAdministrator()){
+                actions.add(new CheckBooking());
+                actions.add(new BookingTestAction());
+            }
             actions.add(new GoBackAction());
-            actions.add(new CheckBooking());
-            actions.add(new BookingTestAction());
+
 
         super.processActorTurn(actor);
     }

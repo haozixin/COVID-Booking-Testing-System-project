@@ -2,9 +2,10 @@ package subSystems;
 
 import actions.GoBackAction;
 import actions.HomeBookingAction;
+import actions.ScanQRcodeAction;
 import actors.Actor;
 
-public class HomeBookingSubsystem extends CovidBAndTSystem{
+public class HomeBookingSubsystem extends CovidBAndTSystem {
 
     public HomeBookingSubsystem() {
         super();
@@ -13,10 +14,12 @@ public class HomeBookingSubsystem extends CovidBAndTSystem{
     }
 
     @Override
-    protected void processActorTurn(Actor actor)
-        {
-            actions.clear();
-        // TODO: add actions
+    protected void processActorTurn(Actor actor) {
+        actions.clear();
+
+        if (actor.isAdministrator()) {
+            actions.add(new ScanQRcodeAction());
+        }
         actions.add(new GoBackAction());
         actions.add(new HomeBookingAction());
 

@@ -7,6 +7,7 @@ import engine.Display;
 import engine.Menu;
 import engine.actions.Action;
 import engine.actions.Actions;
+import enums.UserRoles;
 import users.User;
 
 import java.util.Base64;
@@ -41,13 +42,6 @@ public class Actor{
         wantsGoBack = false;
     }
 
-    /**
-     *  set the current user's information that we get from the token
-     * @param token
-     */
-    public void setDetailInfo(String token) {
-        this.token = token;
-    }
 
     public void setLoginState(boolean logged) {
         this.isLogged = logged;
@@ -59,6 +53,11 @@ public class Actor{
 
     public void setToken(String token) {
         this.token = token;
+        try {
+            getRoleFromToken();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -67,6 +66,17 @@ public class Actor{
             instance = new Actor();
         }
         return instance;
+    }
+
+    public boolean isCustomer(){
+        return roles.contains(UserRoles.IS_CUSTOMER_FIELD.getName());
+    }
+
+    public boolean isAdministrator(){
+        return roles.contains(UserRoles.IS_ADMIN_FIELD.getName());
+    }
+    public boolean isHealthcareWorker(){
+        return roles.contains(UserRoles.IS_HEALTHCARE_WORKER_FIELD.getName());
     }
 
     /**
@@ -99,7 +109,7 @@ public class Actor{
         return jsonObject;
     }
 
-    public void getRoleFromToken() throws JsonProcessingException {
+    private void getRoleFromToken() throws JsonProcessingException {
 
         ObjectNode jsonObject = parseToken(token);
         for (String value : User.keyToRoleMap.values()) {
