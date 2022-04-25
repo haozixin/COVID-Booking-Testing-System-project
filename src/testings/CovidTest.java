@@ -2,13 +2,14 @@ package testings;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.Entity;
 import enums.Path;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 
-public class CovidTest {
+public class CovidTest extends Entity {
     public static final String PATIENT_ID_FIELD = "patientId";
     private static final String className = "CovidTest";
     public static final String TYPE_FIELD = "type";
@@ -20,6 +21,16 @@ public class CovidTest {
 
     public CovidTest(ObjectNode testingData) {
         this.testingData = testingData;
+    }
+
+    @Override
+    public String display() {
+        return null;
+    }
+
+    @Override
+    protected void initialSchema() {
+
     }
 
     public CovidTest(String type, String patientId, String administerId, String bookingId) {

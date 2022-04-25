@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * A thin wrapper for <code>java.util.ArrayList&lt;Action&gt;</code> that does not allow nulls to be added.
- *
+ * Reference FIT2099_Assignment1_v2
  */
 public class Actions implements Iterable<Action> {
     private ArrayList<Action> actions = new ArrayList<Action>();

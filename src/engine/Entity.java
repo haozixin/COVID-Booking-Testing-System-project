@@ -7,6 +7,9 @@ import testingSites.TestingSite;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * Abstract class for all entities in the system.
+ */
 public abstract class Entity {
     protected String className;
     protected ObjectNode entityInfo;

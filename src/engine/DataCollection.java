@@ -7,6 +7,9 @@ import testingSites.TestingSite;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Interface for DataCollection
+ */
 public interface DataCollection {
     /**
      * find the specific entity by its id or name

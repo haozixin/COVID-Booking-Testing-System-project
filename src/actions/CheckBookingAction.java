@@ -14,10 +14,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-public class CheckBooking extends Action {
+public class CheckBookingAction extends Action {
     public DataCollection bookingsCollection;
 
-    public CheckBooking() {
+    public CheckBookingAction() {
         bookingsCollection = BookingsCollection.getInstance();
     }
 

@@ -1,4 +1,4 @@
-import actions.GoSubsystem;
+import actions.GoSubsystemAction;
 import actors.Actor;
 import engine.Display;
 import engine.Menu;
@@ -72,7 +72,7 @@ public class MainSystem {
             showDashBoard();
             actions.clear();
             for (CovidBAndTSystem system : systems) {
-                actions.add(new GoSubsystem(system));
+                actions.add(new GoSubsystemAction(system));
             }
 
 

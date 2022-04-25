@@ -6,10 +6,10 @@ import subSystems.CovidBAndTSystem;
 
 import java.io.IOException;
 
-public class GoSubsystem extends Action {
+public class GoSubsystemAction extends Action {
     private CovidBAndTSystem covidBAndTSystem;
 
-    public GoSubsystem(CovidBAndTSystem covidBAndTSystem) {
+    public GoSubsystemAction(CovidBAndTSystem covidBAndTSystem) {
         this.covidBAndTSystem = covidBAndTSystem;
     }
     @Override

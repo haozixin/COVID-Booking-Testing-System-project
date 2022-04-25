@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
+/**
+ * Reference FIT2099_Assignment1_v2
+ * Menu class
+ */
 public class Menu {
 
     /**

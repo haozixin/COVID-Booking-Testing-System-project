@@ -29,8 +29,6 @@ public abstract class Booking extends Entity {
     protected static final String TESTING_SITE_ID_FIELD = "testingSiteId";
 
     protected static final String SMS_PIN_FIELD = "smsPin";
-    protected static final String ID_FIELD = "id";
-    protected static final String STATUS_FIELD = "status";
     protected static final String START_TIME_FIELD = "startTime";
     protected static final String NOTES_FIELD = "notes";
     protected static final String ADDITIONAL_INFO_FIELD = "additionalInfo";

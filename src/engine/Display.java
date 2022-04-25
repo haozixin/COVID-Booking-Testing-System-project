@@ -20,13 +20,6 @@ public class Display  {
     }
 
     /**
-     * Terminates the line.
-     */
-    public void endLine() {
-        System.out.println("");
-    }
-
-    /**
      * Read a char from the keyboard.
      *
      * @return the first char of the next entered string.
@@ -36,7 +29,4 @@ public class Display  {
         return s.charAt(0);
     }
 
-    public String readString() {
-        return keyboard.nextLine().trim();
-    }
 }

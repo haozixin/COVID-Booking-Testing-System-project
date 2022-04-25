@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class SignUpAction extends Action {
     private WebServicesTarget webServicesTarget;
-    private Entity user;
 
     public SignUpAction() {
         webServicesTarget = new ServicesAdapter();
@@ -29,7 +28,7 @@ public class SignUpAction extends Action {
         String jsonNode = User.createNewEntity();
 
         ObjectNode node = webServicesTarget.postData(Path.SIGN_UP.getPath(), jsonNode);
-        System.out.println("Details: "+user);
+        System.out.println("Details: "+node);
         if (node!=null) {
             return "You have successfully signed up";
         }

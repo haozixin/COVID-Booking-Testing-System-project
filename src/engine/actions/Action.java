@@ -7,6 +7,7 @@ import java.io.IOException;
 
 /**
  * Base class for Actions.  These represent things that the player can do.
+ * Reference FIT2099_Assignment1_v2
  */
 public abstract class Action {
     protected String name;
