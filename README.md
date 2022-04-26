@@ -20,8 +20,8 @@ API_key = your API key
 click *file*->*project structure*->*project structure*
 ![img_2.png](readme_img/img_2.png)
 ![](readme_img/img_3.png)
-
 -------------------------------------------------------------
+
 Assumption:
 1. The “userName” of the user is unique and used to log in.
 2. The information about “hasOnSiteBooking”, “hasOnSiteTest”, “waitingTimes(min)”, “facilityType” are in the additionalInfo field of Testing Site.
