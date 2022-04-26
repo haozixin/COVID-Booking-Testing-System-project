@@ -5,18 +5,20 @@ import bookings.BookingsCollection;
 import engine.DataCollection;
 import engine.actions.Action;
 import testingSites.SitesCollection;
+import testingSites.TestingSite;
 import users.UserCollection;
 import utility.Utility;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BookingTestAction extends Action {
+public class OnSiteBookingAction extends Action {
     private DataCollection sites;
     private DataCollection bookings;
 
 
-    public BookingTestAction() {
+    public OnSiteBookingAction() {
         name = "Booking Test Action";
 
         sites = SitesCollection.getInstance();
@@ -27,8 +29,14 @@ public class BookingTestAction extends Action {
     public String execute(Actor actor) throws IOException, InterruptedException {
         Utility.displayAction(name);
 
+        // only show the sites that provide booking and testing services
+        ArrayList<TestingSite> siteList;
+        siteList = sites.filterByOnFactor(TestingSite.HAS_ON_SITE_BOOKING_FIELD,"true");
+        for (TestingSite site : siteList) {
+            site.display();
+        }
 
-        sites.printWholeList();
+//        sites.printWholeList();
 
         System.out.println("-----Provide customer's basic information that will be used to create a new booking-----");
 

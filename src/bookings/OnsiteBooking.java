@@ -41,10 +41,6 @@ public class OnsiteBooking extends Booking {
     @Override
     protected void initialSchema() {
         super.initialSchema();
-        String url = generateURL();
-        String QRCode = generateQRCode();
-        additionalInfo.put(QR_CODE_FIELD, QRCode);
-        additionalInfo.put(URL_FIELD, url);
-        entityInfo.putPOJO(ADDITIONAL_INFO_FIELD, additionalInfo);
+
     }
 }

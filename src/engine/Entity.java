@@ -25,7 +25,7 @@ public abstract class Entity {
     public Entity(ObjectNode entityInfo) {
         this.entityInfo = entityInfo;
         try {
-            additionalInfo = additionalInfo.get(ADDITIONAL_INFO_FIELD).deepCopy();
+            additionalInfo = (ObjectNode) entityInfo.get(ADDITIONAL_INFO_FIELD);
         } catch (NullPointerException e) {
         }
     }

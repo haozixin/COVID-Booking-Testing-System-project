@@ -95,7 +95,7 @@ public class WebServicesAdaptee {
         HttpRequest request2 = HttpRequest.newBuilder(URI.create(url))
                 .setHeader("Authorization", myApiKey)
                 .header("Content-Type","application/json") // This header needs to be set when sending a JSON request body.
-                .header("Accept","application/json")
+                .header("accept","application/json")
                 .method("PATCH",HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
         HttpResponse<String> response = client.send(request2, HttpResponse.BodyHandlers.ofString());

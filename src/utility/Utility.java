@@ -135,6 +135,9 @@ public class Utility {
         System.out.println("----------You are doing "+name+"---------");
     }
 
+    public static String buildNestedJson(String fieldName, String value){
+        return "{\"" + fieldName +  "\": " +value+  "}";
+    }
 
 
 }

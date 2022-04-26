@@ -33,7 +33,7 @@ public class CheckBookingAction extends Action {
         try {
             b = (Booking) bookingsCollection.getStatusByPin(value);
             b.display();
-            return "function running successfully";
+            return "This is your booking status/information";
         } catch (NullPointerException e) {
             return "No booking with this PIN Code";
         }

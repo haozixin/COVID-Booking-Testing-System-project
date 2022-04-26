@@ -61,5 +61,5 @@ public interface DataCollection {
 
     default String createOnsiteBooking(String type, String customerId, String siteId) throws IOException, InterruptedException {return null;}
     default Booking createHomeBooking(String type, String customerId, String siteId, boolean hasRATKit) throws IOException, InterruptedException {return null;}
-
+    default boolean updateHasRATKit(String QRcode, boolean hasRATKit) throws IOException, InterruptedException{return false;}
 }

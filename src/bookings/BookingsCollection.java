@@ -104,6 +104,18 @@ public class BookingsCollection implements DataSubscriber, DataCollection {
         return null;
     }
 
+    @Override
+    public boolean updateHasRATKit(String QRcode, boolean hasRATKit) throws IOException, InterruptedException {
+        for (Booking booking : bookings) {
+            if(booking.getQRCode()!=null){
+                if (booking.findValue(Booking.QR_CODE_FIELD).equals(QRcode)) {
+                    return booking.updateRATKitInfo(hasRATKit);
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      *  Create a home-booking for a user
      *  1. fill all necessary information and create a booking
