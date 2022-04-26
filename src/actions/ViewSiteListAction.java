@@ -21,7 +21,7 @@ public class ViewSiteListAction extends Action {
     public String execute(Actor actor) throws IOException, InterruptedException {
         Utility.displayAction(name);
         sitesCollection.printWholeList();
-        return null;
+        return "Have shown the list of sites";
     }
 
     @Override

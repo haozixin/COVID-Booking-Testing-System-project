@@ -28,7 +28,8 @@ public class SignUpAction extends Action {
         String jsonNode = User.createNewEntity();
 
         ObjectNode node = webServicesTarget.postData(Path.SIGN_UP.getPath(), jsonNode);
-        System.out.println("Details: "+node);
+        System.out.println(Utility.formatMessage("User Information", node));
+
         if (node!=null) {
             return "You have successfully signed up";
         }

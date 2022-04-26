@@ -7,8 +7,6 @@ import enums.UserRoles;
 import utility.Utility;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Scanner;
 
 /**
  * User class is used to deal with user data
@@ -73,8 +71,8 @@ public class User extends Entity {
     }
 
     @Override
-    public String display() {
-        return Utility.formatMessage(className, entityInfo);
+    public void display() {
+        System.out.println(Utility.formatMessage(className, entityInfo));
     }
 
 

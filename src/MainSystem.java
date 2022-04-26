@@ -68,7 +68,7 @@ public class MainSystem {
         if (actor == null)
             throw new IllegalStateException();
 
-        while (!actor.getLoginState()) {
+        while (true) {
             showDashBoard();
             actions.clear();
             for (CovidBAndTSystem system : systems) {

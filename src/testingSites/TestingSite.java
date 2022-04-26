@@ -50,10 +50,10 @@ public class TestingSite extends Entity {
 
     /**
      * Display the Testing Site in a readable format
-     * @return the Testing Site's information
      */
-    public String display() {
-        return Utility.formatMessage(className, entityInfo);
+    public void display() {
+        System.out.println(Utility.formatMessage(className, entityInfo));
+
     }
 
 

@@ -30,10 +30,17 @@ public class CheckBookingAction extends Action {
         System.out.print("Please input the PIN Code of the booking you want to check:");
         value = s.nextLine().trim();
 
-        b = (Booking) bookingsCollection.getStatusByPin(value);
+        try {
+            b = (Booking) bookingsCollection.getStatusByPin(value);
+            b.display();
+            return "function running successfully";
+        } catch (NullPointerException e) {
+            return "No booking with this PIN Code";
+        }
 
-        System.out.println(b.display());
-        return "function running successfully";
+
+
+
     }
 
     @Override

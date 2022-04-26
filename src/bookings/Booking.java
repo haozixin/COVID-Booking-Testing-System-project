@@ -1,6 +1,5 @@
 package bookings;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -11,10 +10,6 @@ import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Scanner;
 
 /**
  * Booking class
@@ -59,8 +54,9 @@ public abstract class Booking extends Entity {
         return entityInfo.get(SMS_PIN_FIELD).asText();
     }
 
-    public String display() {
-        return Utility.formatMessage(className, entityInfo);
+    public void display() {
+        System.out.println(Utility.formatMessage(className, entityInfo));
+
     }
 
 

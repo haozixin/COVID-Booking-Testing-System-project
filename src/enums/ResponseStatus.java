@@ -8,6 +8,7 @@ public enum ResponseStatus {
     CODE_201(201, "New object successfully created."),
     CODE_400(400,"Bad Request - invalid XX is provided"),
     CODE_404(404,"Not Fount"),
+    CODE_403(403,"User credentials are invalid."),
     CODE_204(204,"No Content - It was successfully deleted"),
     CODE_401(401,"A valid API key was not provided in the request."),
     CODE_409(409,"The request conflicts with the current state of the server - cannot be deleted if it has any associated table"),

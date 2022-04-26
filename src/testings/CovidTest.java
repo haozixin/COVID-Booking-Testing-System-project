@@ -24,8 +24,7 @@ public class CovidTest extends Entity {
     }
 
     @Override
-    public String display() {
-        return null;
+    public void display() {
     }
 
     @Override

@@ -47,7 +47,7 @@ public class SearchSiteAction extends Action {
         for (TestingSite site : temp1) {
             for(TestingSite site2 : temp2){
                 if (site.equals(site2)){
-                    System.out.println(site);
+                    site.display();
                 }
             }
         }

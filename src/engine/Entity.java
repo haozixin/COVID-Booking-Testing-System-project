@@ -2,7 +2,6 @@ package engine;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import testingSites.TestingSite;
 
 import java.util.Iterator;
 import java.util.Scanner;
@@ -54,7 +53,7 @@ public abstract class Entity {
         return entityInfo.toString();
     }
 
-    public abstract String display();
+    public abstract void display();
 
     /**
      *  override equals method

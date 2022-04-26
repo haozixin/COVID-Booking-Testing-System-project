@@ -57,7 +57,12 @@ public class LoginAction extends Action {
         password = s.next();
 
         // get token
-        token = serviceForUser.getToken(userName, password);
+        try{
+            token = serviceForUser.getToken(userName, password);
+        } catch (NullPointerException e){
+            System.out.println("Invalid userName or password");
+        }
+
 
 
         // verify token and return status code

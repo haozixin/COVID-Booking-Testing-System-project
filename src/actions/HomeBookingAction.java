@@ -57,7 +57,6 @@ public class HomeBookingAction extends Action{
      * @return site id that is provided to choose
      */
     private String findSite() {
-        // TODO: only return the site that provide booking and testing services
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please input the Site's id that is selected by the customer : ");
         // we use nextLine(), because there might be space in the name
@@ -66,12 +65,12 @@ public class HomeBookingAction extends Action{
     }
 
 
-    private String sendURL(Booking booking) {
-        return "We have messaged the url to customer's phone --- " + booking.getURL();
+    private void sendURL(Booking booking) {
+        System.out.println("We have messaged the url to customer's phone --- " + booking.getURL());
     }
 
-    private String displayQR(Booking booking) {
-        return "Here is your QR code:  " + booking.getQRCode();
+    private void displayQR(Booking booking) {
+        System.out.println("Here is your QR code:  " + booking.getQRCode());
     }
 
 
