@@ -68,7 +68,7 @@ public interface DataCollection {
      * @throws IOException
      * @throws InterruptedException
      */
-    default String createOnsiteBooking(String type, String customerId, String siteId) throws IOException, InterruptedException {return null;}
+    default Booking createOnsiteBooking(String type, String customerId, String siteId) throws IOException, InterruptedException {return null;}
 
     /**
      * Create home booking

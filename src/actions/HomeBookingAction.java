@@ -2,7 +2,9 @@ package actions;
 
 import actors.Actor;
 import bookings.Booking;
+import bookings.BookingCreator;
 import bookings.BookingsCollection;
+import bookings.CreateHomeBooking;
 import engine.DataCollection;
 import engine.Entity;
 import engine.actions.Action;
@@ -18,6 +20,7 @@ import java.util.Scanner;
 public class HomeBookingAction extends Action{
     private DataCollection sites;
     private DataCollection bookings;
+    private BookingCreator bookingCreator;
 
     /**
      * Constructor
@@ -27,6 +30,7 @@ public class HomeBookingAction extends Action{
         name = "Home Booking";
         sites = SitesCollection.getInstance();
         bookings = BookingsCollection.getInstance();
+        bookingCreator = new CreateHomeBooking();
     }
 
     @Override
@@ -37,16 +41,9 @@ public class HomeBookingAction extends Action{
 
         String customerId = actor.getIdFromToken();
         String siteId = findSite();
-        boolean hasKit = false;
 
-        System.out.println("Have you already has a RAT kit? (y/n): ");
-        Scanner scanner = new Scanner(System.in);
-        char result = scanner.next().charAt(0);
-        if (result == 'y') {
-            hasKit = true;
-        }
 
-        Booking booking = bookings.createHomeBooking(BookingsCollection.HOME_BOOKING_TYPE, customerId, siteId, hasKit);
+        Booking booking = bookingCreator.createBooking(BookingsCollection.HOME_BOOKING_TYPE, customerId, siteId);
 
         sendURL(booking);
         displayQR(booking);

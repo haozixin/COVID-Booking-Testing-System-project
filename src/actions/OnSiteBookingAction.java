@@ -1,7 +1,10 @@
 package actions;
 
 import actors.Actor;
+import bookings.Booking;
+import bookings.BookingCreator;
 import bookings.BookingsCollection;
+import bookings.CreateOnsiteBooking;
 import engine.DataCollection;
 import engine.actions.Action;
 import testingSites.SitesCollection;
@@ -20,6 +23,7 @@ import java.util.Scanner;
 public class OnSiteBookingAction extends Action {
     private DataCollection sites;
     private DataCollection bookings;
+    BookingCreator bookingCreator;
 
 
     /**
@@ -30,6 +34,7 @@ public class OnSiteBookingAction extends Action {
 
         sites = SitesCollection.getInstance();
         bookings = BookingsCollection.getInstance();
+        bookingCreator = new CreateOnsiteBooking();
     }
 
     @Override
@@ -50,7 +55,9 @@ public class OnSiteBookingAction extends Action {
         String customerId = findCustomer();
         String siteId = findSite();
 
-        String pinCode = bookings.createOnsiteBooking(BookingsCollection.ONSITE_BOOKING_TYPE, customerId, siteId);
+
+        Booking temp_booking = bookingCreator.createBooking(BookingsCollection.ONSITE_BOOKING_TYPE, customerId, siteId);
+        String pinCode = temp_booking.getPinCode();
         if (pinCode != null) {
             messagePinCode(pinCode);
             return "Update(local and web side) data successfully";
