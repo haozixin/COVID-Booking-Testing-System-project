@@ -5,6 +5,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+/**
+ * OnsiteBooking class
+ */
 public class OnsiteBooking extends Booking {
     /**
      * Constructor 1: used when the booking is created by the system
@@ -15,6 +19,12 @@ public class OnsiteBooking extends Booking {
         super(bookingJsonNode);
     }
 
+    /**
+     *  Factory method:  Create a new booking(Onsite booking)
+     * @param customerId customer id
+     * @param testingSiteId testing site id
+     * @return OnsiteBooking (String data type)
+     */
     public static String createOnsiteBooking(String customerId, String testingSiteId) {
 
         Booking booking = new OnsiteBooking(customerId, testingSiteId);

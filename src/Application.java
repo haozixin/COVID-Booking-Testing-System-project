@@ -3,7 +3,7 @@ import bookings.BookingsCollection;
 import engine.DataPublisher;
 import subSystems.*;
 import testingSites.SitesCollection;
-import users.UserCollection;
+import users.UsersCollection;
 
 import java.io.IOException;
 
@@ -41,7 +41,7 @@ public class Application {
         // add subscriber to the data publisher
         dataPublisher.subscribe(SitesCollection.getInstance());
         dataPublisher.subscribe(BookingsCollection.getInstance());
-        dataPublisher.subscribe(UserCollection.getInstance());
+        dataPublisher.subscribe(UsersCollection.getInstance());
         // ...(more in the future)(easier to extend)
 
         // notify the data publisher

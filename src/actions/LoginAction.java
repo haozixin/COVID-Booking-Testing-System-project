@@ -9,6 +9,10 @@ import webServiceAPI.WebServicesTarget;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * LoginAction class is used to login to the system.
+ *
+ */
 public class LoginAction extends Action {
     private WebServicesTarget webServicesTarget;
     String token;

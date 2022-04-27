@@ -13,6 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Collection of sites.
+ * Used to store all sites and to provide a way to get them.
+ */
 public class SitesCollection implements DataSubscriber, DataCollection {
     public static final String FILTER_IS_ALL = "all";
     private final ArrayList<TestingSite> testingSites = new ArrayList<>();

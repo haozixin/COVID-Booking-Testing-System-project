@@ -9,6 +9,9 @@ import engine.actions.Action;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Scan QRcode Action
+ */
 public class ScanQRcodeAction extends Action {
     DataCollection bookingsCollection = BookingsCollection.getInstance();
 

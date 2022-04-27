@@ -5,6 +5,9 @@ import actions.HomeBookingAction;
 import actions.ScanQRcodeAction;
 import actors.Actor;
 
+/**
+ * HomeBookingSubsystem is a subsystem
+ */
 public class HomeBookingSubsystem extends CovidBAndTSystem {
 
     public HomeBookingSubsystem() {

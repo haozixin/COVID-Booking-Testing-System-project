@@ -13,9 +13,15 @@ import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 
+/**
+ * SignUp Action class
+ */
 public class SignUpAction extends Action {
     private WebServicesTarget webServicesTarget;
 
+    /**
+     * Constructor
+     */
     public SignUpAction() {
         webServicesTarget = new ServicesAdapter();
 

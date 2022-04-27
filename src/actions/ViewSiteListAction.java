@@ -5,13 +5,18 @@ import engine.DataCollection;
 import engine.actions.Action;
 import testingSites.SitesCollection;
 import utility.Utility;
-
 import java.io.IOException;
 
+/**
+ * Action to view the list of sites.
+ */
 public class ViewSiteListAction extends Action {
     DataCollection sitesCollection;
     String name;
 
+    /**
+     * Constructor for ViewSiteListAction.
+     */
     public ViewSiteListAction() {
         this.sitesCollection = SitesCollection.getInstance();
         name = "View Site List operation";

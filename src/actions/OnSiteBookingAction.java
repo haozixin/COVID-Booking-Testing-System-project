@@ -6,18 +6,25 @@ import engine.DataCollection;
 import engine.actions.Action;
 import testingSites.SitesCollection;
 import testingSites.TestingSite;
-import users.UserCollection;
+import users.UsersCollection;
 import utility.Utility;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class is used to handle the OnSiteBookingAction.
+ *
+ */
 public class OnSiteBookingAction extends Action {
     private DataCollection sites;
     private DataCollection bookings;
 
 
+    /**
+     * Constructor
+     */
     public OnSiteBookingAction() {
         name = "Booking Test Action";
 
@@ -53,7 +60,7 @@ public class OnSiteBookingAction extends Action {
     }
 
     private String findCustomer() {
-        DataCollection users = UserCollection.getInstance();
+        DataCollection users = UsersCollection.getInstance();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please input the customer's userName : ");
         // we use nextLine(), because there might be space in the name

@@ -13,9 +13,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * This class is used to search for a testing site.
+ */
 public class SearchSiteAction extends Action {
     private DataCollection sitesCollection;
     private ArrayList<HashMap<String, String>> factors;
+
+    /**
+     * Constructor
+     */
     public SearchSiteAction() {
         sitesCollection = SitesCollection.getInstance();
         factors = SitesCollection.factors;
@@ -55,10 +62,20 @@ public class SearchSiteAction extends Action {
         return null;
     }
 
+    /**
+     * filter by suburb
+     * @param value  the suburb
+     * @return the list of sites
+     */
     private ArrayList<TestingSite> filterBySuburb(String value){
         return sitesCollection.filterByOnFactor(Location.SUBURB_FIELD, value);
     }
 
+    /**
+     * filter by testing site type
+     * @param value the type
+     * @return the list of sites
+     */
     private ArrayList<TestingSite> filterByType(String value){
         return sitesCollection.filterByOnFactor(TestingSite.FACILITY_TYPE_FIELD, value);
     }

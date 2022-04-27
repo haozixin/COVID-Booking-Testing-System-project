@@ -31,6 +31,11 @@ public enum ResponseStatus {
         return description;
     }
 
+    /**
+     *  map code to ResponseStatus
+     * @param code
+     * @return
+     */
     public static String matchCode(int code){
         for (ResponseStatus i : ResponseStatus.values()){
             if (i.getCode()==code){

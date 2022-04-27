@@ -3,9 +3,15 @@ package actions;
 import actors.Actor;
 import engine.actions.Action;
 
+/**
+ * Action to go back to the previous room.
+ */
 public class GoBackAction extends Action {
     private Actor actor;
 
+    /**
+     * Constructor.
+     */
     public GoBackAction() {
         actor = Actor.getInstance();
 

@@ -4,6 +4,9 @@ import actions.GoBackAction;
 import actions.InterviewAction;
 import actors.Actor;
 
+/**
+ * This class represents the Onsite Testing Subsystem.
+ */
 public class OnsiteTestingSubsystem extends CovidBAndTSystem {
 
     public OnsiteTestingSubsystem() {

@@ -5,6 +5,9 @@ import actions.ViewSiteListAction;
 import actions.GoBackAction;
 import actors.Actor;
 
+/**
+ * This class is the subsystem that handles the search for sites.
+ */
 public class SearchForSitesSubsystem extends CovidBAndTSystem {
 
     public SearchForSitesSubsystem() {

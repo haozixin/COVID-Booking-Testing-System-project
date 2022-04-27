@@ -14,9 +14,16 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
+/**
+ *  This class is used to check a booking by input PIN code.
+ *  An action which will be run in relative system
+ */
 public class CheckBookingAction extends Action {
     public DataCollection bookingsCollection;
 
+    /**
+     * Constructor
+     */
     public CheckBookingAction() {
         bookingsCollection = BookingsCollection.getInstance();
     }

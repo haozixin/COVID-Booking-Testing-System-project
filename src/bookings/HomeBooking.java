@@ -5,6 +5,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+/**
+ * HomeBooking class is a subclass of Booking class.
+ */
 public class HomeBooking extends Booking {
     /**
      * Constructor 1: used when the booking is created by the system
@@ -16,6 +20,13 @@ public class HomeBooking extends Booking {
     }
 
 
+    /**
+     * HomeBooking factory method: used when the home-booking is created by the users
+     * @param customerId      the customer id
+     * @param testingSiteId  the testing site id
+     * @param hasRATKit     the has rat kit
+     * @return the home booking
+     */
     public static String createHomeBooking(String customerId, String testingSiteId, boolean hasRATKit) {
 
         Booking booking = new HomeBooking(customerId, testingSiteId, hasRATKit);
@@ -26,7 +37,6 @@ public class HomeBooking extends Booking {
 
     /**
      * Constructor 3: used when the booking is created by the users
-     *
      */
     private HomeBooking(String customerId, String testingSiteId, boolean hasRATKit) {
         // initial attributes Template(Schema)

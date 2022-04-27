@@ -15,7 +15,7 @@ public enum UserRoles {
     public String getName() {
         return role;
     }
-    //get all
+    //get all roles of actor/user
     public static String[] getAllRoles() {
         String[] roles = new String[UserRoles.values().length];
         int i = 0;

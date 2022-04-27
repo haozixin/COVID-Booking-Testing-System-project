@@ -12,10 +12,17 @@ import utility.Utility;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Action to create a new booking(HomeBooking)
+ */
 public class HomeBookingAction extends Action{
     private DataCollection sites;
     private DataCollection bookings;
 
+    /**
+     * Constructor
+     * Initialize the action
+     */
     public HomeBookingAction() {
         name = "Home Booking";
         sites = SitesCollection.getInstance();
@@ -43,9 +50,6 @@ public class HomeBookingAction extends Action{
 
         sendURL(booking);
         displayQR(booking);
-
-
-
 
 
         return "Successfully booked a home testing site";

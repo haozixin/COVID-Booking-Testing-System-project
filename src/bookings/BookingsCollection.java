@@ -14,6 +14,9 @@ import webServiceAPI.WebServicesTarget;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *  This class is used to store all the bookings.
+ */
 public class BookingsCollection implements DataSubscriber, DataCollection {
 
     public static final String IS_HOME_BOOKING_FIELD = "isHomeBooking";
@@ -21,6 +24,7 @@ public class BookingsCollection implements DataSubscriber, DataCollection {
     private static BookingsCollection instance = null;
     public static final String HOME_BOOKING_TYPE = "Home Booking";
     public static final String ONSITE_BOOKING_TYPE = "On Site Booking";
+
 
     private BookingsCollection() {
     }

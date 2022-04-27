@@ -17,14 +17,14 @@ import java.util.ArrayList;
  * User collection class.
  * It is a collection of users - used to store all users in the system pulled from web server.
  */
-public class UserCollection implements DataSubscriber, DataCollection {
+public class UsersCollection implements DataSubscriber, DataCollection {
     private final ArrayList<User> users;
-    private static UserCollection instance = null;
+    private static UsersCollection instance = null;
 
     /**
      * Private Constructor for the singleton pattern
      */
-    private UserCollection() {
+    private UsersCollection() {
         users = new ArrayList<>();
 
     }
@@ -33,9 +33,9 @@ public class UserCollection implements DataSubscriber, DataCollection {
      * Get the instance of the user collection
      * @return the instance of the user collection
      */
-    public static UserCollection getInstance() {
+    public static UsersCollection getInstance() {
         if (instance == null) {
-            instance = new UserCollection();
+            instance = new UsersCollection();
         }
         return instance;
     }

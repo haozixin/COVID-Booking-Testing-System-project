@@ -36,6 +36,9 @@ public class Actor{
     // when the user is logged in, he/she will get the token from the server
     private String token;
 
+    /**
+     * Constructor
+     */
     public Actor() {
         menu = new Menu();
         isLogged = false;
@@ -97,7 +100,7 @@ public class Actor{
     }
 
     /**
-     *  Return a JSON representation of this Actor （information from token）
+     *  Return a JSON representation of this Actor (information from token)
      * @param token the token of the user
      * @return  a JSON representation of this Actor
      */

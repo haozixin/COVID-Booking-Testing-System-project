@@ -9,6 +9,10 @@ import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
 
+/**
+ * CovidTest class
+ * Used to store or create new data for CovidTest
+ */
 public class CovidTest extends Entity {
     public static final String PATIENT_ID_FIELD = "patientId";
     private static final String className = "CovidTest";

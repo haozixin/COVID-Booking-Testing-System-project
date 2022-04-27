@@ -6,6 +6,9 @@ import subSystems.CovidBAndTSystem;
 
 import java.io.IOException;
 
+/**
+ * Action to go to the CovidBAndTSystem(Subsystem)
+ */
 public class GoSubsystemAction extends Action {
     private CovidBAndTSystem covidBAndTSystem;
 

@@ -10,6 +10,9 @@ import java.util.ArrayList;
 public class DataPublisher {
     private ArrayList<DataSubscriber> subscribers;
 
+    /**
+     * Constructor
+     */
     public DataPublisher() {
         this.subscribers = new ArrayList<>();
     }
@@ -29,6 +32,11 @@ public class DataPublisher {
 //        }
 //    }
 
+    /**
+     * This method is used to publish data to the DataCollector.
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void notifySubscribers() throws IOException, InterruptedException {
         for (DataSubscriber subscriber : subscribers) {
             subscriber.update();

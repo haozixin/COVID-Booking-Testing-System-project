@@ -1,12 +1,11 @@
 package actions;
 
 import actors.Actor;
-import bookings.Booking;
 import engine.DataCollection;
 import engine.actions.Action;
 import enums.Query;
 import testings.CovidTest;
-import users.UserCollection;
+import users.UsersCollection;
 import utility.Utility;
 
 import java.io.IOException;
@@ -15,7 +14,6 @@ import java.util.Scanner;
 
 /**
  * the action of an interview is used for healthcare workers/administerers
- * About On-site Testing Subsystem
  *
  */
 public class InterviewAction extends Action {
@@ -23,6 +21,9 @@ public class InterviewAction extends Action {
     private DataCollection users;
 
 
+    /**
+     * Constructor
+     */
     public InterviewAction() {
         name = "Interview Action";
 
@@ -34,7 +35,7 @@ public class InterviewAction extends Action {
         symptomFields.add("chest pain");
         symptomFields.add("diarrhoea");
 
-        users = UserCollection.getInstance();
+        users = UsersCollection.getInstance();
 
     }
 

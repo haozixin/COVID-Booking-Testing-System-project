@@ -59,7 +59,36 @@ public interface DataCollection {
      */
     default Entity getStatusByPin(String pinCode){return null;}
 
+    /**
+     * Create on site booking
+     * @param type - the type of booking (home/on-site)
+     * @param customerId - the id of the customer
+     * @param siteId - the id of the site
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
     default String createOnsiteBooking(String type, String customerId, String siteId) throws IOException, InterruptedException {return null;}
+
+    /**
+     * Create home booking
+     * @param type - the type of booking (home/on-site)
+     * @param customerId    - the id of the customer
+     * @param siteId    - the id of the site
+     * @param hasRATKit - true if the customer has RAT kit
+     * @return - the booking id
+     * @throws IOException
+     * @throws InterruptedException
+     */
     default Booking createHomeBooking(String type, String customerId, String siteId, boolean hasRATKit) throws IOException, InterruptedException {return null;}
+
+    /**
+     * Update HasRATKit field in the booking entity; true if the customer has RAT kit
+     * @param QRcode - the QR code of the booking
+     * @param hasRATKit - true if the customer has RAT kit
+     * @return - Boolean value - if the update was successful
+     * @throws IOException
+     * @throws InterruptedException
+     */
     default boolean updateHasRATKit(String QRcode, boolean hasRATKit) throws IOException, InterruptedException{return false;}
 }
