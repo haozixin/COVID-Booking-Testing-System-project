@@ -72,9 +72,6 @@ public interface WebServicesTarget {
      */
     boolean putData(String path, String jsonString, String id) throws IOException, InterruptedException;
 
-    // cannot implement - java don't support PATCH method
-//    boolean patchData(String path, String jsonString, String id) throws IOException, InterruptedException;
-
     /**
      * get the specific data according to specific id
      * @param path URL path

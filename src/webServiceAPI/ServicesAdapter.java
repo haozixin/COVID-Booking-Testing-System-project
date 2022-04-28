@@ -90,7 +90,6 @@ public class ServicesAdapter implements WebServicesTarget {
             return new ObjectMapper().readValue(response.body(), ObjectNode.class);
         }
         return null;
-
     }
 
     /**
