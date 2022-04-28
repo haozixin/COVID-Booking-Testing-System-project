@@ -24,7 +24,10 @@ public class HomeBookingSubsystem extends CovidBAndTSystem {
             actions.add(new ScanQRcodeAction());
         }
         actions.add(new GoBackAction());
-        actions.add(new HomeBookingAction());
+        if (actor.getLoginState()){
+            actions.add(new HomeBookingAction());
+        }
+
 
 
         super.processActorTurn(actor);
