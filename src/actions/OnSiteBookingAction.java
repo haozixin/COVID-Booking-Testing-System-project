@@ -56,7 +56,7 @@ public class OnSiteBookingAction extends Action {
         String siteId = findSite();
 
 
-        Booking temp_booking = bookingCreator.createBooking(BookingsCollection.ONSITE_BOOKING_TYPE, customerId, siteId);
+        Booking temp_booking = bookingCreator.createBooking(customerId, siteId);
         String pinCode = temp_booking.getPinCode();
         if (pinCode != null) {
             messagePinCode(pinCode);

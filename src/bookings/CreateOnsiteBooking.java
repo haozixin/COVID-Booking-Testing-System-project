@@ -25,22 +25,22 @@ public class CreateOnsiteBooking extends BookingCreator {
      * @throws InterruptedException
      */
     @Override
-    public Booking createBooking(String type, String customerId, String siteId) throws IOException, InterruptedException {
+    public Booking createBooking(String customerId, String siteId) throws IOException, InterruptedException {
 
 
         WebServicesTarget webService = new ServicesAdapter();
         SitesCollection sites = SitesCollection.getInstance();
-        if (type.equals(BookingsCollection.ONSITE_BOOKING_TYPE)) {
-            if (customerId != null && siteId != null) {
-                String jsonNode = OnsiteBooking.createOnsiteBooking(customerId, siteId);
-                ObjectNode response = webService.postData(Path.BOOKING.getPath(), jsonNode);
-                Booking tempBooking = new OnsiteBooking(response);
 
-                sites.updateWaitingTime(siteId);
-                bookings.update();
-                return tempBooking;
-            }
+        if (customerId != null && siteId != null) {
+            String jsonNode = OnsiteBooking.createOnsiteBooking(customerId, siteId);
+            ObjectNode response = webService.postData(Path.BOOKING.getPath(), jsonNode);
+            Booking tempBooking = new OnsiteBooking(response);
+
+            sites.updateWaitingTime(siteId);
+            bookings.update();
+            return tempBooking;
         }
+
         return null;
     }
 }

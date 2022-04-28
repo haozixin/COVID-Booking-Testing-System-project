@@ -16,7 +16,6 @@ public class CreateHomeBooking extends BookingCreator{
      *  2. post to server
      *  3. update waitingTime
      *  4. update this collection to get new data
-     * @param type     booking type - on-site or home
      * @param customerId the customer id
      * @param siteId     the site id
      * @return  the booking
@@ -24,7 +23,7 @@ public class CreateHomeBooking extends BookingCreator{
      * @throws InterruptedException
      */
     @Override
-    public Booking createBooking(String type, String customerId, String siteId) throws IOException, InterruptedException {
+    public Booking createBooking(String customerId, String siteId) throws IOException, InterruptedException {
         boolean hasKit = false;
 
         System.out.println("Have you already has a RAT kit? (y/n): ");
@@ -34,20 +33,18 @@ public class CreateHomeBooking extends BookingCreator{
             hasKit = true;
         }
 
-
-
         WebServicesTarget webService = new ServicesAdapter();
-        if(type.equals(BookingsCollection.HOME_BOOKING_TYPE)){
-            if (customerId != null && siteId != null) {
-                String jsonNode = HomeBooking.createHomeBooking(customerId, siteId, hasKit);
-                ObjectNode response = webService.postData(Path.BOOKING.getPath(), jsonNode);
-                Booking tempBooking = new HomeBooking(response);
-                // we assume that the HomeBooking won't consuming waiting time
 
-                bookings.update();
-                return tempBooking;
-            }
+        if (customerId != null && siteId != null) {
+            String jsonNode = HomeBooking.createHomeBooking(customerId, siteId, hasKit);
+            ObjectNode response = webService.postData(Path.BOOKING.getPath(), jsonNode);
+            Booking tempBooking = new HomeBooking(response);
+            // we assume that the HomeBooking won't consuming waiting time
+
+            bookings.update();
+            return tempBooking;
         }
+
         return null;
     }
 }
