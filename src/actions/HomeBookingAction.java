@@ -43,7 +43,7 @@ public class HomeBookingAction extends Action{
         String siteId = findSite();
 
 
-        Booking booking = bookingCreator.createBooking(BookingsCollection.HOME_BOOKING_TYPE, customerId, siteId);
+        Booking booking = bookingCreator.createBooking(customerId, siteId);
 
         sendURL(booking);
         displayQR(booking);
