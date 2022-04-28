@@ -25,7 +25,6 @@ public class BookingsCollection implements DataSubscriber, DataCollection {
     public static final String HOME_BOOKING_TYPE = "Home Booking";
     public static final String ONSITE_BOOKING_TYPE = "On Site Booking";
 
-
     private BookingsCollection() {
     }
 
