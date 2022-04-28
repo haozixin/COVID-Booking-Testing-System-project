@@ -45,9 +45,6 @@ public class CheckBookingAction extends Action {
             return "No booking with this PIN Code";
         }
 
-
-
-
     }
 
     @Override
