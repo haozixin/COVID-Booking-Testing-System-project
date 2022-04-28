@@ -23,8 +23,4 @@ click *file*->*project structure*->*project structure*
 -------------------------------------------------------------
 
 Assumption:
-1. The “userName” of the user is unique and used to log in.
-2. The information about “hasOnSiteBooking”, “hasOnSiteTest”, “waitingTimes(min)”, “facilityType” are in the additionalInfo field of Testing Site.
-3. Users can pass the PIN Code to the on-site staff(receptionist) to check their booking, then the system displays the status the booking. The status includes customer info, testing info, created time and testing site info etc.
-4. Every user is a customer (isCustomer: true), and whether he/she is a receptionist(isReceptionist) or healthcare worker(isHealthcareWorker) can only be set and updated within the system (Security Issue).
-5. When users search for testing site, they only can choose one of suburb name and facility type.
+Please refer to the FIT3077_A2_Assumption.doc
