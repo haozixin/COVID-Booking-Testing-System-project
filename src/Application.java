@@ -25,9 +25,6 @@ public class Application {
      * @throws InterruptedException
      */
     public static void main(String[] args) throws IOException, InterruptedException {
-
-
-
         // step 1  - create elements
         // create a new and single actor
         Actor actor = Actor.getInstance();
@@ -61,8 +58,5 @@ public class Application {
 
         // step 4 - run the main system
         mainSystem.run();
-
-
     }
-
 }
