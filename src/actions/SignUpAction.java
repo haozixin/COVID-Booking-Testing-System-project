@@ -42,8 +42,6 @@ public class SignUpAction extends Action {
         return null;
     }
 
-
-
     @Override
     public String menuDescription(Actor actor) {
         return "Go to Sign Up";
