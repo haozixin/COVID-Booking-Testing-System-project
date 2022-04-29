@@ -48,8 +48,6 @@ public class OnSiteBookingAction extends Action {
             site.display();
         }
 
-//        sites.printWholeList();
-
         System.out.println("-----Provide customer's basic information that will be used to create a new booking-----");
 
         String customerId = findCustomer();
