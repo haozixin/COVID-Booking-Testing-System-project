@@ -26,6 +26,7 @@ public class LoginSubsystem extends CovidBAndTSystem{
             actions.add(new SignUpAction());
             actions.add(new GoBackAction());
 
+
         super.processActorTurn(actor);
     }
 }

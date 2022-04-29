@@ -29,7 +29,6 @@ public class HomeBookingSubsystem extends CovidBAndTSystem {
         }
 
 
-
         super.processActorTurn(actor);
     }
 }
