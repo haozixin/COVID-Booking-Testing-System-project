@@ -25,13 +25,6 @@ public class DataPublisher {
         subscribers.remove(subscriber);
     }
 
-//    public void notifySubscribers(boolean state) {
-//        mainState = state;
-//        for (DataSubscriber subscriber : subscribers) {
-//            subscriber.update(state);
-//        }
-//    }
-
     /**
      * This method is used to publish data to the DataCollector.
      * @throws IOException
