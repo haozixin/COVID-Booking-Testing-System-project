@@ -74,10 +74,6 @@ public class HomeBookingAction extends Action{
         System.out.println("Here is your QR code:  " + booking.getQRCode());
     }
 
-
-
-
-
     @Override
     public String menuDescription(Actor actor) {
         return "Go to book home testing";

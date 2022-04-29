@@ -86,6 +86,4 @@ public class MainSystem {
             display.println(result);
         }
     }
-
-
 }
