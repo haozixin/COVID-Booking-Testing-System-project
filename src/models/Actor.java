@@ -16,7 +16,7 @@ import java.util.Set;
  * This class is like an agent that can be used by actors to contact with the system.(will be more security)
  * The current user is the user that is currently logged in. (might be the resident or the Administrators/receptionist ...)
  */
-public class Actor {
+public class Actor extends Model{
     private WebServicesTarget webServices;
     private static Actor instance;
     // to judge if the user is logged in or not
@@ -104,7 +104,6 @@ public class Actor {
         }
         return hasLogged;
     }
-
 
 
 }

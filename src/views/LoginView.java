@@ -19,7 +19,7 @@ public class LoginView extends JFrame {
     private JButton button;
 
     public LoginView(Actor model) throws HeadlessException {
-        super("Login Subsystem");
+        super("Login Subsystem - Login operation");
 
         UserNameLabel = new JLabel("Username:");
         PasswordLabel = new JLabel("Password:");
@@ -32,7 +32,7 @@ public class LoginView extends JFrame {
         panel = new JPanel();
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400, 250);
+        this.setSize(600, 250);
         panel.setLayout(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
@@ -80,11 +80,15 @@ public class LoginView extends JFrame {
 
     public void update(){
         if (theModel.isLoggedIn()) {
-            state.setText("Hello "+theModel.getName()+", you are logged in");
+
+            panel.removeAll();
+            panel.add(state);
+            state.setText("Hello "+theModel.getName()+", you are logged in! (you can close the window now)");
+            panel.update(panel.getGraphics());
         }
     }
 
-    public void addLoginButtonListener(ActionListener listener) {
+    public void addButtonListener(ActionListener listener) {
         button.addActionListener(listener);
     }
 }

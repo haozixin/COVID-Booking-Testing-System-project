@@ -1,6 +1,9 @@
 import controllers.LoginController;
+import controllers.SignUpController;
 import models.Actor;
+import models.User;
 import views.LoginView;
+import views.SignUpView;
 
 /**
  * @Author: Zixin Hao, Jayden Yang
@@ -14,11 +17,18 @@ import views.LoginView;
 public class Application {
 
     public static void main(String[] args) {
-        Actor actorModel = Actor.getInstance();
-        LoginView loginView = new LoginView(actorModel);
-        LoginController controller = new LoginController(loginView, actorModel);
-        loginView.update();
-        loginView.setVisible(true);
+//        Actor actorModel = Actor.getInstance();
+//        LoginView loginView = new LoginView(actorModel);
+//        LoginController controller = new LoginController(loginView, actorModel);
+//        loginView.update();
+//        loginView.setVisible(true);
+
+
+//        User userModel = new User();
+//        SignUpView signUpView = new SignUpView(userModel);
+//        SignUpController controller = new SignUpController(signUpView, userModel);
+//        signUpView.update();
+//        signUpView.setVisible(true);
 
 
     }

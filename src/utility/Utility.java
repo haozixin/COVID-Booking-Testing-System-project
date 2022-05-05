@@ -34,13 +34,11 @@ public class Utility {
 
     /**
      * Display the json object in a formatted way
-     * @param name the name of the object
      * @param jsonNode  the json object
      * @return return the formatted string
      */
-    public static String formatMessage(String name, JsonNode jsonNode) {
+    public static String formatMessage(JsonNode jsonNode) {
         StringBuilder message = new StringBuilder();
-        message.append("|----------------------------").append(name).append("--------------------------|\n");
         // display a formatted message
         Iterator<Map.Entry<String, JsonNode>> temp = jsonNode.fields();
         for (Iterator<Map.Entry<String, JsonNode>> it = temp; it.hasNext(); ) {
@@ -53,13 +51,12 @@ public class Utility {
 
     /**
      *  Display the json object(value is a list and Nested json object) in a formatted way - [{}...{}]
-     * @param name the name of the object
      * @param jsonNode the json object
      */
-    public static void displayJsonList(String name, JsonNode jsonNode){
+    public static void displayJsonList(JsonNode jsonNode){
         if (jsonNode != null) {
             for (JsonNode node : jsonNode) {
-                System.out.println(formatMessage(name, node));
+                System.out.println(formatMessage( node));
             }
         }
         else{
