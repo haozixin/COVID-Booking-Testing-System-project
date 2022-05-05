@@ -2,6 +2,8 @@ import controllers.LoginController;
 import controllers.SignUpController;
 import models.Actor;
 import models.User;
+import subSystems.CovidBAndTSystem;
+import subSystems.LoginSubsystem;
 import views.LoginView;
 import views.SignUpView;
 
@@ -17,6 +19,14 @@ import views.SignUpView;
 public class Application {
 
     public static void main(String[] args) {
+
+
+        Actor actor = Actor.getInstance();
+        MainSystem mainSystem = new MainSystem();
+        mainSystem.addActor(actor);
+        mainSystem.addSubSystem(new LoginSubsystem());
+        mainSystem.run();
+
 //        Actor actorModel = Actor.getInstance();
 //        LoginView loginView = new LoginView(actorModel);
 //        LoginController controller = new LoginController(loginView, actorModel);

@@ -31,7 +31,7 @@ public class LoginView extends JFrame {
         this.theModel = model;
         panel = new JPanel();
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setSize(600, 250);
         panel.setLayout(new GridBagLayout());
 

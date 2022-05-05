@@ -3,6 +3,9 @@ package models;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.Action;
+import engine.Actions;
+import engine.Menu;
 import enums.UserRoles;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
@@ -24,10 +27,40 @@ public class Actor extends Model{
     private boolean isLogged;
     // when the user is logged in, he/she will get the token from the server
     private String token;
+    // to judge if the user wants to go back to the previous menu
+    private boolean wantsGoBack;
+    private Menu menu = new Menu();
     private Set<String> roles = new HashSet<>();
 
     private Actor() {
         webServices = new ServicesAdapter();
+    }
+
+    public boolean isCustomer(){
+        return roles.contains(UserRoles.IS_CUSTOMER_FIELD.getName());
+    }
+
+    public boolean isAdministrator(){
+        return roles.contains(UserRoles.IS_ADMIN_FIELD.getName());
+    }
+    public boolean isHealthcareWorker(){
+        return roles.contains(UserRoles.IS_HEALTHCARE_WORKER_FIELD.getName());
+    }
+
+    /**
+     * Select and return an action to perform on the current turn.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @return the Action to be performed
+     */
+    public Action playTurn(Actions actions, Action lastAction) {
+
+        // Handle multi-turn Actions
+        if (lastAction != null && lastAction.getNextAction() != null){
+            return lastAction.getNextAction();
+        }
+        return menu.showMenu(this, actions);
     }
 
     private void setLoginState(boolean logged) {
@@ -103,6 +136,11 @@ public class Actor extends Model{
             isLogged = true;
         }
         return hasLogged;
+    }
+
+
+    public void setWantsGoBack(boolean wantsGoBack) {
+        this.wantsGoBack = wantsGoBack;
     }
 
 
