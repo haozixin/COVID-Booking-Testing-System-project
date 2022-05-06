@@ -34,7 +34,8 @@ public class MainSystem {
     }
 
     /**
-     *  add a sub-system to the system list
+     * add a sub-system to the system list
+     *
      * @param system sub-system
      */
     public void addSubSystem(CovidBAndTSystem system) {
@@ -43,6 +44,7 @@ public class MainSystem {
 
     /**
      * set the actor(like agent for real actor) for the system
+     *
      * @param actor actor
      */
     public void addActor(Actor actor) {
@@ -75,11 +77,9 @@ public class MainSystem {
 
             Action action = mainMenu.showMenu(actor, actions);
             String result = null;
-            try {
-                result = action.execute(actor);
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
+
+            result = action.execute(actor);
+
             System.out.println(result);
         }
     }

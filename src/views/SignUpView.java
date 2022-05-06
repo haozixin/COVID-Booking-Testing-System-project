@@ -5,12 +5,11 @@ import models.User;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
 
-public class SignUpView extends JFrame {
+public class SignUpView extends View {
     private User theModel;
 
-    private JPanel panel = new JPanel();
+
     private JLabel state = new JLabel("");
     private JLabel userNameLabel = new JLabel("Username:");
     private JTextField userNameField = new JTextField(15);
@@ -28,14 +27,8 @@ public class SignUpView extends JFrame {
         super("Login Subsystem - Sign Up operation");
 
         this.theModel = model;
+        GridBagConstraints constraints = setBasicStyle(500,450);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 450);
-        panel.setLayout(new GridBagLayout());
-
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.insets = new Insets(10, 10, 10, 10);
 
         setGridConstraint(constraints, 0, userNameLabel, userNameField);
 
@@ -100,9 +93,10 @@ public class SignUpView extends JFrame {
         }
     }
 
+    @Override
     public void update(){}
 
-
+    @Override
     public void addButtonListener(ActionListener listener) {
         button.addActionListener(listener);
     }

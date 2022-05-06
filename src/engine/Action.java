@@ -1,7 +1,9 @@
 package engine;
 
 
+import controllers.Controller;
 import models.Actor;
+import views.View;
 
 import java.io.IOException;
 
@@ -10,7 +12,9 @@ import java.io.IOException;
  * Reference FIT2099_Assignment1_v2
  */
 public abstract class Action {
-    protected String name;
+
+    protected View view;
+    protected Controller controller;
 
     /**
      * Perform the Action.
@@ -18,7 +22,7 @@ public abstract class Action {
      * @param actor The actor performing the action.
      * @return a description of what happened that can be displayed to the user.
      */
-    public abstract String execute(Actor actor) throws IOException, InterruptedException;
+    public abstract String execute(Actor actor);
 
     /**
      * Returns a descriptive string

@@ -143,5 +143,9 @@ public class Actor extends Model{
         this.wantsGoBack = wantsGoBack;
     }
 
+    public boolean wantsGoBack(){
+        return wantsGoBack;
+    }
+
 
 }

@@ -1,10 +1,12 @@
 package services;
 
+import controllers.Controller;
 import controllers.SignUpController;
 import engine.Action;
 import models.Actor;
 import models.User;
 import views.SignUpView;
+import views.View;
 
 
 import java.io.IOException;
@@ -12,12 +14,12 @@ import java.io.IOException;
 public class SignUpAction extends Action {
 
     @Override
-    public String execute(Actor actor) throws IOException, InterruptedException {
+    public String execute(Actor actor){
         User userModel = new User();
-        SignUpView signUpView = new SignUpView(userModel);
-        SignUpController controller = new SignUpController(signUpView, userModel);
-        signUpView.update();
-        signUpView.setVisible(true);
+        view = new SignUpView(userModel);
+        controller = new SignUpController(view, userModel);
+        view.update();
+        view.setVisible(true);
         return "";
     }
 

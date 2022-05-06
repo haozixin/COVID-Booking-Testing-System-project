@@ -1,7 +1,6 @@
 package subSystems;
 
 
-
 import engine.Action;
 import engine.Actions;
 import models.Actor;
@@ -15,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * Abstract class for Subsystems
  * functions are control the whole subsystem running and the actions and menu displaying
  */
@@ -28,7 +26,7 @@ public abstract class CovidBAndTSystem {
     // is the actions list in menu that actors will be able to choose from
     protected Actions actions;
 
-    public void addUser(Actor actor){
+    public void addUser(Actor actor) {
         this.actor = actor;
     }
 
@@ -44,12 +42,12 @@ public abstract class CovidBAndTSystem {
     /**
      * the core of subsystem
      */
-    public void run(){
+    public void run() {
         if (actor == null)
             throw new IllegalStateException();
 
         // if the actor wants to go back, then the loop will end
-        while (true) {
+        while (!actor.wantsGoBack()) {
             showDashBoard();
             processActorTurn(actor);
         }
@@ -57,9 +55,10 @@ public abstract class CovidBAndTSystem {
 
     /**
      * Get the name of the subsystem
+     *
      * @return
      */
-    public String getSystemName(){
+    public String getSystemName() {
         return systemName;
     }
 
@@ -70,25 +69,24 @@ public abstract class CovidBAndTSystem {
         Utility.printArrayList(dashBoard);
     }
 
-    protected void setDashBoard(){
-        dashBoard = Utility.setDashboard(90,5, systemName);
+    protected void setDashBoard() {
+        dashBoard = Utility.setDashboard(90, 5, systemName);
     }
 
     /**
      * arrange the actions(user could choose from menu) for the actor here
+     *
      * @param actor the actor who is going to take the turn
      */
-    protected void processActorTurn(Actor actor){
+    protected void processActorTurn(Actor actor) {
 
         Action action = actor.playTurn(actions, lastActionMap.get(actor));
         lastActionMap.put(actor, action);
 
         String result = null;
-        try {
-            result = action.execute(actor);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        result = action.execute(actor);
+
         System.out.println(result);
     }
 }

@@ -1,7 +1,9 @@
 package controllers;
 
+import models.Model;
 import models.User;
 import views.SignUpView;
+import views.View;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,10 +13,15 @@ public class SignUpController extends Controller {
     private SignUpView signUpView;
     private User user;
 
-    public SignUpController(SignUpView signUpView, User user) {
-        this.signUpView = signUpView;
-        this.user = user;
-        this.signUpView.addButtonListener(new SignUpListener());
+    public SignUpController(View signUpView, Model user) {
+        if (signUpView instanceof SignUpView && user instanceof User) {
+            this.signUpView = (SignUpView) signUpView;
+            this.user = (User) user;
+            this.signUpView.addButtonListener(new SignUpListener());
+        }else{
+            throw new IllegalArgumentException("Arguments must be of type SignUpView and User");
+        }
+
     }
 
     class SignUpListener implements ActionListener {

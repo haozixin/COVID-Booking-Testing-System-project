@@ -2,7 +2,9 @@ package controllers;
 
 
 import models.Actor;
+import models.Model;
 import views.LoginView;
+import views.View;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,10 +15,16 @@ public class LoginController extends Controller{
     private LoginView loginView;
     private Actor loginModel;
 
-    public LoginController(LoginView loginView, Actor loginModel) {
-        this.loginView = loginView;
-        this.loginModel = loginModel;
-        this.loginView.addButtonListener(new LoginListener());
+    public LoginController(View loginView, Model loginModel) {
+        if (loginView instanceof LoginView && loginModel instanceof Actor) {
+            this.loginView = (LoginView) loginView;
+            this.loginModel = (Actor) loginModel;
+            this.loginView.addButtonListener(new LoginListener());
+        }
+        else{
+            throw new IllegalArgumentException("Arguments must be of type LoginView and Actor");
+        }
+
     }
 
     class LoginListener implements ActionListener {

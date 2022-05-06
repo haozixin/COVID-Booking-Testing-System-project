@@ -7,37 +7,23 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-public class LoginView extends JFrame {
+public class LoginView extends View {
     private Actor theModel;
 
-    private JPanel panel;
-    private JLabel UserNameLabel;
-    private JLabel PasswordLabel;
-    private JLabel state;
-    private JTextField userNameField;
-    private JPasswordField passwordField;
-    private JButton button;
+
+    private JLabel UserNameLabel = new JLabel("Username:");
+    private JLabel PasswordLabel = new JLabel("Password:");
+    private JLabel state = new JLabel("You are not logged in");
+    private JTextField userNameField = new JTextField(15);
+    private JPasswordField passwordField = new JPasswordField(15);
+    private JButton button = new JButton("Login");
 
     public LoginView(Actor model) throws HeadlessException {
         super("Login Subsystem - Login operation");
 
-        UserNameLabel = new JLabel("Username:");
-        PasswordLabel = new JLabel("Password:");
-        state = new JLabel("You are not logged in");
-        userNameField = new JTextField(15);
-        passwordField = new JPasswordField(15);
-        button = new JButton("Login");
 
         this.theModel = model;
-        panel = new JPanel();
-
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setSize(600, 250);
-        panel.setLayout(new GridBagLayout());
-
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.insets = new Insets(10, 10, 10, 10);
+        GridBagConstraints constraints = setBasicStyle(600,250);
 
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -78,6 +64,7 @@ public class LoginView extends JFrame {
         return password;
     }
 
+    @Override
     public void update(){
         if (theModel.isLoggedIn()) {
 
@@ -88,6 +75,7 @@ public class LoginView extends JFrame {
         }
     }
 
+    @Override
     public void addButtonListener(ActionListener listener) {
         button.addActionListener(listener);
     }
