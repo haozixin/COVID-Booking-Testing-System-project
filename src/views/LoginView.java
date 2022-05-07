@@ -5,15 +5,13 @@ import models.Actor;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class LoginView extends View {
     private Actor theModel;
 
 
-    private JLabel UserNameLabel = new JLabel("Username:");
-    private JLabel PasswordLabel = new JLabel("Password:");
-    private JLabel state = new JLabel("You are not logged in");
+    private JLabel userNameLabel = new JLabel("Username:");
+    private JLabel passwordLabel = new JLabel("Password:");
     private JTextField userNameField = new JTextField(15);
     private JPasswordField passwordField = new JPasswordField(15);
     private JButton button = new JButton("Login");
@@ -21,25 +19,13 @@ public class LoginView extends View {
     public LoginView(Actor model) throws HeadlessException {
         super("Login Subsystem - Login operation");
 
-
+        state = new JLabel("You are not logged in");
         this.theModel = model;
-        GridBagConstraints constraints = setBasicStyle(600,250);
+        GridBagConstraints constraints = setBasicStyle(panel,600,250);
 
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        panel.add(UserNameLabel, constraints);
+        addOneComponent(constraints, 0, userNameLabel, userNameField);
 
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        panel.add(userNameField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        panel.add(PasswordLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 1;
-        panel.add(passwordField, constraints);
+        addOneComponent(constraints, 1, passwordLabel, passwordField);
 
         constraints.gridx = 0;
         constraints.gridy = 2;

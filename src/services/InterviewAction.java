@@ -1,22 +1,20 @@
 package services;
 
 import controllers.InterviewController;
-import controllers.LoginController;
 import engine.Action;
-import engine.Actions;
 import models.Actor;
+import models.Collection;
+import models.Model;
+import models.User;
 import views.InterviewView;
-import views.LoginView;
-
-import java.io.IOException;
-import java.util.List;
 
 public class InterviewAction extends Action{
     @Override
     public String execute(Actor actor){
-        view = new InterviewView(actor);
-        controller = new InterviewController(view, actor);
-        view.update();
+        User dataModel = new User();
+        view = new InterviewView(dataModel);
+
+        controller = new InterviewController(view, dataModel);
         view.setVisible(true);
         return "";
     }

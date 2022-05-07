@@ -20,6 +20,7 @@ import java.util.Set;
  * The current user is the user that is currently logged in. (might be the resident or the Administrators/receptionist ...)
  */
 public class Actor extends Model{
+    public static final String ID_IN_TOKEN = "sub";
     private WebServicesTarget webServices;
     private static Actor instance;
     // to judge if the user is logged in or not
@@ -145,6 +146,17 @@ public class Actor extends Model{
 
     public boolean wantsGoBack(){
         return wantsGoBack;
+    }
+
+    public String getIdFromToken() {
+        ObjectNode jsonObject = null;
+        try {
+            jsonObject = parseToken(token);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return jsonObject.get(ID_IN_TOKEN).asText();
     }
 
 

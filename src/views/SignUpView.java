@@ -10,10 +10,9 @@ public class SignUpView extends View {
     private User theModel;
 
 
-    private JLabel state = new JLabel("");
-    private JLabel userNameLabel = new JLabel("Username:");
+    private JLabel userNameLabel = new JLabel("Username");
     private JTextField userNameField = new JTextField(15);
-    private JLabel passwordLabel = new JLabel("Password:");
+    private JLabel passwordLabel = new JLabel("Password");
     private JPasswordField passwordField = new JPasswordField(15);
     private JLabel givenNameLabel = new JLabel("Given Name");
     private JTextField givenNameField = new JTextField(10);
@@ -27,18 +26,18 @@ public class SignUpView extends View {
         super("Login Subsystem - Sign Up operation");
 
         this.theModel = model;
-        GridBagConstraints constraints = setBasicStyle(500,450);
+        GridBagConstraints constraints = setBasicStyle(panel,500,450);
 
 
-        setGridConstraint(constraints, 0, userNameLabel, userNameField);
+        addOneComponent(constraints, 0, userNameLabel, userNameField);
 
-        setGridConstraint(constraints, 1, passwordLabel, passwordField);
+        addOneComponent(constraints, 1, passwordLabel, passwordField);
 
-        setGridConstraint(constraints, 2, givenNameLabel, givenNameField);
+        addOneComponent(constraints, 2, givenNameLabel, givenNameField);
 
-        setGridConstraint(constraints, 3, familyNameLabel, familyNameField);
+        addOneComponent(constraints, 3, familyNameLabel, familyNameField);
 
-        setGridConstraint(constraints, 4, phoneNumberLabel, phoneNumberField);
+        addOneComponent(constraints, 4, phoneNumberLabel, phoneNumberField);
 
         constraints.gridx = 0;
         constraints.gridy = 5;
@@ -50,15 +49,6 @@ public class SignUpView extends View {
 
 
         this.add(panel);
-    }
-
-    private void setGridConstraint(GridBagConstraints constraints, int i, JLabel phoneNumberLabel, JTextField phoneNumberField) {
-        constraints.gridx = 0;
-        constraints.gridy = i;
-        panel.add(phoneNumberLabel, constraints);
-        constraints.gridx = 1;
-        constraints.gridy = i;
-        panel.add(phoneNumberField, constraints);
     }
 
     public String getUserName() {
@@ -81,9 +71,8 @@ public class SignUpView extends View {
         return phoneNumberField.getText();
     }
 
+    @Override
     public void update(boolean result) {
-        state.setFont(new Font("Arial", Font.BOLD, 14));
-        state.setForeground(new Color(	0, 139, 69));
         if(result) {
             panel.removeAll();
             panel.add(state);

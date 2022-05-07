@@ -3,12 +3,18 @@ package models;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
+import enums.Query;
 import enums.UserRoles;
 import utility.Utility;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 
 public class User extends Model{
+
+    public static final String ID_FIELD = "id";
+    public static final String BOOKINGS_FIELD = "bookings";
     public static final String PHONE_NUMBER_FIELD = "phoneNumber";
 
     public static final String PASSWORD_FIELD = "password";
@@ -52,4 +58,20 @@ public class User extends Model{
         // we assume that the user is a customer by default
         entityInfo.put(UserRoles.IS_CUSTOMER_FIELD.getName(), true);
     }
+
+    public void findBookingsByUserName(String userName) throws IOException, InterruptedException {
+
+        ObjectNode[] users = webServicesTarget.getAllData(Path.USER.getPath(), Query.BOOKINGS_IN_USER_OR_SITE.getQuery());
+        for (ObjectNode user : users) {
+            if (user.get(USER_NAME_FIELD).asText().equals(userName)) {
+                this.entityInfo = user;
+            }
+        }
+    }
+
+    public String getBookings(){
+        return Utility.displayJsonList(entityInfo.get(BOOKINGS_FIELD));
+    }
+
+
 }

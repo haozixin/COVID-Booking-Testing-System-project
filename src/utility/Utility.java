@@ -53,14 +53,20 @@ public class Utility {
      *  Display the json object(value is a list and Nested json object) in a formatted way - [{}...{}]
      * @param jsonNode the json object
      */
-    public static void displayJsonList(JsonNode jsonNode){
+    public static String displayJsonList(JsonNode jsonNode){
+        StringBuilder message = new StringBuilder();
+//        message.append("<html>");
         if (jsonNode != null) {
             for (JsonNode node : jsonNode) {
-                System.out.println(formatMessage( node));
+                message.append("------------------------------------\n");
+                message.append(formatMessage(node));
+                message.append("\n");
             }
+//            message.append("</html>");
+            return message.toString();
         }
         else{
-            System.out.println("There is no data to print");
+            return null;
         }
     }
 
