@@ -5,6 +5,7 @@ import models.User;
 import subSystems.CovidBAndTSystem;
 import subSystems.LoginSubsystem;
 import subSystems.OnsiteTestingSubsystem;
+import subSystems.SearchForSitesSubsystem;
 import views.LoginView;
 import views.SignUpView;
 
@@ -27,6 +28,7 @@ public class Application {
         mainSystem.addActor(actor);
         mainSystem.addSubSystem(new LoginSubsystem());
         mainSystem.addSubSystem(new OnsiteTestingSubsystem());
+        mainSystem.addSubSystem(new SearchForSitesSubsystem());
         mainSystem.run();
 
 //        Actor actorModel = Actor.getInstance();

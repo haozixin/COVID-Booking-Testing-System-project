@@ -14,7 +14,6 @@ public class SignUpService extends Service {
         User userModel = new User();
         SignUpView view = new SignUpView(userModel);
         controller = new SignUpController(view, userModel);
-        view.update();
         view.setVisible(true);
         return "";
     }

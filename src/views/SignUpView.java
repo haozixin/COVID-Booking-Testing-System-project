@@ -7,20 +7,20 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class SignUpView extends View {
-    private User theModel;
+    private final User theModel;
 
 
-    private JLabel userNameLabel = new JLabel("Username");
-    private JTextField userNameField = new JTextField(15);
-    private JLabel passwordLabel = new JLabel("Password");
-    private JPasswordField passwordField = new JPasswordField(15);
-    private JLabel givenNameLabel = new JLabel("Given Name");
-    private JTextField givenNameField = new JTextField(10);
-    private JLabel familyNameLabel = new JLabel("Family Name");
-    private JTextField familyNameField = new JTextField(10);
-    private JLabel phoneNumberLabel = new JLabel("Phone Number");
-    private JTextField phoneNumberField = new JTextField(10);
-    private JButton button = new JButton("Sign Up");
+    JLabel userNameLabel = new JLabel("Username");
+    private final JTextField userNameField = new JTextField(15);
+    private final JLabel passwordLabel = new JLabel("Password");
+    private final JPasswordField passwordField = new JPasswordField(15);
+    private final JLabel givenNameLabel = new JLabel("Given Name");
+    private final JTextField givenNameField = new JTextField(10);
+    private final JLabel familyNameLabel = new JLabel("Family Name");
+    private final JTextField familyNameField = new JTextField(10);
+    private final JLabel phoneNumberLabel = new JLabel("Phone Number");
+    private final JTextField phoneNumberField = new JTextField(10);
+    private final JButton button = new JButton("Sign Up");
 
     public SignUpView(User model) throws HeadlessException {
         super("Login Subsystem - Sign Up operation");

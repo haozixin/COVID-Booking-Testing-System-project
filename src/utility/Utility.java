@@ -55,14 +55,14 @@ public class Utility {
      */
     public static String displayJsonList(JsonNode jsonNode){
         StringBuilder message = new StringBuilder();
-//        message.append("<html>");
+
         if (jsonNode != null) {
             for (JsonNode node : jsonNode) {
-                message.append("------------------------------------\n");
+                message.append("----------------------------------------------\n");
                 message.append(formatMessage(node));
                 message.append("\n");
             }
-//            message.append("</html>");
+
             return message.toString();
         }
         else{

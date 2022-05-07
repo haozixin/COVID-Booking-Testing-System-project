@@ -19,10 +19,10 @@ public class OnsiteTestingSubsystem extends CovidBAndTSystem {
     @Override
     protected void processActorTurn(Actor actor) {
         services.clear();
-//        if (actor.isAdministrator() || actor.isHealthcareWorker()){
-//            actions.add(new InterviewAction());
-//        }
-        services.add(new InterviewService());
+        if (actor.isAdministrator() || actor.isHealthcareWorker()){
+            services.add(new InterviewService());
+        }
+
         services.add(new GoBackService());
 
 
