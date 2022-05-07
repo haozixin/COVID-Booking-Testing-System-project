@@ -1,6 +1,5 @@
 package models;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import enums.Query;
@@ -8,7 +7,6 @@ import enums.UserRoles;
 import utility.Utility;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class User extends Model{
@@ -59,13 +57,32 @@ public class User extends Model{
         entityInfo.put(UserRoles.IS_CUSTOMER_FIELD.getName(), true);
     }
 
-    public void findBookingsByUserName(String userName) throws IOException, InterruptedException {
-
+    /**
+     * get the specified User information(including bookings) from the server by the given userName
+     * @param userName the userName of the user(patients/...)
+     * @return the user information
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public boolean findBookingsByUserName(String userName) throws IOException, InterruptedException {
+        boolean isFound = false;
         ObjectNode[] users = webServicesTarget.getAllData(Path.USER.getPath(), Query.BOOKINGS_IN_USER_OR_SITE.getQuery());
+        responseMessage = webServicesTarget.getResponseMessage();
+
         for (ObjectNode user : users) {
             if (user.get(USER_NAME_FIELD).asText().equals(userName)) {
                 this.entityInfo = user;
+                isFound = true;
             }
+        }
+        return isFound;
+    }
+
+    public String getId(){
+        try{
+            return entityInfo.get(ID_FIELD).asText();
+        }catch(Exception e){
+            return null;
         }
     }
 

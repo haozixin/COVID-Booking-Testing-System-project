@@ -32,6 +32,8 @@ public class ServicesAdapter implements WebServicesTarget {
 
     private WebServicesAdaptee webServicesAdaptee;
 
+    public String responseMessage;
+
     /**
      * Constructor for ServicesAdapter
      */
@@ -147,13 +149,14 @@ public class ServicesAdapter implements WebServicesTarget {
 
         if (response.statusCode() == ResponseStatus.CODE_201.getCode()) {
             //System.out.println(ResponseStatus.matchCode(response.statusCode()));
+            responseMessage = "Request done Successfully";
             return new ObjectMapper().readValue(response.body(), ObjectNode.class);
 
 
         } else {
             System.out.println(ResponseStatus.matchCode(response.statusCode()));
             ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
-            Utility.resolveError(errorJsonNode);
+            responseMessage = Utility.resolveError(errorJsonNode);
             return null;
         }
     }
@@ -178,15 +181,20 @@ public class ServicesAdapter implements WebServicesTarget {
 
     private boolean dealingResult(HttpResponse<String> response, int successCode) throws JsonProcessingException {
         if (response.statusCode() == successCode) {
+            responseMessage = "Request done Successfully";
             //System.out.println(ResponseStatus.matchCode(response.statusCode()));
             return true;
 
         } else {
             System.out.println(ResponseStatus.matchCode(response.statusCode()));
             ObjectNode errorJsonNode = new ObjectMapper().readValue(response.body(), ObjectNode.class);
-            Utility.resolveError(errorJsonNode);
+            responseMessage = Utility.resolveError(errorJsonNode);
             return false;
         }
+    }
+
+    public String getResponseMessage() {
+        return responseMessage;
     }
 
 

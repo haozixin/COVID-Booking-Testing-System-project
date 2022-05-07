@@ -1,19 +1,17 @@
 package services;
 
 
-import engine.Action;
+import engine.Service;
 import models.Actor;
 import subSystems.CovidBAndTSystem;
-
-import java.io.IOException;
 
 /**
  * Action to go to the CovidBAndTSystem(Subsystem)
  */
-public class GoSubsystemAction extends Action {
+public class GoSubsystemService extends Service {
     private CovidBAndTSystem covidBAndTSystem;
 
-    public GoSubsystemAction(CovidBAndTSystem covidBAndTSystem) {
+    public GoSubsystemService(CovidBAndTSystem covidBAndTSystem) {
         this.covidBAndTSystem = covidBAndTSystem;
     }
     @Override

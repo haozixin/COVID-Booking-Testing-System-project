@@ -1,5 +1,6 @@
 package views;
 
+import models.CovidTest;
 import models.User;
 
 import javax.swing.*;
@@ -8,7 +9,12 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class InterviewView extends View {
+    public static final String TAG1 = "Interview";
+    public static final String TAG2 = "Create COVID-Test";
+    public static final String TAG3 = "View bookings of the user";
+    public static final String EMPTY_OPTION = "--select one--";
     private User theModel;
+    private CovidTest covidTestModel;
 
     private JPanel panel1=new JPanel();
     private JTabbedPane tabbedPanel=new JTabbedPane();
@@ -25,18 +31,20 @@ public class InterviewView extends View {
     private JButton button = new JButton("Get suggestions");
 
     private JLabel userNameLabel = new JLabel("Enter userName:");
-    private JTextField userNameTextField = new JTextField(20);
-    private JLabel bookingsLabel = new JLabel("");//The bookings for the user are here:
-    private JTextArea bookings = new JTextArea("Nothing now, please go to \"Create COVID-test window\" and click the \"Get existing bookings information\" button first");
-    private JLabel bookingIdLabel = new JLabel("Enter bookingId:");
-    private JTextField bookingIdTextField = new JTextField(20);
+    private JTextField userNameTextField = new JTextField(30);
+    private JTextArea bookings = new JTextArea("Here is the place to showing the bookings information of patients\n"+
+            "please go to \"Create COVID-test window\" window and finish the rest process");
+    private JLabel bookingIdLabel = new JLabel("Enter the chosen bookingId:");
+    private JTextField bookingIdTextField = new JTextField(30);
     private JButton button2 = new JButton("Get existing bookings information");
+    private JButton button3 = new JButton("Submit");
 
 
-    public InterviewView(User theModel) {
+    public InterviewView(User theModel, CovidTest covidTestModel) {
         super("On-site Testing Subsystem - Interview operation");
 
         this.theModel = theModel;
+        this.covidTestModel = covidTestModel;
         GridBagConstraints constraints = setBasicStyle(panel,800, 600);
 
         constraints.gridx = 0;
@@ -71,9 +79,10 @@ public class InterviewView extends View {
         constraints.gridy = 8;
         panel.add(button, constraints);
 
-        cmb.addItem("--select one---");
-        cmb.addItem("PCR test");
-        cmb.addItem("RAT test");
+
+        cmb.addItem(EMPTY_OPTION);
+        cmb.addItem("PCR");
+        cmb.addItem("RAT");
 
 
 
@@ -87,9 +96,10 @@ public class InterviewView extends View {
         constraints.gridy = 1;
         panel1.add(userNameTextField, constraints);
 
-        constraints2.gridx = 0;
-        constraints2.gridy = 2;
-        panel1.add(button2, constraints2);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        panel1.add(state, constraints);
+
 
 
         constraints2.gridx = 0;
@@ -102,11 +112,23 @@ public class InterviewView extends View {
 
         constraints2.gridx = 0;
         constraints2.gridy = 7;
-        panel1.add(bookingIdLabel, constraints2);
+        panel1.add(new JLabel(), constraints2);
 
         constraints2.gridx = 0;
         constraints2.gridy = 8;
+        panel1.add(bookingIdLabel, constraints2);
+
+        constraints2.gridx = 0;
+        constraints2.gridy = 9;
+        panel1.add(button2, constraints2);
+
+        constraints2.gridx = 0;
+        constraints2.gridy = 10;
         panel1.add(bookingIdTextField, constraints2);
+
+        constraints2.gridx = 0;
+        constraints2.gridy = 11;
+        panel1.add(button3, constraints2);
 
 
 
@@ -117,10 +139,9 @@ public class InterviewView extends View {
 
 
 
-        tabbedPanel.addTab("Interview",panel);
-        tabbedPanel.addTab("Create COVID-Test",panel1);
-        tabbedPanel.addTab("View bookings of the user",jp);
-
+        tabbedPanel.addTab(TAG1,panel);
+        tabbedPanel.addTab(TAG3,jp);
+        tabbedPanel.addTab(TAG2,panel1);
 
 
 
@@ -144,22 +165,38 @@ public class InterviewView extends View {
     @Override
     public void update() {
 
-        if (theModel.getBookings() != null) {
 
+        if (theModel.getBookings() != null) {
             bookings.setForeground(new Color(11, 75, 5));
             bookings.setText(theModel.getBookings());
-
+            state.setForeground(new Color(11, 75, 5));
+            state.setText("Bookings information are available now in the "+TAG3+" tab");
         }else{
             bookings.setForeground(new Color(100, 2, 2));
             bookings.setText("No bookings found for this customer");
+            state.setForeground(new Color(100, 2, 2));
+            state.setText("No bookings found for this customer");
         }
 
+        if (covidTestModel.isCreated){
 
-////        panel.removeAll();
-//        panel.add(state);
-//        state.setText("you have signed up successfully! (you can close the window now)");
-//        // remove button from panel
-//        panel.update(panel.getGraphics());
+            panel.removeAll();
+            state.setText("Have create a Covid-test! (you could close the window now)");
+
+
+            panel1.removeAll();
+            panel1.add(state);
+
+            bookings.setText(state.getText());
+            panel.update(panel.getGraphics());
+            panel1.update(panel1.getGraphics());
+
+
+        }else{
+            if (!covidTestModel.getResponseMessage().equals("")){
+                JOptionPane.showMessageDialog(this, covidTestModel.getResponseMessage());
+            }
+        }
     }
 
     @Override
@@ -169,6 +206,25 @@ public class InterviewView extends View {
 
     public void addButton2Listener(ActionListener listener) {
         button2.addActionListener(listener);
+    }
+
+    public void addButton3Listener(ActionListener listener) {
+        button3.addActionListener(listener);
+    }
+
+    public int countCheckBox(){
+
+        Component[] components = panel.getComponents();
+        int counter = 0;
+        for (Component component : components) {
+            if (component instanceof JCheckBox) {
+                JCheckBox jcb = (JCheckBox) component;
+                if (jcb.isSelected()) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
     }
 
 

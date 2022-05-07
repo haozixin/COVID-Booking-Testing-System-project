@@ -85,11 +85,15 @@ public class Utility {
      * used for the Services.java, show a formatted error message
      * @param response response body (only for errors respond) from the server
      */
-    public static void resolveError(ObjectNode response){
-    	System.out.println("Error in the request: ");
-    	response.get("error").forEach(System.out::println);
-        System.out.println("Tips: ");
-        response.get("message").forEach(System.out::println);
+    public static String resolveError(ObjectNode response){
+        StringBuilder message = new StringBuilder();
+
+        message.append(response.get("statusCode").asText()).append(": ");
+        message.append(response.get("error").asText()).append("\n");
+        message.append("Tips: \n");
+        message.append(response.get("message").asText());
+        System.out.println(message.toString());
+        return message.toString();
     }
 
     /**

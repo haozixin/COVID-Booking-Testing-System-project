@@ -93,4 +93,6 @@ public interface WebServicesTarget {
      * @throws InterruptedException
      */
     boolean patchData(String path, String jsonString, String id) throws IOException, InterruptedException;
+
+    public String getResponseMessage();
 }

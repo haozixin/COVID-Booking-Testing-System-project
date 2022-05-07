@@ -18,11 +18,11 @@ public class LoginSubsystem extends CovidBAndTSystem{
     @Override
     protected void processActorTurn(Actor actor)
         {
-            actions.clear();
+            services.clear();
 
-            actions.add(new LoginAction());
-            actions.add(new SignUpAction());
-            actions.add(new GoBackAction());
+            services.add(new LoginService());
+            services.add(new SignUpService());
+            services.add(new GoBackService());
 
 
         super.processActorTurn(actor);

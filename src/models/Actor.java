@@ -3,8 +3,8 @@ package models;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import engine.Action;
-import engine.Actions;
+import engine.Service;
+import engine.Services;
 import engine.Menu;
 import enums.UserRoles;
 import webServiceAPI.ServicesAdapter;
@@ -51,17 +51,17 @@ public class Actor extends Model{
     /**
      * Select and return an action to perform on the current turn.
      *
-     * @param actions    collection of possible Actions for this Actor
-     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param services    collection of possible Actions for this Actor
+     * @param lastService The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @return the Action to be performed
      */
-    public Action playTurn(Actions actions, Action lastAction) {
+    public Service playTurn(Services services, Service lastService) {
 
         // Handle multi-turn Actions
-        if (lastAction != null && lastAction.getNextAction() != null){
-            return lastAction.getNextAction();
+        if (lastService != null && lastService.getNextAction() != null){
+            return lastService.getNextAction();
         }
-        return menu.showMenu(this, actions);
+        return menu.showMenu(this, services);
     }
 
     private void setLoginState(boolean logged) {
@@ -152,11 +152,11 @@ public class Actor extends Model{
         ObjectNode jsonObject = null;
         try {
             jsonObject = parseToken(token);
+            return jsonObject.get(ID_IN_TOKEN).asText();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return jsonObject.get(ID_IN_TOKEN).asText();
     }
 
 

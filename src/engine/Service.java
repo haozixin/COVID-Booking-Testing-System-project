@@ -5,15 +5,12 @@ import controllers.Controller;
 import models.Actor;
 import views.View;
 
-import java.io.IOException;
-
 /**
  * Base class for Actions.  These represent things that the player can do.
  * Reference FIT2099_Assignment1_v2
  */
-public abstract class Action {
+public abstract class Service {
 
-    protected View view;
     protected Controller controller;
 
     /**
@@ -51,7 +48,7 @@ public abstract class Action {
      *
      * @return null
      */
-    public Action getNextAction() {
+    public Service getNextAction() {
         return null;
     }
 }

@@ -58,7 +58,11 @@ public class LoginView extends View {
             panel.add(state);
             state.setText("Hello "+theModel.getName()+", you are logged in! (you can close the window now)");
             panel.update(panel.getGraphics());
+        }else{
+            state.setText("Wrong username or password");
+            panel.update(panel.getGraphics());
         }
+
     }
 
     @Override

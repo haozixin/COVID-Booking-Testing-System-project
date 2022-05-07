@@ -1,12 +1,11 @@
-import engine.Action;
-import engine.Actions;
+import engine.Service;
+import engine.Services;
 import engine.Menu;
 import models.Actor;
-import services.GoSubsystemAction;
+import services.GoSubsystemService;
 import subSystems.CovidBAndTSystem;
 import utility.Utility;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +19,7 @@ public class MainSystem {
     private ArrayList<String> dashBoard;
     private Actor actor;
     private Menu mainMenu;
-    private Actions actions;
+    private Services services;
 
 
     /**
@@ -29,7 +28,7 @@ public class MainSystem {
     public MainSystem() {
         dashBoard = Utility.setDashboard(100, 5, systemName);
         mainMenu = new Menu();
-        actions = new Actions();
+        services = new Services();
         systems = new ArrayList<>();
     }
 
@@ -69,16 +68,16 @@ public class MainSystem {
 
         while (true) {
             showDashBoard();
-            actions.clear();
+            services.clear();
             for (CovidBAndTSystem system : systems) {
-                actions.add(new GoSubsystemAction(system));
+                services.add(new GoSubsystemService(system));
             }
 
 
-            Action action = mainMenu.showMenu(actor, actions);
+            Service service = mainMenu.showMenu(actor, services);
             String result = null;
 
-            result = action.execute(actor);
+            result = service.execute(actor);
 
             System.out.println(result);
         }

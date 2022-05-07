@@ -15,10 +15,10 @@ public class LoginController extends Controller{
     private LoginView loginView;
     private Actor loginModel;
 
-    public LoginController(View loginView, Model loginModel) {
-        if (loginView instanceof LoginView && loginModel instanceof Actor) {
-            this.loginView = (LoginView) loginView;
-            this.loginModel = (Actor) loginModel;
+    public LoginController(LoginView loginView, Actor loginModel) {
+        if (loginView != null && loginModel != null) {
+            this.loginView = loginView;
+            this.loginModel = loginModel;
             this.loginView.addButtonListener(new LoginListener());
         }
         else{

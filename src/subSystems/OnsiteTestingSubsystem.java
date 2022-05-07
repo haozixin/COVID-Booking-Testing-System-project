@@ -2,8 +2,8 @@ package subSystems;
 
 
 import models.Actor;
-import services.GoBackAction;
-import services.InterviewAction;
+import services.GoBackService;
+import services.InterviewService;
 
 /**
  * This class represents the Onsite Testing Subsystem.
@@ -18,12 +18,12 @@ public class OnsiteTestingSubsystem extends CovidBAndTSystem {
 
     @Override
     protected void processActorTurn(Actor actor) {
-        actions.clear();
+        services.clear();
 //        if (actor.isAdministrator() || actor.isHealthcareWorker()){
 //            actions.add(new InterviewAction());
 //        }
-        actions.add(new InterviewAction());
-        actions.add(new GoBackAction());
+        services.add(new InterviewService());
+        services.add(new GoBackService());
 
 
         super.processActorTurn(actor);

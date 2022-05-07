@@ -6,34 +6,34 @@ import java.util.*;
  * A thin wrapper for <code>java.util.ArrayList&lt;Action&gt;</code> that does not allow nulls to be added.
  * Reference FIT2099_Assignment1_v2
  */
-public class Actions implements Iterable<Action> {
-    private ArrayList<Action> actions = new ArrayList<Action>();
+public class Services implements Iterable<Service> {
+    private ArrayList<Service> services = new ArrayList<Service>();
 
     /**
      * Constructs an empty list.
      */
-    public Actions() {
+    public Services() {
     }
 
 
     /**
      * Constructs a collection containing a single (non-null) Action.
      *
-     * @param action the Action to add
+     * @param service the Action to add
      */
-    public Actions(Action action) {
-        add(action);
+    public Services(Service service) {
+        add(service);
     }
 
 
     /**
      * Appends the contents of another Actions list to this one.
      *
-     * @param actions the Actions to append
+     * @param services the Actions to append
      */
-    public void add(Actions actions) {
-        for(Action action : actions) {
-            add(action);
+    public void add(Services services) {
+        for(Service service : services) {
+            add(service);
         }
     }
 
@@ -41,23 +41,23 @@ public class Actions implements Iterable<Action> {
      * Appends the contents of any List&lt;Action&gt; to this one.
      *
      * This overload allows the use of an unmodifiableList to prevent privacy leaks.
-     * @param actions the List&lt;Action&gt; to append
+     * @param services the List&lt;Action&gt; to append
      */
-    public void add(List<Action> actions) {
-        for (Action action : actions) {
-            add(action);
+    public void add(List<Service> services) {
+        for (Service service : services) {
+            add(service);
         }
     }
 
     /**
      * Appends a single Action to this collection, if it is non-null.  If it is null, then it is ignored.
      *
-     * @param action the Action to append
+     * @param service the Action to append
      * @return true unconditionally
      */
-    public boolean add(Action action) {
-        if (action != null) {
-            actions.add(action);
+    public boolean add(Service service) {
+        if (service != null) {
+            services.add(service);
         }
         return true;
     }
@@ -74,8 +74,8 @@ public class Actions implements Iterable<Action> {
      * @see Iterable#iterator()
      */
     @Override
-    public Iterator<Action> iterator() {
-        return Collections.unmodifiableList(actions).iterator();
+    public Iterator<Service> iterator() {
+        return Collections.unmodifiableList(services).iterator();
     }
 
     /**
@@ -84,17 +84,17 @@ public class Actions implements Iterable<Action> {
      * @param comparator an object that can compare two Actions and determine their ordering
      * @return a sorted shallow copy of the list of Actions
      */
-    public List<Action> sorted(Comparator<Action> comparator) {
-        ArrayList<Action> sortedActions = new ArrayList<Action>(actions);
-        Collections.sort(sortedActions, comparator);
-        return sortedActions;
+    public List<Service> sorted(Comparator<Service> comparator) {
+        ArrayList<Service> sortedServices = new ArrayList<Service>(services);
+        Collections.sort(sortedServices, comparator);
+        return sortedServices;
     }
 
     /**
      * Delete the contents of this collection, leaving it empty.
      */
     public void clear() {
-        actions.clear();
+        services.clear();
     }
 
     /**
@@ -103,16 +103,16 @@ public class Actions implements Iterable<Action> {
      * @return the number of Actions in the collection.
      */
     public int size() {
-        return actions.size();
+        return services.size();
     }
 
     /**
      * Remove the first occurrence of an Action from the collection, if it is present.  If it is not present, the list is unchanged.
      *
-     * @param action the Action to remove
+     * @param service the Action to remove
      */
-    public void remove(Action action) {
-        actions.remove(action);
+    public void remove(Service service) {
+        services.remove(service);
     }
 
     /**
@@ -122,8 +122,8 @@ public class Actions implements Iterable<Action> {
      * @return the <code>i</code>'th Action in the collection
      * @throws IndexOutOfBoundsException when <code>i</code> &gt;= <code>this.size()</code>
      */
-    public Action get(int i) {
-        return actions.get(i);
+    public Service get(int i) {
+        return services.get(i);
     }
 
     /**
@@ -131,7 +131,7 @@ public class Actions implements Iterable<Action> {
      *
      * @return an unmodifiable list of Action
      */
-    public List<Action> getUnmodifiableActionList() {
-        return Collections.unmodifiableList(actions);
+    public List<Service> getUnmodifiableActionList() {
+        return Collections.unmodifiableList(services);
     }
 }

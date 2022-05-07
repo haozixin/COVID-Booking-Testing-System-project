@@ -1,18 +1,15 @@
 package services;
 
 import controllers.LoginController;
-import engine.Action;
+import engine.Service;
 import models.Actor;
 import views.LoginView;
 
-import java.io.IOException;
-
-public class LoginAction extends Action {
+public class LoginService extends Service {
     @Override
     public String execute(Actor actor){
-        view = new LoginView(actor);
+        LoginView view = new LoginView(actor);
         controller = new LoginController(view, actor);
-        view.update();
         view.setVisible(true);
         return "";
     }

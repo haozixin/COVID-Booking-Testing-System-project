@@ -1,14 +1,13 @@
 package subSystems;
 
 
-import engine.Action;
-import engine.Actions;
+import engine.Service;
+import engine.Services;
 import models.Actor;
 import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,9 +21,9 @@ public abstract class CovidBAndTSystem {
     protected WebServicesTarget serviceForUser;
     protected ArrayList<String> dashBoard;
     protected Actor actor;
-    protected Map<Actor, Action> lastActionMap = new HashMap<Actor, Action>();
+    protected Map<Actor, Service> lastActionMap = new HashMap<Actor, Service>();
     // is the actions list in menu that actors will be able to choose from
-    protected Actions actions;
+    protected Services services;
 
     public void addUser(Actor actor) {
         this.actor = actor;
@@ -36,7 +35,7 @@ public abstract class CovidBAndTSystem {
      */
     public CovidBAndTSystem() {
         serviceForUser = new ServicesAdapter();
-        actions = new Actions();
+        services = new Services();
     }
 
     /**
@@ -80,12 +79,12 @@ public abstract class CovidBAndTSystem {
      */
     protected void processActorTurn(Actor actor) {
 
-        Action action = actor.playTurn(actions, lastActionMap.get(actor));
-        lastActionMap.put(actor, action);
+        Service service = actor.playTurn(services, lastActionMap.get(actor));
+        lastActionMap.put(actor, service);
 
         String result = null;
 
-        result = action.execute(actor);
+        result = service.execute(actor);
 
         System.out.println(result);
     }

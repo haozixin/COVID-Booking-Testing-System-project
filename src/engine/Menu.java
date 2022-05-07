@@ -19,19 +19,19 @@ public class Menu {
      * Ignores more than 26 options. Go on, write a better one.
      *
      * @param actor the Actor representing the users
-     * @param actions the Actions that the user can choose from
+     * @param services the Actions that the user can choose from
      * @return the Action selected by the user
      */
-    public Action showMenu(Actor actor, Actions actions) {
+    public Service showMenu(Actor actor, Services services) {
         ArrayList<Character> freeChars = new ArrayList<Character>();
-        HashMap<Character, Action> keyToActionMap = new HashMap<Character, Action>();
+        HashMap<Character, Service> keyToActionMap = new HashMap<Character, Service>();
 
         for (char i = 'a'; i <= 'z'; i++)
             freeChars.add(i);
 
         // Show with the actions with hotkeys first;
-        for (Action action : actions.sorted(new SortHotkeysFirst())) {
-            String hotKey = action.hotkey();
+        for (Service service : services.sorted(new SortHotkeysFirst())) {
+            String hotKey = service.hotkey();
             char c;
             if (hotKey == null || hotKey == "") {
                 if (freeChars.isEmpty())
@@ -41,8 +41,8 @@ public class Menu {
                 c = hotKey.charAt(0);
             }
             freeChars.remove(Character.valueOf(c));
-            keyToActionMap.put(c, action);
-            System.out.println(c + ": " + action.menuDescription(actor));
+            keyToActionMap.put(c, service);
+            System.out.println(c + ": " + service.menuDescription(actor));
         }
 
         char key;
@@ -64,8 +64,8 @@ public class Menu {
      * This allows Actions to be sorted in order of their hotkeys.
      *
      */
-    class SortHotkeysFirst implements Comparator<Action> {
-        public int compare(Action a, Action b) {
+    class SortHotkeysFirst implements Comparator<Service> {
+        public int compare(Service a, Service b) {
             if (a.hotkey() != null && b.hotkey() == null)
                 return -1;
 

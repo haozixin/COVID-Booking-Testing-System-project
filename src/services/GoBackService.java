@@ -1,19 +1,19 @@
 package services;
 
 
-import engine.Action;
+import engine.Service;
 import models.Actor;
 
 /**
  * Action to go back to the previous room.
  */
-public class GoBackAction extends Action {
+public class GoBackService extends Service {
     private Actor actor;
 
     /**
      * Constructor.
      */
-    public GoBackAction() {
+    public GoBackService() {
         actor = Actor.getInstance();
 
     }
