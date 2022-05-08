@@ -21,7 +21,9 @@ public class LoginView extends View {
 
         state = new JLabel("You are not logged in");
         this.theModel = model;
-        GridBagConstraints constraints = setBasicStyle(panel,600,250);
+        GridBagConstraints constraints = setBasicStyle(panel);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setSize(600,250);
 
         addOneComponent(constraints, 0, userNameLabel, userNameField);
 

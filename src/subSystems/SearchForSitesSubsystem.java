@@ -3,6 +3,7 @@ package subSystems;
 
 import models.Actor;
 import services.GoBackService;
+import services.SearchSiteService;
 import services.ViewSiteListService;
 
 /**
@@ -26,6 +27,7 @@ public class SearchForSitesSubsystem extends CovidBAndTSystem {
 
 //        services.add(搜索);
         services.add(new ViewSiteListService());
+        services.add(new SearchSiteService());
         services.add(new GoBackService());
         super.processActorTurn(actor);
     }

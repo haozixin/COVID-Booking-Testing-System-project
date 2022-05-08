@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 public abstract class View extends JFrame {
     protected JLabel state = new JLabel("");
 
+    // main panel
     protected JPanel panel = new JPanel();
     public View(String title) throws HeadlessException {
         super(title);
@@ -19,9 +20,8 @@ public abstract class View extends JFrame {
 
     public abstract void addButtonListener(ActionListener listener);
 
-    protected GridBagConstraints setBasicStyle(JPanel panel, int width, int height) {
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setSize(width, height);
+    protected GridBagConstraints setBasicStyle(JPanel panel) {
+
         panel.setLayout(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();

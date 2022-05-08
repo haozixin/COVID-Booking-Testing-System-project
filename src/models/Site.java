@@ -15,6 +15,7 @@ public class Site extends Model {
     public static final String ADDITIONAL_INFO_FIELD = "additionalInfo";
     public static final String WAITING_TIMES_FIELD = "waitingTimes(min)";
     public static final String HAS_ON_SITE_BOOKING_FIELD = "hasOnSiteBooking";
+    public static final String SUBURB_FIELD = "suburb";
 
 
 

@@ -45,7 +45,9 @@ public class InterviewView extends View {
 
         this.theModel = theModel;
         this.covidTestModel = covidTestModel;
-        GridBagConstraints constraints = setBasicStyle(panel,800, 600);
+        GridBagConstraints constraints = setBasicStyle(panel);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setSize(800, 600);
 
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -86,7 +88,9 @@ public class InterviewView extends View {
 
 
 
-        GridBagConstraints constraints2 = setBasicStyle(panel1,800, 600);
+        GridBagConstraints constraints2 = setBasicStyle(panel1);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setSize(800, 600);
 
         constraints.gridx = 0;
         constraints.gridy = 0;
