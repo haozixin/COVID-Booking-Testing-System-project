@@ -1,27 +1,25 @@
 package services;
 
+import controllers.CheckBookingController;
 import controllers.SearchSiteController;
 import engine.Service;
-import enums.Path;
 import models.Actor;
 import models.Collection;
+import views.CheckBookingView;
 import views.SearchSitesView;
 
-public class SearchSiteService extends Service{
-
-
+public class CheckBookingService extends Service {
     @Override
     public String execute(Actor actor) {
         Collection collection = new Collection();
-        collection.updateCollection(Path.SITE.getPath());
-        SearchSitesView view = new SearchSitesView(collection);
-        controller = new SearchSiteController(view,collection);
+        CheckBookingView view = new CheckBookingView(collection);
+        controller = new CheckBookingController(view,collection);
         view.setVisible(true);
-        return null;
+        return "";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Search for testing sites";
+        return "Go to check booking by Pin code";
     }
 }

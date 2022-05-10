@@ -29,7 +29,7 @@ public class Collection extends Model {
         factors = new ArrayList<>();
     }
 
-    public void getAllEntity(String path) {
+    private void getAllEntity(String path) {
 
         try {
             ObjectNode[] sites = webServicesTarget.getAllData(path, null);
@@ -103,10 +103,12 @@ public class Collection extends Model {
         this.collection = collection;
     }
 
-    public void updateCollection(){
+    public void updateCollection(String path){
         collection.clear();
-        getAllEntity(Path.SITE.getPath());
+        getAllEntity(path);
     }
+
+
 
 
 

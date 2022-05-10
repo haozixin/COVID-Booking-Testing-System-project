@@ -44,7 +44,7 @@ public class SearchSiteController extends Controller {
             dataModel.setCollection(finalFilteredData);
 
             view.update();
-            dataModel.updateCollection();
+            dataModel.updateCollection(Path.SITE.getPath());
 
         }
     }

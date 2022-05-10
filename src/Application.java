@@ -2,10 +2,7 @@ import controllers.LoginController;
 import controllers.SignUpController;
 import models.Actor;
 import models.User;
-import subSystems.CovidBAndTSystem;
-import subSystems.LoginSubsystem;
-import subSystems.OnsiteTestingSubsystem;
-import subSystems.SearchForSitesSubsystem;
+import subSystems.*;
 import views.LoginView;
 import views.SignUpView;
 
@@ -29,6 +26,7 @@ public class Application {
         mainSystem.addSubSystem(new LoginSubsystem());
         mainSystem.addSubSystem(new OnsiteTestingSubsystem());
         mainSystem.addSubSystem(new SearchForSitesSubsystem());
+        mainSystem.addSubSystem(new OnsiteBookingSubsystem());
         mainSystem.run();
 
 //        Actor actorModel = Actor.getInstance();

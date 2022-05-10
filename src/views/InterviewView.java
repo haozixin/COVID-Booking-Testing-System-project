@@ -182,6 +182,7 @@ public class InterviewView extends View {
             state.setText("No bookings found for this customer");
         }
 
+        // if creating covid-test is done
         if (covidTestModel.isCreated){
 
             panel.removeAll();
@@ -194,8 +195,6 @@ public class InterviewView extends View {
             bookings.setText(state.getText());
             panel.update(panel.getGraphics());
             panel1.update(panel1.getGraphics());
-
-
         }else{
             if (!covidTestModel.getResponseMessage().equals("")){
                 JOptionPane.showMessageDialog(this, covidTestModel.getResponseMessage());

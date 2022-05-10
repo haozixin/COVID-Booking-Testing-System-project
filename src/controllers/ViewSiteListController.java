@@ -11,7 +11,7 @@ public class ViewSiteListController extends Controller {
     public ViewSiteListController(DisplaySiteListView displaySitesView, Collection collectionModel) {
         this.displaySitesView = displaySitesView;
         this.collectionModel = collectionModel;
-        collectionModel.getAllEntity(Path.SITE.getPath());
+        collectionModel.updateCollection(Path.SITE.getPath());
         displaySitesView.update();
     }
 
