@@ -16,7 +16,6 @@ public class Menu {
 
     /**
      * Display a menu to the user and have them select an option.
-     * Ignores more than 26 options. Go on, write a better one.
      *
      * @param actor the Actor representing the users
      * @param services the Actions that the user can choose from
