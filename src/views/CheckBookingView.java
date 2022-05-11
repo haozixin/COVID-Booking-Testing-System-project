@@ -46,7 +46,7 @@ public class CheckBookingView extends View {
 
         c2.gridx = 0;
         c2.gridy = 0;
-        p2.add(jp, c);
+        p2.add(jp, c2);
 
         c.gridx = 0;
         c.gridy = 0;

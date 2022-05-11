@@ -149,7 +149,7 @@ public class ServicesAdapter implements WebServicesTarget {
 
         if (response.statusCode() == ResponseStatus.CODE_201.getCode()) {
             //System.out.println(ResponseStatus.matchCode(response.statusCode()));
-            responseMessage = "Request done Successfully";
+            responseMessage = "";
             return new ObjectMapper().readValue(response.body(), ObjectNode.class);
 
 
@@ -181,7 +181,7 @@ public class ServicesAdapter implements WebServicesTarget {
 
     private boolean dealingResult(HttpResponse<String> response, int successCode) throws JsonProcessingException {
         if (response.statusCode() == successCode) {
-            responseMessage = "Request done Successfully";
+            responseMessage = "";
             //System.out.println(ResponseStatus.matchCode(response.statusCode()));
             return true;
 

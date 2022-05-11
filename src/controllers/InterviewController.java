@@ -1,14 +1,12 @@
 package controllers;
 
+import enums.Path;
 import models.Actor;
 import models.CovidTest;
-import models.Model;
 import models.User;
 import views.InterviewView;
-import views.View;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -37,6 +35,10 @@ public class InterviewController extends Controller {
     }
 
 
+    /**
+     * This class is the listener for the buttons in the interview view
+     * Get a suggestion from the system based on the user's answers
+     */
     class InterviewListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -52,6 +54,10 @@ public class InterviewController extends Controller {
 
     }
 
+    /**
+     * This class is the listener for the buttons in the interview view
+     * Find user by userName (instead of user id because nobody will remember their long-id)
+     */
     class InterviewListener2 implements ActionListener{
 
         @Override
@@ -62,8 +68,8 @@ public class InterviewController extends Controller {
     }
 
     private void findPatientInfo() {
-        if (!interviewView.getUserNameTextField().equals("")){
-            String userName = interviewView.getUserNameTextField();
+        String userName = interviewView.getUserNameTextField();
+        if (!userName.equals("")){
             try {
                 boolean isFound = userModel.findBookingsByUserName(userName);
                 if (isFound){
@@ -101,7 +107,7 @@ public class InterviewController extends Controller {
                 if (patientId != null){
                     covidTestModel.setSchema(finalSuggestion, patientId, healthcareWorkerId, bookingId);
                     try {
-                        covidTestModel.postTestingData();
+                        covidTestModel.postModelToServer(Path.TEST.getPath());
                     } catch (IOException | InterruptedException ex) {
                         ex.printStackTrace();
                     }

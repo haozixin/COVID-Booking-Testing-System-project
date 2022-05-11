@@ -1,12 +1,8 @@
 package models;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import enums.Path;
-import utility.Utility;
-import webServiceAPI.ServicesAdapter;
-import webServiceAPI.WebServicesTarget;
 
-import java.io.IOException;
+import utility.Utility;
+
 
 public class CovidTest extends Model{
     public boolean isCreated = false;
@@ -27,13 +23,5 @@ public class CovidTest extends Model{
         entityInfo.put(BOOKING_ID_FIELD, bookingId);
     }
 
-    public void postTestingData() throws IOException, InterruptedException {
-        WebServicesTarget ws = new ServicesAdapter();
-        ObjectNode result = ws.postData(Path.TEST.getPath(), entityInfo.toString());
-        responseMessage = ws.getResponseMessage();
-        // it won't be null if the post is successful
-        if (result != null) {
-            isCreated = true;
-        }
-    }
+
 }

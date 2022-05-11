@@ -16,8 +16,8 @@ public class InterviewView extends View {
     private User theModel;
     private CovidTest covidTestModel;
 
-    private JPanel panel1=new JPanel();
-    private JTabbedPane tabbedPanel=new JTabbedPane();
+    private JPanel panel1 = new JPanel();
+    private JTabbedPane tabbedPanel = new JTabbedPane();
     private JScrollPane jp = new JScrollPane();
     private JLabel symptomLabel = new JLabel("Please select the customer's symptoms here:");
     private JCheckBox fluCheckBox = new JCheckBox("Does the customer have a flu?");
@@ -32,7 +32,7 @@ public class InterviewView extends View {
 
     private JLabel userNameLabel = new JLabel("Enter userName:");
     private JTextField userNameTextField = new JTextField(30);
-    private JTextArea bookings = new JTextArea("Here is the place to showing the bookings information of patients\n"+
+    private JTextArea bookings = new JTextArea("Here is the place to showing the bookings information of patients\n" +
             "please go to \"Create COVID-test window\" window and finish the rest process");
     private JLabel bookingIdLabel = new JLabel("Enter the chosen bookingId:");
     private JTextField bookingIdTextField = new JTextField(30);
@@ -87,7 +87,6 @@ public class InterviewView extends View {
         cmb.addItem("RAT");
 
 
-
         GridBagConstraints constraints2 = setBasicStyle(panel1);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setSize(800, 600);
@@ -103,7 +102,6 @@ public class InterviewView extends View {
         constraints.gridx = 0;
         constraints.gridy = 2;
         panel1.add(state, constraints);
-
 
 
         constraints2.gridx = 0;
@@ -135,19 +133,14 @@ public class InterviewView extends View {
         panel1.add(button3, constraints2);
 
 
-
         jp.setLayout(new ScrollPaneLayout());
         bookings.setEditable(false);
         jp.setViewportView(bookings);
 
 
-
-
-        tabbedPanel.addTab(TAG1,panel);
-        tabbedPanel.addTab(TAG3,jp);
-        tabbedPanel.addTab(TAG2,panel1);
-
-
+        tabbedPanel.addTab(TAG1, panel);
+        tabbedPanel.addTab(TAG3, jp);
+        tabbedPanel.addTab(TAG2, panel1);
 
 
         this.add(tabbedPanel);
@@ -174,16 +167,16 @@ public class InterviewView extends View {
             bookings.setForeground(new Color(11, 75, 5));
             bookings.setText(theModel.getBookings());
             state.setForeground(new Color(11, 75, 5));
-            state.setText("Bookings information are available now in the "+TAG3+" tab");
-        }else{
+            state.setText("Bookings information are available now in the " + TAG3 + " tab");
+        } else {
             bookings.setForeground(new Color(100, 2, 2));
             bookings.setText("No bookings found for this customer");
             state.setForeground(new Color(100, 2, 2));
             state.setText("No bookings found for this customer");
         }
 
-        // if creating covid-test is done
-        if (covidTestModel.isCreated){
+        // if creating covid-test is done (when there is no error message)
+        if (covidTestModel.getResponseMessage().equals("")) {
 
             panel.removeAll();
             state.setText("Have create a Covid-test! (you could close the window now)");
@@ -195,10 +188,8 @@ public class InterviewView extends View {
             bookings.setText(state.getText());
             panel.update(panel.getGraphics());
             panel1.update(panel1.getGraphics());
-        }else{
-            if (!covidTestModel.getResponseMessage().equals("")){
-                JOptionPane.showMessageDialog(this, covidTestModel.getResponseMessage());
-            }
+        } else {
+            JOptionPane.showMessageDialog(this, covidTestModel.getResponseMessage());
         }
     }
 
@@ -215,7 +206,7 @@ public class InterviewView extends View {
         button3.addActionListener(listener);
     }
 
-    public int countCheckBox(){
+    public int countCheckBox() {
 
         Component[] components = panel.getComponents();
         int counter = 0;

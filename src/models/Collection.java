@@ -43,11 +43,16 @@ public class Collection extends Model {
 
     public String display(){
         StringBuilder list = new StringBuilder();
-        for(ObjectNode node : collection) {
-            list.append("-----------------------------------------------------\n");
-            list.append(Utility.formatMessage(node));
+        if (collection.size() > 0) {
+            for(ObjectNode node : collection) {
+                list.append("-----------------------------------------------------\n");
+                list.append(Utility.formatMessage(node));
+            }
+            return list.toString();
         }
-        return list.toString();
+        else{
+            return "No data found";
+        }
     }
 
     /**

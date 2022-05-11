@@ -4,6 +4,7 @@ package subSystems;
 import models.Actor;
 import services.CheckBookingService;
 import services.GoBackService;
+import services.OnSiteBookingService;
 
 /**
  * This class is the OnsiteBooking Subsystem.
@@ -28,6 +29,7 @@ public class OnsiteBookingSubsystem extends CovidBAndTSystem{
 //                services.add(new CheckBookingService());
 //                services.add(new OnSiteBookingAction());
 //            }
+            services.add(new OnSiteBookingService());
             services.add(new CheckBookingService());
             services.add(new GoBackService());
 

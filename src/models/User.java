@@ -90,5 +90,13 @@ public class User extends Model{
         return Utility.displayJsonList(entityInfo.get(BOOKINGS_FIELD));
     }
 
+    public String getPhoneNumber(){
+        try{
+            return entityInfo.get(PHONE_NUMBER_FIELD).asText();
+        }catch(NullPointerException e){
+            return null;
+        }
+
+    }
 
 }
