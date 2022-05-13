@@ -9,7 +9,7 @@ import utility.Utility;
 import java.io.IOException;
 
 
-public class User extends Model{
+public class User extends EntityModel{
 
     public static final String ID_FIELD = "id";
     public static final String BOOKINGS_FIELD = "bookings";

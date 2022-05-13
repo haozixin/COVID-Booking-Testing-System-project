@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Site extends Model {
+public class Site extends EntityModel {
     public static final String className = "Testing Site";
     public static final String ADDRESS_FIELD = "address";
     public static final String FACILITY_TYPE_FIELD = "facilityType";

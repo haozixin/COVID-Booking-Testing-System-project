@@ -1,6 +1,6 @@
 package models;
 
-public class TestingSite extends Model{
+public class TestingSite extends EntityModel{
     
     public static final String ADDRESS_FIELD = "address";
     public static final String FACILITY_TYPE_FIELD = "facilityType";

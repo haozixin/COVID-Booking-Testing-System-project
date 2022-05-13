@@ -27,6 +27,7 @@ public class Application {
         mainSystem.addSubSystem(new OnsiteTestingSubsystem());
         mainSystem.addSubSystem(new SearchForSitesSubsystem());
         mainSystem.addSubSystem(new OnsiteBookingSubsystem());
+        mainSystem.addSubSystem(new HomeBookingSubsystem());
         mainSystem.run();
 
 //        Actor actorModel = Actor.getInstance();

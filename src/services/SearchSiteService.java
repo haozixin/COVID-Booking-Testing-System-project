@@ -14,6 +14,7 @@ public class SearchSiteService extends Service{
     public String execute(Actor actor) {
         Collection collection = new Collection();
         collection.updateCollection(Path.SITE.getPath());
+
         SearchSitesView view = new SearchSitesView(collection);
         controller = new SearchSiteController(view,collection);
         view.setVisible(true);

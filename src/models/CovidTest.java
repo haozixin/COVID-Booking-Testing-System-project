@@ -4,7 +4,7 @@ package models;
 import utility.Utility;
 
 
-public class CovidTest extends Model{
+public class CovidTest extends EntityModel{
     public boolean isCreated = false;
     public static final String PATIENT_ID_FIELD = "patientId";
     public static final String TYPE_FIELD = "type";

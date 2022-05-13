@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * Collection class
+ * It is used to store the data of the collection
+ * (all kinds of data would be ok - sites, users, bookings, etc. Since logic to dealing with those data is similar or same)
+ * It is responsible for interaction with the database, do some logic/basic operations for a collection of data,
+ * provide data to Views
+ */
 public class Collection extends Model {
     public static final String FILTER_IS_ALL = "all";
     public ArrayList<ObjectNode> collection;
