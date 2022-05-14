@@ -49,6 +49,12 @@ public class Collection extends Model {
 
     }
 
+    /**
+     * Display all the data in the collection
+     * the function will be called in Views
+     * If there is no data in the collection, it will return "No data found"
+     * @return
+     */
     public String display(){
         StringBuilder list = new StringBuilder();
         if (collection.size() > 0) {
