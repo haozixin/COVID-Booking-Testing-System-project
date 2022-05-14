@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Facade class for the whole system
  * it only needs to consider if the actor is logged in or not, more judgement will be done in each subsystem
  */
-public class MainSystem {
+public class SystemFacade {
     private static final String systemName = "--COVID Booking & Testing System--";
     private ArrayList<CovidBAndTSystem> systems;
     private ArrayList<String> dashBoard;
@@ -25,7 +25,7 @@ public class MainSystem {
     /**
      * Constructor of mainSystem
      */
-    public MainSystem() {
+    public SystemFacade() {
         dashBoard = Utility.setDashboard(100, 5, systemName);
         mainMenu = new Menu();
         services = new Services();

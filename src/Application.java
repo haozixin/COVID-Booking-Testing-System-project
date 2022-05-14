@@ -1,10 +1,5 @@
-import controllers.LoginController;
-import controllers.SignUpController;
 import models.Actor;
-import models.User;
 import subSystems.*;
-import views.LoginView;
-import views.SignUpView;
 
 /**
  * @Author: Zixin Hao, Jayden Yang
@@ -21,14 +16,14 @@ public class Application {
 
 
         Actor actor = Actor.getInstance();
-        MainSystem mainSystem = new MainSystem();
-        mainSystem.addActor(actor);
-        mainSystem.addSubSystem(new LoginSubsystem());
-        mainSystem.addSubSystem(new OnsiteTestingSubsystem());
-        mainSystem.addSubSystem(new SearchForSitesSubsystem());
-        mainSystem.addSubSystem(new OnsiteBookingSubsystem());
-        mainSystem.addSubSystem(new HomeBookingSubsystem());
-        mainSystem.run();
+        SystemFacade systemFacade = new SystemFacade();
+        systemFacade.addActor(actor);
+        systemFacade.addSubSystem(new LoginSubsystem());
+        systemFacade.addSubSystem(new OnsiteTestingSubsystem());
+        systemFacade.addSubSystem(new SearchForSitesSubsystem());
+        systemFacade.addSubSystem(new OnsiteBookingSubsystem());
+        systemFacade.addSubSystem(new HomeBookingSubsystem());
+        systemFacade.run();
 
 //        Actor actorModel = Actor.getInstance();
 //        LoginView loginView = new LoginView(actorModel);

@@ -3,6 +3,7 @@ package subSystems;
 
 import models.Actor;
 import services.GoBackService;
+import services.HomeBookingService;
 import services.ScanQRCodeService;
 
 /**
@@ -27,6 +28,7 @@ public class HomeBookingSubsystem extends CovidBAndTSystem {
 //        if (actor.isLoggedIn()){
 //            services.add(new HomeBookingAction());
 //        }
+        services.add(new HomeBookingService());
         services.add(new ScanQRCodeService());
         services.add(new GoBackService());
 

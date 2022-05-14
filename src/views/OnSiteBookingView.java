@@ -2,7 +2,7 @@ package views;
 
 import models.Collection;
 import models.OnsiteBooking;
-import models.Site;
+import models.CovidTestingSite;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class OnSiteBookingView extends View {
     private Collection collectionModel;
     private OnsiteBooking onsiteBookingModel;
-    private Site siteModel;
+    private CovidTestingSite covidTestingSiteModel;
 
 
 
@@ -28,10 +28,10 @@ public class OnSiteBookingView extends View {
 
 
 
-    public OnSiteBookingView(Collection collection,OnsiteBooking onsiteBookingModel, Site siteModel) throws HeadlessException {
+    public OnSiteBookingView(Collection collection,OnsiteBooking onsiteBookingModel, CovidTestingSite covidTestingSiteModel) throws HeadlessException {
         super("On-Site Booking Subsystem - make an on-site booking");
         this.onsiteBookingModel = onsiteBookingModel;
-        this.siteModel = siteModel;
+        this.covidTestingSiteModel = covidTestingSiteModel;
         this.collectionModel = collection;
 
         GridBagConstraints c = setBasicStyle(panel);
@@ -89,14 +89,14 @@ public class OnSiteBookingView extends View {
     @Override
     public void update() {
         String error = onsiteBookingModel.getResponseMessage();
-        String error2 = siteModel.getResponseMessage();
+        String error2 = covidTestingSiteModel.getResponseMessage();
         if (error.equals("") && error2.equals("")) {
             // if no error, display the sites
             panel.removeAll();
 
             panel.add(new JLabel("You have successfully made an on-site booking (you could close the window now)"));
             panel.update(panel.getGraphics());
-            JOptionPane.showMessageDialog(this, "The testing site's waiting time becomes: " + siteModel.getWaitingTime()+" min ");
+            JOptionPane.showMessageDialog(this, "The testing site's waiting time becomes: " + covidTestingSiteModel.getWaitingTime()+" min ");
         }
         else{
             JOptionPane.showMessageDialog(this, error + "\n" + error2);

@@ -12,7 +12,8 @@ import java.util.HashMap;
 /**
  * Collection class
  * It is used to store the data of the collection
- * (all kinds of data would be ok - sites, users, bookings, etc. Since logic to dealing with those data is similar or same)
+ * (all kinds of data would be ok - sites, users, bookings, etc. Since logic to dealing with those data is similar or same.
+ * And each time we will create a new collection, so doesn't need to have one for each kind of data)
  * It is responsible for interaction with the database, do some logic/basic operations for a collection of data,
  * provide data to Views
  */
@@ -119,9 +120,6 @@ public class Collection extends Model {
         collection.clear();
         getAllEntity(path);
     }
-
-
-
 
 
 }

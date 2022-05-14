@@ -1,7 +1,6 @@
 package views;
 
 import models.Collection;
-import models.Site;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

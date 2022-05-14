@@ -1,7 +1,7 @@
 package views;
 
 import models.Collection;
-import models.Site;
+import models.CovidTestingSite;
 
 import javax.swing.*;
 import java.awt.*;
@@ -85,8 +85,8 @@ public class SearchSitesView extends View {
     private void setCheckBox(){
         ArrayList<String> filterFactors = new ArrayList<>();
         // initial the factor value that used to filter the sites
-        filterFactors.add(Site.SUBURB_FIELD);
-        filterFactors.add(Site.FACILITY_TYPE_FIELD);
+        filterFactors.add(CovidTestingSite.SUBURB_FIELD);
+        filterFactors.add(CovidTestingSite.FACILITY_TYPE_FIELD);
         // go through all values of entity, find out distinguished values as filters
         collectionModel.initFilterFields(filterFactors);
         ArrayList<HashMap<String, String>> factors = collectionModel.getFactors();
@@ -94,10 +94,10 @@ public class SearchSitesView extends View {
         // add the distinct values to the combo box
         for (HashMap<String, String> factor : factors) {
             for (String key : factor.keySet()) {
-                if (factor.get(key).equals(Site.SUBURB_FIELD)) {
+                if (factor.get(key).equals(CovidTestingSite.SUBURB_FIELD)) {
                     suburbComboBox.addItem(key);
                 }
-                if(factor.get(key).equals(Site.FACILITY_TYPE_FIELD)){
+                if(factor.get(key).equals(CovidTestingSite.FACILITY_TYPE_FIELD)){
                     facilityComboBox.addItem(key);
                 }
             }
