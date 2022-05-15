@@ -10,13 +10,14 @@ public abstract class EntityModel extends Model {
     protected ObjectNode entityInfo = new ObjectMapper().createObjectNode();
     protected ObjectNode additionalInfo = new ObjectMapper().createObjectNode();
     protected boolean isUpdated = false;
+
     /**
      * Get the entity info from the server based on id
      * Error message is set in the responseMessage attribute
      * result will be stored in the entityInfo attribute
      *
-     * @param path the path/url to the entity
-     * @param id the id of the entity
+     * @param path  the path/url to the entity
+     * @param id    the id of the entity
      * @param query the query to be sent to the server
      * @throws IOException
      * @throws InterruptedException
@@ -31,18 +32,20 @@ public abstract class EntityModel extends Model {
     }
 
     public void postModelToServer(String path) throws IOException, InterruptedException {
-        try{
-            // post to server and update local model at the same time
-            ObjectNode result = webServicesTarget.postData(path, entityInfo.toString());
+
+        // post to server and update local model at the same time
+        ObjectNode result = webServicesTarget.postData(path, entityInfo.toString());
+        // update local model at the same time
+        if(result != null) {
             entityInfo = result;
-        }catch (Exception e){
-            e.printStackTrace();
-            responseMessage = webServicesTarget.getResponseMessage();
+            additionalInfo = entityInfo.get(ADDITIONAL_INFO_FIELD).deepCopy();
         }
+        responseMessage = webServicesTarget.getResponseMessage();
+
 
     }
 
-    protected void updateModel(ObjectNode data){
+    protected void updateModel(ObjectNode data) {
         entityInfo = data;
         additionalInfo = data.get(ADDITIONAL_INFO_FIELD).deepCopy();
     }

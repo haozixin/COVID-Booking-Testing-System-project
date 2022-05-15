@@ -32,7 +32,7 @@ public class ServicesAdapter implements WebServicesTarget {
 
     private WebServicesAdaptee webServicesAdaptee;
 
-    public String responseMessage;
+    public String responseMessage = "";
 
     /**
      * Constructor for ServicesAdapter

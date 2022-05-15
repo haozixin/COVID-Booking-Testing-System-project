@@ -61,6 +61,7 @@ public abstract class Booking extends EntityModel {
         }
     }
 
+
     public String getPinCode(){
         try{
             return entityInfo.get(SMS_PIN_FIELD).asText();
