@@ -1,6 +1,10 @@
 package models;
 
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import mementos.BookingMemento;
+import mementos.IMemento;
+
 public class OnsiteBookingModel extends BookingModel {
 
 
@@ -12,5 +16,13 @@ public class OnsiteBookingModel extends BookingModel {
     }
 
 
+    @Override
+    public IMemento save() {
+        return new BookingMemento(this);
+    }
 
+    @Override
+    public ObjectNode getState() {
+        return entityInfo;
+    }
 }

@@ -3,7 +3,7 @@ package controllers;
 import enums.Path;
 import engine.CurrentOperator;
 import models.CovidTestModel;
-import models.User;
+import models.UserModel;
 import views.InterviewView;
 
 import javax.swing.*;
@@ -13,12 +13,12 @@ import java.io.IOException;
 
 public class InterviewController extends Controller {
     private InterviewView interviewView;
-    private User userModel;
+    private UserModel userModel;
     private CovidTestModel covidTestModel;
 
 
 
-    public InterviewController(InterviewView view, User userModel, CovidTestModel covidTestModel) {
+    public InterviewController(InterviewView view, UserModel userModel, CovidTestModel covidTestModel) {
         if (view != null && userModel != null && covidTestModel != null) {
 
             interviewView = view;

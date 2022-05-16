@@ -3,7 +3,7 @@ package services;
 import controllers.SignUpController;
 import engine.Service;
 import engine.CurrentOperator;
-import models.User;
+import models.UserModel;
 import views.SignUpView;
 
 public class SignUpService extends Service {
@@ -11,7 +11,7 @@ public class SignUpService extends Service {
 
     @Override
     public String execute(CurrentOperator currentOperator){
-        User userModel = new User();
+        UserModel userModel = new UserModel();
         SignUpView view = new SignUpView(userModel);
         controller = new SignUpController(view, userModel);
         view.setVisible(true);

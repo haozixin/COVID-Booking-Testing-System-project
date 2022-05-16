@@ -9,7 +9,7 @@ import utility.Utility;
 import java.io.IOException;
 
 
-public class User extends EntityModel{
+public class UserModel extends EntityModel{
 
     public static final String ID_FIELD = "id";
     public static final String BOOKINGS_FIELD = "bookings";
@@ -26,7 +26,7 @@ public class User extends EntityModel{
     /**
      * Constructor - get data and create a new entity through actor's input
      */
-    public User() {
+    public UserModel() {
 
     }
 

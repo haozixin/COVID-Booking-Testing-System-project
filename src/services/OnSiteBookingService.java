@@ -14,7 +14,7 @@ public class OnSiteBookingService extends Service {
 
     @Override
     public String execute(CurrentOperator currentOperator) {
-        User userModel = new User();
+        UserModel userModel = new UserModel();
         OnsiteBookingModel bookingModel = new OnsiteBookingModel();
         CovidTestingSiteModel covidTestingSiteModel = new CovidTestingSiteModel();
 

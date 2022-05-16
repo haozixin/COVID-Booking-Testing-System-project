@@ -1,9 +1,7 @@
 package controllers;
 
-import models.Model;
-import models.User;
+import models.UserModel;
 import views.SignUpView;
-import views.View;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,12 +9,12 @@ import java.awt.event.ActionListener;
 
 public class SignUpController extends Controller {
     private SignUpView signUpView;
-    private User user;
+    private UserModel userModel;
 
-    public SignUpController(SignUpView signUpView, User user) {
-        if (signUpView != null && user != null) {
+    public SignUpController(SignUpView signUpView, UserModel userModel) {
+        if (signUpView != null && userModel != null) {
             this.signUpView = signUpView;
-            this.user = user;
+            this.userModel = userModel;
             this.signUpView.addButtonListener(new SignUpListener());
         }else{
             throw new IllegalArgumentException("Arguments must be of type SignUpView and User");
@@ -38,8 +36,8 @@ public class SignUpController extends Controller {
                 String givenName = signUpView.getGivenName();
                 String familyName = signUpView.getFamilyName();
                 String phoneNumber = signUpView.getPhoneNumber();
-                user.setSchema(phoneNumber, password, username, familyName, givenName);
-                boolean result = user.updateToServer();
+                userModel.setSchema(phoneNumber, password, username, familyName, givenName);
+                boolean result = userModel.updateToServer();
                 signUpView.update(result);
             }
             else{

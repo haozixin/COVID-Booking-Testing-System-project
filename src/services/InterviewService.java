@@ -9,7 +9,7 @@ import views.InterviewView;
 public class InterviewService extends Service {
     @Override
     public String execute(CurrentOperator currentOperator){
-        User userModel = new User();
+        UserModel userModel = new UserModel();
         CovidTestModel covidTestModel = new CovidTestModel();
         InterviewView view = new InterviewView(userModel, covidTestModel);
 

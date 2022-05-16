@@ -1,8 +1,9 @@
 package models;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
+import mementos.BookingMemento;
+import mementos.IOriginator;
 import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
-public abstract class BookingModel extends EntityModel {
+public abstract class BookingModel extends EntityModel implements IOriginator {
 
 
     public static final String USER_ID_FIELD = "customerId";
@@ -133,7 +134,8 @@ public abstract class BookingModel extends EntityModel {
         }
     }
 
-
-
+    public void setState(ObjectNode entityInfo){
+        super.updateModel(entityInfo);
+    }
 
 }

@@ -47,7 +47,12 @@ public abstract class EntityModel extends Model {
 
     protected void updateModel(ObjectNode data) {
         entityInfo = data;
-        additionalInfo = data.get(ADDITIONAL_INFO_FIELD).deepCopy();
+        try {
+            additionalInfo = data.get(ADDITIONAL_INFO_FIELD).deepCopy();
+        } catch (NullPointerException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public void setIsUpdated(boolean update) {

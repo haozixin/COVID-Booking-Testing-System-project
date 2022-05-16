@@ -1,7 +1,7 @@
 package views;
 
 import models.CovidTestModel;
-import models.User;
+import models.UserModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ public class InterviewView extends View {
     public static final String TAG2 = "Create COVID-Test";
     public static final String TAG3 = "View bookings of the user";
     public static final String EMPTY_OPTION = "--select one--";
-    private User theModel;
+    private UserModel theModel;
     private CovidTestModel covidTestModel;
 
     private JPanel panel1 = new JPanel();
@@ -40,7 +40,7 @@ public class InterviewView extends View {
     private JButton button3 = new JButton("Submit");
 
 
-    public InterviewView(User theModel, CovidTestModel covidTestModel) {
+    public InterviewView(UserModel theModel, CovidTestModel covidTestModel) {
         super("On-site Testing Subsystem - Interview operation");
 
         this.theModel = theModel;
