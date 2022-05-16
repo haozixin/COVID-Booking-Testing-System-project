@@ -4,7 +4,9 @@ import models.Actor;
 import models.User;
 import subSystems.*;
 import views.LoginView;
+import views.ProfileView;
 import views.SignUpView;
+import views.View;
 
 /**
  * @Author: Zixin Hao, Jayden Yang
@@ -18,16 +20,17 @@ import views.SignUpView;
 public class Application {
 
     public static void main(String[] args) {
-
-
-        Actor actor = Actor.getInstance();
-        MainSystem mainSystem = new MainSystem();
-        mainSystem.addActor(actor);
-        mainSystem.addSubSystem(new LoginSubsystem());
-        mainSystem.addSubSystem(new OnsiteTestingSubsystem());
-        mainSystem.addSubSystem(new SearchForSitesSubsystem());
-        mainSystem.addSubSystem(new OnsiteBookingSubsystem());
-        mainSystem.run();
+        View theView = new ProfileView();
+//        theView.update();
+        theView.setVisible(true);
+//        Actor actor = Actor.getInstance();
+//        MainSystem mainSystem = new MainSystem();
+//        mainSystem.addActor(actor);
+//        mainSystem.addSubSystem(new LoginSubsystem());
+//        mainSystem.addSubSystem(new OnsiteTestingSubsystem());
+//        mainSystem.addSubSystem(new SearchForSitesSubsystem());
+//        mainSystem.addSubSystem(new OnsiteBookingSubsystem());
+//        mainSystem.run();
 
 //        Actor actorModel = Actor.getInstance();
 //        LoginView loginView = new LoginView(actorModel);
