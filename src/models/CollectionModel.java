@@ -9,7 +9,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Collection extends Model {
+/**
+ * Collection class
+ * It is used to store the data of the collection
+ * (all kinds of data would be ok - sites, users, bookings, etc. Since logic to dealing with those data is similar or same.
+ * And each time we will create a new collection, so doesn't need to have one for each kind of data)
+ * It is responsible for interaction with the database, do some logic/basic operations for a collection of data,
+ * provide data to Views
+ */
+public class CollectionModel extends Model {
     public static final String FILTER_IS_ALL = "all";
     public ArrayList<ObjectNode> collection;
 
@@ -24,7 +32,7 @@ public class Collection extends Model {
         return factors;
     }
 
-    public Collection() {
+    public CollectionModel() {
         collection = new ArrayList<>();
         factors = new ArrayList<>();
     }
@@ -41,6 +49,12 @@ public class Collection extends Model {
 
     }
 
+    /**
+     * Display all the data in the collection
+     * the function will be called in Views
+     * If there is no data in the collection, it will return "No data found"
+     * @return
+     */
     public String display(){
         StringBuilder list = new StringBuilder();
         if (collection.size() > 0) {
@@ -112,9 +126,6 @@ public class Collection extends Model {
         collection.clear();
         getAllEntity(path);
     }
-
-
-
 
 
 }

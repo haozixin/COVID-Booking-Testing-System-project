@@ -1,7 +1,7 @@
 package subSystems;
 
 
-import models.Actor;
+import engine.CurrentOperator;
 import services.CheckBookingService;
 import services.GoBackService;
 import services.OnSiteBookingService;
@@ -21,11 +21,11 @@ public class OnsiteBookingSubsystem extends CovidBAndTSystem{
     }
 
     @Override
-    protected void processActorTurn(Actor actor)
+    protected void processActorTurn(CurrentOperator currentOperator)
         {
             services.clear();
 
-            if (actor.isAdministrator()){
+            if (currentOperator.isAdministrator()){
                 services.add(new CheckBookingService());
                 services.add(new OnSiteBookingService());
             }
@@ -33,6 +33,6 @@ public class OnsiteBookingSubsystem extends CovidBAndTSystem{
             services.add(new GoBackService());
 
 
-        super.processActorTurn(actor);
+        super.processActorTurn(currentOperator);
     }
 }

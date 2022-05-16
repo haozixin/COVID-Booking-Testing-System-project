@@ -2,8 +2,6 @@ package engine;
 
 
 import controllers.Controller;
-import models.Actor;
-import views.View;
 
 /**
  * Base class for Actions.  These represent things that the player can do.
@@ -16,17 +14,17 @@ public abstract class Service {
     /**
      * Perform the Action.
      *
-     * @param actor The actor performing the action.
+     * @param currentOperator The actor performing the action.
      * @return a description of what happened that can be displayed to the user.
      */
-    public abstract String execute(Actor actor);
+    public abstract String execute(CurrentOperator currentOperator);
 
     /**
      * Returns a descriptive string
-     * @param actor The actor performing the action.
+     * @param currentOperator The actor performing the action.
      * @return the text we put on the menu
      */
-    public abstract String menuDescription(Actor actor);
+    public abstract String menuDescription(CurrentOperator currentOperator);
 
     /**
      * Returns the key used in the menu to trigger this Action.

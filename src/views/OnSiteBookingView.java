@@ -1,17 +1,17 @@
 package views;
 
-import models.Collection;
-import models.OnsiteBooking;
-import models.Site;
+import models.CollectionModel;
+import models.OnsiteBookingModel;
+import models.CovidTestingSiteModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class OnSiteBookingView extends View {
-    private Collection collectionModel;
-    private OnsiteBooking onsiteBookingModel;
-    private Site siteModel;
+    private CollectionModel collectionModel;
+    private OnsiteBookingModel onsiteBookingModel;
+    private CovidTestingSiteModel covidTestingSiteModel;
 
 
 
@@ -28,11 +28,11 @@ public class OnSiteBookingView extends View {
 
 
 
-    public OnSiteBookingView(Collection collection,OnsiteBooking onsiteBookingModel, Site siteModel) throws HeadlessException {
+    public OnSiteBookingView(CollectionModel collectionModel, OnsiteBookingModel onsiteBookingModel, CovidTestingSiteModel covidTestingSiteModel) throws HeadlessException {
         super("On-Site Booking Subsystem - make an on-site booking");
         this.onsiteBookingModel = onsiteBookingModel;
-        this.siteModel = siteModel;
-        this.collectionModel = collection;
+        this.covidTestingSiteModel = covidTestingSiteModel;
+        this.collectionModel = collectionModel;
 
         GridBagConstraints c = setBasicStyle(panel);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -43,7 +43,7 @@ public class OnSiteBookingView extends View {
         outsideJp.setLayout(new ScrollPaneLayout());
         outsideJp.setPreferredSize(new Dimension(900,500));
         sites.setSize(800,300);
-        sites.setText(collectionModel.display());
+        sites.setText(this.collectionModel.display());
 
         GridBagConstraints c2 = setBasicStyle(p2);
 
@@ -89,14 +89,14 @@ public class OnSiteBookingView extends View {
     @Override
     public void update() {
         String error = onsiteBookingModel.getResponseMessage();
-        String error2 = siteModel.getResponseMessage();
+        String error2 = covidTestingSiteModel.getResponseMessage();
         if (error.equals("") && error2.equals("")) {
             // if no error, display the sites
             panel.removeAll();
 
             panel.add(new JLabel("You have successfully made an on-site booking (you could close the window now)"));
             panel.update(panel.getGraphics());
-            JOptionPane.showMessageDialog(this, "The testing site's waiting time becomes: " + siteModel.getWaitingTime()+" min ");
+            JOptionPane.showMessageDialog(this, "The testing site's waiting time becomes: " + covidTestingSiteModel.getWaitingTime()+" min ");
         }
         else{
             JOptionPane.showMessageDialog(this, error + "\n" + error2);

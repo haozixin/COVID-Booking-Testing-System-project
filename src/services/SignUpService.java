@@ -2,16 +2,16 @@ package services;
 
 import controllers.SignUpController;
 import engine.Service;
-import models.Actor;
-import models.User;
+import engine.CurrentOperator;
+import models.UserModel;
 import views.SignUpView;
 
 public class SignUpService extends Service {
 
 
     @Override
-    public String execute(Actor actor){
-        User userModel = new User();
+    public String execute(CurrentOperator currentOperator){
+        UserModel userModel = new UserModel();
         SignUpView view = new SignUpView(userModel);
         controller = new SignUpController(view, userModel);
         view.setVisible(true);
@@ -19,7 +19,7 @@ public class SignUpService extends Service {
     }
 
     @Override
-    public String menuDescription(Actor actor) {
+    public String menuDescription(CurrentOperator currentOperator) {
         return "Go to Sign Up";
     }
 }

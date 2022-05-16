@@ -1,25 +1,23 @@
 package services;
 
 import controllers.CheckBookingController;
-import controllers.SearchSiteController;
 import engine.Service;
-import models.Actor;
-import models.Collection;
+import engine.CurrentOperator;
+import models.CollectionModel;
 import views.CheckBookingView;
-import views.SearchSitesView;
 
 public class CheckBookingService extends Service {
     @Override
-    public String execute(Actor actor) {
-        Collection collection = new Collection();
-        CheckBookingView view = new CheckBookingView(collection);
-        controller = new CheckBookingController(view,collection);
+    public String execute(CurrentOperator currentOperator) {
+        CollectionModel collectionModel = new CollectionModel();
+        CheckBookingView view = new CheckBookingView(collectionModel);
+        controller = new CheckBookingController(view, collectionModel);
         view.setVisible(true);
         return "";
     }
 
     @Override
-    public String menuDescription(Actor actor) {
+    public String menuDescription(CurrentOperator currentOperator) {
         return "Go to check booking by Pin code";
     }
 }

@@ -43,7 +43,14 @@ public class Utility {
         Iterator<Map.Entry<String, JsonNode>> temp = jsonNode.fields();
         for (Iterator<Map.Entry<String, JsonNode>> it = temp; it.hasNext(); ) {
             Map.Entry<String, JsonNode> entry = it.next();
-            message.append(entry.getKey()).append(" ==> ").append(entry.getValue()).append("\n");
+            if(entry.getValue().isObject()){
+
+                message.append(entry.getKey()).append(" ==> ").append(formatMessage(entry.getValue())).append("\n");
+
+            }
+            else{
+                message.append(entry.getKey()).append(" ==> ").append(entry.getValue()).append("\n");
+            }
         }
 
         return message.toString();

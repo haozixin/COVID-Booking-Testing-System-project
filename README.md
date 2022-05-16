@@ -28,3 +28,7 @@ Please refer to the FIT3077_A2_Assumption.doc
 
 Demonstrate Video Link:
 https://drive.google.com/file/d/1TdoOS_hRERD9WbQu9Zfp9DowtBEoaT09/view?usp=sharing
+
+------------------------------------------
+#Code overview:
+

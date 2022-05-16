@@ -1,9 +1,9 @@
 package controllers;
 
 import enums.Path;
-import models.Actor;
-import models.CovidTest;
-import models.User;
+import engine.CurrentOperator;
+import models.CovidTestModel;
+import models.UserModel;
 import views.InterviewView;
 
 import javax.swing.*;
@@ -13,12 +13,12 @@ import java.io.IOException;
 
 public class InterviewController extends Controller {
     private InterviewView interviewView;
-    private User userModel;
-    private CovidTest covidTestModel;
+    private UserModel userModel;
+    private CovidTestModel covidTestModel;
 
 
 
-    public InterviewController(InterviewView view, User userModel, CovidTest covidTestModel) {
+    public InterviewController(InterviewView view, UserModel userModel, CovidTestModel covidTestModel) {
         if (view != null && userModel != null && covidTestModel != null) {
 
             interviewView = view;
@@ -93,7 +93,7 @@ public class InterviewController extends Controller {
             String finalSuggestion = interviewView.getCmb();
             String userName = interviewView.getUserNameTextField();
 
-            String healthcareWorkerId = Actor.getInstance().getIdFromToken();
+            String healthcareWorkerId = CurrentOperator.getInstance().getIdFromToken();
             String bookingId = interviewView.getBookingId();
 
             if (!finalSuggestion.equals(InterviewView.EMPTY_OPTION) && !userName.equals("") && !bookingId.equals("") && !healthcareWorkerId.equals("")){

@@ -1,9 +1,9 @@
 package controllers;
 
 import enums.Path;
-import models.OnsiteBooking;
-import models.Site;
-import models.User;
+import models.OnsiteBookingModel;
+import models.CovidTestingSiteModel;
+import models.UserModel;
 import views.OnSiteBookingView;
 
 import javax.swing.*;
@@ -12,13 +12,13 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class OnSiteBookingController extends Controller {
-    private OnsiteBooking onsiteBookingModel;
-    private Site siteModel;
-    private User userModel;
+    private OnsiteBookingModel onsiteBookingModel;
+    private CovidTestingSiteModel covidTestingSiteModel;
+    private UserModel userModel;
     private OnSiteBookingView view;
 
-    public OnSiteBookingController(OnsiteBooking onsiteBookingModel, User userModel, Site siteModel, OnSiteBookingView view) {
-        this.siteModel = siteModel;
+    public OnSiteBookingController(OnsiteBookingModel onsiteBookingModel, UserModel userModel, CovidTestingSiteModel covidTestingSiteModel, OnSiteBookingView view) {
+        this.covidTestingSiteModel = covidTestingSiteModel;
         this.userModel = userModel;
         this.onsiteBookingModel = onsiteBookingModel;
         this.view = view;
@@ -50,7 +50,7 @@ public class OnSiteBookingController extends Controller {
                         // post model/data to server
                         onsiteBookingModel.postModelToServer(Path.BOOKING.getPath());
                         // update waitingTime
-                        siteModel.updateWaitingTime(siteId);
+                        covidTestingSiteModel.updateWaitingTime(siteId);
 
                         // simulate the sending pin code to customer's phone here
                         String phoneNumber = userModel.getPhoneNumber();

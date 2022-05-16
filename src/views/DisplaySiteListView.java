@@ -1,7 +1,6 @@
 package views;
 
-import models.Collection;
-import models.Site;
+import models.CollectionModel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,13 +8,13 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class DisplaySiteListView extends View {
-    private Collection theModel;
+    private CollectionModel theModel;
 
     JTextArea text = new JTextArea();
     JScrollPane scrollPane = new JScrollPane(text);
 
 
-    public DisplaySiteListView(Collection theModel) throws HeadlessException {
+    public DisplaySiteListView(CollectionModel theModel) throws HeadlessException {
         super("Search-for-sites Subsystem - View Site List");
 
         this.theModel = theModel;

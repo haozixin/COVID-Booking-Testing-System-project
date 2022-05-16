@@ -1,12 +1,11 @@
 package services;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import controllers.CheckBookingController;
 import controllers.OnSiteBookingController;
+import engine.CurrentOperator;
 import engine.Service;
 import enums.Path;
 import models.*;
-import views.CheckBookingView;
 import views.OnSiteBookingView;
 
 import java.util.ArrayList;
@@ -14,28 +13,28 @@ import java.util.ArrayList;
 public class OnSiteBookingService extends Service {
 
     @Override
-    public String execute(Actor actor) {
-        User userModel = new User();
-        OnsiteBooking bookingModel = new OnsiteBooking();
-        Site siteModel = new Site();
+    public String execute(CurrentOperator currentOperator) {
+        UserModel userModel = new UserModel();
+        OnsiteBookingModel bookingModel = new OnsiteBookingModel();
+        CovidTestingSiteModel covidTestingSiteModel = new CovidTestingSiteModel();
 
-        Collection collection = new Collection();
-        collection.updateCollection(Path.SITE.getPath());
-        ArrayList<ObjectNode> siteList = collection.filterByOnFactor(TestingSite.HAS_ON_SITE_BOOKING_FIELD, "true");
+        CollectionModel collectionModel = new CollectionModel();
+        collectionModel.updateCollection(Path.SITE.getPath());
+        ArrayList<ObjectNode> siteList = collectionModel.filterByOnFactor(CovidTestingSiteModel.HAS_ON_SITE_BOOKING_FIELD, "true");
         if (siteList.size() > 0) {
-            collection.setCollection(siteList);
+            collectionModel.setCollection(siteList);
         } else {
-            collection.setCollection(new ArrayList<>());
+            collectionModel.setCollection(new ArrayList<>());
         }
-        OnSiteBookingView view = new OnSiteBookingView(collection, bookingModel, siteModel);
+        OnSiteBookingView view = new OnSiteBookingView(collectionModel, bookingModel, covidTestingSiteModel);
 
-        controller = new OnSiteBookingController(bookingModel, userModel, siteModel, view);
+        controller = new OnSiteBookingController(bookingModel, userModel, covidTestingSiteModel, view);
         view.setVisible(true);
         return "";
     }
 
     @Override
-    public String menuDescription(Actor actor) {
+    public String menuDescription(CurrentOperator currentOperator) {
         return "Make an on-site booking";
     }
 }

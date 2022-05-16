@@ -1,13 +1,13 @@
 package views;
 
-import models.User;
+import models.UserModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class SignUpView extends View {
-    private final User theModel;
+    private final UserModel theModel;
 
 
     JLabel userNameLabel = new JLabel("Username");
@@ -22,7 +22,7 @@ public class SignUpView extends View {
     private final JTextField phoneNumberField = new JTextField(10);
     private final JButton button = new JButton("Sign Up");
 
-    public SignUpView(User model) throws HeadlessException {
+    public SignUpView(UserModel model) throws HeadlessException {
         super("Login Subsystem - Sign Up operation");
 
         this.theModel = model;

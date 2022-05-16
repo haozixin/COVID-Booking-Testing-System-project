@@ -3,7 +3,7 @@ package subSystems;
 
 import engine.Service;
 import engine.Services;
-import models.Actor;
+import engine.CurrentOperator;
 import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
@@ -20,13 +20,13 @@ public abstract class CovidBAndTSystem {
     protected String systemName;
     protected WebServicesTarget serviceForUser;
     protected ArrayList<String> dashBoard;
-    protected Actor actor;
-    protected Map<Actor, Service> lastActionMap = new HashMap<Actor, Service>();
+    protected CurrentOperator currentOperator;
+    protected Map<CurrentOperator, Service> lastActionMap = new HashMap<CurrentOperator, Service>();
     // is the actions list in menu that actors will be able to choose from
     protected Services services;
 
-    public void addUser(Actor actor) {
-        this.actor = actor;
+    public void addUser(CurrentOperator currentOperator) {
+        this.currentOperator = currentOperator;
     }
 
     /**
@@ -42,13 +42,13 @@ public abstract class CovidBAndTSystem {
      * the core of subsystem
      */
     public void run() {
-        if (actor == null)
+        if (currentOperator == null)
             throw new IllegalStateException();
 
         // if the actor wants to go back, then the loop will end
-        while (!actor.wantsGoBack()) {
+        while (!currentOperator.wantsGoBack()) {
             showDashBoard();
-            processActorTurn(actor);
+            processActorTurn(currentOperator);
         }
     }
 
@@ -75,16 +75,16 @@ public abstract class CovidBAndTSystem {
     /**
      * arrange the actions(user could choose from menu) for the actor here
      *
-     * @param actor the actor who is going to take the turn
+     * @param currentOperator the actor who is going to take the turn
      */
-    protected void processActorTurn(Actor actor) {
+    protected void processActorTurn(CurrentOperator currentOperator) {
 
-        Service service = actor.playTurn(services, lastActionMap.get(actor));
-        lastActionMap.put(actor, service);
+        Service service = currentOperator.playTurn(services, lastActionMap.get(currentOperator));
+        lastActionMap.put(currentOperator, service);
 
         String result = null;
 
-        result = service.execute(actor);
+        result = service.execute(currentOperator);
 
         System.out.println(result);
     }
