@@ -2,7 +2,7 @@ package subSystems;
 
 
 import services.*;
-import models.Actor;
+import engine.CurrentOperator;
 
 /**
  * The class is responsible for loginSubsystem
@@ -16,7 +16,7 @@ public class LoginSubsystem extends CovidBAndTSystem{
     }
 
     @Override
-    protected void processActorTurn(Actor actor)
+    protected void processActorTurn(CurrentOperator currentOperator)
         {
             services.clear();
 
@@ -25,6 +25,6 @@ public class LoginSubsystem extends CovidBAndTSystem{
             services.add(new GoBackService());
 
 
-        super.processActorTurn(actor);
+        super.processActorTurn(currentOperator);
     }
 }

@@ -1,7 +1,7 @@
 package controllers;
 
-import models.Booking;
-import models.HomeBooking;
+import models.BookingModel;
+import models.HomeBookingModel;
 import views.ScanQRView;
 
 import javax.swing.*;
@@ -9,10 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ScanQRController extends Controller {
-    private Booking bookingModel;
+    private BookingModel bookingModel;
     private ScanQRView view;
 
-    public ScanQRController(HomeBooking homeBookingModel, ScanQRView view) {
+    public ScanQRController(HomeBookingModel homeBookingModel, ScanQRView view) {
         this.bookingModel = homeBookingModel;
         this.view = view;
         view.addButtonListener(new ButtonListener());

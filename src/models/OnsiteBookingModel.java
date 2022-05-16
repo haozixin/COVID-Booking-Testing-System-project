@@ -1,7 +1,7 @@
 package models;
 
 
-public class OnsiteBooking extends Booking {
+public class OnsiteBookingModel extends BookingModel {
 
 
     public void setSchema(String customerId, String testingSiteId) {

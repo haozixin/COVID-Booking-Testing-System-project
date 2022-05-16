@@ -1,21 +1,20 @@
 package views;
 
-import models.Collection;
-import models.HomeBooking;
+import models.HomeBookingModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class ScanQRView extends View{
-    private HomeBooking bookingModel;
+    private HomeBookingModel bookingModel;
     JLabel note = new JLabel("Assumption: Input QR code to simulate scanning QR code");
     JLabel label = new JLabel("Scan QR code:");
     JTextField textField = new JTextField(30);
     JButton button = new JButton("Scan");
 
 
-    public ScanQRView(HomeBooking bookingModel) throws HeadlessException {
+    public ScanQRView(HomeBookingModel bookingModel) throws HeadlessException {
         super("Home Booking Subsystem - Scan QR");
         this.bookingModel = bookingModel;
 

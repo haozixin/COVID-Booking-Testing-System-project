@@ -1,4 +1,4 @@
-import models.Actor;
+import engine.CurrentOperator;
 import subSystems.*;
 
 /**
@@ -15,9 +15,9 @@ public class Application {
     public static void main(String[] args) {
 
 
-        Actor actor = Actor.getInstance();
+        CurrentOperator currentOperator = CurrentOperator.getInstance();
         SystemFacade systemFacade = new SystemFacade();
-        systemFacade.addActor(actor);
+        systemFacade.addActor(currentOperator);
         systemFacade.addSubSystem(new LoginSubsystem());
         systemFacade.addSubSystem(new OnsiteTestingSubsystem());
         systemFacade.addSubSystem(new SearchForSitesSubsystem());

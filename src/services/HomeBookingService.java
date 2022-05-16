@@ -3,19 +3,19 @@ package services;
 import controllers.HomeBookingController;
 import engine.Service;
 import enums.Path;
-import models.Actor;
-import models.Collection;
-import models.HomeBooking;
+import engine.CurrentOperator;
+import models.CollectionModel;
+import models.HomeBookingModel;
 import views.HomeBookingView;
 
 public class HomeBookingService extends Service {
     @Override
-    public String execute(Actor actor) {
-        Collection collection = new Collection();
-        collection.updateCollection(Path.SITE.getPath());
+    public String execute(CurrentOperator currentOperator) {
+        CollectionModel collectionModel = new CollectionModel();
+        collectionModel.updateCollection(Path.SITE.getPath());
 
-        HomeBooking homeBookingModel = new HomeBooking();
-        HomeBookingView view = new HomeBookingView(collection, homeBookingModel);
+        HomeBookingModel homeBookingModel = new HomeBookingModel();
+        HomeBookingView view = new HomeBookingView(collectionModel, homeBookingModel);
         HomeBookingController controller = new HomeBookingController(view, homeBookingModel);
         view.setVisible(true);
 
@@ -23,7 +23,7 @@ public class HomeBookingService extends Service {
     }
 
     @Override
-    public String menuDescription(Actor actor) {
+    public String menuDescription(CurrentOperator currentOperator) {
         return "Go to book a Home-Testing";
     }
 }

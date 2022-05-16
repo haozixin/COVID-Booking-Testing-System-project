@@ -17,7 +17,7 @@ import java.util.HashMap;
  * It is responsible for interaction with the database, do some logic/basic operations for a collection of data,
  * provide data to Views
  */
-public class Collection extends Model {
+public class CollectionModel extends Model {
     public static final String FILTER_IS_ALL = "all";
     public ArrayList<ObjectNode> collection;
 
@@ -32,7 +32,7 @@ public class Collection extends Model {
         return factors;
     }
 
-    public Collection() {
+    public CollectionModel() {
         collection = new ArrayList<>();
         factors = new ArrayList<>();
     }

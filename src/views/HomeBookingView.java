@@ -1,8 +1,7 @@
 package views;
 
-import models.Actor;
-import models.Collection;
-import models.HomeBooking;
+import models.CollectionModel;
+import models.HomeBookingModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +10,8 @@ import java.util.Objects;
 
 public class HomeBookingView extends View{
     public static final String HAS_RAT_KIT = "Yes";
-    Collection collectionModel;
-    private HomeBooking homeBookingModel;
+    CollectionModel collectionModel;
+    private HomeBookingModel homeBookingModel;
 
 
     JTextArea sites = new JTextArea("Here is the place to list testing sites");
@@ -28,7 +27,7 @@ public class HomeBookingView extends View{
 
 
 
-    public HomeBookingView(Collection collectionModel, HomeBooking homeBookingModel) throws HeadlessException {
+    public HomeBookingView(CollectionModel collectionModel, HomeBookingModel homeBookingModel) throws HeadlessException {
         super("Home Booking Subsystem - book a home testing");
         this.collectionModel = collectionModel;
         this.homeBookingModel = homeBookingModel;

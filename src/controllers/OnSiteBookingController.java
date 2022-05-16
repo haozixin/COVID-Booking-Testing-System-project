@@ -1,8 +1,8 @@
 package controllers;
 
 import enums.Path;
-import models.OnsiteBooking;
-import models.CovidTestingSite;
+import models.OnsiteBookingModel;
+import models.CovidTestingSiteModel;
 import models.User;
 import views.OnSiteBookingView;
 
@@ -12,12 +12,12 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class OnSiteBookingController extends Controller {
-    private OnsiteBooking onsiteBookingModel;
-    private CovidTestingSite covidTestingSiteModel;
+    private OnsiteBookingModel onsiteBookingModel;
+    private CovidTestingSiteModel covidTestingSiteModel;
     private User userModel;
     private OnSiteBookingView view;
 
-    public OnSiteBookingController(OnsiteBooking onsiteBookingModel, User userModel, CovidTestingSite covidTestingSiteModel, OnSiteBookingView view) {
+    public OnSiteBookingController(OnsiteBookingModel onsiteBookingModel, User userModel, CovidTestingSiteModel covidTestingSiteModel, OnSiteBookingView view) {
         this.covidTestingSiteModel = covidTestingSiteModel;
         this.userModel = userModel;
         this.onsiteBookingModel = onsiteBookingModel;

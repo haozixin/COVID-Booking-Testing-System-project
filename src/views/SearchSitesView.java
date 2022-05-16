@@ -1,7 +1,7 @@
 package views;
 
-import models.Collection;
-import models.CovidTestingSite;
+import models.CollectionModel;
+import models.CovidTestingSiteModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class SearchSitesView extends View {
-    Collection collectionModel;
+    CollectionModel collectionModel;
 
     JPanel p1 = new JPanel();
     JPanel p2 = new JPanel();
@@ -25,7 +25,7 @@ public class SearchSitesView extends View {
     JComboBox<String> facilityComboBox = new JComboBox<>();
 
 
-    public SearchSitesView(Collection collectionModel) throws HeadlessException {
+    public SearchSitesView(CollectionModel collectionModel) throws HeadlessException {
         super("Search Sites Subsystem - search for sites");
         this.collectionModel = collectionModel;
 
@@ -85,8 +85,8 @@ public class SearchSitesView extends View {
     private void setCheckBox(){
         ArrayList<String> filterFactors = new ArrayList<>();
         // initial the factor value that used to filter the sites
-        filterFactors.add(CovidTestingSite.SUBURB_FIELD);
-        filterFactors.add(CovidTestingSite.FACILITY_TYPE_FIELD);
+        filterFactors.add(CovidTestingSiteModel.SUBURB_FIELD);
+        filterFactors.add(CovidTestingSiteModel.FACILITY_TYPE_FIELD);
         // go through all values of entity, find out distinguished values as filters
         collectionModel.initFilterFields(filterFactors);
         ArrayList<HashMap<String, String>> factors = collectionModel.getFactors();
@@ -94,10 +94,10 @@ public class SearchSitesView extends View {
         // add the distinct values to the combo box
         for (HashMap<String, String> factor : factors) {
             for (String key : factor.keySet()) {
-                if (factor.get(key).equals(CovidTestingSite.SUBURB_FIELD)) {
+                if (factor.get(key).equals(CovidTestingSiteModel.SUBURB_FIELD)) {
                     suburbComboBox.addItem(key);
                 }
-                if(factor.get(key).equals(CovidTestingSite.FACILITY_TYPE_FIELD)){
+                if(factor.get(key).equals(CovidTestingSiteModel.FACILITY_TYPE_FIELD)){
                     facilityComboBox.addItem(key);
                 }
             }

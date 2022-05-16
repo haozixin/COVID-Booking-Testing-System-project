@@ -1,10 +1,8 @@
 package controllers;
 
 
-import models.Actor;
-import models.Model;
+import engine.CurrentOperator;
 import views.LoginView;
-import views.View;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,9 +11,9 @@ import java.io.IOException;
 
 public class LoginController extends Controller{
     private LoginView loginView;
-    private Actor loginModel;
+    private CurrentOperator loginModel;
 
-    public LoginController(LoginView loginView, Actor loginModel) {
+    public LoginController(LoginView loginView, CurrentOperator loginModel) {
         if (loginView != null && loginModel != null) {
             this.loginView = loginView;
             this.loginModel = loginModel;

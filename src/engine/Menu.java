@@ -1,7 +1,5 @@
 package engine;
 
-import models.Actor;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -17,11 +15,11 @@ public class Menu {
     /**
      * Display a menu to the user and have them select an option.
      *
-     * @param actor the Actor representing the users
+     * @param currentOperator the Actor representing the users
      * @param services the Actions that the user can choose from
      * @return the Action selected by the user
      */
-    public Service showMenu(Actor actor, Services services) {
+    public Service showMenu(CurrentOperator currentOperator, Services services) {
         ArrayList<Character> freeChars = new ArrayList<Character>();
         HashMap<Character, Service> keyToActionMap = new HashMap<Character, Service>();
 
@@ -41,7 +39,7 @@ public class Menu {
             }
             freeChars.remove(Character.valueOf(c));
             keyToActionMap.put(c, service);
-            System.out.println(c + ": " + service.menuDescription(actor));
+            System.out.println(c + ": " + service.menuDescription(currentOperator));
         }
 
         char key;

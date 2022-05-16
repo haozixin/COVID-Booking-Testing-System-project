@@ -1,12 +1,9 @@
 package models;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * HomeBooking class is a subclass of Booking class.
  */
-public class HomeBooking extends Booking {
+public class HomeBookingModel extends BookingModel {
 
 
     public void setSchema(String customerId, String testingSiteId, boolean hasRATKit) {

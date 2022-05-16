@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
-public abstract class Booking extends EntityModel {
+public abstract class BookingModel extends EntityModel {
 
 
     public static final String USER_ID_FIELD = "customerId";

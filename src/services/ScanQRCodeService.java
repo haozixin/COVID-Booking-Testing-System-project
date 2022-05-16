@@ -2,10 +2,8 @@ package services;
 
 import controllers.ScanQRController;
 import engine.Service;
-import models.Actor;
-import models.Booking;
-import models.Collection;
-import models.HomeBooking;
+import engine.CurrentOperator;
+import models.HomeBookingModel;
 import views.ScanQRView;
 
 /**
@@ -14,11 +12,11 @@ import views.ScanQRView;
 public class ScanQRCodeService extends Service {
 
     @Override
-    public String execute(Actor actor) {
+    public String execute(CurrentOperator currentOperator) {
         // we assume that scanning QR code is a process/operation to get all necessary information and set "hasRATKit" to true
         // As we use UUID to emulate the QR code, so scanning QR code is same as the process/operation of inputting UUID to the system
 
-        HomeBooking bookingModel = new HomeBooking();
+        HomeBookingModel bookingModel = new HomeBookingModel();
         ScanQRView scanQRView = new ScanQRView(bookingModel);
         controller = new ScanQRController(bookingModel,scanQRView);
         scanQRView.setVisible(true);
@@ -27,7 +25,7 @@ public class ScanQRCodeService extends Service {
     }
 
     @Override
-    public String menuDescription(Actor actor) {
+    public String menuDescription(CurrentOperator currentOperator) {
         return "Scan QR Code";
     }
 }

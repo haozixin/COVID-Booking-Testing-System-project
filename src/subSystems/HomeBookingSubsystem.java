@@ -1,7 +1,7 @@
 package subSystems;
 
 
-import models.Actor;
+import engine.CurrentOperator;
 import services.GoBackService;
 import services.HomeBookingService;
 import services.ScanQRCodeService;
@@ -18,7 +18,7 @@ public class HomeBookingSubsystem extends CovidBAndTSystem {
     }
 
     @Override
-    protected void processActorTurn(Actor actor) {
+    protected void processActorTurn(CurrentOperator currentOperator) {
         services.clear();
 
 //        if (actor.isAdministrator()) {
@@ -32,6 +32,6 @@ public class HomeBookingSubsystem extends CovidBAndTSystem {
         services.add(new ScanQRCodeService());
         services.add(new GoBackService());
 
-        super.processActorTurn(actor);
+        super.processActorTurn(currentOperator);
     }
 }

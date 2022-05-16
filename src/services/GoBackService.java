@@ -2,30 +2,30 @@ package services;
 
 
 import engine.Service;
-import models.Actor;
+import engine.CurrentOperator;
 
 /**
  * Action to go back to the previous room.
  */
 public class GoBackService extends Service {
-    private Actor actor;
+    private CurrentOperator currentOperator;
 
     /**
      * Constructor.
      */
     public GoBackService() {
-        actor = Actor.getInstance();
+        currentOperator = CurrentOperator.getInstance();
 
     }
 
     @Override
-    public String execute(Actor actor) {
-        actor.setWantsGoBack(true);
-        return menuDescription(actor);
+    public String execute(CurrentOperator currentOperator) {
+        currentOperator.setWantsGoBack(true);
+        return menuDescription(currentOperator);
     }
 
     @Override
-    public String menuDescription(Actor actor) {
+    public String menuDescription(CurrentOperator currentOperator) {
         return "Go back to previous menu";
     }
 

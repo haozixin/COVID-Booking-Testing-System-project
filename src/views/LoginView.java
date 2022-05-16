@@ -1,13 +1,13 @@
 package views;
 
-import models.Actor;
+import engine.CurrentOperator;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class LoginView extends View {
-    private Actor theModel;
+    private CurrentOperator theModel;
 
 
     private JLabel userNameLabel = new JLabel("Username:");
@@ -16,7 +16,7 @@ public class LoginView extends View {
     private JPasswordField passwordField = new JPasswordField(15);
     private JButton button = new JButton("Login");
 
-    public LoginView(Actor model) throws HeadlessException {
+    public LoginView(CurrentOperator model) throws HeadlessException {
         super("Login Subsystem - Login operation");
 
         state = new JLabel("You are not logged in");

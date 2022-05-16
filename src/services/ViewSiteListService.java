@@ -3,8 +3,8 @@ package services;
 
 import controllers.ViewSiteListController;
 import engine.Service;
-import models.Actor;
-import models.Collection;
+import engine.CurrentOperator;
+import models.CollectionModel;
 import views.DisplaySiteListView;
 
 /**
@@ -13,17 +13,17 @@ import views.DisplaySiteListView;
 public class ViewSiteListService extends Service {
 
     @Override
-    public String execute(Actor actor) {
-        Collection collection = new Collection();
-        DisplaySiteListView view = new DisplaySiteListView(collection);
-        controller = new ViewSiteListController(view, collection);
+    public String execute(CurrentOperator currentOperator) {
+        CollectionModel collectionModel = new CollectionModel();
+        DisplaySiteListView view = new DisplaySiteListView(collectionModel);
+        controller = new ViewSiteListController(view, collectionModel);
 
         view.setVisible(true);
         return "";
     }
 
     @Override
-    public String menuDescription(Actor actor) {
+    public String menuDescription(CurrentOperator currentOperator) {
         return "Go to view testing-sites list";
     }
 }

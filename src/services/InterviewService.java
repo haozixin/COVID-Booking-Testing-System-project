@@ -1,15 +1,16 @@
 package services;
 
 import controllers.InterviewController;
+import engine.CurrentOperator;
 import engine.Service;
 import models.*;
 import views.InterviewView;
 
 public class InterviewService extends Service {
     @Override
-    public String execute(Actor actor){
+    public String execute(CurrentOperator currentOperator){
         User userModel = new User();
-        CovidTest covidTestModel = new CovidTest();
+        CovidTestModel covidTestModel = new CovidTestModel();
         InterviewView view = new InterviewView(userModel, covidTestModel);
 
         controller = new InterviewController(view, userModel, covidTestModel);
@@ -18,7 +19,7 @@ public class InterviewService extends Service {
     }
 
     @Override
-    public String menuDescription(Actor actor) {
+    public String menuDescription(CurrentOperator currentOperator) {
         return "Go to conduct a interview";
     }
 }

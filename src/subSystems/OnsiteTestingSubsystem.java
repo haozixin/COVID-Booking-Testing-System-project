@@ -1,7 +1,7 @@
 package subSystems;
 
 
-import models.Actor;
+import engine.CurrentOperator;
 import services.GoBackService;
 import services.InterviewService;
 
@@ -17,15 +17,15 @@ public class OnsiteTestingSubsystem extends CovidBAndTSystem {
     }
 
     @Override
-    protected void processActorTurn(Actor actor) {
+    protected void processActorTurn(CurrentOperator currentOperator) {
         services.clear();
-        if (actor.isAdministrator() || actor.isHealthcareWorker()){
+        if (currentOperator.isAdministrator() || currentOperator.isHealthcareWorker()){
             services.add(new InterviewService());
         }
 
         services.add(new GoBackService());
 
 
-        super.processActorTurn(actor);
+        super.processActorTurn(currentOperator);
     }
 }

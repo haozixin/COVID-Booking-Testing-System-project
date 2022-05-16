@@ -2,8 +2,8 @@ package controllers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
-import models.Booking;
-import models.Collection;
+import models.BookingModel;
+import models.CollectionModel;
 import views.CheckBookingView;
 
 import javax.swing.*;
@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class CheckBookingController extends Controller {
     private CheckBookingView view;
-    private Collection dataModel;
+    private CollectionModel dataModel;
 
-    public CheckBookingController(CheckBookingView view, Collection dataModel) {
+    public CheckBookingController(CheckBookingView view, CollectionModel dataModel) {
         this.view = view;
         this.dataModel = dataModel;
         this.view.addButtonListener(new ButtonListener());
@@ -30,7 +30,7 @@ public class CheckBookingController extends Controller {
             // do the rest logic
             if (!pinCode.equals("")) {
                 dataModel.updateCollection(Path.BOOKING.getPath());
-                ArrayList<ObjectNode> bookings = dataModel.filterByOnFactor(Booking.SMS_PIN_FIELD, pinCode);
+                ArrayList<ObjectNode> bookings = dataModel.filterByOnFactor(BookingModel.SMS_PIN_FIELD, pinCode);
 
                 if (bookings.size() > 0) {
                     dataModel.setCollection(bookings);

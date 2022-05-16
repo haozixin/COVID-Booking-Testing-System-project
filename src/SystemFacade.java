@@ -1,7 +1,7 @@
 import engine.Service;
 import engine.Services;
 import engine.Menu;
-import models.Actor;
+import engine.CurrentOperator;
 import services.GoSubsystemService;
 import subSystems.CovidBAndTSystem;
 import utility.Utility;
@@ -17,7 +17,7 @@ public class SystemFacade {
     private static final String systemName = "--COVID Booking & Testing System--";
     private ArrayList<CovidBAndTSystem> systems;
     private ArrayList<String> dashBoard;
-    private Actor actor;
+    private CurrentOperator currentOperator;
     private Menu mainMenu;
     private Services services;
 
@@ -44,10 +44,10 @@ public class SystemFacade {
     /**
      * set the actor(like agent for real actor) for the system
      *
-     * @param actor actor
+     * @param currentOperator actor
      */
-    public void addActor(Actor actor) {
-        this.actor = actor;
+    public void addActor(CurrentOperator currentOperator) {
+        this.currentOperator = currentOperator;
     }
 
     /**
@@ -63,7 +63,7 @@ public class SystemFacade {
      */
     public void run() {
 
-        if (actor == null)
+        if (currentOperator == null)
             throw new IllegalStateException();
 
         while (true) {
@@ -74,10 +74,10 @@ public class SystemFacade {
             }
 
 
-            Service service = mainMenu.showMenu(actor, services);
+            Service service = mainMenu.showMenu(currentOperator, services);
             String result = null;
 
-            result = service.execute(actor);
+            result = service.execute(currentOperator);
 
             System.out.println(result);
         }

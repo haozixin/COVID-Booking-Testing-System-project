@@ -1,13 +1,13 @@
 package views;
 
-import models.Collection;
+import models.CollectionModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class CheckBookingView extends View {
-    private Collection collectionModel;
+    private CollectionModel collectionModel;
 
     JPanel p1 = new JPanel();
     JPanel p2 = new JPanel();
@@ -17,7 +17,7 @@ public class CheckBookingView extends View {
     JLabel pinLabel = new JLabel("Pin Code:");
     JTextField pinField = new JTextField(10);
 
-    public CheckBookingView(Collection collectionModel) throws HeadlessException {
+    public CheckBookingView(CollectionModel collectionModel) throws HeadlessException {
         super("Onsite-Booking Subsystem");
         this.collectionModel = collectionModel;
 

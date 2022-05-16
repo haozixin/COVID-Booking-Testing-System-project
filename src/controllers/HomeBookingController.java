@@ -1,10 +1,8 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
-import models.Actor;
-import models.Booking;
-import models.HomeBooking;
+import engine.CurrentOperator;
+import models.HomeBookingModel;
 import views.HomeBookingView;
 
 import javax.swing.*;
@@ -14,8 +12,8 @@ import java.io.IOException;
 
 public class HomeBookingController extends Controller {
     private HomeBookingView view;
-    private HomeBooking bookingModel;
-    public HomeBookingController(HomeBookingView view, HomeBooking bookingModel) {
+    private HomeBookingModel bookingModel;
+    public HomeBookingController(HomeBookingView view, HomeBookingModel bookingModel) {
         this.view = view;
         this.bookingModel = bookingModel;
         view.addButtonListener(new ButtonListener());
@@ -30,7 +28,7 @@ public class HomeBookingController extends Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String customerId = Actor.getInstance().getIdFromToken();
+            String customerId = CurrentOperator.getInstance().getIdFromToken();
             String siteId = view.getSiteId();
 
             if (!siteId.equals("")) {

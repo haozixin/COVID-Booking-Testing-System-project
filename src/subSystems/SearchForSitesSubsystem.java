@@ -1,7 +1,7 @@
 package subSystems;
 
 
-import models.Actor;
+import engine.CurrentOperator;
 import services.GoBackService;
 import services.SearchSiteService;
 import services.ViewSiteListService;
@@ -19,16 +19,16 @@ public class SearchForSitesSubsystem extends CovidBAndTSystem {
 
     /**
      * arrange the actions(user could choose from menu) for the actor here
-     * @param actor the actor who is going to take the turn
+     * @param currentOperator the actor who is going to take the turn
      */
     @Override
-    protected void processActorTurn(Actor actor) {
+    protected void processActorTurn(CurrentOperator currentOperator) {
         services.clear();
 
 //        services.add(搜索);
         services.add(new ViewSiteListService());
         services.add(new SearchSiteService());
         services.add(new GoBackService());
-        super.processActorTurn(actor);
+        super.processActorTurn(currentOperator);
     }
 }

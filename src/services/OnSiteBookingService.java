@@ -2,6 +2,7 @@ package services;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import controllers.OnSiteBookingController;
+import engine.CurrentOperator;
 import engine.Service;
 import enums.Path;
 import models.*;
@@ -12,20 +13,20 @@ import java.util.ArrayList;
 public class OnSiteBookingService extends Service {
 
     @Override
-    public String execute(Actor actor) {
+    public String execute(CurrentOperator currentOperator) {
         User userModel = new User();
-        OnsiteBooking bookingModel = new OnsiteBooking();
-        CovidTestingSite covidTestingSiteModel = new CovidTestingSite();
+        OnsiteBookingModel bookingModel = new OnsiteBookingModel();
+        CovidTestingSiteModel covidTestingSiteModel = new CovidTestingSiteModel();
 
-        Collection collection = new Collection();
-        collection.updateCollection(Path.SITE.getPath());
-        ArrayList<ObjectNode> siteList = collection.filterByOnFactor(CovidTestingSite.HAS_ON_SITE_BOOKING_FIELD, "true");
+        CollectionModel collectionModel = new CollectionModel();
+        collectionModel.updateCollection(Path.SITE.getPath());
+        ArrayList<ObjectNode> siteList = collectionModel.filterByOnFactor(CovidTestingSiteModel.HAS_ON_SITE_BOOKING_FIELD, "true");
         if (siteList.size() > 0) {
-            collection.setCollection(siteList);
+            collectionModel.setCollection(siteList);
         } else {
-            collection.setCollection(new ArrayList<>());
+            collectionModel.setCollection(new ArrayList<>());
         }
-        OnSiteBookingView view = new OnSiteBookingView(collection, bookingModel, covidTestingSiteModel);
+        OnSiteBookingView view = new OnSiteBookingView(collectionModel, bookingModel, covidTestingSiteModel);
 
         controller = new OnSiteBookingController(bookingModel, userModel, covidTestingSiteModel, view);
         view.setVisible(true);
@@ -33,7 +34,7 @@ public class OnSiteBookingService extends Service {
     }
 
     @Override
-    public String menuDescription(Actor actor) {
+    public String menuDescription(CurrentOperator currentOperator) {
         return "Make an on-site booking";
     }
 }

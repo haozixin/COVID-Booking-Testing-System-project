@@ -1,12 +1,10 @@
-package models;
+package engine;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import engine.Service;
-import engine.Services;
-import engine.Menu;
 import enums.UserRoles;
+import models.Model;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
@@ -16,13 +14,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * The class represents the person who are interacting with our system.
  * This class is like an agent that can be used by actors to contact with the system.(will be more security)
  * The current user is the user that is currently logged in. (might be the resident or the Administrators/receptionist ...)
  */
-public class Actor extends Model{
+public class CurrentOperator extends Model {
     public static final String ID_IN_TOKEN = "sub";
     private WebServicesTarget webServices;
-    private static Actor instance;
+    private static CurrentOperator instance;
     // to judge if the user is logged in or not
     // true is logged in, false is not logged in
     private boolean isLogged;
@@ -33,7 +32,7 @@ public class Actor extends Model{
     private Menu menu = new Menu();
     private Set<String> roles = new HashSet<>();
 
-    private Actor() {
+    private CurrentOperator() {
         webServices = new ServicesAdapter();
     }
 
@@ -81,9 +80,9 @@ public class Actor extends Model{
         return jsonObject;
     }
 
-    public static Actor getInstance(){
+    public static CurrentOperator getInstance(){
         if(instance == null){
-            instance = new Actor();
+            instance = new CurrentOperator();
         }
         return instance;
     }

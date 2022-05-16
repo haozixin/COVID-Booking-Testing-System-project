@@ -1,17 +1,17 @@
 package views;
 
-import models.Collection;
-import models.OnsiteBooking;
-import models.CovidTestingSite;
+import models.CollectionModel;
+import models.OnsiteBookingModel;
+import models.CovidTestingSiteModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class OnSiteBookingView extends View {
-    private Collection collectionModel;
-    private OnsiteBooking onsiteBookingModel;
-    private CovidTestingSite covidTestingSiteModel;
+    private CollectionModel collectionModel;
+    private OnsiteBookingModel onsiteBookingModel;
+    private CovidTestingSiteModel covidTestingSiteModel;
 
 
 
@@ -28,11 +28,11 @@ public class OnSiteBookingView extends View {
 
 
 
-    public OnSiteBookingView(Collection collection,OnsiteBooking onsiteBookingModel, CovidTestingSite covidTestingSiteModel) throws HeadlessException {
+    public OnSiteBookingView(CollectionModel collectionModel, OnsiteBookingModel onsiteBookingModel, CovidTestingSiteModel covidTestingSiteModel) throws HeadlessException {
         super("On-Site Booking Subsystem - make an on-site booking");
         this.onsiteBookingModel = onsiteBookingModel;
         this.covidTestingSiteModel = covidTestingSiteModel;
-        this.collectionModel = collection;
+        this.collectionModel = collectionModel;
 
         GridBagConstraints c = setBasicStyle(panel);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -43,7 +43,7 @@ public class OnSiteBookingView extends View {
         outsideJp.setLayout(new ScrollPaneLayout());
         outsideJp.setPreferredSize(new Dimension(900,500));
         sites.setSize(800,300);
-        sites.setText(collectionModel.display());
+        sites.setText(this.collectionModel.display());
 
         GridBagConstraints c2 = setBasicStyle(p2);
 
