@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ *
+ */
 public class OnSiteBookingView extends View {
     private CollectionModel collectionModel;
     private OnsiteBookingModel onsiteBookingModel;

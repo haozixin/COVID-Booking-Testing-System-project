@@ -15,6 +15,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ *
+ */
 public abstract class BookingModel extends EntityModel implements IOriginator {
 
 
@@ -136,6 +139,14 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
 
     public void setState(ObjectNode entityInfo){
         super.updateModel(entityInfo);
+    }
+
+    public void changeTime(){
+//TODO: 根据ID得到数据并查看是否在时间范围内（view中实现）， 若在，则修改
+    }
+
+    public void changeVenue(){
+
     }
 
 }
