@@ -1,7 +1,5 @@
 import controllers.LoginController;
 import controllers.SignUpController;
-import models.Actor;
-import models.User;
 import subSystems.*;
 import views.LoginView;
 import views.ProfileView;
