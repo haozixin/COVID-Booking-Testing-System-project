@@ -6,6 +6,9 @@ import engine.CurrentOperator;
 import models.CollectionModel;
 import views.CheckBookingView;
 
+/**
+ * Action to check the booking.
+ */
 public class CheckBookingService extends Service {
     @Override
     public String execute(CurrentOperator currentOperator) {

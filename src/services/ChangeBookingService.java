@@ -8,6 +8,9 @@ import views.ChangeBookingView;
 
 import java.util.List;
 
+/**
+ * Action to change the booking.
+ */
 public class ChangeBookingService extends Service{
 
 
