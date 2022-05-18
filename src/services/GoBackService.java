@@ -15,7 +15,6 @@ public class GoBackService extends Service {
      */
     public GoBackService() {
         currentOperator = CurrentOperator.getInstance();
-
     }
 
     @Override
@@ -28,6 +27,5 @@ public class GoBackService extends Service {
     public String menuDescription(CurrentOperator currentOperator) {
         return "Go back to previous menu";
     }
-
 
 }
