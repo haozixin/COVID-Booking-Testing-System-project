@@ -1,5 +1,6 @@
 package services;
 
+import controllers.ChangeBookingController;
 import engine.CurrentOperator;
 import engine.Service;
 import engine.Services;
@@ -15,6 +16,7 @@ public class ChangeBookingService extends Service{
     public String execute(CurrentOperator currentOperator) {
         OnsiteBookingModel booking = new OnsiteBookingModel();
         ChangeBookingView changeBookingView = new ChangeBookingView(booking);
+        controller = new ChangeBookingController(changeBookingView, booking);
         changeBookingView.setVisible(true);
         return "";
     }

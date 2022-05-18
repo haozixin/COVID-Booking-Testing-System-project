@@ -36,5 +36,11 @@ public class OnsiteBookingModel extends BookingModel {
         return entityInfo;
     }
 
-
+    @Override
+    public boolean canBeChanged(String id) {
+        boolean isValid = super.canBeChanged(id);
+        // if the booking is not onsite booking, we cannot change it
+        boolean isOnsite = entityInfo.findValue(BOOKING_TYPE_FIELD).asText().equals(ONSITE);
+        return isValid && isOnsite;
+    }
 }

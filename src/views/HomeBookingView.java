@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
 
-public class HomeBookingView extends View{
+public class HomeBookingView extends BookingView{
     public static final String HAS_RAT_KIT = "Yes";
     CollectionModel collectionModel;
     private HomeBookingModel homeBookingModel;
@@ -27,13 +27,6 @@ public class HomeBookingView extends View{
     JLabel hasRATKit = new JLabel("Do you already have a RAT kit?");
     JComboBox<String> comboBox = new JComboBox<>();
     JButton submit = new JButton("Submit");
-
-    JLabel dateLabel = new JLabel("Date : ");
-    JFormattedTextField dateField;
-    JLabel timeLabel = new JLabel("Time : ");
-    JFormattedTextField timeField;
-
-
 
 
 
@@ -107,32 +100,6 @@ public class HomeBookingView extends View{
         }
     }
 
-    private void setDateTime(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
-
-        DateFormatter df = new DateFormatter(dateFormat);
-        DateFormatter tf = new DateFormatter(timeFormat);
-        try {
-            MaskFormatter mf = new MaskFormatter("####-##-##");
-            mf.setPlaceholder("YYYY-MM-DD");
-            dateField = new JFormattedTextField(mf);
-
-            MaskFormatter mf2 = new MaskFormatter("##:##");
-            mf2.setPlaceholder("HH:MM");
-            timeField = new JFormattedTextField(mf2);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-    public String getDateField() {
-        return dateField.getText();
-    }
-
-    public String getTimeField() {
-        return timeField.getText();
-    }
 
     @Override
     public void addButtonListener(ActionListener listener) {

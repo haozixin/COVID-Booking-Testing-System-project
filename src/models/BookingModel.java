@@ -2,6 +2,7 @@ package models;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
+import enums.Query;
 import mementos.BookingMemento;
 import mementos.IOriginator;
 import utility.Utility;
@@ -148,7 +149,7 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
     }
 
 
-    public boolean withinTimeLimit(){
+    protected boolean withinTimeLimit(){
         String startTime = entityInfo.findValue(START_TIME_FIELD).asText();
         // string to dataTime
         Date startDate = null;
@@ -164,7 +165,7 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
         return Objects.requireNonNull(startDate).after(currentDate);
     }
 
-    public boolean isCanceled(){
+    protected boolean isCanceled(){
         // we assume the booking is not canceled if the state field of booking is not "canceled"
         String status = entityInfo.findValue(STATUS_FIELD).asText();
         return status.equals(CANCELED_STATUS);
@@ -172,8 +173,40 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
 
 
 
-    public boolean isUsed(){
+    protected boolean isUsed(){
         return !entityInfo.findValue("covidTests").isEmpty();
+    }
+
+    public boolean canBeChanged(String id){
+        try {
+            getSpecifiedEntity(Path.BOOKING.getPath(), id, Query.COVIDTESTS_IN_BOOKING.getQuery());
+            responseMessage = webServicesTarget.getResponseMessage();
+            // if the booking is used, we cannot change it
+            // if the booking is canceled, we cannot change it
+            // if the booking is not within time limit(the start date is earlier than today), we cannot change it
+            // if the booking is not onsite booking, we cannot change it
+            return !isCanceled() && withinTimeLimit() && !isUsed();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
+    public void changeBooking(String venue, String startTime){
+        if (!venue.equals("")){
+            entityInfo.put(TESTING_SITE_ID_FIELD, venue);
+        }
+        if (!startTime.equals("")){
+            entityInfo.put(START_TIME_FIELD, startTime);
+        }
+
+        try {
+            webServicesTarget.patchData(Path.BOOKING.getPath(), entityInfo.toString(), getEntityId());
+            responseMessage = webServicesTarget.getResponseMessage();
+        }catch (IOException | InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
 }

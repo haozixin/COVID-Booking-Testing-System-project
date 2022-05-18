@@ -36,8 +36,8 @@ public class OnSiteBookingController extends Controller {
         public void actionPerformed(ActionEvent e) {
             String siteId = view.getSiteId();
             String userName = view.getUserNameField();
-            String date = view.getDateField();
-            String time = view.getTimeField();
+            String date = view.getDate();
+            String time = view.getTime();
             if (siteId.equals("") || userName.equals("") || date.equals("") || time.equals("")) {
                 JOptionPane.showMessageDialog(null, "Please fill in all fields");
             } else {

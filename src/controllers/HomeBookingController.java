@@ -30,8 +30,8 @@ public class HomeBookingController extends Controller {
         public void actionPerformed(ActionEvent e) {
             String customerId = CurrentOperator.getInstance().getIdFromToken();
             String siteId = view.getSiteId();
-            String date = view.getDateField();
-            String time = view.getTimeField();
+            String date = view.getDate();
+            String time = view.getTime();
 
             if (!siteId.equals("") && !date.equals("") && !time.equals("")) {
                 boolean hasKit = false;
