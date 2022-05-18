@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProfileView extends View{
     UserModel userModel;
@@ -22,7 +23,8 @@ public class ProfileView extends View{
     private JLabel userNameLabel = new JLabel("Username: ");
     private JLabel phoneNumberLabel = new JLabel("Phone Number: ");
     private JLabel bookingsLabel = new JLabel("On-site Bookings: ");
-    private ArrayList<JButton> buttons = new ArrayList<>();
+    private HashMap<JButton, OnsiteBookingModel> buttons = new HashMap<>();
+
 
 
 
@@ -68,9 +70,12 @@ public class ProfileView extends View{
         jp.setSize(400,300);
         addComponentsToPanel(panel, c, jp);
         JButton button = new JButton("Change the Booking");
+
         addComponentsToPanel(panel, c, button);
         // add buttons into an arrayList
-        buttons.add(button);
+
+        buttons.put(button, booking);
+
     }
 
 
@@ -85,5 +90,8 @@ public class ProfileView extends View{
     @Override
     public void addButtonListener(ActionListener listener) {
         // add the same listener to all buttons
+        for(JButton button : buttons.keySet()){
+            button.addActionListener(listener);
+        }
     }
 }

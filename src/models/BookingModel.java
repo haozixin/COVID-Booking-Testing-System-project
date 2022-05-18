@@ -9,11 +9,9 @@ import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
 
 /**
  *
@@ -88,6 +86,7 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
         entityInfo.put(USER_ID_FIELD, customerId);
         entityInfo.put(TESTING_SITE_ID_FIELD, testingSiteId);
 
+        // 2022-05-18T07:12:37.742Z
 
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis()));
         entityInfo.put(START_TIME_FIELD, time);
@@ -146,9 +145,32 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
         super.updateModel(entityInfo);
     }
 
-    public void changeTime(){
-//TODO: 根据ID得到数据并查看是否在时间范围内（view中实现）， 若在，则修改
+
+    public boolean withinTimeLimit(){
+        String startTime = entityInfo.findValue(START_TIME_FIELD).asText();
+        // string to dataTime
+        Date startDate = null;
+        try {
+            // UTC dateTime format
+            startDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(startTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        // get current time
+        Date currentDate = new Date(System.currentTimeMillis());
+        // if the start time is after the current time, it's within time limit
+        if (Objects.requireNonNull(startDate).after(currentDate)){
+            return true;
+        }else{
+            return false;
+        }
     }
+
+//    public boolean isNotCanceled(){
+//        // we assume the booking is not canceled if the state field of booking is not "canceled"
+//    }
+
+
 
     public void changeVenue(){
 
