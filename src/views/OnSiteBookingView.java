@@ -50,37 +50,16 @@ public class OnSiteBookingView extends View {
 
         GridBagConstraints c2 = setBasicStyle(p2);
 
-        c2.gridx = 0;
-        c2.gridy = 0;
-        p2.add(label, c2);
 
-        c2.gridx = 0;
-        c2.gridy = 1;
-        p2.add(jp, c2);
+        addComponentsToPanel(p2, c2, label);
+        addComponentsToPanel(p2, c2, jp);
+        addComponentsToPanel(panel, c2, p2);
+        addComponentsToPanel(panel, c, siteLabel);
+        addComponentsToPanel(panel, c, siteId);
+        addComponentsToPanel(panel, c, userNameLabel);
+        addComponentsToPanel(panel, c, userNameField);
+        addComponentsToPanel(panel, c, submitButton);
 
-        c.gridx = 0;
-        c.gridy = 1;
-        panel.add(p2, c);
-
-        c.gridx = 0;
-        c.gridy = 2;
-        panel.add(siteLabel, c);
-
-        c.gridx = 0;
-        c.gridy = 3;
-        panel.add(siteId, c);
-
-        c.gridx = 0;
-        c.gridy = 4;
-        panel.add(userNameLabel, c);
-
-        c.gridx = 0;
-        c.gridy = 5;
-        panel.add(userNameField, c);
-
-        c.gridx = 0;
-        c.gridy = 6;
-        panel.add(submitButton, c);
 
 
 

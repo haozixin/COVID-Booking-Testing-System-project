@@ -37,19 +37,25 @@ public class Utility {
      * @param jsonNode  the json object
      * @return return the formatted string
      */
-    public static String formatMessage(JsonNode jsonNode) {
+    public static String formatMessage(JsonNode jsonNode, String prefix){
         StringBuilder message = new StringBuilder();
         // display a formatted message
         Iterator<Map.Entry<String, JsonNode>> temp = jsonNode.fields();
+        String arrow = " ==> ";
         for (Iterator<Map.Entry<String, JsonNode>> it = temp; it.hasNext(); ) {
             Map.Entry<String, JsonNode> entry = it.next();
+            message.append(prefix);
             if(entry.getValue().isObject()){
 
-                message.append(entry.getKey()).append(" ==> ").append(formatMessage(entry.getValue())).append("\n");
+                message.append(entry.getKey()).append(": \n{").append(formatMessage(entry.getValue(),"\t")).append("}\n");
 
             }
+            else if(entry.getValue().isArray()){
+                message.append(entry.getKey()).append(": \n{").append(displayJsonList(entry.getValue())).append("}\n");
+            }
             else{
-                message.append(entry.getKey()).append(" ==> ").append(entry.getValue()).append("\n");
+
+                message.append(entry.getKey()).append(arrow).append(entry.getValue()).append("\n");
             }
         }
 
@@ -66,7 +72,7 @@ public class Utility {
         if (jsonNode != null) {
             for (JsonNode node : jsonNode) {
                 message.append("----------------------------------------------\n");
-                message.append(formatMessage(node));
+                message.append(formatMessage(node, "\t"));
                 message.append("\n");
             }
 

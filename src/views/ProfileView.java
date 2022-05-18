@@ -32,7 +32,7 @@ public class ProfileView extends View{
         super("On-site booking subsystem - Profile ");
         GridBagConstraints c = setBasicStyle(panel);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.setSize(600,400);
+        this.setSize(700,400);
         outsideJp.setLayout(new ScrollPaneLayout());
         this.userModel = userModel;
         this.onsiteBookingModel = onsiteBookingModel;
@@ -66,8 +66,8 @@ public class ProfileView extends View{
         JScrollPane jp = new JScrollPane(bookingTextArea);
         jp.setLayout(new ScrollPaneLayout());
         bookingTextArea.setEditable(false);
-        bookingTextArea.setSize(400,300);
-        jp.setSize(400,300);
+        bookingTextArea.setSize(600,300);
+        jp.setSize(600,300);
         addComponentsToPanel(panel, c, jp);
         JButton button = new JButton("Change the Booking");
 

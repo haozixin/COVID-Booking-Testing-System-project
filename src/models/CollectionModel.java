@@ -60,7 +60,7 @@ public class CollectionModel extends Model {
         if (collection.size() > 0) {
             for(ObjectNode node : collection) {
                 list.append("-----------------------------------------------------\n");
-                list.append(Utility.formatMessage(node));
+                list.append(Utility.formatMessage(node,""));
             }
             return list.toString();
         }

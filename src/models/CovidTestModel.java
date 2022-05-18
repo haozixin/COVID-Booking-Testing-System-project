@@ -13,7 +13,7 @@ public class CovidTestModel extends EntityModel{
 
 
     public String display(){
-        return Utility.formatMessage(entityInfo);
+        return Utility.formatMessage(entityInfo, "");
     }
 
     public void setSchema(String type, String patientId, String administerId, String bookingId) {

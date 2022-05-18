@@ -30,6 +30,8 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
     public static final String URL_FIELD = "url";
     public static final String HAS_RAT_KIT_FIELD = "hasRATKit";
     public static final String ID_FIELD = "id";
+    public static final String STATUS_FIELD = "status";
+    private static final String CANCELED_STATUS = "Canceled";
 
     public BookingModel(){
 
@@ -159,21 +161,19 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
         // get current time
         Date currentDate = new Date(System.currentTimeMillis());
         // if the start time is after the current time, it's within time limit
-        if (Objects.requireNonNull(startDate).after(currentDate)){
-            return true;
-        }else{
-            return false;
-        }
+        return Objects.requireNonNull(startDate).after(currentDate);
     }
 
-//    public boolean isNotCanceled(){
-//        // we assume the booking is not canceled if the state field of booking is not "canceled"
-//    }
+    public boolean isCanceled(){
+        // we assume the booking is not canceled if the state field of booking is not "canceled"
+        String status = entityInfo.findValue(STATUS_FIELD).asText();
+        return status.equals(CANCELED_STATUS);
+    }
 
 
 
-    public void changeVenue(){
-
+    public boolean isUsed(){
+        return !entityInfo.findValue("covidTests").isEmpty();
     }
 
 }

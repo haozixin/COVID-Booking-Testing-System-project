@@ -2,10 +2,7 @@ package subSystems;
 
 
 import engine.CurrentOperator;
-import services.CheckBookingService;
-import services.GoBackService;
-import services.OnSiteBookingService;
-import services.ViewProfileService;
+import services.*;
 
 /**
  * This class is the OnsiteBooking Subsystem.
@@ -32,6 +29,7 @@ public class OnsiteBookingSubsystem extends CovidBAndTSystem{
             }
             if (currentOperator.isLoggedIn()){
                 services.add(new ViewProfileService());
+                services.add(new ChangeBookingService());
             }
 
             services.add(new GoBackService());

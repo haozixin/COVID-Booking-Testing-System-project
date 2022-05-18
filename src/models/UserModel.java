@@ -54,7 +54,7 @@ public class UserModel extends EntityModel {
     }
 
     public String display() {
-        return Utility.formatMessage(entityInfo);
+        return Utility.formatMessage(entityInfo, "");
     }
 
 
@@ -140,10 +140,9 @@ public class UserModel extends EntityModel {
         ArrayList<OnsiteBookingModel> onSiteBookings = new ArrayList<>();
 
         try {
-            ObjectNode data = webServicesTarget.getSpecificData(Path.USER.getPath(), getId(), Query.BOOKINGS_IN_USER_OR_SITE.getQuery());
+            ObjectNode data = webServicesTarget.getSpecificData(Path.USER.getPath(), getId(), Query.COVIDTESTS_IN_USER_OR_SITE.getQuery());
             updateModel(data);
             responseMessage = webServicesTarget.getResponseMessage();
-            OnsiteBookingModel onsiteBookingModel;
             for (JsonNode booking : data.get(BOOKINGS_FIELD)) {
                 String bookingType = booking.findValue(OnsiteBookingModel.BOOKING_TYPE_FIELD).asText();
                 if (bookingType.equals(OnsiteBookingModel.ONSITE)) {

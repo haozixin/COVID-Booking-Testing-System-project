@@ -65,7 +65,7 @@ public abstract class EntityModel extends Model {
     }
 
     public String display(){
-        return Utility.formatMessage(entityInfo);
+        return Utility.formatMessage(entityInfo, "");
     }
 
 
