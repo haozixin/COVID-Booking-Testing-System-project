@@ -4,8 +4,13 @@ import models.CollectionModel;
 import models.HomeBookingModel;
 
 import javax.swing.*;
+import javax.swing.text.DateFormatter;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class HomeBookingView extends View{
@@ -22,6 +27,11 @@ public class HomeBookingView extends View{
     JLabel hasRATKit = new JLabel("Do you already have a RAT kit?");
     JComboBox<String> comboBox = new JComboBox<>();
     JButton submit = new JButton("Submit");
+
+    JLabel dateLabel = new JLabel("Date : ");
+    JFormattedTextField dateField;
+    JLabel timeLabel = new JLabel("Time : ");
+    JFormattedTextField timeField;
 
 
 
@@ -43,38 +53,26 @@ public class HomeBookingView extends View{
         sites.setSize(800,300);
         sites.setText(collectionModel.display());
 
-
+        setDateTime();
 
         comboBox.addItem("No");
         comboBox.addItem(HAS_RAT_KIT);
 
-        c.gridx = 0;
-        c.gridy = 0;
-        panel.add(siteLabel, c);
 
-        c.gridx = 0;
-        c.gridy = 1;
-        panel.add(jp, c);
+        addComponentsToPanel(panel, c, siteLabel);
+        addComponentsToPanel(panel, c, jp);
+        addComponentsToPanel(panel, c, hasRATKit);
+        addComponentsToPanel(panel, c, comboBox);
+        addComponentsToPanel(panel, c, siteIdLabel);
+        addComponentsToPanel(panel, c, siteId);
 
-        c.gridx = 0;
-        c.gridy = 2;
-        panel.add(hasRATKit, c);
+        addComponentsToPanel(panel, c, dateLabel);
+        addComponentsToPanel(panel, c, dateField);
+        addComponentsToPanel(panel, c, timeLabel);
+        addComponentsToPanel(panel, c, timeField);
 
-        c.gridx = 0;
-        c.gridy = 3;
-        panel.add(comboBox, c);
+        addComponentsToPanel(panel, c, submit);
 
-        c.gridx = 0;
-        c.gridy = 4;
-        panel.add(siteIdLabel, c);
-
-        c.gridx = 0;
-        c.gridy = 5;
-        panel.add(siteId, c);
-
-        c.gridx = 0;
-        c.gridy = 6;
-        panel.add(submit, c);
 
 
 
@@ -107,6 +105,33 @@ public class HomeBookingView extends View{
         else{
             JOptionPane.showMessageDialog(this, homeBookingModel.getResponseMessage());
         }
+    }
+
+    private void setDateTime(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+        DateFormatter df = new DateFormatter(dateFormat);
+        DateFormatter tf = new DateFormatter(timeFormat);
+        try {
+            MaskFormatter mf = new MaskFormatter("####-##-##");
+            mf.setPlaceholder("YYYY-MM-DD");
+            dateField = new JFormattedTextField(mf);
+
+            MaskFormatter mf2 = new MaskFormatter("##:##");
+            mf2.setPlaceholder("HH:MM");
+            timeField = new JFormattedTextField(mf2);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    public String getDateField() {
+        return dateField.getText();
+    }
+
+    public String getTimeField() {
+        return timeField.getText();
     }
 
     @Override

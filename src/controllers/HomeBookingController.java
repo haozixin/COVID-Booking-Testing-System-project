@@ -30,13 +30,16 @@ public class HomeBookingController extends Controller {
         public void actionPerformed(ActionEvent e) {
             String customerId = CurrentOperator.getInstance().getIdFromToken();
             String siteId = view.getSiteId();
+            String date = view.getDateField();
+            String time = view.getTimeField();
 
-            if (!siteId.equals("")) {
+            if (!siteId.equals("") && !date.equals("") && !time.equals("")) {
                 boolean hasKit = false;
                 if (view.getSelectedItem().equals(HomeBookingView.HAS_RAT_KIT)) {
                     hasKit = true;
                 }
-                bookingModel.setSchema(customerId, siteId, hasKit);
+                String startTime = date + " " + time;
+                bookingModel.setSchema(customerId, siteId, hasKit, startTime);
                 try {
                     bookingModel.postModelToServer(Path.BOOKING.getPath());
                 } catch (IOException | InterruptedException ex) {

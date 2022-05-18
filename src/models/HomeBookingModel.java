@@ -12,9 +12,9 @@ public class HomeBookingModel extends BookingModel {
 
     public static final String HOME_TYPE = "home";
 
-    public void setSchema(String customerId, String testingSiteId, boolean hasRATKit) {
+    public void setSchema(String customerId, String testingSiteId, boolean hasRATKit, String startTime) {
         super.setSchema(customerId, testingSiteId);
-
+        entityInfo.put(START_TIME_FIELD, startTime);
         String url = generateURL();
         String QRCode = generateQRCode();
         additionalInfo.put(QR_CODE_FIELD, QRCode);

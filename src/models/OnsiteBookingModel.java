@@ -10,9 +10,10 @@ public class OnsiteBookingModel extends BookingModel {
 
     public static final String ONSITE = "onsite";
 
-    public void setSchema(String customerId, String testingSiteId) {
+    public void setSchema(String customerId, String testingSiteId, String dateTime) {
         super.setSchema(customerId, testingSiteId);
         additionalInfo.put(BOOKING_TYPE_FIELD, ONSITE);
+        entityInfo.put(START_TIME_FIELD, dateTime);
 
         // add additionalInfo to the entityInfo
         entityInfo.putPOJO(ADDITIONAL_INFO_FIELD, additionalInfo);

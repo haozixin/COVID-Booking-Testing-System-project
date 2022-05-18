@@ -36,7 +36,9 @@ public class OnSiteBookingController extends Controller {
         public void actionPerformed(ActionEvent e) {
             String siteId = view.getSiteId();
             String userName = view.getUserNameField();
-            if (siteId.equals("") || userName.equals("")) {
+            String date = view.getDateField();
+            String time = view.getTimeField();
+            if (siteId.equals("") || userName.equals("") || date.equals("") || time.equals("")) {
                 JOptionPane.showMessageDialog(null, "Please fill in all fields");
             } else {
                 boolean isFound = findPatientInfo(userName);
@@ -44,8 +46,8 @@ public class OnSiteBookingController extends Controller {
                     // if value is not empty, do the rest logic
 
                     String patientId = userModel.getId();
-
-                    onsiteBookingModel.setSchema(patientId, siteId);
+                    String startTime = date + " " + time;
+                    onsiteBookingModel.setSchema(patientId, siteId, startTime);
                     try {
                         // post model/data to server
                         onsiteBookingModel.postModelToServer(Path.BOOKING.getPath());

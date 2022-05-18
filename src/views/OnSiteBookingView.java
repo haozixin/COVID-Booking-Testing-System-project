@@ -1,12 +1,20 @@
 package views;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonNumberFormatVisitor;
 import models.CollectionModel;
 import models.OnsiteBookingModel;
 import models.CovidTestingSiteModel;
 
 import javax.swing.*;
+import javax.swing.text.DateFormatter;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -27,6 +35,14 @@ public class OnSiteBookingView extends View {
     JTextField siteId = new JTextField(30);
     JLabel userNameLabel = new JLabel("Customer userName:");
     JTextField userNameField = new JTextField(30);
+
+    JLabel dateLabel = new JLabel("Date : ");
+    JFormattedTextField dateField;
+    JLabel timeLabel = new JLabel("Time : ");
+    JFormattedTextField timeField;
+
+
+
     JButton submitButton = new JButton("Submit");
 
 
@@ -48,6 +64,8 @@ public class OnSiteBookingView extends View {
         sites.setSize(800,300);
         sites.setText(this.collectionModel.display());
 
+        setDateTime();
+
         GridBagConstraints c2 = setBasicStyle(p2);
 
 
@@ -58,6 +76,12 @@ public class OnSiteBookingView extends View {
         addComponentsToPanel(panel, c, siteId);
         addComponentsToPanel(panel, c, userNameLabel);
         addComponentsToPanel(panel, c, userNameField);
+        addComponentsToPanel(panel, c, dateLabel);
+        addComponentsToPanel(panel, c, dateField);
+        addComponentsToPanel(panel, c, timeLabel);
+        addComponentsToPanel(panel, c, timeField);
+
+
         addComponentsToPanel(panel, c, submitButton);
 
 
@@ -93,8 +117,39 @@ public class OnSiteBookingView extends View {
         return siteId.getText();
     }
 
+    private void setDateTime(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+        DateFormatter df = new DateFormatter(dateFormat);
+        DateFormatter tf = new DateFormatter(timeFormat);
+        try {
+            MaskFormatter mf = new MaskFormatter("####-##-##");
+            mf.setPlaceholder("YYYY-MM-DD");
+            dateField = new JFormattedTextField(mf);
+
+            MaskFormatter mf2 = new MaskFormatter("##:##");
+            mf2.setPlaceholder("HH:MM");
+            timeField = new JFormattedTextField(mf2);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Override
     public void addButtonListener(ActionListener listener) {
         submitButton.addActionListener(listener);
     }
+
+    public String getDateField() {
+        return dateField.getText();
+    }
+
+    public String getTimeField() {
+        return timeField.getText();
+    }
+
+
 }
