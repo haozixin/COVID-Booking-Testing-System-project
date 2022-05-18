@@ -23,6 +23,7 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
 
     public static final String USER_ID_FIELD = "customerId";
     public static final String TESTING_SITE_ID_FIELD = "testingSiteId";
+    public static final String BOOKING_TYPE_FIELD = "bookingType";
 
     public static final String SMS_PIN_FIELD = "smsPin";
     public static final String START_TIME_FIELD = "startTime";
@@ -31,6 +32,14 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
     public static final String URL_FIELD = "url";
     public static final String HAS_RAT_KIT_FIELD = "hasRATKit";
     public static final String ID_FIELD = "id";
+
+    public BookingModel(){
+
+    }
+
+    public BookingModel(ObjectNode data) {
+        updateModel(data);
+    }
 
 
     protected String generateQRCode() {
@@ -79,10 +88,6 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
         entityInfo.put(USER_ID_FIELD, customerId);
         entityInfo.put(TESTING_SITE_ID_FIELD, testingSiteId);
 
-        String url = generateURL();
-        String QRCode = generateQRCode();
-        additionalInfo.put(QR_CODE_FIELD, QRCode);
-        additionalInfo.put(URL_FIELD, url);
 
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis()));
         entityInfo.put(START_TIME_FIELD, time);

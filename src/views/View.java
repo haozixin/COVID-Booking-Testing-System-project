@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 public abstract class View extends JFrame {
     protected JLabel state = new JLabel("");
+    protected int gridx = 0;
+    protected int gridy = 0;
 
     // main panel
     protected JPanel panel = new JPanel();
@@ -47,6 +49,20 @@ public abstract class View extends JFrame {
         panel.setLayout(new GridLayout(1,1));
         panel.add(filler);
         return panel;
+    }
+
+    /**
+     * Add a component to the panel with the given constraints
+     * automatically adding it into a new line
+     * @param panel the panel to add the component to
+     * @param c GridBagConstraints
+     * @param jComponent the component to add
+     */
+    protected void addComponentsToPanel(JPanel panel, GridBagConstraints c, JComponent jComponent) {
+        c.gridx = gridx;
+        c.gridy = gridy;
+        panel.add(jComponent, c);
+        gridy++;
     }
 
 

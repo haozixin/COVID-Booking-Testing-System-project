@@ -19,7 +19,7 @@ import java.util.HashMap;
  */
 public class CollectionModel extends Model {
     public static final String FILTER_IS_ALL = "all";
-    public ArrayList<ObjectNode> collection;
+    private ArrayList<ObjectNode> collection;
 
 
     /**
@@ -122,10 +122,28 @@ public class CollectionModel extends Model {
         this.collection = collection;
     }
 
+//    /**
+//     * get on site bookings from database and store them in the arraylist of OnsiteBookingModel class
+//     * @return
+//     */
+//    public ArrayList<OnsiteBookingModel> getOnSiteBookings(){
+//        getAllEntity(Path.BOOKING.getPath());
+//        ArrayList<OnsiteBookingModel> onSiteBookings = new ArrayList<>();
+//        for (ObjectNode entity : collection) {
+//            String bookingType = entity.findValue(OnsiteBookingModel.BOOKING_TYPE_FIELD).asText();
+//            if (bookingType.equals(OnsiteBookingModel.ONSITE)){
+//                onSiteBookings.add(new OnsiteBookingModel(entity));
+//            }
+//        }
+//        return onSiteBookings;
+//    }
+
     public void updateCollection(String path){
         collection.clear();
         getAllEntity(path);
     }
+
+
 
 
 }

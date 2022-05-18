@@ -3,8 +3,10 @@ package engine;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import enums.Path;
 import enums.UserRoles;
 import models.Model;
+import models.UserModel;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
@@ -18,10 +20,10 @@ import java.util.Set;
  * This class is like an agent that can be used by actors to contact with the system.(will be more security)
  * The current user is the user that is currently logged in. (might be the resident or the Administrators/receptionist ...)
  */
-public class CurrentOperator extends Model {
+public class CurrentOperator{
     public static final String ID_IN_TOKEN = "sub";
-    private WebServicesTarget webServices;
     private static CurrentOperator instance;
+    protected WebServicesTarget webServicesTarget = new ServicesAdapter();
     // to judge if the user is logged in or not
     // true is logged in, false is not logged in
     private boolean isLogged;
@@ -33,7 +35,7 @@ public class CurrentOperator extends Model {
     private Set<String> roles = new HashSet<>();
 
     private CurrentOperator() {
-        webServices = new ServicesAdapter();
+        webServicesTarget = new ServicesAdapter();
     }
 
     public boolean isCustomer(){
@@ -125,8 +127,8 @@ public class CurrentOperator extends Model {
 
     public boolean login(String userName, String password) throws IOException, InterruptedException {
         boolean hasLogged = false;
-        String token = webServices.getToken(userName, password);
-        boolean result = webServices.verifyToken(token);
+        String token = webServicesTarget.getToken(userName, password);
+        boolean result = webServicesTarget.verifyToken(token);
         if (result) {
             // if login success, set state to logged in
             this.setLoginState(true);
@@ -159,4 +161,16 @@ public class CurrentOperator extends Model {
     }
 
 
+    public UserModel getProfile() {
+        String id = getIdFromToken();
+         ;
+        try {
+            ObjectNode data = webServicesTarget.getSpecificData(Path.USER.getPath(), id, null);
+            UserModel userModel = new UserModel(data);
+            return userModel;
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

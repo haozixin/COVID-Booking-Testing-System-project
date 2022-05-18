@@ -44,29 +44,18 @@ public class Application {
 //        caretaker.undo();
 //        System.out.println(bookingModel.getState());
 
-
-//        CurrentOperator currentOperator = CurrentOperator.getInstance();
-//        SystemFacade systemFacade = new SystemFacade();
-//        systemFacade.addActor(currentOperator);
-//        systemFacade.addSubSystem(new LoginSubsystem());
-//        systemFacade.addSubSystem(new OnsiteTestingSubsystem());
-//        systemFacade.addSubSystem(new SearchForSitesSubsystem());
-//        systemFacade.addSubSystem(new OnsiteBookingSubsystem());
-//        systemFacade.addSubSystem(new HomeBookingSubsystem());
-//        systemFacade.run();
-
-//        Actor actorModel = Actor.getInstance();
-//        LoginView loginView = new LoginView(actorModel);
-//        LoginController controller = new LoginController(loginView, actorModel);
-//        loginView.update();
-//        loginView.setVisible(true);
+ // Application
+        CurrentOperator currentOperator = CurrentOperator.getInstance();
+        SystemFacade systemFacade = new SystemFacade();
+        systemFacade.addActor(currentOperator);
+        systemFacade.addSubSystem(new LoginSubsystem());
+        systemFacade.addSubSystem(new OnsiteTestingSubsystem());
+        systemFacade.addSubSystem(new SearchForSitesSubsystem());
+        systemFacade.addSubSystem(new OnsiteBookingSubsystem());
+        systemFacade.addSubSystem(new HomeBookingSubsystem());
+        systemFacade.run();
 
 
-//        User userModel = new User();
-//        SignUpView signUpView = new SignUpView(userModel);
-//        SignUpController controller = new SignUpController(signUpView, userModel);
-//        signUpView.update();
-//        signUpView.setVisible(true);
 
 
     }

@@ -13,7 +13,7 @@ public class HomeBookingView extends View{
     CollectionModel collectionModel;
     private HomeBookingModel homeBookingModel;
 
-
+    JLabel siteLabel = new JLabel("Site information: ");
     JTextArea sites = new JTextArea("Here is the place to list testing sites");
     JScrollPane jp = new JScrollPane(sites);
     JScrollPane outsideJp = new JScrollPane(panel);
@@ -50,26 +50,30 @@ public class HomeBookingView extends View{
 
         c.gridx = 0;
         c.gridy = 0;
-        panel.add(jp, c);
+        panel.add(siteLabel, c);
 
         c.gridx = 0;
         c.gridy = 1;
-        panel.add(hasRATKit, c);
+        panel.add(jp, c);
 
         c.gridx = 0;
         c.gridy = 2;
-        panel.add(comboBox, c);
+        panel.add(hasRATKit, c);
 
         c.gridx = 0;
         c.gridy = 3;
-        panel.add(siteIdLabel, c);
+        panel.add(comboBox, c);
 
         c.gridx = 0;
         c.gridy = 4;
-        panel.add(siteId, c);
+        panel.add(siteIdLabel, c);
 
         c.gridx = 0;
         c.gridy = 5;
+        panel.add(siteId, c);
+
+        c.gridx = 0;
+        c.gridy = 6;
         panel.add(submit, c);
 
 
@@ -98,6 +102,7 @@ public class HomeBookingView extends View{
             JOptionPane.showMessageDialog(this, "Here is your QR code: "+homeBookingModel.getQRCode());
             panel.update(panel.getGraphics());
             outsideJp.update(outsideJp.getGraphics());
+            this.update(this.getGraphics());
         }
         else{
             JOptionPane.showMessageDialog(this, homeBookingModel.getResponseMessage());

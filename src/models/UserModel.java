@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import enums.Query;
@@ -7,6 +8,7 @@ import enums.UserRoles;
 import utility.Utility;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class UserModel extends EntityModel{
@@ -24,10 +26,18 @@ public class UserModel extends EntityModel{
     public static final String GIVEN_NAME_FIELD = "givenName";
 
     /**
-     * Constructor - get data and create a new entity through actor's input
+     * Constructor - default constructor
      */
     public UserModel() {
 
+    }
+
+    /**
+     * Constructor2 - get data and create a new entity through parameters
+     * @param data
+     */
+    public UserModel(ObjectNode data) {
+        updateModel(data);
     }
 
     public boolean updateToServer() {
@@ -94,9 +104,57 @@ public class UserModel extends EntityModel{
         try{
             return entityInfo.get(PHONE_NUMBER_FIELD).asText();
         }catch(NullPointerException e){
-            return null;
+            return "";
         }
+    }
 
+    public String getGivenName(){
+        try{
+            return entityInfo.get(GIVEN_NAME_FIELD).asText();
+        }catch(NullPointerException e){
+            return "";
+        }
+    }
+
+
+    public String getFamilyName() {
+        try{
+            return entityInfo.get(FAMILY_NAME_FIELD).asText();
+        }catch(NullPointerException e){
+            return "";
+        }
+    }
+
+
+    public String getUserName() {
+        try{
+            return entityInfo.get(USER_NAME_FIELD).asText();
+        }catch(NullPointerException e){
+            return "";
+        }
+    }
+
+    public ArrayList<OnsiteBookingModel> getOnSiteBookings(){
+        ArrayList<OnsiteBookingModel> onSiteBookings = new ArrayList<>();
+
+        try {
+            ObjectNode data = webServicesTarget.getSpecificData(Path.USER.getPath(),getId(), Query.BOOKINGS_IN_USER_OR_SITE.getQuery());
+            updateModel(data);
+            responseMessage = webServicesTarget.getResponseMessage();
+            OnsiteBookingModel onsiteBookingModel;
+            for (JsonNode booking : data.get(BOOKINGS_FIELD)) {
+                String bookingType = booking.findValue(OnsiteBookingModel.BOOKING_TYPE_FIELD).asText();
+                if (bookingType.equals(OnsiteBookingModel.ONSITE)){
+                    // map JsonNode to ObjectNode
+                    ObjectNode bookingObject = (ObjectNode) booking;
+                    onSiteBookings.add(new OnsiteBookingModel(bookingObject));
+                }
+            }
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return onSiteBookings;
     }
 
 }

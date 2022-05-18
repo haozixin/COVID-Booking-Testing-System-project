@@ -2,6 +2,7 @@ package models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import utility.Utility;
 
 import java.io.IOException;
 
@@ -62,4 +63,10 @@ public abstract class EntityModel extends Model {
     public boolean isUpdated() {
         return isUpdated;
     }
+
+    public String display(){
+        return Utility.formatMessage(entityInfo);
+    }
+
+
 }

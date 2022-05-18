@@ -10,9 +10,17 @@ import mementos.IMemento;
 public class HomeBookingModel extends BookingModel {
 
 
+    public static final String HOME_TYPE = "home";
+
     public void setSchema(String customerId, String testingSiteId, boolean hasRATKit) {
         super.setSchema(customerId, testingSiteId);
+
+        String url = generateURL();
+        String QRCode = generateQRCode();
+        additionalInfo.put(QR_CODE_FIELD, QRCode);
+        additionalInfo.put(URL_FIELD, url);
         additionalInfo.put(HAS_RAT_KIT_FIELD, hasRATKit);
+        additionalInfo.put(BOOKING_TYPE_FIELD, HOME_TYPE);
         // add additionalInfo to the entityInfo
         entityInfo.putPOJO(ADDITIONAL_INFO_FIELD, additionalInfo);
 

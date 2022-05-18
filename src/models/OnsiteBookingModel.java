@@ -8,13 +8,22 @@ import mementos.IMemento;
 public class OnsiteBookingModel extends BookingModel {
 
 
+    public static final String ONSITE = "onsite";
+
     public void setSchema(String customerId, String testingSiteId) {
         super.setSchema(customerId, testingSiteId);
+        additionalInfo.put(BOOKING_TYPE_FIELD, ONSITE);
 
         // add additionalInfo to the entityInfo
         entityInfo.putPOJO(ADDITIONAL_INFO_FIELD, additionalInfo);
     }
 
+    public OnsiteBookingModel() {
+    }
+
+    public OnsiteBookingModel(ObjectNode data) {
+        super(data);
+    }
 
     @Override
     public IMemento save() {
@@ -25,4 +34,6 @@ public class OnsiteBookingModel extends BookingModel {
     public ObjectNode getState() {
         return entityInfo;
     }
+
+
 }
