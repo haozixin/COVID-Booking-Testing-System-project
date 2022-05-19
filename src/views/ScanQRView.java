@@ -19,24 +19,15 @@ public class ScanQRView extends View{
         this.bookingModel = bookingModel;
 
         GridBagConstraints c = setBasicStyle(panel);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(900,400);
 
-        c.gridx = 0;
-        c.gridy = 0;
-        panel.add(note, c);
 
-        c.gridx = 0;
-        c.gridy = 1;
-        panel.add(label, c);
+        addComponentsToPanel(panel, c, note);
+        addComponentsToPanel(panel, c, label);
+        addComponentsToPanel(panel, c, textField);
+        addComponentsToPanel(panel, c, button);
 
-        c.gridx = 0;
-        c.gridy = 2;
-        panel.add(textField, c);
-
-        c.gridx = 0;
-        c.gridy = 3;
-        panel.add(button, c);
 
         add(panel);
 

@@ -46,40 +46,19 @@ public class InterviewView extends View {
         this.theModel = theModel;
         this.covidTestModel = covidTestModel;
         GridBagConstraints constraints = setBasicStyle(panel);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(800, 600);
 
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        panel.add(symptomLabel, constraints);
 
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        panel.add(fluCheckBox, constraints);
+        addComponentsToPanel(panel, constraints, symptomLabel);
+        addComponentsToPanel(panel, constraints, fluCheckBox);
+        addComponentsToPanel(panel, constraints, coughCheckBox);
+        addComponentsToPanel(panel, constraints, feverCheckBox);
+        addComponentsToPanel(panel, constraints, headacheCheckBox);
+        addComponentsToPanel(panel, constraints, chestPainCheckBox);
+        addComponentsToPanel(panel, constraints, diarrhoeaCheckBox);
+        addComponentsToPanel(panel, constraints, decisionLabel);
 
-        constraints.gridx = 0;
-        constraints.gridy = 3;
-        panel.add(coughCheckBox, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 4;
-        panel.add(feverCheckBox, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 5;
-        panel.add(headacheCheckBox, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 6;
-        panel.add(chestPainCheckBox, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 7;
-        panel.add(diarrhoeaCheckBox, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 8;
-        panel.add(button, constraints);
 
 
         cmb.addItem(EMPTY_OPTION);
@@ -88,49 +67,21 @@ public class InterviewView extends View {
 
 
         GridBagConstraints constraints2 = setBasicStyle(panel1);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(800, 600);
 
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        panel1.add(userNameLabel, constraints);
+        resetGrids();
 
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        panel1.add(userNameTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        panel1.add(state, constraints);
-
-
-        constraints2.gridx = 0;
-        constraints2.gridy = 5;
-        panel1.add(decisionLabel, constraints2);
-
-        constraints2.gridx = 0;
-        constraints2.gridy = 6;
-        panel1.add(cmb, constraints2);
-
-        constraints2.gridx = 0;
-        constraints2.gridy = 7;
-        panel1.add(new JLabel(), constraints2);
-
-        constraints2.gridx = 0;
-        constraints2.gridy = 8;
-        panel1.add(bookingIdLabel, constraints2);
-
-        constraints2.gridx = 0;
-        constraints2.gridy = 9;
-        panel1.add(button2, constraints2);
-
-        constraints2.gridx = 0;
-        constraints2.gridy = 10;
-        panel1.add(bookingIdTextField, constraints2);
-
-        constraints2.gridx = 0;
-        constraints2.gridy = 11;
-        panel1.add(button3, constraints2);
+        addComponentsToPanel(panel1, constraints2, userNameLabel);
+        addComponentsToPanel(panel1, constraints2, userNameTextField);
+        addComponentsToPanel(panel1, constraints2, state);
+        addComponentsToPanel(panel1, constraints2, decisionLabel);
+        addComponentsToPanel(panel1, constraints2, cmb);
+        addComponentsToPanel(panel1, constraints2, new JLabel());
+        addComponentsToPanel(panel1, constraints2, bookingIdLabel);
+        addComponentsToPanel(panel1, constraints2, button2);
+        addComponentsToPanel(panel1, constraints2, bookingIdTextField);
+        addComponentsToPanel(panel1, constraints2, button3);
 
 
         jp.setLayout(new ScrollPaneLayout());

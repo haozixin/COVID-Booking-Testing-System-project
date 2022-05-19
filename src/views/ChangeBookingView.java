@@ -27,7 +27,7 @@ public class ChangeBookingView extends BookingView {
         this.onsiteBookingModel = onsiteBookingModel;
 
         GridBagConstraints c = setBasicStyle(panel);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(900,500);
         outsideJp.setLayout(new ScrollPaneLayout());
         outsideJp.setPreferredSize(new Dimension(900,500));

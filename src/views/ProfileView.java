@@ -31,7 +31,7 @@ public class ProfileView extends View{
     public ProfileView(UserModel userModel, OnsiteBookingModel onsiteBookingModel) throws HeadlessException {
         super("On-site booking subsystem - Profile ");
         GridBagConstraints c = setBasicStyle(panel);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(700,400);
         outsideJp.setLayout(new ScrollPaneLayout());
         this.userModel = userModel;

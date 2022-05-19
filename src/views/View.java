@@ -65,5 +65,10 @@ public abstract class View extends JFrame {
         gridy++;
     }
 
+    protected void resetGrids(){
+        gridx = 0;
+        gridy = 0;
+    }
+
 
 }

@@ -18,8 +18,8 @@ public class DisplaySiteListView extends View {
         super("Search-for-sites Subsystem - View Site List");
 
         this.theModel = theModel;
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setBounds(100, 100, 650, 450); //位置（100 ，100）宽：450，高300
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 650, 450);
 
         //Border describes the Border around the panel (inside the panel). EmptyBorder is a blank Border of 5;
         text.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -7,6 +7,7 @@ public class Caretaker {
     private ArrayList<IMemento> histories = new ArrayList<>();
 
 
+
     public void undo() {
         if (histories.size() != 0) {
             IMemento memento = histories.remove(histories.size() - 1);

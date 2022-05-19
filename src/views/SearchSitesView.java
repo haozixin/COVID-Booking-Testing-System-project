@@ -30,7 +30,7 @@ public class SearchSitesView extends View {
         this.collectionModel = collectionModel;
 
         GridBagConstraints c = setBasicStyle(panel);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(900,500);
         sites.setEditable(false);
         jp.setLayout(new ScrollPaneLayout());

@@ -27,7 +27,7 @@ public class SignUpView extends View {
 
         this.theModel = model;
         GridBagConstraints constraints = setBasicStyle(panel);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(600,400);
 
         addOneComponent(constraints, 0, userNameLabel, userNameField);
