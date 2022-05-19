@@ -1,10 +1,16 @@
 package views;
 
+import mementos.BookingCaretaker;
+import mementos.BookingMemento;
+import mementos.Caretaker;
+import mementos.IMemento;
 import models.OnsiteBookingModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ChangeBookingView extends BookingView {
     private OnsiteBookingModel onsiteBookingModel;
@@ -17,7 +23,6 @@ public class ChangeBookingView extends BookingView {
     JTextField siteIdTxt = new JTextField(30);
 
     JButton button = new JButton("Change Booking");
-
 
 
 
@@ -43,8 +48,14 @@ public class ChangeBookingView extends BookingView {
         addComponentsToPanel(panel, c, timeLabel);
         addComponentsToPanel(panel, c, timeField);
         addComponentsToPanel(panel, c, button);
+        addComponentsToPanel(panel, c, new JLabel("-------------------You could chose one history bellow to recover it---------------------"));
 
-
+        Caretaker caretaker = BookingCaretaker.getInstance();
+        caretaker.update();
+        ArrayList<IMemento> histories = caretaker.getHistories();
+        for(IMemento history : histories){
+            addHistory(c, history);
+        }
 
         add(outsideJp);
     }
@@ -52,7 +63,8 @@ public class ChangeBookingView extends BookingView {
     @Override
     public void update() {
         if (onsiteBookingModel.getResponseMessage().equals("")) {
-            JOptionPane.showMessageDialog(this, "Booking successfully changed(you could close this window now)");
+            JOptionPane.showMessageDialog(this, "Booking successfully changed(see you next time)");
+            dispose();
         }else{
             JOptionPane.showMessageDialog(this, onsiteBookingModel.getResponseMessage());
         }
@@ -66,8 +78,31 @@ public class ChangeBookingView extends BookingView {
         return siteIdTxt.getText();
     }
 
+    private void addHistory(GridBagConstraints c, IMemento history){
+        JTextArea historyText = new JTextArea(history.getMetaData());
+        JScrollPane jp = new JScrollPane(historyText);
+        jp.setLayout(new ScrollPaneLayout());
+        historyText.setEditable(false);
+        addComponentsToPanel(panel, c, jp);
+        JButton button = new JButton("RollBack this history");
+        button.addActionListener(e -> {
+                    history.restore();
+                    BookingCaretaker.getInstance().removeOneMemento(history);
+                    JOptionPane.showMessageDialog(this, "History successfully rollback");
+                    dispose();
+                });
+        addComponentsToPanel(panel, c, button);
+
+    }
+
     @Override
     public void addButtonListener(ActionListener listener) {
         button.addActionListener(listener);
     }
+
+//    public void addRollBackListener(ActionListener listener){
+//        for(JButton button : RollBacks.keySet()){
+//            button.addActionListener(listener);
+//        }
+//    }
 }

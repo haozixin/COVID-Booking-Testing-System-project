@@ -1,5 +1,6 @@
 package services;
 
+import controllers.ProfileController;
 import engine.CurrentOperator;
 import engine.Service;
 import models.OnsiteBookingModel;
@@ -10,6 +11,7 @@ public class ViewProfileService extends Service {
     public String execute(CurrentOperator currentOperator) {
         OnsiteBookingModel onsiteBookingModel = new OnsiteBookingModel();
         ProfileView profileView = new ProfileView(currentOperator.getProfile(), onsiteBookingModel);
+        controller = new ProfileController(profileView);
         profileView.setVisible(true);
         return "";
     }

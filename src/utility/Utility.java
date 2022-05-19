@@ -159,5 +159,9 @@ public class Utility {
         return "{\"" + fieldName +  "\": " +value+  "}";
     }
 
+    public static String buildPatchString(String fieldName, String value){
+        return "{\"" + fieldName +  "\": \"" +value+ "\"}";
+    }
+
 
 }

@@ -34,6 +34,6 @@ public class HomeBookingModel extends BookingModel {
 
     @Override
     public ObjectNode getState() {
-        return entityInfo;
+        return entityInfo.deepCopy();
     }
 }

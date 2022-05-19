@@ -1,5 +1,7 @@
 package controllers;
 
+import models.OnsiteBookingModel;
+import views.ChangeBookingView;
 import views.ProfileView;
 
 import java.awt.event.ActionEvent;
@@ -17,7 +19,10 @@ public class ProfileController extends Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            OnsiteBookingModel booking = new OnsiteBookingModel();
+            ChangeBookingView changeBookingView = new ChangeBookingView(booking);
+            Controller controller = new ChangeBookingController(changeBookingView, booking);
+            changeBookingView.setVisible(true);
         }
     }
 }

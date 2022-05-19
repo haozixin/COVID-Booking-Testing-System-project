@@ -19,6 +19,7 @@ public abstract class Model {
 
     protected WebServicesTarget webServicesTarget = new ServicesAdapter();
     // if request is successful, responseMessage will be "", otherwise it will be the error message
+    // the message will be used to show on the UI(View)
     protected String responseMessage = "";
 
 

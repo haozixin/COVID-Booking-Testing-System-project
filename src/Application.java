@@ -50,7 +50,7 @@ public class Application {
 //        System.out.println(bookingModel.getState());
 
  // Application
-        Caretaker caretaker = new Caretaker();
+
 
 
         CurrentOperator currentOperator = CurrentOperator.getInstance();

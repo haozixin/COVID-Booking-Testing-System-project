@@ -1,11 +1,15 @@
 package controllers;
 
+import mementos.BookingCaretaker;
+import mementos.Caretaker;
 import models.OnsiteBookingModel;
 import views.ChangeBookingView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ChangeBookingController extends Controller {
     private ChangeBookingView view;
@@ -15,6 +19,7 @@ public class ChangeBookingController extends Controller {
         this.view = view;
         this.model = model;
         view.addButtonListener(new ButtonListener());
+
     }
 
     class ButtonListener implements ActionListener {
@@ -33,14 +38,31 @@ public class ChangeBookingController extends Controller {
             } else {
 
                 if (model.canBeChanged(bookingId)) {
+                    // save the change into Memento
+                    Caretaker bookingCareTaker = BookingCaretaker.getInstance();
+                    bookingCareTaker.addMemento(model.save());
+
                     if (!date.equals("YYYY-MM-DD") && !time.equals("HH:MM")) {
                         // if one of the fields is not empty, change the booking
                         startTime = date + " " + time;
                     }
                     if (!siteId.equals("") || !startTime.equals("")) {
-                        model.changeBooking(siteId, startTime);
+                        Date validTime = null;
+                        try {
+                            validTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(startTime);
+                            if (validTime.before(new Date())) {
+                                JOptionPane.showMessageDialog(view, "Please enter a valid time");
+                            }
+                            else{
+                                // change the booking's venue and start time locally and remotely
+                                model.changeBooking(siteId, startTime);
 
-                        view.update();
+                                view.update();
+                            }
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
+
                     } else {
                         JOptionPane.showMessageDialog(view, "Please change at least one (venue or start dateTime)");
                     }
@@ -51,5 +73,6 @@ public class ChangeBookingController extends Controller {
             }
         }
     }
+
 
 }

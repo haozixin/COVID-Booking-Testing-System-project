@@ -1,20 +1,13 @@
 package views;
 
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonNumberFormatVisitor;
 import models.CollectionModel;
 import models.OnsiteBookingModel;
 import models.CovidTestingSiteModel;
 
 import javax.swing.*;
-import javax.swing.text.DateFormatter;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 /**
  *
@@ -36,9 +29,7 @@ public class OnSiteBookingView extends BookingView {
     JLabel userNameLabel = new JLabel("Customer userName:");
     JTextField userNameField = new JTextField(30);
 
-
-
-
+    JButton undo = new JButton("Undo");
     JButton submitButton = new JButton("Submit");
 
 

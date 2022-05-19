@@ -21,6 +21,7 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
 
 
     public static final String USER_ID_FIELD = "customerId";
+    // used to do patch or post request
     public static final String TESTING_SITE_ID_FIELD = "testingSiteId";
     public static final String BOOKING_TYPE_FIELD = "bookingType";
 
@@ -32,7 +33,8 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
     public static final String HAS_RAT_KIT_FIELD = "hasRATKit";
     public static final String ID_FIELD = "id";
     public static final String STATUS_FIELD = "status";
-    private static final String CANCELED_STATUS = "Canceled";
+    private static final String CANCELED_STATUS = "CANCELED";
+    public static final String TESTING_SITE_FIELD = "testingSite";
 
     public BookingModel(){
 
@@ -115,7 +117,7 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
         return result;
     }
 
-    private String getEntityId(){
+    public String getEntityId(){
         try {
             return entityInfo.get(ID_FIELD).asText();
         } catch (NullPointerException e) {
@@ -177,8 +179,17 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
         return !entityInfo.findValue("covidTests").isEmpty();
     }
 
+    /**
+     * This function is used to check if the booking is valid to be changed
+     * 1. get the data by its id
+     * 2. check if the booking is valid to be changed
+     * @return true if the booking is valid to be changed, false otherwise
+     * @param id
+     * @return
+     */
     public boolean canBeChanged(String id){
         try {
+            // get all data of the booking with this id
             getSpecifiedEntity(Path.BOOKING.getPath(), id, Query.COVIDTESTS_IN_BOOKING.getQuery());
             responseMessage = webServicesTarget.getResponseMessage();
             // if the booking is used, we cannot change it
@@ -198,6 +209,7 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
             entityInfo.put(TESTING_SITE_ID_FIELD, venue);
         }
         if (!startTime.equals("")){
+
             entityInfo.put(START_TIME_FIELD, startTime);
         }
 
@@ -209,4 +221,46 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
         }
     }
 
+    /**
+     * update the remote existing booking
+     * identify the booking by its id
+     */
+    public void updateRemoteData(){
+        String id = getEntityId();
+        try {
+            webServicesTarget.patchData(Path.BOOKING.getPath(), entityInfo.toString(), id);
+            responseMessage = webServicesTarget.getResponseMessage();
+        }   catch (IOException | InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public String getVenueId() {
+        try {
+            return entityInfo.get(TESTING_SITE_FIELD).get(ID_FIELD).asText();
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
+    public String getStartTime() {
+        try {
+            return entityInfo.findValue(START_TIME_FIELD).asText();
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
+    public void cancelBooking(){
+        entityInfo.put(STATUS_FIELD, CANCELED_STATUS);
+        String patch = Utility.buildPatchString(STATUS_FIELD,CANCELED_STATUS);
+
+        try {
+            webServicesTarget.patchData(Path.BOOKING.getPath(), patch, getEntityId());
+            responseMessage = webServicesTarget.getResponseMessage();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
