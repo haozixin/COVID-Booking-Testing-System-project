@@ -6,6 +6,9 @@ import engine.Service;
 import models.*;
 import views.InterviewView;
 
+/**
+ * Action to interview with the resident
+ */
 public class InterviewService extends Service {
     @Override
     public String execute(CurrentOperator currentOperator){
