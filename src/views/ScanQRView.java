@@ -23,10 +23,10 @@ public class ScanQRView extends View{
         this.setSize(900,400);
 
 
-        addComponentsToPanel(panel, c, note);
-        addComponentsToPanel(panel, c, label);
-        addComponentsToPanel(panel, c, textField);
-        addComponentsToPanel(panel, c, button);
+        addComponentsInY(panel, c, note);
+        addComponentsInY(panel, c, label);
+        addComponentsInY(panel, c, textField);
+        addComponentsInY(panel, c, button);
 
 
         add(panel);

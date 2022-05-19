@@ -3,7 +3,9 @@ package services;
 import controllers.CheckBookingController;
 import engine.Service;
 import engine.CurrentOperator;
+import models.BookingModel;
 import models.CollectionModel;
+import models.OnsiteBookingModel;
 import views.CheckBookingByPINView;
 
 /**
@@ -12,9 +14,9 @@ import views.CheckBookingByPINView;
 public class CheckBookingService extends Service {
     @Override
     public String execute(CurrentOperator currentOperator) {
-        CollectionModel collectionModel = new CollectionModel();
-        CheckBookingByPINView view = new CheckBookingByPINView(collectionModel);
-        controller = new CheckBookingController(view, collectionModel);
+        BookingModel booking = new OnsiteBookingModel();
+        CheckBookingByPINView view = new CheckBookingByPINView(booking);
+        controller = new CheckBookingController(view, booking);
         view.setVisible(true);
         return "";
     }

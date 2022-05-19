@@ -1,19 +1,18 @@
 package views;
 
 import mementos.BookingCaretaker;
-import mementos.BookingMemento;
 import mementos.Caretaker;
 import mementos.IMemento;
+import models.BookingModel;
 import models.OnsiteBookingModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ChangeBookingView extends BookingView {
-    private OnsiteBookingModel onsiteBookingModel;
+    private BookingModel onsiteBookingModel;
 
 
     JLabel bookingIdLbl = new JLabel("Booking ID: ");
@@ -27,7 +26,7 @@ public class ChangeBookingView extends BookingView {
 
 
 
-    public ChangeBookingView(OnsiteBookingModel onsiteBookingModel) throws HeadlessException {
+    public ChangeBookingView(BookingModel onsiteBookingModel) throws HeadlessException {
         super("On-Site booking subsystem - Change booking");
         this.onsiteBookingModel = onsiteBookingModel;
 
@@ -36,16 +35,16 @@ public class ChangeBookingView extends BookingView {
 
         setDateTime();
 
-        addComponentsToPanel(panel, c, bookingIdLbl);
-        addComponentsToPanel(panel, c, bookingIdTxt);
-        addComponentsToPanel(panel, c, siteIdLbl);
-        addComponentsToPanel(panel, c, siteIdTxt);
-        addComponentsToPanel(panel, c, dateLabel);
-        addComponentsToPanel(panel, c, dateField);
-        addComponentsToPanel(panel, c, timeLabel);
-        addComponentsToPanel(panel, c, timeField);
-        addComponentsToPanel(panel, c, button);
-        addComponentsToPanel(panel, c, new JLabel("-------------------You could chose one history bellow to recover it---------------------"));
+        addComponentsInY(panel, c, bookingIdLbl);
+        addComponentsInY(panel, c, bookingIdTxt);
+        addComponentsInY(panel, c, siteIdLbl);
+        addComponentsInY(panel, c, siteIdTxt);
+        addComponentsInY(panel, c, dateLabel);
+        addComponentsInY(panel, c, dateField);
+        addComponentsInY(panel, c, timeLabel);
+        addComponentsInY(panel, c, timeField);
+        addComponentsInY(panel, c, button);
+        addComponentsInY(panel, c, new JLabel("-------------------You could chose one history bellow to recover it---------------------"));
 
         Caretaker caretaker = BookingCaretaker.getInstance();
         caretaker.update();
@@ -80,7 +79,7 @@ public class ChangeBookingView extends BookingView {
         JScrollPane jp = new JScrollPane(historyText);
         jp.setLayout(new ScrollPaneLayout());
         historyText.setEditable(false);
-        addComponentsToPanel(panel, c, jp);
+        addComponentsInY(panel, c, jp);
         JButton button = new JButton("RollBack this history");
         button.addActionListener(e -> {
                     history.restore();
@@ -88,7 +87,7 @@ public class ChangeBookingView extends BookingView {
                     JOptionPane.showMessageDialog(this, "History successfully rollback");
                     dispose();
                 });
-        addComponentsToPanel(panel, c, button);
+        addComponentsInY(panel, c, button);
 
     }
 

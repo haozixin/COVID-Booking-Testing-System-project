@@ -2,8 +2,12 @@ package models;
 
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import enums.Path;
+import enums.Query;
 import mementos.BookingMemento;
 import mementos.IMemento;
+
+import java.io.IOException;
 
 public class OnsiteBookingModel extends BookingModel {
 
@@ -42,5 +46,15 @@ public class OnsiteBookingModel extends BookingModel {
         // if the booking is not onsite booking, we cannot change it
         boolean isOnsite = entityInfo.findValue(BOOKING_TYPE_FIELD).asText().equals(ONSITE);
         return isValid && isOnsite;
+    }
+
+    @Override
+    public boolean verifyBooking(String bookingId, String PIN) {
+        try {
+            getSpecifiedEntity(Path.BOOKING.getPath(), bookingId, null);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return getPinCode().equals(PIN);
     }
 }

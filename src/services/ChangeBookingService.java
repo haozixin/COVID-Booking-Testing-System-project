@@ -4,6 +4,7 @@ import controllers.ChangeBookingController;
 import engine.CurrentOperator;
 import engine.Service;
 import engine.Services;
+import models.BookingModel;
 import models.OnsiteBookingModel;
 import views.ChangeBookingView;
 
@@ -17,7 +18,7 @@ public class ChangeBookingService extends Service{
 
     @Override
     public String execute(CurrentOperator currentOperator) {
-        OnsiteBookingModel booking = new OnsiteBookingModel();
+        BookingModel booking = new OnsiteBookingModel();
         ChangeBookingView changeBookingView = new ChangeBookingView(booking);
         controller = new ChangeBookingController(changeBookingView, booking);
         changeBookingView.setVisible(true);

@@ -2,6 +2,7 @@ package controllers;
 
 import mementos.BookingCaretaker;
 import mementos.Caretaker;
+import models.BookingModel;
 import models.OnsiteBookingModel;
 import views.ChangeBookingView;
 
@@ -13,9 +14,9 @@ import java.util.Date;
 
 public class ChangeBookingController extends Controller {
     private ChangeBookingView view;
-    private OnsiteBookingModel model;
+    private BookingModel model;
 
-    public ChangeBookingController(ChangeBookingView view, OnsiteBookingModel model) {
+    public ChangeBookingController(ChangeBookingView view, BookingModel model) {
         this.view = view;
         this.model = model;
         view.addButtonListener(new ButtonListener());

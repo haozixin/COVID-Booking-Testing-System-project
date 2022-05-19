@@ -1,5 +1,6 @@
 package views;
 
+import models.BookingModel;
 import models.CollectionModel;
 import models.OnsiteBookingModel;
 import models.CovidTestingSiteModel;
@@ -14,7 +15,7 @@ import java.awt.event.ActionListener;
  */
 public class OnSiteBookingView extends BookingView {
     private CollectionModel collectionModel;
-    private OnsiteBookingModel onsiteBookingModel;
+    private BookingModel onsiteBookingModel;
     private CovidTestingSiteModel covidTestingSiteModel;
 
 
@@ -33,7 +34,7 @@ public class OnSiteBookingView extends BookingView {
 
 
 
-    public OnSiteBookingView(CollectionModel collectionModel, OnsiteBookingModel onsiteBookingModel, CovidTestingSiteModel covidTestingSiteModel) throws HeadlessException {
+    public OnSiteBookingView(CollectionModel collectionModel, BookingModel onsiteBookingModel, CovidTestingSiteModel covidTestingSiteModel) throws HeadlessException {
         super("On-Site Booking Subsystem - make an on-site booking");
         this.onsiteBookingModel = onsiteBookingModel;
         this.covidTestingSiteModel = covidTestingSiteModel;
@@ -52,20 +53,20 @@ public class OnSiteBookingView extends BookingView {
         GridBagConstraints c2 = setBasicStyle(p2);
 
 
-        addComponentsToPanel(p2, c2, label);
-        addComponentsToPanel(p2, c2, jp);
-        addComponentsToPanel(panel, c2, p2);
-        addComponentsToPanel(panel, c, siteLabel);
-        addComponentsToPanel(panel, c, siteId);
-        addComponentsToPanel(panel, c, userNameLabel);
-        addComponentsToPanel(panel, c, userNameField);
-        addComponentsToPanel(panel, c, dateLabel);
-        addComponentsToPanel(panel, c, dateField);
-        addComponentsToPanel(panel, c, timeLabel);
-        addComponentsToPanel(panel, c, timeField);
+        addComponentsInY(p2, c2, label);
+        addComponentsInY(p2, c2, jp);
+        addComponentsInY(panel, c2, p2);
+        addComponentsInY(panel, c, siteLabel);
+        addComponentsInY(panel, c, siteId);
+        addComponentsInY(panel, c, userNameLabel);
+        addComponentsInY(panel, c, userNameField);
+        addComponentsInY(panel, c, dateLabel);
+        addComponentsInY(panel, c, dateField);
+        addComponentsInY(panel, c, timeLabel);
+        addComponentsInY(panel, c, timeField);
 
 
-        addComponentsToPanel(panel, c, submitButton);
+        addComponentsInY(panel, c, submitButton);
 
 
 

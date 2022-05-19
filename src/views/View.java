@@ -58,11 +58,18 @@ public abstract class View extends JFrame {
      * @param c GridBagConstraints
      * @param jComponent the component to add
      */
-    protected void addComponentsToPanel(JPanel panel, GridBagConstraints c, JComponent jComponent) {
+    protected void addComponentsInY(JPanel panel, GridBagConstraints c, JComponent jComponent) {
         c.gridx = gridx;
         c.gridy = gridy;
         panel.add(jComponent, c);
         gridy++;
+    }
+
+    protected void addComponentsInX(JPanel panel, GridBagConstraints c, JComponent jComponent) {
+        c.gridx = gridx;
+        c.gridy = gridy;
+        panel.add(jComponent, c);
+        gridx++;
     }
 
     protected void resetGrids(){

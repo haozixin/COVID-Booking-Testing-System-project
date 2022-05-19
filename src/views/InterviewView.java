@@ -50,14 +50,14 @@ public class InterviewView extends View {
         this.setSize(800, 600);
 
 
-        addComponentsToPanel(panel, constraints, symptomLabel);
-        addComponentsToPanel(panel, constraints, fluCheckBox);
-        addComponentsToPanel(panel, constraints, coughCheckBox);
-        addComponentsToPanel(panel, constraints, feverCheckBox);
-        addComponentsToPanel(panel, constraints, headacheCheckBox);
-        addComponentsToPanel(panel, constraints, chestPainCheckBox);
-        addComponentsToPanel(panel, constraints, diarrhoeaCheckBox);
-        addComponentsToPanel(panel, constraints, decisionLabel);
+        addComponentsInY(panel, constraints, symptomLabel);
+        addComponentsInY(panel, constraints, fluCheckBox);
+        addComponentsInY(panel, constraints, coughCheckBox);
+        addComponentsInY(panel, constraints, feverCheckBox);
+        addComponentsInY(panel, constraints, headacheCheckBox);
+        addComponentsInY(panel, constraints, chestPainCheckBox);
+        addComponentsInY(panel, constraints, diarrhoeaCheckBox);
+        addComponentsInY(panel, constraints, decisionLabel);
 
 
 
@@ -72,16 +72,16 @@ public class InterviewView extends View {
 
         resetGrids();
 
-        addComponentsToPanel(panel1, constraints2, userNameLabel);
-        addComponentsToPanel(panel1, constraints2, userNameTextField);
-        addComponentsToPanel(panel1, constraints2, state);
-        addComponentsToPanel(panel1, constraints2, decisionLabel);
-        addComponentsToPanel(panel1, constraints2, cmb);
-        addComponentsToPanel(panel1, constraints2, new JLabel());
-        addComponentsToPanel(panel1, constraints2, bookingIdLabel);
-        addComponentsToPanel(panel1, constraints2, button2);
-        addComponentsToPanel(panel1, constraints2, bookingIdTextField);
-        addComponentsToPanel(panel1, constraints2, button3);
+        addComponentsInY(panel1, constraints2, userNameLabel);
+        addComponentsInY(panel1, constraints2, userNameTextField);
+        addComponentsInY(panel1, constraints2, state);
+        addComponentsInY(panel1, constraints2, decisionLabel);
+        addComponentsInY(panel1, constraints2, cmb);
+        addComponentsInY(panel1, constraints2, new JLabel());
+        addComponentsInY(panel1, constraints2, bookingIdLabel);
+        addComponentsInY(panel1, constraints2, button2);
+        addComponentsInY(panel1, constraints2, bookingIdTextField);
+        addComponentsInY(panel1, constraints2, button3);
 
 
         jp.setLayout(new ScrollPaneLayout());

@@ -4,13 +4,8 @@ import models.CollectionModel;
 import models.HomeBookingModel;
 
 import javax.swing.*;
-import javax.swing.text.DateFormatter;
-import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class HomeBookingView extends BookingView{
@@ -48,19 +43,19 @@ public class HomeBookingView extends BookingView{
         comboBox.addItem(HAS_RAT_KIT);
 
 
-        addComponentsToPanel(panel, c, siteLabel);
-        addComponentsToPanel(panel, c, jp);
-        addComponentsToPanel(panel, c, hasRATKit);
-        addComponentsToPanel(panel, c, comboBox);
-        addComponentsToPanel(panel, c, siteIdLabel);
-        addComponentsToPanel(panel, c, siteId);
+        addComponentsInY(panel, c, siteLabel);
+        addComponentsInY(panel, c, jp);
+        addComponentsInY(panel, c, hasRATKit);
+        addComponentsInY(panel, c, comboBox);
+        addComponentsInY(panel, c, siteIdLabel);
+        addComponentsInY(panel, c, siteId);
 
-        addComponentsToPanel(panel, c, dateLabel);
-        addComponentsToPanel(panel, c, dateField);
-        addComponentsToPanel(panel, c, timeLabel);
-        addComponentsToPanel(panel, c, timeField);
+        addComponentsInY(panel, c, dateLabel);
+        addComponentsInY(panel, c, dateField);
+        addComponentsInY(panel, c, timeLabel);
+        addComponentsInY(panel, c, timeField);
 
-        addComponentsToPanel(panel, c, submit);
+        addComponentsInY(panel, c, submit);
 
 
 

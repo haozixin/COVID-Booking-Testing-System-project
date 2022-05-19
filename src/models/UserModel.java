@@ -136,15 +136,15 @@ public class UserModel extends EntityModel {
         }
     }
 
-    public ArrayList<OnsiteBookingModel> getOnSiteBookings() {
-        ArrayList<OnsiteBookingModel> onSiteBookings = new ArrayList<>();
+    public ArrayList<BookingModel> getOnSiteBookings() {
+        ArrayList<BookingModel> onSiteBookings = new ArrayList<>();
 
         try {
             ObjectNode data = webServicesTarget.getSpecificData(Path.USER.getPath(), getId(), Query.COVIDTESTS_IN_USER_OR_SITE.getQuery());
             updateModel(data);
             responseMessage = webServicesTarget.getResponseMessage();
             for (JsonNode booking : data.get(BOOKINGS_FIELD)) {
-                String bookingType = booking.findValue(OnsiteBookingModel.BOOKING_TYPE_FIELD).asText();
+                String bookingType = booking.findValue(BookingModel.BOOKING_TYPE_FIELD).asText();
                 if (bookingType.equals(OnsiteBookingModel.ONSITE)) {
                     // map JsonNode to ObjectNode
                     ObjectNode bookingObject = (ObjectNode) booking;

@@ -1,9 +1,12 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.CurrentOperator;
+import engine.Service;
 import enums.Path;
 import models.BookingModel;
 import models.CollectionModel;
+import services.ChangeBookingService;
 import views.CheckBookingByPINView;
 
 import javax.swing.*;
@@ -13,11 +16,12 @@ import java.util.ArrayList;
 
 public class CheckBookingController extends Controller {
     private CheckBookingByPINView view;
-    private CollectionModel dataModel;
+    private BookingModel bookingModel;
 
-    public CheckBookingController(CheckBookingByPINView view, CollectionModel dataModel) {
+
+    public CheckBookingController(CheckBookingByPINView view, BookingModel bookingModel) {
         this.view = view;
-        this.dataModel = dataModel;
+        this.bookingModel = bookingModel;
         this.view.addButtonListener(new ButtonListener());
     }
 
@@ -28,23 +32,22 @@ public class CheckBookingController extends Controller {
             String pinCode = view.getPinCode();
             // if input of pin code is not empty
             // do the rest logic
-            if (!pinCode.equals("")) {
-                dataModel.updateCollection(Path.BOOKING.getPath());
-                ArrayList<ObjectNode> bookings = dataModel.filterByOnFactor(BookingModel.SMS_PIN_FIELD, pinCode);
-
-                if (bookings.size() > 0) {
-                    dataModel.setCollection(bookings);
+            String bookingId = view.getBookingId();
+            if (!pinCode.isEmpty() && !bookingId.isEmpty()) {
+                // verify if the pin code is correct
+                boolean result = bookingModel.verifyBooking( bookingId, pinCode);
+                if(result){
+                    // if the pin code is correct
                     view.update();
+                    JOptionPane.showMessageDialog(view, "Verification Successful");
+                    Service service = new ChangeBookingService();
+                    service.execute(CurrentOperator.getInstance());
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "No booking found with this pin code");
+                    // if the pin code is not correct
+                    JOptionPane.showMessageDialog(view, "Invalid PIN Code or Booking ID");
                 }
-
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Please enter the pin code");
-            }
-
         }
     }
 }

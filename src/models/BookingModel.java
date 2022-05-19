@@ -263,4 +263,8 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
             e.printStackTrace();
         }
     }
+
+    public boolean verifyBooking(String bookingId, String PIN){
+        return false;
+    }
 }
