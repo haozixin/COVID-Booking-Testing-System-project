@@ -22,14 +22,13 @@ public class OnSiteBookingView extends BookingView {
     JPanel p2 = new JPanel();
     JTextArea sites = new JTextArea("No sites available");
     JScrollPane jp = new JScrollPane(sites);
-    JScrollPane outsideJp = new JScrollPane(panel);
     JLabel label = new JLabel("Available Sites(provide on site booking):");
     JLabel siteLabel = new JLabel("Site Id:");
     JTextField siteId = new JTextField(30);
     JLabel userNameLabel = new JLabel("Customer userName:");
     JTextField userNameField = new JTextField(30);
 
-    JButton undo = new JButton("Undo");
+
     JButton submitButton = new JButton("Submit");
 
 
@@ -41,13 +40,10 @@ public class OnSiteBookingView extends BookingView {
         this.collectionModel = collectionModel;
 
         GridBagConstraints c = setBasicStyle(panel);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(900,500);
+
         sites.setEditable(false);
         jp.setLayout(new ScrollPaneLayout());
         jp.setPreferredSize(new Dimension(800,300));
-        outsideJp.setLayout(new ScrollPaneLayout());
-        outsideJp.setPreferredSize(new Dimension(900,500));
         sites.setSize(800,300);
         sites.setText(this.collectionModel.display());
 

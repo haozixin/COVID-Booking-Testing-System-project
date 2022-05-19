@@ -21,7 +21,6 @@ public class HomeBookingView extends BookingView{
     JLabel siteLabel = new JLabel("Site information: ");
     JTextArea sites = new JTextArea("Here is the place to list testing sites");
     JScrollPane jp = new JScrollPane(sites);
-    JScrollPane outsideJp = new JScrollPane(panel);
     JLabel siteIdLabel = new JLabel("Testing Site ID:");
     JTextField siteId = new JTextField(30);
     JLabel hasRATKit = new JLabel("Do you already have a RAT kit?");
@@ -36,13 +35,10 @@ public class HomeBookingView extends BookingView{
         this.homeBookingModel = homeBookingModel;
 
         GridBagConstraints c = setBasicStyle(panel);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(900,500);
+
         sites.setEditable(false);
         jp.setLayout(new ScrollPaneLayout());
         jp.setPreferredSize(new Dimension(800,300));
-        outsideJp.setLayout(new ScrollPaneLayout());
-        outsideJp.setPreferredSize(new Dimension(900,500));
         sites.setSize(800,300);
         sites.setText(collectionModel.display());
 

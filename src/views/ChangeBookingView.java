@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class ChangeBookingView extends BookingView {
     private OnsiteBookingModel onsiteBookingModel;
-    JScrollPane outsideJp = new JScrollPane(panel);
+
 
     JLabel bookingIdLbl = new JLabel("Booking ID: ");
     JTextField bookingIdTxt = new JTextField(30);
@@ -31,11 +31,8 @@ public class ChangeBookingView extends BookingView {
         super("On-Site booking subsystem - Change booking");
         this.onsiteBookingModel = onsiteBookingModel;
 
+
         GridBagConstraints c = setBasicStyle(panel);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(900,500);
-        outsideJp.setLayout(new ScrollPaneLayout());
-        outsideJp.setPreferredSize(new Dimension(900,500));
 
         setDateTime();
 

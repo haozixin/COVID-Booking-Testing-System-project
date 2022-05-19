@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class CheckBookingView extends View {
+public class CheckBookingByPINView extends View {
     private CollectionModel collectionModel;
 
     JPanel p1 = new JPanel();
@@ -17,7 +17,7 @@ public class CheckBookingView extends View {
     JLabel pinLabel = new JLabel("Pin Code:");
     JTextField pinField = new JTextField(10);
 
-    public CheckBookingView(CollectionModel collectionModel) throws HeadlessException {
+    public CheckBookingByPINView(CollectionModel collectionModel) throws HeadlessException {
         super("Onsite-Booking Subsystem");
         this.collectionModel = collectionModel;
 

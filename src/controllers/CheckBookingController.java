@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import models.BookingModel;
 import models.CollectionModel;
-import views.CheckBookingView;
+import views.CheckBookingByPINView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,10 +12,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class CheckBookingController extends Controller {
-    private CheckBookingView view;
+    private CheckBookingByPINView view;
     private CollectionModel dataModel;
 
-    public CheckBookingController(CheckBookingView view, CollectionModel dataModel) {
+    public CheckBookingController(CheckBookingByPINView view, CollectionModel dataModel) {
         this.view = view;
         this.dataModel = dataModel;
         this.view.addButtonListener(new ButtonListener());

@@ -4,7 +4,7 @@ import controllers.CheckBookingController;
 import engine.Service;
 import engine.CurrentOperator;
 import models.CollectionModel;
-import views.CheckBookingView;
+import views.CheckBookingByPINView;
 
 /**
  * Action to check the booking.
@@ -13,7 +13,7 @@ public class CheckBookingService extends Service {
     @Override
     public String execute(CurrentOperator currentOperator) {
         CollectionModel collectionModel = new CollectionModel();
-        CheckBookingView view = new CheckBookingView(collectionModel);
+        CheckBookingByPINView view = new CheckBookingByPINView(collectionModel);
         controller = new CheckBookingController(view, collectionModel);
         view.setVisible(true);
         return "";
@@ -21,6 +21,6 @@ public class CheckBookingService extends Service {
 
     @Override
     public String menuDescription(CurrentOperator currentOperator) {
-        return "Go to check booking by Pin code";
+        return "Help residents change their booking";
     }
 }

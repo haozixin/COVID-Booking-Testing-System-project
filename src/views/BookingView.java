@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public abstract class BookingView extends View {
+    protected JScrollPane outsideJp = new JScrollPane(panel);
     protected JLabel dateLabel = new JLabel("Date : ");
     protected JFormattedTextField dateField;
     protected JLabel timeLabel = new JLabel("Time : ");
@@ -16,16 +17,10 @@ public abstract class BookingView extends View {
 
     public BookingView(String title) throws HeadlessException {
         super(title);
-    }
-
-    @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void addButtonListener(ActionListener listener) {
-
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setSize(900,500);
+        outsideJp.setLayout(new ScrollPaneLayout());
+        outsideJp.setPreferredSize(new Dimension(900,500));
     }
 
     protected void setDateTime(){
