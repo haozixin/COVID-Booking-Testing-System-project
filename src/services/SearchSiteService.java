@@ -7,8 +7,10 @@ import engine.CurrentOperator;
 import models.CollectionModel;
 import views.SearchSitesView;
 
+/**
+ * Action to search testing sites
+ */
 public class SearchSiteService extends Service{
-
 
     @Override
     public String execute(CurrentOperator currentOperator) {
