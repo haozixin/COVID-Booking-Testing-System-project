@@ -5,6 +5,9 @@ import engine.Service;
 import engine.CurrentOperator;
 import views.LoginView;
 
+/**
+ * Action to log in the user
+ */
 public class LoginService extends Service {
     @Override
     public String execute(CurrentOperator currentOperator){

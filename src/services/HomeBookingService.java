@@ -8,6 +8,9 @@ import models.CollectionModel;
 import models.HomeBookingModel;
 import views.HomeBookingView;
 
+/**
+ * Action to book a Home-Testing
+ */
 public class HomeBookingService extends Service {
     @Override
     public String execute(CurrentOperator currentOperator) {
