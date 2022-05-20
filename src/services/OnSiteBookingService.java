@@ -10,6 +10,9 @@ import views.OnSiteBookingView;
 
 import java.util.ArrayList;
 
+/**
+ * Action to book the testing on site
+ */
 public class OnSiteBookingService extends Service {
 
     @Override
