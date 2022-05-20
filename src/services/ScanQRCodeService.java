@@ -7,7 +7,7 @@ import models.HomeBookingModel;
 import views.ScanQRView;
 
 /**
- * Scan QR Code Action
+ * Action to scan the QR code
  */
 public class ScanQRCodeService extends Service {
 
