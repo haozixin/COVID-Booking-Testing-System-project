@@ -7,7 +7,7 @@ import models.HomeBookingModel;
 import views.ScanQRView;
 
 /**
- * Action to scan the QR code
+ * Action to scan the QR code to receive the RAT kit
  */
 public class ScanQRCodeService extends Service {
 
