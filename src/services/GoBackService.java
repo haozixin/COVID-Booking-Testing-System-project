@@ -25,7 +25,7 @@ public class GoBackService extends Service {
 
     @Override
     public String menuDescription(CurrentOperator currentOperator) {
-        return "Go back to previous menu";
+        return "Go back to parent menu";
     }
 
 }

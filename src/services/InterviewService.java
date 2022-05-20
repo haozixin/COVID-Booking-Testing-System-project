@@ -20,6 +20,6 @@ public class InterviewService extends Service {
 
     @Override
     public String menuDescription(CurrentOperator currentOperator) {
-        return "Go to conduct a interview";
+        return "Go to conduct an interview";
     }
 }
