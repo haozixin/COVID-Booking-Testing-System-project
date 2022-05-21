@@ -11,7 +11,6 @@ import views.SignUpView;
  */
 public class SignUpService extends Service {
 
-
     @Override
     public String execute(CurrentOperator currentOperator){
         UserModel userModel = new UserModel();
