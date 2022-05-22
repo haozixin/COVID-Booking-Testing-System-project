@@ -6,8 +6,10 @@ import engine.CurrentOperator;
 import models.UserModel;
 import views.SignUpView;
 
+/**
+ * Action to sign up the new user
+ */
 public class SignUpService extends Service {
-
 
     @Override
     public String execute(CurrentOperator currentOperator){
