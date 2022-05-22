@@ -3,7 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import models.CollectionModel;
-import models.CovidTestingSiteModel;
+import models.facilities.CovidTestingSiteModel;
 import views.SearchSitesView;
 
 import java.awt.event.ActionEvent;

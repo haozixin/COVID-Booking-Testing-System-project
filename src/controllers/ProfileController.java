@@ -1,7 +1,7 @@
 package controllers;
 
-import models.BookingModel;
-import models.OnsiteBookingModel;
+import models.bookings.BookingModel;
+import models.bookings.OnsiteBookingModel;
 import views.ChangeBookingView;
 import views.ProfileView;
 

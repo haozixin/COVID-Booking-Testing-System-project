@@ -3,9 +3,8 @@ package services;
 import controllers.CheckBookingController;
 import engine.Service;
 import engine.CurrentOperator;
-import models.BookingModel;
-import models.CollectionModel;
-import models.OnsiteBookingModel;
+import models.bookings.BookingModel;
+import models.bookings.OnsiteBookingModel;
 import views.CheckBookingByPINView;
 
 /**

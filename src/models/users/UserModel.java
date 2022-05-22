@@ -1,10 +1,13 @@
-package models;
+package models.users;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import enums.Query;
 import enums.UserRoles;
+import models.bookings.BookingModel;
+import models.EntityModel;
+import models.bookings.OnsiteBookingModel;
 import utility.Utility;
 
 import java.io.IOException;
@@ -25,6 +28,8 @@ public class UserModel extends EntityModel {
 
     public static final String GIVEN_NAME_FIELD = "givenName";
 
+    private UserType userType;
+
     /**
      * Constructor - default constructor
      */
@@ -39,6 +44,15 @@ public class UserModel extends EntityModel {
      */
     public UserModel(ObjectNode data) {
         updateModel(data);
+        if (entityInfo.get(UserRoles.IS_ADMIN_FIELD.getName()).asBoolean()) {
+            userType = new Administrator();
+        }
+        if(entityInfo.get(UserRoles.IS_CUSTOMER_FIELD.getName()).asBoolean()) {
+            userType = new Customer();
+        }
+        if (entityInfo.get(UserRoles.IS_HEALTHCARE_WORKER_FIELD.getName()).asBoolean()) {
+            userType = new HealthcareWorker();
+        }
     }
 
     public boolean updateToServer() {

@@ -1,18 +1,14 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.CurrentOperator;
 import engine.Service;
-import enums.Path;
-import models.BookingModel;
-import models.CollectionModel;
+import models.bookings.BookingModel;
 import services.ChangeBookingService;
 import views.CheckBookingByPINView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class CheckBookingController extends Controller {
     private CheckBookingByPINView view;

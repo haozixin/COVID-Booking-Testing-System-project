@@ -1,8 +1,7 @@
 package views;
 
-import models.BookingModel;
-import models.OnsiteBookingModel;
-import models.UserModel;
+import models.bookings.BookingModel;
+import models.users.UserModel;
 
 import javax.swing.*;
 import java.awt.*;

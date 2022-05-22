@@ -1,7 +1,8 @@
-package models;
+package models.facilities;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
+import models.EntityModel;
 import utility.Utility;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
@@ -19,6 +20,7 @@ public class CovidTestingSiteModel extends EntityModel {
     public static final String HAS_ON_SITE_BOOKING_FIELD = "hasOnSiteBooking";
     public static final String SUBURB_FIELD = "suburb";
     public static final int ADDITIONAL_WAITING_TIME = 5;
+    private FacilityType facilityType;
 
 
     /**

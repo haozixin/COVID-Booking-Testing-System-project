@@ -3,8 +3,8 @@ package services;
 import controllers.ProfileController;
 import engine.CurrentOperator;
 import engine.Service;
-import models.BookingModel;
-import models.OnsiteBookingModel;
+import models.bookings.BookingModel;
+import models.bookings.OnsiteBookingModel;
 import views.ProfileView;
 
 public class ViewProfileService extends Service {

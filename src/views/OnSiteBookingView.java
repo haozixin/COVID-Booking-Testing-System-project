@@ -1,9 +1,8 @@
 package views;
 
-import models.BookingModel;
+import models.bookings.BookingModel;
 import models.CollectionModel;
-import models.OnsiteBookingModel;
-import models.CovidTestingSiteModel;
+import models.facilities.CovidTestingSiteModel;
 
 import javax.swing.*;
 import java.awt.*;

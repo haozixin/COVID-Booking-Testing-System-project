@@ -1,6 +1,6 @@
 package views;
 
-import models.UserModel;
+import models.users.UserModel;
 
 import javax.swing.*;
 import java.awt.*;

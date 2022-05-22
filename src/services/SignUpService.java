@@ -3,7 +3,7 @@ package services;
 import controllers.SignUpController;
 import engine.Service;
 import engine.CurrentOperator;
-import models.UserModel;
+import models.users.UserModel;
 import views.SignUpView;
 
 /**

@@ -1,6 +1,6 @@
 package views;
 
-import models.HomeBookingModel;
+import models.bookings.HomeBookingModel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,8 +2,7 @@ package controllers;
 
 import mementos.BookingCaretaker;
 import mementos.Caretaker;
-import models.BookingModel;
-import models.OnsiteBookingModel;
+import models.bookings.BookingModel;
 import views.ChangeBookingView;
 
 import javax.swing.*;

@@ -3,7 +3,8 @@ package services;
 import controllers.InterviewController;
 import engine.CurrentOperator;
 import engine.Service;
-import models.*;
+import models.testings.CovidTestModel;
+import models.users.UserModel;
 import views.InterviewView;
 
 /**

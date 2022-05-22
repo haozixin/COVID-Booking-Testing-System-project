@@ -5,7 +5,7 @@ import engine.Service;
 import enums.Path;
 import engine.CurrentOperator;
 import models.CollectionModel;
-import models.HomeBookingModel;
+import models.bookings.HomeBookingModel;
 import views.HomeBookingView;
 
 /**

@@ -2,7 +2,7 @@ package controllers;
 
 import enums.Path;
 import engine.CurrentOperator;
-import models.HomeBookingModel;
+import models.bookings.HomeBookingModel;
 import views.HomeBookingView;
 
 import javax.swing.*;

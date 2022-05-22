@@ -1,7 +1,7 @@
 package views;
 
-import models.CovidTestModel;
-import models.UserModel;
+import models.testings.CovidTestModel;
+import models.users.UserModel;
 
 import javax.swing.*;
 import java.awt.*;

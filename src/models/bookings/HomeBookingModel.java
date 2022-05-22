@@ -1,8 +1,9 @@
-package models;
+package models.bookings;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import mementos.BookingMemento;
 import mementos.IMemento;
+import models.bookings.BookingModel;
 
 /**
  * HomeBooking class is a subclass of Booking class.

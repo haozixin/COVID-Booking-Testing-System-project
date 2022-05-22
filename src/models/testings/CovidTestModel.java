@@ -1,16 +1,17 @@
-package models;
+package models.testings;
 
 
+import models.EntityModel;
 import utility.Utility;
 
 
-public class CovidTestModel extends EntityModel{
+public class CovidTestModel extends EntityModel {
     public boolean isCreated = false;
     public static final String PATIENT_ID_FIELD = "patientId";
     public static final String TYPE_FIELD = "type";
     public static final String ADMINISTER_ID_FIELD = "administerId";
     public static final String BOOKING_ID_FIELD = "bookingId";
-
+    private CovidTestType type;
 
     public String display(){
         return Utility.formatMessage(entityInfo, "");

@@ -3,8 +3,7 @@ package views;
 import mementos.BookingCaretaker;
 import mementos.Caretaker;
 import mementos.IMemento;
-import models.BookingModel;
-import models.OnsiteBookingModel;
+import models.bookings.BookingModel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,7 @@
 package controllers;
 
-import models.BookingModel;
-import models.HomeBookingModel;
+import models.bookings.BookingModel;
+import models.bookings.HomeBookingModel;
 import views.ScanQRView;
 
 import javax.swing.*;

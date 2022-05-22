@@ -2,8 +2,8 @@ package controllers;
 
 import enums.Path;
 import engine.CurrentOperator;
-import models.CovidTestModel;
-import models.UserModel;
+import models.testings.CovidTestModel;
+import models.users.UserModel;
 import views.InterviewView;
 
 import javax.swing.*;

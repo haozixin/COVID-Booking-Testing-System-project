@@ -3,12 +3,9 @@ package services;
 import controllers.ChangeBookingController;
 import engine.CurrentOperator;
 import engine.Service;
-import engine.Services;
-import models.BookingModel;
-import models.OnsiteBookingModel;
+import models.bookings.BookingModel;
+import models.bookings.OnsiteBookingModel;
 import views.ChangeBookingView;
-
-import java.util.List;
 
 /**
  * Action to change the booking.

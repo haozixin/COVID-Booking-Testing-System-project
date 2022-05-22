@@ -1,11 +1,11 @@
-package models;
+package models.bookings;
 
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
-import enums.Query;
 import mementos.BookingMemento;
 import mementos.IMemento;
+import models.bookings.BookingModel;
 
 import java.io.IOException;
 

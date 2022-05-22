@@ -6,8 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import engine.adminNotification.Subscriber;
 import enums.Path;
 import enums.UserRoles;
-import models.Model;
-import models.UserModel;
+import models.users.UserModel;
 import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 

@@ -3,7 +3,7 @@ package services;
 import controllers.ScanQRController;
 import engine.Service;
 import engine.CurrentOperator;
-import models.HomeBookingModel;
+import models.bookings.HomeBookingModel;
 import views.ScanQRView;
 
 /**

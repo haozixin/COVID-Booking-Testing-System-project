@@ -1,9 +1,9 @@
 package controllers;
 
 import enums.Path;
-import models.OnsiteBookingModel;
-import models.CovidTestingSiteModel;
-import models.UserModel;
+import models.bookings.OnsiteBookingModel;
+import models.facilities.CovidTestingSiteModel;
+import models.users.UserModel;
 import views.OnSiteBookingView;
 
 import javax.swing.*;

@@ -1,13 +1,8 @@
 package mementos;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import enums.Path;
-import models.BookingModel;
+import models.bookings.BookingModel;
 
-import javax.swing.*;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

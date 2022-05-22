@@ -1,6 +1,6 @@
 package controllers;
 
-import models.UserModel;
+import models.users.UserModel;
 import views.SignUpView;
 
 import javax.swing.*;
