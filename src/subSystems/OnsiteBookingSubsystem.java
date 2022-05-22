@@ -28,7 +28,7 @@ public class OnsiteBookingSubsystem extends CovidBAndTSystem{
                 services.add(new OnSiteBookingService());
             }
             if (currentOperator.isLoggedIn()){
-                services.add(new ViewProfileService());
+
                 services.add(new ChangeBookingService());
             }
 

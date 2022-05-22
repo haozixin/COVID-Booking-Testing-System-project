@@ -3,6 +3,7 @@ package engine;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.adminNotification.Subscriber;
 import enums.Path;
 import enums.UserRoles;
 import models.Model;
@@ -20,7 +21,7 @@ import java.util.Set;
  * This class is like an agent that can be used by actors to contact with the system.(will be more security)
  * The current user is the user that is currently logged in. (might be the resident or the Administrators/receptionist ...)
  */
-public class CurrentOperator{
+public class CurrentOperator implements Subscriber {
     public static final String ID_IN_TOKEN = "sub";
     private static CurrentOperator instance;
     protected WebServicesTarget webServicesTarget = new ServicesAdapter();
@@ -107,6 +108,11 @@ public class CurrentOperator{
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void update(String message) {
+
     }
 
     public String getName() {

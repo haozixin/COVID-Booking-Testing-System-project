@@ -45,14 +45,15 @@ Following are all services:
     3.3 Go back to parent menu  
 4. Go to Onsite Booking Subsystem  
     4.1 Help residents change their booking  
-    4.2 Make an on-site booking  
-    4.3 View my profile  
+    4.2 Make an on-site booking   
     4.4 Change my booking(venue and timing)  
     4.5 Go back to parent menu  
 5. Go to Home-Booking Subsystem  
     5.1 Go to book a Home-Testing  
     5.2 Scan QR Code  
     5.3 Go back to parent menu  
+6. View my profile
+7. Admin Booking Interface
 
 
 

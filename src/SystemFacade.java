@@ -2,7 +2,9 @@ import engine.Service;
 import engine.Services;
 import engine.Menu;
 import engine.CurrentOperator;
+import services.AdminBookingService;
 import services.GoSubsystemService;
+import services.ViewProfileService;
 import subSystems.CovidBAndTSystem;
 import utility.Utility;
 
@@ -71,6 +73,12 @@ public class SystemFacade {
             services.clear();
             for (CovidBAndTSystem system : systems) {
                 services.add(new GoSubsystemService(system));
+            }
+            if (currentOperator.isAdministrator()) {
+                services.add(new AdminBookingService());
+            }
+            if(currentOperator.isLoggedIn()){
+                services.add(new ViewProfileService());
             }
 
 

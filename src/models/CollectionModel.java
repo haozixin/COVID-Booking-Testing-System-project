@@ -138,6 +138,10 @@ public class CollectionModel extends Model {
 //        return onSiteBookings;
 //    }
 
+    /**
+     * Get all the entities from the database - using specified path to get specified data
+     * @param path
+     */
     public void updateCollection(String path){
         collection.clear();
         getAllEntity(path);
