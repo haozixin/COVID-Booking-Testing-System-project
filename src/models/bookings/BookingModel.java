@@ -5,6 +5,7 @@ import enums.Path;
 import enums.Query;
 import mementos.BookingMemento;
 import mementos.IOriginator;
+import models.CollectionModel;
 import models.EntityModel;
 import utility.Utility;
 import webServiceAPI.ServicesAdapter;
@@ -266,6 +267,38 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
     }
 
     public boolean verifyBooking(String bookingId, String PIN){
-        return false;
+        getBookingById(bookingId);
+        return getPinCode().equals(PIN);
+    }
+
+    public boolean getBookingById(String bookingId){
+        if (bookingId == null){
+            return false;
+        }else{
+            try {
+                getSpecifiedEntity(Path.BOOKING.getPath(), bookingId, null);
+                return true;
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
+    }
+
+    public boolean getBookingByPin(String pin){
+        if (pin == null){
+            return false;
+        }
+        else{
+            CollectionModel collectionModel = new CollectionModel();
+            collectionModel.updateCollection(Path.BOOKING.getPath());
+            // the result (booking) of filter must be one element because Pin is unique
+            ArrayList<ObjectNode> booking = collectionModel.filterByOnFactor(SMS_PIN_FIELD,pin);
+            if (booking.size() == 1){
+                booking.forEach(this::updateModel);
+                return true;
+            }
+            else{return false;}
+        }
     }
 }

@@ -48,13 +48,4 @@ public class OnsiteBookingModel extends BookingModel {
         return isValid && isOnsite;
     }
 
-    @Override
-    public boolean verifyBooking(String bookingId, String PIN) {
-        try {
-            getSpecifiedEntity(Path.BOOKING.getPath(), bookingId, null);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-        return getPinCode().equals(PIN);
-    }
 }
