@@ -24,11 +24,11 @@ public class Application {
 //
 //
 //        BookingModel bookingModel = new HomeBookingModel();
-        // 创建管理员
+        // create careTaker
 //        Caretaker caretaker = new Caretaker();
 
 //        bookingModel.setState(objectNode);
-        // 创建备忘录
+        // create memento
 //        caretaker.addMemento(bookingModel.save());
 //        System.out.println(bookingModel.getState());
 //
@@ -36,11 +36,11 @@ public class Application {
 //        String json3 = "{\"name\":\"Allen\",\"age\":20,\"set\":{\"tel\":1591851786568, \"add\":\"always at home\"}}";
 //        objectNode2 = new ObjectMapper().readValue(json3, ObjectNode.class);
 //
-        // 改变状态
+        // change state
 //        bookingModel.setState(objectNode2);
 //        System.out.println(bookingModel.getState());
 //
-        // 恢复状态
+        // restore state
 //        caretaker.undo();
 //        System.out.println(bookingModel.getState());
 
