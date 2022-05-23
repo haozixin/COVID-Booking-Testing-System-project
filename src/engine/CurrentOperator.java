@@ -3,6 +3,8 @@ package engine;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.adminNotification.BookingPublisher;
+import engine.adminNotification.Publisher;
 import engine.adminNotification.Subscriber;
 import enums.Path;
 import enums.UserRoles;
@@ -33,6 +35,11 @@ public class CurrentOperator implements Subscriber {
     private boolean wantsGoBack;
     private Menu menu = new Menu();
     private Set<String> roles = new HashSet<>();
+    private String messageFromPublisher;
+
+
+
+
 
     private CurrentOperator() {
         webServicesTarget = new ServicesAdapter();
@@ -100,6 +107,10 @@ public class CurrentOperator implements Subscriber {
         }
     }
 
+    /**
+     * Set the token of the user
+     * @param token the token of the user
+     */
     private void setToken(String token) {
         this.token = token;
         try {
@@ -111,7 +122,8 @@ public class CurrentOperator implements Subscriber {
 
     @Override
     public void update(String message) {
-
+        // currentOperator don't need to implement this method
+        // because this class represent the current user - who is always the sender of the message
     }
 
     public String getName() {
@@ -124,6 +136,22 @@ public class CurrentOperator implements Subscriber {
             return null;
         }
 
+    }
+
+    @Override
+    public void broadCast(Publisher publisher) {
+        publisher.notifyObservers(this.getName());
+    }
+
+    @Override
+    public String receiveMessage() {
+        Publisher publisher = BookingPublisher.getInstance();
+        publisher.getNotification(this.getName());
+        return messageFromPublisher;
+    }
+
+    public void setMessageFromPublisher(String messageFromPublisher) {
+        this.messageFromPublisher = messageFromPublisher;
     }
 
     public boolean isLoggedIn(){
@@ -146,10 +174,18 @@ public class CurrentOperator implements Subscriber {
     }
 
 
+    /**
+     * Setter for the wantsGoBack attribute
+     * @param wantsGoBack the new value of the wantsGoBack attribute
+     */
     public void setWantsGoBack(boolean wantsGoBack) {
         this.wantsGoBack = wantsGoBack;
     }
 
+    /**
+     * Getter for the wantsGoBack attribute
+     * @return the wantsGoBack attribute
+     */
     public boolean wantsGoBack(){
         return wantsGoBack;
     }

@@ -2,19 +2,23 @@ package models.users;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import engine.CurrentOperator;
+import engine.adminNotification.Publisher;
+import engine.adminNotification.Subscriber;
 import enums.Path;
 import enums.Query;
 import enums.UserRoles;
 import models.bookings.BookingModel;
 import models.EntityModel;
 import models.bookings.OnsiteBookingModel;
+import models.facilities.CovidTestingSiteModel;
 import utility.Utility;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class UserModel extends EntityModel {
+public class UserModel extends EntityModel implements Subscriber {
 
     public static final String ID_FIELD = "id";
     public static final String BOOKINGS_FIELD = "bookings";
@@ -29,6 +33,9 @@ public class UserModel extends EntityModel {
     public static final String GIVEN_NAME_FIELD = "givenName";
 
     private UserType userType;
+
+    private String messageFromPublisher;
+
 
     /**
      * Constructor - default constructor
@@ -45,7 +52,7 @@ public class UserModel extends EntityModel {
     public UserModel(ObjectNode data) {
         updateModel(data);
         if (entityInfo.get(UserRoles.IS_ADMIN_FIELD.getName()).asBoolean()) {
-            userType = new Administrator();
+            userType = new Administrator(data);
         }
         if(entityInfo.get(UserRoles.IS_CUSTOMER_FIELD.getName()).asBoolean()) {
             userType = new Customer();
@@ -173,4 +180,26 @@ public class UserModel extends EntityModel {
         return onSiteBookings;
     }
 
+    @Override
+    public void update(String message) {
+        messageFromPublisher = "This is "+getUserName()+" and "+message;
+        System.out.println(messageFromPublisher);
+    }
+
+    @Override
+    public String getName() {
+        return getUserName();
+    }
+
+    @Override
+    public void broadCast(Publisher publisher) {
+
+    }
+
+    @Override
+    public String receiveMessage() {
+        // let current user know about the message
+        CurrentOperator.getInstance().setMessageFromPublisher(messageFromPublisher);
+        return null;
+    }
 }

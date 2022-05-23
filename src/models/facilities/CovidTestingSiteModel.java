@@ -63,7 +63,12 @@ public class CovidTestingSiteModel extends EntityModel {
         }
     }
 
+    public CovidTestingSiteModel() {
+    }
 
+    public void getFacilityById(String id) throws IOException, InterruptedException {
+        getSpecifiedEntity(Path.SITE.getPath(), id, null);
+    }
 
 
 }

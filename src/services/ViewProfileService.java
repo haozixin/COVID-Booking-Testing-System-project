@@ -10,6 +10,8 @@ import views.ProfileView;
 public class ViewProfileService extends Service {
     @Override
     public String execute(CurrentOperator currentOperator) {
+
+
         BookingModel onsiteBookingModel = new OnsiteBookingModel();
         ProfileView profileView = new ProfileView(currentOperator.getProfile(), onsiteBookingModel);
         controller = new ProfileController(profileView);

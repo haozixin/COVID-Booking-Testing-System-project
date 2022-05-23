@@ -1,5 +1,7 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import engine.CurrentOperator;
+import engine.adminNotification.BookingPublisher;
+import engine.adminNotification.Publisher;
 import subSystems.*;
 
 /**
@@ -44,9 +46,12 @@ public class Application {
 
  // Application
 
+//        Publisher publisher = BookingPublisher.getInstance();
 
 
         CurrentOperator currentOperator = CurrentOperator.getInstance();
+
+
         SystemFacade systemFacade = new SystemFacade();
         systemFacade.addActor(currentOperator);
         systemFacade.addSubSystem(new LoginSubsystem());
@@ -54,7 +59,11 @@ public class Application {
         systemFacade.addSubSystem(new SearchForSitesSubsystem());
         systemFacade.addSubSystem(new OnsiteBookingSubsystem());
         systemFacade.addSubSystem(new HomeBookingSubsystem());
+
+
         systemFacade.run();
+
+
 
 
 
