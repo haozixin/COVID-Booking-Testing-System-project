@@ -2,6 +2,7 @@ package models;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
+import models.bookings.BookingModel;
 import utility.Utility;
 
 import java.io.IOException;
@@ -145,6 +146,33 @@ public class CollectionModel extends Model {
     public void updateCollection(String path){
         collection.clear();
         getAllEntity(path);
+    }
+
+
+    public ArrayList<ObjectNode> getModifiedData(){
+        ArrayList<ObjectNode> filteredList = new ArrayList<>();
+        for (ObjectNode entity : collection) {
+            // if testingSite.findValue(field) is null, then the testing site doesn't have the field
+            String createdDate = entity.get(BookingModel.CREATED_AT).asText();
+            String updatedDate = entity.get(BookingModel.UPDATED_AT).asText();
+            if (!createdDate.equals(updatedDate)){
+                filteredList.add(entity);
+            }
+        }
+        return filteredList;
+    }
+
+    public ArrayList<ObjectNode> getNewData(){
+        ArrayList<ObjectNode> filteredList = new ArrayList<>();
+        for (ObjectNode entity : collection) {
+            // if testingSite.findValue(field) is null, then the testing site doesn't have the field
+            String createdDate = entity.get(BookingModel.CREATED_AT).asText();
+            String updatedDate = entity.get(BookingModel.UPDATED_AT).asText();
+            if (createdDate.equals(updatedDate)){
+                filteredList.add(entity);
+            }
+        }
+        return filteredList;
     }
 
 

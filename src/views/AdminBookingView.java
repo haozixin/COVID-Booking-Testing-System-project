@@ -1,21 +1,25 @@
 package views;
 
+import models.bookings.BookingModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class AdminBookingView extends View {
+    private BookingModel bookingModel;
+
     protected JScrollPane outsideJp = new JScrollPane(panel);
     protected JLabel cancelBookingLbl = new JLabel("Canceled Booking:");
-    protected JTextField canceledBookings = new JTextField("There is no canceled booking");
+    protected JTextArea canceledBookings = new JTextArea("There is no canceled booking");
     protected JScrollPane canceledBookingP = new JScrollPane(canceledBookings);
 
     protected JLabel modifiedBookingLbl = new JLabel("Modified Booking:");
-    protected JTextField modifiedBookings = new JTextField("There is no modified booking");
+    protected JTextArea modifiedBookings = new JTextArea("There is no modified booking");
     protected JScrollPane modifiedBookingP = new JScrollPane(modifiedBookings);
 
     protected JLabel newBookingLbl = new JLabel("New Booking:");
-    protected JTextField newBookings = new JTextField("There is no booking");
+    protected JTextArea newBookings = new JTextArea("There is no booking");
     protected JScrollPane newBookingP = new JScrollPane(newBookings);
 
     protected JLabel deleteBookingLbl = new JLabel("Booking Id:");
@@ -26,8 +30,9 @@ public class AdminBookingView extends View {
     protected JButton mkModifiedBookingBtn = new JButton("modify Booking");
 
 
-    public AdminBookingView() throws HeadlessException {
+    public AdminBookingView(BookingModel bookingModel) throws HeadlessException {
         super("Admin Booking Window");
+        this.bookingModel = bookingModel;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(1000,600);
         outsideJp.setLayout(new ScrollPaneLayout());
@@ -52,17 +57,27 @@ public class AdminBookingView extends View {
         add(outsideJp);
     }
 
-    private void setCanceledBookingP(JLabel label, JTextField textField, GridBagConstraints c, JScrollPane scrollPane) {
+    private void setCanceledBookingP(JLabel label, JTextArea text, GridBagConstraints c, JScrollPane scrollPane) {
         scrollPane.setLayout(new ScrollPaneLayout());
         scrollPane.setPreferredSize(new Dimension(900,300));
-        textField.setEditable(false);
+        text.setEditable(false);
         addComponentsInY(panel, c, label);
         addComponentsInY(panel, c, scrollPane);
     }
 
     @Override
     public void update() {
-
+        if (bookingModel.getResponseMessage().equals("")){
+            JOptionPane.showMessageDialog(this, "Have deleted the booking");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, bookingModel.getResponseMessage());
+        }
+    }
+    public void updateView(){
+        canceledBookings.setText(bookingModel.getCanceledBookings());
+        modifiedBookings.setText(bookingModel.getModifiedBookings(true));
+        newBookings.setText(bookingModel.getModifiedBookings(false));
     }
 
     @Override

@@ -1,13 +1,17 @@
 package controllers;
 
+import engine.CurrentOperator;
+import engine.Service;
 import models.bookings.BookingModel;
+import services.ChangeBookingService;
+import services.OnSiteBookingService;
 import views.AdminBookingView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AdminBookingController {
+public class AdminBookingController extends Controller {
     private AdminBookingView view;
     private BookingModel model;
 
@@ -23,7 +27,8 @@ public class AdminBookingController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            Service service = new OnSiteBookingService();
+            service.execute(CurrentOperator.getInstance());
         }
     }
 
@@ -35,7 +40,10 @@ public class AdminBookingController {
             if (id.equals("")) {
                 JOptionPane.showMessageDialog(view, "Please enter a booking id");
             }else{
-                model.deleteBooking(id);
+                boolean result = model.deleteBooking(id);
+                if (result) {
+                    view.update();
+                }
             }
         }
     }
@@ -44,7 +52,8 @@ public class AdminBookingController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            Service service = new ChangeBookingService();
+            service.execute(CurrentOperator.getInstance());
         }
     }
 }

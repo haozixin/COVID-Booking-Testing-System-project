@@ -7,6 +7,7 @@ import engine.Services;
 import engine.adminNotification.BookingPublisher;
 import engine.adminNotification.Publisher;
 import models.bookings.BookingModel;
+import models.bookings.OnsiteBookingModel;
 import views.AdminBookingView;
 
 import java.util.List;
@@ -22,9 +23,10 @@ public class AdminBookingService extends Service{
 //        String message = currentOperator.receiveMessage();
 //        System.out.println(message);
 
-
-        AdminBookingView adminBookingView = new AdminBookingView();
-//        controller = new AdminBookingController(adminBookingView);
+        BookingModel bookingModel = new OnsiteBookingModel();
+        AdminBookingView adminBookingView = new AdminBookingView(bookingModel);
+        controller = new AdminBookingController(adminBookingView, bookingModel);
+        adminBookingView.updateView();
         adminBookingView.setVisible(true);
         return "";
     }

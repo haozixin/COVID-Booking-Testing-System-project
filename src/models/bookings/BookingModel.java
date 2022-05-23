@@ -3,7 +3,6 @@ package models.bookings;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import enums.Path;
 import enums.Query;
-import mementos.BookingMemento;
 import mementos.IOriginator;
 import models.CollectionModel;
 import models.EntityModel;
@@ -37,6 +36,8 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
     public static final String STATUS_FIELD = "status";
     private static final String CANCELED_STATUS = "CANCELED";
     public static final String TESTING_SITE_FIELD = "testingSite";
+    public static final String CREATED_AT = "createdAt";
+    public static final String UPDATED_AT = "updatedAt";
 
     public BookingModel(){
 
@@ -312,4 +313,30 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
         }
         return false;
     }
+
+    public String getCanceledBookings(){
+        CollectionModel collectionModel = new CollectionModel();
+        collectionModel.updateCollection(Path.BOOKING.getPath());
+        ArrayList<ObjectNode> bookings = collectionModel.filterByOnFactor(STATUS_FIELD, CANCELED_STATUS);
+        collectionModel.setCollection(bookings);
+        return collectionModel.display();
+    }
+
+    public String getModifiedBookings(boolean isModified){
+        CollectionModel collectionModel = new CollectionModel();
+        collectionModel.updateCollection(Path.BOOKING.getPath());
+        if (isModified){
+            // if isModified is true, then we want to get all modified bookings
+            ArrayList<ObjectNode> bookings = collectionModel.getModifiedData();
+            collectionModel.setCollection(bookings);
+        }else{
+            // if isModified is false, then we want to get all unmodified bookings
+            ArrayList<ObjectNode> bookings = collectionModel.getNewData();
+            collectionModel.setCollection(bookings);
+        }
+
+        return collectionModel.display();
+    }
+
+
 }

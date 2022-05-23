@@ -47,7 +47,7 @@ public class Utility {
             message.append(prefix);
             if(entry.getValue().isObject()){
 
-                message.append(entry.getKey()).append(": \n{").append(formatMessage(entry.getValue(),"\t")).append("}\n");
+                message.append(entry.getKey()).append(": \n{").append(formatMessage(entry.getValue(),"    ")).append("}\n");
 
             }
             else if(entry.getValue().isArray()){
@@ -72,7 +72,7 @@ public class Utility {
         if (jsonNode != null) {
             for (JsonNode node : jsonNode) {
                 message.append("----------------------------------------------\n");
-                message.append(formatMessage(node, "\t"));
+                message.append(formatMessage(node, "    "));
                 message.append("\n");
             }
 
