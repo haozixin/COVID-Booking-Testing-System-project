@@ -42,12 +42,16 @@ public class AdminBookingController extends Controller {
             if (id.equals("")) {
                 JOptionPane.showMessageDialog(view, "Please enter a booking id");
             }else{
+
+
                 boolean result = model.deleteBooking(id);
                 if (result) {
                     view.update();
+
+                    String facilityId = model.getVenueId();
                     // Broadcast new message to all subscribers (within a range - for example, only subscribers within the same facility)
                     Publisher publisher = BookingPublisher.getInstance();
-                    CurrentOperator.getInstance().broadCast(publisher, "a booking was deleted.");
+                    CurrentOperator.getInstance().broadCast(publisher, "a booking was deleted.", facilityId);
                 }
             }
         }

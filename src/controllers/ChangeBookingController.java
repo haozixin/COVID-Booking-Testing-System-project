@@ -1,5 +1,8 @@
 package controllers;
 
+import engine.CurrentOperator;
+import engine.adminNotification.BookingPublisher;
+import engine.adminNotification.Publisher;
 import mementos.BookingCaretaker;
 import mementos.Caretaker;
 import models.bookings.BookingModel;
@@ -8,6 +11,7 @@ import views.ChangeBookingView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,7 +30,7 @@ public class ChangeBookingController extends Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String siteId = view.getSiteId();
+            String newSiteId = view.getSiteId();
             String bookingId = view.getBookingId();
             String date = view.getDate();
             String time = view.getTime();
@@ -46,22 +50,42 @@ public class ChangeBookingController extends Controller {
                         // if one of the fields is not empty, change the booking
                         startTime = date + " " + time;
                     }
-                    if (!siteId.equals("") || !startTime.equals("")) {
-                        Date validTime = null;
-                        try {
-                            validTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(startTime);
-                            if (validTime.before(new Date())) {
-                                JOptionPane.showMessageDialog(view, "Please enter a valid time");
-                            }
-                            else{
-                                // change the booking's venue and start time locally and remotely
-                                model.changeBooking(siteId, startTime);
+                    if (!newSiteId.equals("") || !startTime.equals("")) {
+                        //validate the start time
+                        if (!startTime.equals("")) {
+                            Date validTime = null;
+                            try {
+                                validTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(startTime);
+                                if (validTime.before(new Date())) {
+                                    JOptionPane.showMessageDialog(view, "Please enter a valid time");
+                                }
 
-                                view.update();
+                            } catch (ParseException ex) {
+                                ex.printStackTrace();
                             }
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
                         }
+                        // change the booking's venue and start time locally and remotely
+                        model.changeBooking(newSiteId, startTime);
+
+                        // Broadcast new message to all subscribers (within a range - for example, only subscribers within the same facility)
+                        Publisher publisher = BookingPublisher.getInstance();
+                        if(!newSiteId.equals("")){
+                            // if the new site id is not empty, broadcast two sides(both facilities)
+                            CurrentOperator.getInstance().broadCast(publisher, "a booking changes its venue to here.", newSiteId);
+                            CurrentOperator.getInstance().broadCast(publisher, "a booking changes its venue to other place.", model.getVenueId());
+                        }
+                        else{
+                            // if the new site id is empty, broadcast to one facility
+                            CurrentOperator.getInstance().broadCast(publisher, "a booking changes its startTime.", model.getVenueId());
+                        }
+
+
+                        view.update();
+
+
+
+
+
 
                     } else {
                         JOptionPane.showMessageDialog(view, "Please change at least one (venue or start dateTime)");

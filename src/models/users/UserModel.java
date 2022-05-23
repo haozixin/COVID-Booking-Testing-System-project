@@ -159,12 +159,16 @@ public class UserModel extends EntityModel implements Subscriber {
             updateModel(data);
             responseMessage = webServicesTarget.getResponseMessage();
             for (JsonNode booking : data.get(BOOKINGS_FIELD)) {
-                String bookingType = booking.findValue(BookingModel.BOOKING_TYPE_FIELD).asText();
-                if (bookingType.equals(OnsiteBookingModel.ONSITE)) {
-                    // map JsonNode to ObjectNode
-                    ObjectNode bookingObject = (ObjectNode) booking;
+                try {
+                    String bookingType = booking.findValue(BookingModel.BOOKING_TYPE_FIELD).asText();
+                    if (bookingType.equals(OnsiteBookingModel.ONSITE)) {
+                        // map JsonNode to ObjectNode
+                        ObjectNode bookingObject = (ObjectNode) booking;
 
-                    onSiteBookings.add(new OnsiteBookingModel(bookingObject));
+                        onSiteBookings.add(new OnsiteBookingModel(bookingObject));
+                    }
+                }catch (NullPointerException e){
+                    // do nothing
                 }
             }
 
@@ -186,7 +190,7 @@ public class UserModel extends EntityModel implements Subscriber {
     }
 
     @Override
-    public void broadCast(Publisher publisher, String message) {
+    public void broadCast(Publisher publisher, String message, String facilityId) {
 
     }
 

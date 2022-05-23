@@ -305,6 +305,8 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
 
     public boolean deleteBooking(String bookingId){
         try {
+            ObjectNode data = webServicesTarget.getSpecificData(Path.BOOKING.getPath(), bookingId, null);
+            updateModel(data);
             webServicesTarget.deleteData(Path.BOOKING.getPath(), bookingId);
             responseMessage = webServicesTarget.getResponseMessage();
             return true;
@@ -337,6 +339,7 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
 
         return collectionModel.display();
     }
+
 
 
 }

@@ -1,5 +1,8 @@
 package views;
 
+import engine.CurrentOperator;
+import engine.adminNotification.BookingPublisher;
+import engine.adminNotification.Publisher;
 import models.bookings.BookingModel;
 import models.users.UserModel;
 
@@ -44,7 +47,6 @@ public class ProfileView extends View {
         phoneNumberLabel.setText(phoneNumberLabel.getText().concat(userModel.getPhoneNumber()));
 
 
-
         addComponentsInY(panel, c, idLabel);
         addComponentsInY(panel, c, givenNameLabel);
         addComponentsInY(panel, c, familyNameLabel);
@@ -74,6 +76,11 @@ public class ProfileView extends View {
         JButton cancelButton = new JButton("Cancel the Booking");
         cancelButton.addActionListener(e -> {
                     booking.cancelBooking();
+                    String facilityId = booking.getVenueId();
+                    // Broadcast new message to all subscribers (within a range - for example, only subscribers within the same facility)
+                    Publisher publisher = BookingPublisher.getInstance();
+                    CurrentOperator.getInstance().broadCast(publisher, "a booking was canceled.", facilityId);
+
                     if (booking.getResponseMessage().equals("")) {
                         JOptionPane.showMessageDialog(this, "Booking cancelled successfully");
                     } else {

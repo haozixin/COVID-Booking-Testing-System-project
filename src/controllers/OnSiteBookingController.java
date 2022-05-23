@@ -64,9 +64,10 @@ public class OnSiteBookingController extends Controller {
                             JOptionPane.showMessageDialog(view, "We have messaged the pin code to customer! \n" + "PinCode: " + pin + "\n" + "PhoneNumber: " + phoneNumber);
                         }
 
-//                        // Broadcast new message to all subscribers (within a range - for example, only subscribers within the same facility)
-//                        Publisher publisher = BookingPublisher.getInstance();
-//                        CurrentOperator.getInstance().broadCast(publisher, "a booking was deleted.");
+                        String facilityId = covidTestingSiteModel.getId();
+                        // Broadcast new message to all subscribers (within a range - for example, only subscribers within the same facility)
+                        Publisher publisher = BookingPublisher.getInstance();
+                        CurrentOperator.getInstance().broadCast(publisher, "a new onsite-booking created.", facilityId);
 
                     } catch (IOException | InterruptedException ex) {
                         ex.printStackTrace();

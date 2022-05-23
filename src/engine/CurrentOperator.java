@@ -41,21 +41,19 @@ public class CurrentOperator implements Subscriber {
     private UserModel userModel;
 
 
-
-
-
     private CurrentOperator() {
         webServicesTarget = new ServicesAdapter();
     }
 
-    public boolean isCustomer(){
+    public boolean isCustomer() {
         return roles.contains(UserRoles.IS_CUSTOMER_FIELD.getName());
     }
 
-    public boolean isAdministrator(){
+    public boolean isAdministrator() {
         return roles.contains(UserRoles.IS_ADMIN_FIELD.getName());
     }
-    public boolean isHealthcareWorker(){
+
+    public boolean isHealthcareWorker() {
         return roles.contains(UserRoles.IS_HEALTHCARE_WORKER_FIELD.getName());
     }
 
@@ -69,7 +67,7 @@ public class CurrentOperator implements Subscriber {
     public Service playTurn(Services services, Service lastService) {
 
         // Handle multi-turn Actions
-        if (lastService != null && lastService.getNextAction() != null){
+        if (lastService != null && lastService.getNextAction() != null) {
             return lastService.getNextAction();
         }
         return menu.showMenu(this, services);
@@ -80,9 +78,10 @@ public class CurrentOperator implements Subscriber {
     }
 
     /**
-     *  Return a JSON representation of this Actor (information from token)
+     * Return a JSON representation of this Actor (information from token)
+     *
      * @param token the token of the user
-     * @return  a JSON representation of this Actor
+     * @return a JSON representation of this Actor
      */
     private ObjectNode parseToken(String token) throws JsonProcessingException {
         String[] tokenArr = token.split("\\.");
@@ -92,8 +91,8 @@ public class CurrentOperator implements Subscriber {
         return jsonObject;
     }
 
-    public static CurrentOperator getInstance(){
-        if(instance == null){
+    public static CurrentOperator getInstance() {
+        if (instance == null) {
             instance = new CurrentOperator();
         }
         return instance;
@@ -112,6 +111,7 @@ public class CurrentOperator implements Subscriber {
 
     /**
      * Set the token of the user
+     *
      * @param token the token of the user
      */
     private void setToken(String token) {
@@ -142,11 +142,14 @@ public class CurrentOperator implements Subscriber {
     }
 
     @Override
-    public void broadCast(Publisher publisher, String message) {
-
-        String facilityId = userModel.getFacilityId();
+    public void broadCast(Publisher publisher, String message, String facilityId) {
+        /*
+         * if the id is null, then broadcast to all the subscribers
+         * if the id is not null, then broadcast to all the subscribers who work on the specified facility
+         */
 
         publisher.notifyObservers(this.getName(), facilityId, message);
+
     }
 
     @Override
@@ -165,7 +168,7 @@ public class CurrentOperator implements Subscriber {
         this.messageFromPublisher = messageFromPublisher;
     }
 
-    public boolean isLoggedIn(){
+    public boolean isLoggedIn() {
         return isLogged;
     }
 
@@ -187,7 +190,7 @@ public class CurrentOperator implements Subscriber {
                 userModel.getUserById(id);
 
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -197,6 +200,7 @@ public class CurrentOperator implements Subscriber {
 
     /**
      * Setter for the wantsGoBack attribute
+     *
      * @param wantsGoBack the new value of the wantsGoBack attribute
      */
     public void setWantsGoBack(boolean wantsGoBack) {
@@ -205,9 +209,10 @@ public class CurrentOperator implements Subscriber {
 
     /**
      * Getter for the wantsGoBack attribute
+     *
      * @return the wantsGoBack attribute
      */
-    public boolean wantsGoBack(){
+    public boolean wantsGoBack() {
         return wantsGoBack;
     }
 
@@ -226,7 +231,7 @@ public class CurrentOperator implements Subscriber {
     public UserModel getProfile() {
         if (userModel == null) {
             return null;
-        }else{
+        } else {
             return userModel;
         }
 
