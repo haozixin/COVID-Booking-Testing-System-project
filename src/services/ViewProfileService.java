@@ -7,6 +7,9 @@ import models.bookings.BookingModel;
 import models.bookings.OnsiteBookingModel;
 import views.ProfileView;
 
+/**
+ * Action to view the user profile
+ */
 public class ViewProfileService extends Service {
     @Override
     public String execute(CurrentOperator currentOperator) {
