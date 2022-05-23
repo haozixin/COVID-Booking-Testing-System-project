@@ -33,7 +33,7 @@ public class UserModel extends EntityModel implements Subscriber {
 
     private UserType adminType;
 
-    private String messageFromPublisher = "";
+    private ArrayList<String> messageFromPublisher = new ArrayList<>();
 
 
     /**
@@ -176,8 +176,8 @@ public class UserModel extends EntityModel implements Subscriber {
 
     @Override
     public void update(String message) {
-        messageFromPublisher = "This is "+getUserName()+" and "+message;
-
+        String newMessage = "This is "+getUserName()+" and "+message;
+        messageFromPublisher.add(newMessage);
     }
 
     @Override
@@ -191,7 +191,7 @@ public class UserModel extends EntityModel implements Subscriber {
     }
 
     @Override
-    public String receiveMessage() {
+    public ArrayList<String> receiveMessage() {
         // let current user know about the message
         CurrentOperator.getInstance().setMessageFromPublisher(messageFromPublisher);
         return messageFromPublisher;

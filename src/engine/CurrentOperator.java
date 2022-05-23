@@ -13,6 +13,8 @@ import webServiceAPI.ServicesAdapter;
 import webServiceAPI.WebServicesTarget;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,7 +37,7 @@ public class CurrentOperator implements Subscriber {
     private boolean wantsGoBack;
     private Menu menu = new Menu();
     private Set<String> roles = new HashSet<>();
-    private String messageFromPublisher = "";
+    private ArrayList<String> messageFromPublisher = new ArrayList<>();
     private UserModel userModel;
 
 
@@ -148,7 +150,7 @@ public class CurrentOperator implements Subscriber {
     }
 
     @Override
-    public String receiveMessage() {
+    public ArrayList<String> receiveMessage() {
         Publisher publisher = BookingPublisher.getInstance();
         publisher.getNotification(this.getName());
         return messageFromPublisher;
@@ -159,7 +161,7 @@ public class CurrentOperator implements Subscriber {
         return null;
     }
 
-    public void setMessageFromPublisher(String messageFromPublisher) {
+    public void setMessageFromPublisher(ArrayList<String> messageFromPublisher) {
         this.messageFromPublisher = messageFromPublisher;
     }
 

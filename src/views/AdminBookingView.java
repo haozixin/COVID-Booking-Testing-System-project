@@ -6,6 +6,7 @@ import models.bookings.BookingModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AdminBookingView extends View {
     private BookingModel bookingModel;
@@ -41,10 +42,12 @@ public class AdminBookingView extends View {
         GridBagConstraints c = setBasicStyle(panel);
 
         // retrieve the message published by others
-        String message = CurrentOperator.getInstance().receiveMessage();
-        System.out.println(message);
-        if (!message.equals("")){
-            JOptionPane.showMessageDialog(this, message);
+        ArrayList<String> message = CurrentOperator.getInstance().receiveMessage();
+        if (!message.isEmpty()){
+            for(String s : message){
+                System.out.println(s);
+                JOptionPane.showMessageDialog(this, s);
+            }
         }
 
         addComponentsInY(panel, c, new JLabel("-------------------View-Bookings Section---------------------"));
