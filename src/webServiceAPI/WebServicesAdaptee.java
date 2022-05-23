@@ -102,6 +102,16 @@ public class WebServicesAdaptee {
         return response;
     }
 
+    public HttpResponse<String> deleteRequest(String url, String myApiKey, HttpClient client) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest
+                .newBuilder(URI.create(url))
+                .setHeader("Authorization", myApiKey)
+                .DELETE()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response;
+    }
 
 
 

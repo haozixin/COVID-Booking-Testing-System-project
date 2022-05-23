@@ -74,9 +74,10 @@ public class SystemFacade {
             for (CovidBAndTSystem system : systems) {
                 services.add(new GoSubsystemService(system));
             }
-            if (currentOperator.isAdministrator()) {
-                services.add(new AdminBookingService());
-            }
+//            if (currentOperator.isAdministrator()) {
+//                services.add(new AdminBookingService());
+//            }
+            services.add(new AdminBookingService());
             if(currentOperator.isLoggedIn()){
                 services.add(new ViewProfileService());
             }

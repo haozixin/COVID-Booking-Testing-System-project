@@ -10,6 +10,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller for the CheckBookingByPINView.
+ */
 public class CheckBookingController extends Controller {
     private CheckBookingByPINView view;
     private BookingModel bookingModel;
@@ -46,14 +49,16 @@ public class CheckBookingController extends Controller {
                 }
             }
             else if(!pinCode.isEmpty() || !bookingId.isEmpty()){
-                // if the pin code is empty
+                // if the pin code is empty, then we use the booking id
                 if (bookingModel.getBookingById(bookingId)){
 
                     view.update();
                     JOptionPane.showMessageDialog(view, "Correct Booking ID");
                     Service service = new ChangeBookingService();
                     service.execute(CurrentOperator.getInstance());
-                }else if (bookingModel.getBookingByPin(pinCode)){
+                }
+                // if the booking id is empty, then we use the pin code
+                else if (bookingModel.getBookingByPin(pinCode)){
 
                     view.update();
                     JOptionPane.showMessageDialog(view, "Correct PIN code");

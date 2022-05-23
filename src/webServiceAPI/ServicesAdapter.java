@@ -179,6 +179,15 @@ public class ServicesAdapter implements WebServicesTarget {
         return dealingResult(response, ResponseStatus.CODE_200.getCode());
     }
 
+    @Override
+    public boolean deleteData(String path, String id) throws IOException, InterruptedException {
+        String url = rootUrl + path + "/" + id;
+
+        HttpResponse<String> response = webServicesAdaptee.deleteRequest(url, myApiKey, client);
+
+        return dealingResult(response, ResponseStatus.CODE_204.getCode());
+    }
+
     private boolean dealingResult(HttpResponse<String> response, int successCode) throws JsonProcessingException {
         if (response.statusCode() == successCode) {
             responseMessage = "";
