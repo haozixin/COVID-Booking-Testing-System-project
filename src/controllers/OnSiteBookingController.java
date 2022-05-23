@@ -1,5 +1,8 @@
 package controllers;
 
+import engine.CurrentOperator;
+import engine.adminNotification.BookingPublisher;
+import engine.adminNotification.Publisher;
 import enums.Path;
 import models.bookings.OnsiteBookingModel;
 import models.facilities.CovidTestingSiteModel;
@@ -61,7 +64,9 @@ public class OnSiteBookingController extends Controller {
                             JOptionPane.showMessageDialog(view, "We have messaged the pin code to customer! \n" + "PinCode: " + pin + "\n" + "PhoneNumber: " + phoneNumber);
                         }
 
-
+//                        // Broadcast new message to all subscribers (within a range - for example, only subscribers within the same facility)
+//                        Publisher publisher = BookingPublisher.getInstance();
+//                        CurrentOperator.getInstance().broadCast(publisher, "a booking was deleted.");
 
                     } catch (IOException | InterruptedException ex) {
                         ex.printStackTrace();

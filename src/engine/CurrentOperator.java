@@ -35,7 +35,8 @@ public class CurrentOperator implements Subscriber {
     private boolean wantsGoBack;
     private Menu menu = new Menu();
     private Set<String> roles = new HashSet<>();
-    private String messageFromPublisher;
+    private String messageFromPublisher = "";
+    private UserModel userModel;
 
 
 
@@ -139,8 +140,11 @@ public class CurrentOperator implements Subscriber {
     }
 
     @Override
-    public void broadCast(Publisher publisher) {
-        publisher.notifyObservers(this.getName());
+    public void broadCast(Publisher publisher, String message) {
+
+        String facilityId = userModel.getFacilityId();
+
+        publisher.notifyObservers(this.getName(), facilityId, message);
     }
 
     @Override
@@ -148,6 +152,11 @@ public class CurrentOperator implements Subscriber {
         Publisher publisher = BookingPublisher.getInstance();
         publisher.getNotification(this.getName());
         return messageFromPublisher;
+    }
+
+    @Override
+    public String getFacilityId() {
+        return null;
     }
 
     public void setMessageFromPublisher(String messageFromPublisher) {
@@ -160,16 +169,26 @@ public class CurrentOperator implements Subscriber {
 
     public boolean login(String userName, String password) throws IOException, InterruptedException {
         boolean hasLogged = false;
-        String token = webServicesTarget.getToken(userName, password);
-        boolean result = webServicesTarget.verifyToken(token);
-        if (result) {
-            // if login success, set state to logged in
-            this.setLoginState(true);
-            // store token
-            this.setToken(token);
-            hasLogged = true;
-            isLogged = true;
+        try {
+            String token = webServicesTarget.getToken(userName, password);
+            boolean result = webServicesTarget.verifyToken(token);
+            if (result) {
+                // if login success, set state to logged in
+                this.setLoginState(true);
+                // store token
+                this.setToken(token);
+                hasLogged = true;
+                isLogged = true;
+                // use userModel to contain the user's information
+                String id = getIdFromToken();
+                userModel = new UserModel();
+                userModel.getUserById(id);
+
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
         }
+
         return hasLogged;
     }
 
@@ -203,15 +222,11 @@ public class CurrentOperator implements Subscriber {
 
 
     public UserModel getProfile() {
-        String id = getIdFromToken();
-         ;
-        try {
-            ObjectNode data = webServicesTarget.getSpecificData(Path.USER.getPath(), id, null);
-            UserModel userModel = new UserModel(data);
+        if (userModel == null) {
+            return null;
+        }else{
             return userModel;
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
         }
-        return null;
+
     }
 }

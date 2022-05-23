@@ -29,4 +29,9 @@ public class Administrator extends UserType{
 
     }
 
+    @Override
+    public String getFacilityId() {
+        return facility.getId();
+    }
+
 }

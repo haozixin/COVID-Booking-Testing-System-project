@@ -2,6 +2,8 @@ package controllers;
 
 import engine.CurrentOperator;
 import engine.Service;
+import engine.adminNotification.BookingPublisher;
+import engine.adminNotification.Publisher;
 import models.bookings.BookingModel;
 import services.ChangeBookingService;
 import services.OnSiteBookingService;
@@ -43,6 +45,9 @@ public class AdminBookingController extends Controller {
                 boolean result = model.deleteBooking(id);
                 if (result) {
                     view.update();
+                    // Broadcast new message to all subscribers (within a range - for example, only subscribers within the same facility)
+                    Publisher publisher = BookingPublisher.getInstance();
+                    CurrentOperator.getInstance().broadCast(publisher, "a booking was deleted.");
                 }
             }
         }

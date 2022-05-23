@@ -27,10 +27,6 @@ public class BookingPublisher extends Publisher{
         return instance;
     }
 
-//    public BookingPublisher() {
-//        initializeSubscribers();
-//    }
-
     /**
      * Initalizing the subscribers - the observers
      * Get data from database and add observers that are users with admin role to the list
@@ -50,15 +46,25 @@ public class BookingPublisher extends Publisher{
                 join(new UserModel(admin));
             }
         }
-
-
     }
 
     @Override
-    public void notifyObservers(String name) {
-        for (Subscriber subscriber : subscribers) {
-            if(!subscriber.getName().equalsIgnoreCase(name)) {
-                subscriber.update("I received a message from " + name);
+    public void notifyObservers(String name, String facilityId, String message) {
+        if (facilityId != null) {
+            for (Subscriber subscriber : subscribers) {
+                // if the subscriber is not the one who made the booking, then notify him
+                if(!subscriber.getName().equalsIgnoreCase(name) && subscriber.getFacilityId().equals(facilityId)) {
+                    subscriber.update(" I received a message from " + name+" -- "+message);
+                    System.out.println("Have send the message to " + subscriber.getName() +" worked at the facility (id: "+facilityId+")");
+                }
+            }
+        }else{
+            // if the facilityId is null, we will send the notification to all the subscribers
+            for (Subscriber subscriber : subscribers) {
+                if(!subscriber.getName().equalsIgnoreCase(name)) {
+                    subscriber.update("I received a message from " + name+", "+message);
+                    System.out.println("Have send the message to " + subscriber.getName());
+                }
             }
         }
 
@@ -67,7 +73,7 @@ public class BookingPublisher extends Publisher{
     @Override
     public void getNotification(String name) {
         for (Subscriber subscriber : subscribers) {
-            if(!subscriber.getName().equals(name)) {
+            if(subscriber.getName().equals(name)) {
                 subscriber.receiveMessage();
             }
 

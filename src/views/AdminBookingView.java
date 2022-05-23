@@ -1,5 +1,6 @@
 package views;
 
+import engine.CurrentOperator;
 import models.bookings.BookingModel;
 
 import javax.swing.*;
@@ -38,6 +39,13 @@ public class AdminBookingView extends View {
         outsideJp.setLayout(new ScrollPaneLayout());
         outsideJp.setPreferredSize(new Dimension(1000,600));
         GridBagConstraints c = setBasicStyle(panel);
+
+        // retrieve the message published by others
+        String message = CurrentOperator.getInstance().receiveMessage();
+        System.out.println(message);
+        if (!message.equals("")){
+            JOptionPane.showMessageDialog(this, message);
+        }
 
         addComponentsInY(panel, c, new JLabel("-------------------View-Bookings Section---------------------"));
         setCanceledBookingP(cancelBookingLbl, canceledBookings, c, canceledBookingP);

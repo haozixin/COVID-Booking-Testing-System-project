@@ -11,7 +11,6 @@ import enums.UserRoles;
 import models.bookings.BookingModel;
 import models.EntityModel;
 import models.bookings.OnsiteBookingModel;
-import models.facilities.CovidTestingSiteModel;
 import utility.Utility;
 
 import java.io.IOException;
@@ -32,9 +31,9 @@ public class UserModel extends EntityModel implements Subscriber {
 
     public static final String GIVEN_NAME_FIELD = "givenName";
 
-    private UserType userType;
+    private UserType adminType;
 
-    private String messageFromPublisher;
+    private String messageFromPublisher = "";
 
 
     /**
@@ -52,14 +51,9 @@ public class UserModel extends EntityModel implements Subscriber {
     public UserModel(ObjectNode data) {
         updateModel(data);
         if (entityInfo.get(UserRoles.IS_ADMIN_FIELD.getName()).asBoolean()) {
-            userType = new Administrator(data);
+            adminType = new Administrator(data);
         }
-        if(entityInfo.get(UserRoles.IS_CUSTOMER_FIELD.getName()).asBoolean()) {
-            userType = new Customer();
-        }
-        if (entityInfo.get(UserRoles.IS_HEALTHCARE_WORKER_FIELD.getName()).asBoolean()) {
-            userType = new HealthcareWorker();
-        }
+
     }
 
     public boolean updateToServer() {
@@ -183,7 +177,7 @@ public class UserModel extends EntityModel implements Subscriber {
     @Override
     public void update(String message) {
         messageFromPublisher = "This is "+getUserName()+" and "+message;
-        System.out.println(messageFromPublisher);
+
     }
 
     @Override
@@ -192,7 +186,7 @@ public class UserModel extends EntityModel implements Subscriber {
     }
 
     @Override
-    public void broadCast(Publisher publisher) {
+    public void broadCast(Publisher publisher, String message) {
 
     }
 
@@ -200,6 +194,30 @@ public class UserModel extends EntityModel implements Subscriber {
     public String receiveMessage() {
         // let current user know about the message
         CurrentOperator.getInstance().setMessageFromPublisher(messageFromPublisher);
-        return null;
+        return messageFromPublisher;
+    }
+
+    public String getFacilityId(){
+        return adminType.getFacilityId();
+    }
+
+    @Override
+    protected void updateModel(ObjectNode data) {
+        super.updateModel(data);
+        if (entityInfo.get(UserRoles.IS_ADMIN_FIELD.getName()).asBoolean()) {
+            adminType = new Administrator(data);
+        }
+    }
+
+    public boolean getUserById(String id){
+        try {
+            ObjectNode data = webServicesTarget.getSpecificData(Path.USER.getPath(), id, "");
+            updateModel(data);
+            responseMessage = webServicesTarget.getResponseMessage();
+            return true;
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

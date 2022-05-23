@@ -21,8 +21,10 @@ public abstract class Publisher {
     /**
      * This function is used to publish the message to all subscribers (except the publisher)
      * @param name the name of the publisher (userName)
+     * @param facilityId the facilityId of the publisher ("workAt(siteId)" field in additionalInfo field of user)
+     *                   if facilityId is null, then the publisher will send the message to all subscribers
      */
-    public abstract void notifyObservers(String name);
+    public abstract void notifyObservers(String name, String facilityId, String message);
 
     /**
      * Since our application is console-based

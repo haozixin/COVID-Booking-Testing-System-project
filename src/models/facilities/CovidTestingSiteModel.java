@@ -70,5 +70,8 @@ public class CovidTestingSiteModel extends EntityModel {
         getSpecifiedEntity(Path.SITE.getPath(), id, null);
     }
 
+    public String getId(){
+        return entityInfo.get("id").asText();
+    }
 
 }

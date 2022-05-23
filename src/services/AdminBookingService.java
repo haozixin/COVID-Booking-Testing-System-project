@@ -19,9 +19,7 @@ public class AdminBookingService extends Service{
 //        Publisher publisher = BookingPublisher.getInstance();
 //        currentOperator.broadCast(publisher);
 
-        // retrieve the message published by others
-//        String message = currentOperator.receiveMessage();
-//        System.out.println(message);
+
 
         BookingModel bookingModel = new OnsiteBookingModel();
         AdminBookingView adminBookingView = new AdminBookingView(bookingModel);

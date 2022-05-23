@@ -46,7 +46,7 @@ public class Application {
 
  // Application
 
-//        Publisher publisher = BookingPublisher.getInstance();
+        Publisher publisher = BookingPublisher.getInstance();
 
 
         CurrentOperator currentOperator = CurrentOperator.getInstance();
