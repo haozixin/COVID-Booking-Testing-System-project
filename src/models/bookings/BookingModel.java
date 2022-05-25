@@ -273,7 +273,7 @@ public abstract class BookingModel extends EntityModel implements IOriginator {
     }
 
     public boolean getBookingById(String bookingId){
-        if (bookingId == null){
+        if (bookingId.equals("")){
             return false;
         }else{
             try {
