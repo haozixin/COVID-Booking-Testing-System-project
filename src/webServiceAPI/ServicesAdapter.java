@@ -129,7 +129,7 @@ public class ServicesAdapter implements WebServicesTarget {
     @Override
     public boolean verifyToken(String token) throws IOException, InterruptedException {
 
-        //TODO: 重构（解决System.out.println的问题）
+
         String url = rootUrl + Path.VERIFY_TOKEN.getPath();
 
         String jsonString = "{\"jwt\":\"" + token + "\"}";
