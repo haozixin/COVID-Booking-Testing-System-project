@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Controller for the HomeBookingView
+ */
 public class HomeBookingController extends Controller {
     private HomeBookingView view;
     private HomeBookingModel bookingModel;

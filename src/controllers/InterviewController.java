@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Controller for the InterviewView
+ */
 public class InterviewController extends Controller {
     private InterviewView interviewView;
     private UserModel userModel;
