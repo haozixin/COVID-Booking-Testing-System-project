@@ -26,7 +26,7 @@ Please refer to the A2_A3_Assumption.doc
 
 Demonstrate Video Link:  
 A2 - https://drive.google.com/file/d/1TdoOS_hRERD9WbQu9Zfp9DowtBEoaT09/view?usp=sharing  
-A3 -
+A3 - https://drive.google.com/drive/folders/1Y88pTtoS23MUpvqYJ67KoFl8L6rqn8c2?usp=sharing
 
 ------------------------------------------
 # Menu structure of our system:
