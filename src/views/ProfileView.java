@@ -12,6 +12,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The view to show the user's profile after login
+ */
 public class ProfileView extends View {
     UserModel userModel;
     BookingModel onsiteBookingModel;

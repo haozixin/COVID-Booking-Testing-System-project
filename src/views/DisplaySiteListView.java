@@ -7,6 +7,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * The view to display the testing sites
+ */
 public class DisplaySiteListView extends View {
     private CollectionModel theModel;
 

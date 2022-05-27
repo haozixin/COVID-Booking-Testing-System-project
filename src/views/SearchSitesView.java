@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * The view about the SearchSitesService
+ */
 public class SearchSitesView extends View {
     CollectionModel collectionModel;
 

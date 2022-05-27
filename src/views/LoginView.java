@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * The view about the LoginService
+ */
 public class LoginView extends View {
     private CurrentOperator theModel;
 

@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * The view about the ScanQRCodeService
+ */
 public class ScanQRView extends View{
     private HomeBookingModel bookingModel;
     JLabel note = new JLabel("Assumption: Input QR code to simulate scanning QR code");

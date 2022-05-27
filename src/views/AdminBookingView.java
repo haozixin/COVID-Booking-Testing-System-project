@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * The view about the AdminBookingService
+ */
 public class AdminBookingView extends View {
     private BookingModel bookingModel;
 

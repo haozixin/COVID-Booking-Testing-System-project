@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * The view about the ChangeBookingService
+ */
 public class ChangeBookingView extends BookingView {
     private BookingModel onsiteBookingModel;
 

@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Create the abstract View class
+ */
 public abstract class View extends JFrame {
     protected JLabel state = new JLabel("");
     protected int gridx = 0;

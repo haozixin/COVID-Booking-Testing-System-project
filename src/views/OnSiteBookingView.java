@@ -8,9 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-
 /**
- *
+ * The view about the OnsiteBookingService
  */
 public class OnSiteBookingView extends BookingView {
     private CollectionModel collectionModel;
