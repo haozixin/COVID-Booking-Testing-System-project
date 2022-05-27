@@ -13,6 +13,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller for the AdminBookingView
+ */
 public class AdminBookingController extends Controller {
     private AdminBookingView view;
     private BookingModel model;
