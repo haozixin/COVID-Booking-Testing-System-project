@@ -159,7 +159,7 @@ public class CurrentOperator implements Subscriber {
         return messageFromPublisher;
     }
 
-    @Override
+
     public String getFacilityId() {
         return null;
     }

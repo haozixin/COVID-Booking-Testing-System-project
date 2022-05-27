@@ -47,7 +47,7 @@ public class ChangeBookingController extends Controller {
                 if (model.canBeChanged(bookingId)) {
                     // save the change into Memento
                     Caretaker bookingCareTaker = BookingCaretaker.getInstance();
-                    bookingCareTaker.addMemento(model.save());
+
 
                     if (!date.equals("YYYY-MM-DD") && !time.equals("HH:MM")) {
                         // if one of the fields is not empty, change the booking
@@ -61,34 +61,19 @@ public class ChangeBookingController extends Controller {
                                 validTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(startTime);
                                 if (validTime.before(new Date())) {
                                     JOptionPane.showMessageDialog(view, "Please enter a valid time");
+                                }else{
+                                    bookingCareTaker.addMemento(model.save());
+                                    changeBooking(newSiteId, startTime);
                                 }
 
                             } catch (ParseException ex) {
                                 ex.printStackTrace();
                             }
+                        }else{
+                            bookingCareTaker.addMemento(model.save());
+                            // change the booking's venue, no need to check the datetime
+                            changeBooking(newSiteId, startTime);
                         }
-                        // change the booking's venue and start time locally and remotely
-                        model.changeBooking(newSiteId, startTime);
-
-                        // Broadcast new message to all subscribers (within a range - for example, only subscribers within the same facility)
-                        Publisher publisher = BookingPublisher.getInstance();
-                        if(!newSiteId.equals("")){
-                            // if the new site id is not empty, broadcast two sides(both facilities)
-                            CurrentOperator.getInstance().broadCast(publisher, "a booking changes its venue to here.", newSiteId);
-                            CurrentOperator.getInstance().broadCast(publisher, "a booking changes its venue to other place.", model.getVenueId());
-                        }
-                        else{
-                            // if the new site id is empty, broadcast to one facility
-                            CurrentOperator.getInstance().broadCast(publisher, "a booking changes its startTime.", model.getVenueId());
-                        }
-
-
-                        view.update();
-
-
-
-
-
 
                     } else {
                         JOptionPane.showMessageDialog(view, "Please change at least one (venue or start dateTime)");
@@ -99,6 +84,25 @@ public class ChangeBookingController extends Controller {
                 }
             }
         }
+    }
+
+    private void changeBooking(String newSiteId, String startTime) {
+        // change the booking's venue and start time locally and remotely
+        model.changeBooking(newSiteId, startTime);
+
+        // Broadcast new message to all subscribers (within a range - for example, only subscribers within the same facility)
+        Publisher publisher = BookingPublisher.getInstance();
+        if (!newSiteId.equals("")) {
+            // if the new site id is not empty, broadcast two sides(both facilities)
+            CurrentOperator.getInstance().broadCast(publisher, "a booking changes its venue to here.", newSiteId);
+            CurrentOperator.getInstance().broadCast(publisher, "a booking changes its venue to other place.", model.getVenueId());
+        } else {
+            // if the new site id is empty, broadcast to one facility
+            CurrentOperator.getInstance().broadCast(publisher, "a booking changes its startTime.", model.getVenueId());
+        }
+
+
+        view.update();
     }
 
 

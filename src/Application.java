@@ -16,33 +16,6 @@ public class Application {
 
     public static void main(String[] args) throws JsonProcessingException {
 
-        // test Memento pattern
-//        ObjectNode objectNode;
-//        String json2 = "{\"name\":\"Allen1\",\"age\":18,\"set\":{\"tel\":1591851786568, \"add\":\"always at home\"}}";
-//
-//        objectNode = new ObjectMapper().readValue(json2, ObjectNode.class);
-//
-//
-//        BookingModel bookingModel = new HomeBookingModel();
-        // create careTaker
-//        Caretaker caretaker = new Caretaker();
-
-//        bookingModel.setState(objectNode);
-        // create memento
-//        caretaker.addMemento(bookingModel.save());
-//        System.out.println(bookingModel.getState());
-//
-//        ObjectNode objectNode2;
-//        String json3 = "{\"name\":\"Allen\",\"age\":20,\"set\":{\"tel\":1591851786568, \"add\":\"always at home\"}}";
-//        objectNode2 = new ObjectMapper().readValue(json3, ObjectNode.class);
-//
-        // change state
-//        bookingModel.setState(objectNode2);
-//        System.out.println(bookingModel.getState());
-//
-        // restore state
-//        caretaker.undo();
-//        System.out.println(bookingModel.getState());
 
  // Application
 
@@ -62,10 +35,6 @@ public class Application {
 
 
         systemFacade.run();
-
-
-
-
 
 
     }
