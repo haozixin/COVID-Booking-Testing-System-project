@@ -2,6 +2,10 @@ package engine.adminNotification;
 
 import java.util.ArrayList;
 
+/**
+ * Publishers class contain a subscription infrastructure.
+ * To let new subscribers join and current subscribers leave the list.
+ */
 public abstract class Publisher {
     // The list of subscribers - members of one CovidTesting site
     protected ArrayList<Subscriber> subscribers = new ArrayList<>();
