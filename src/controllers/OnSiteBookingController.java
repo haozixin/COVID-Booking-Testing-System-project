@@ -14,6 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Controller for the OnSiteBookingView
+ */
 public class OnSiteBookingController extends Controller {
     private OnsiteBookingModel onsiteBookingModel;
     private CovidTestingSiteModel covidTestingSiteModel;

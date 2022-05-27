@@ -8,7 +8,7 @@ import models.CollectionModel;
 import views.DisplaySiteListView;
 
 /**
- * Action to view the list of sites.
+ * Action to view the list of testing sites.
  */
 public class ViewSiteListService extends Service {
 

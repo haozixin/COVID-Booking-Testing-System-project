@@ -4,6 +4,9 @@ import enums.Path;
 import models.CollectionModel;
 import views.DisplaySiteListView;
 
+/**
+ * Controller for the DisplaySitesView
+ */
 public class ViewSiteListController extends Controller {
     DisplaySiteListView displaySitesView;
     CollectionModel collectionModel;

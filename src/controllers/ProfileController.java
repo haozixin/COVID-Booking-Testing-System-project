@@ -8,6 +8,9 @@ import views.ProfileView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller for the ProfileView
+ */
 public class ProfileController extends Controller {
     private ProfileView view;
 

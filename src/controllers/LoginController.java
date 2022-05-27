@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Controller for the LoginView
+ */
 public class LoginController extends Controller{
     private LoginView loginView;
     private CurrentOperator loginModel;

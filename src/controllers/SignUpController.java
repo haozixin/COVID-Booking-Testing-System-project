@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller for the SignUpView.
+ */
 public class SignUpController extends Controller {
     private SignUpView signUpView;
     private UserModel userModel;

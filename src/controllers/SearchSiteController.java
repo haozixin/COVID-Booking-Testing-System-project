@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Controller for the SearchSitesView.
+ */
 public class SearchSiteController extends Controller {
     private SearchSitesView view;
     private CollectionModel dataModel;

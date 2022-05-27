@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller for the ScanQRView
+ */
 public class ScanQRController extends Controller {
     private BookingModel bookingModel;
     private ScanQRView view;

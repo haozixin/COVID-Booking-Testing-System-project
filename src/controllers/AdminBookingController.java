@@ -42,8 +42,6 @@ public class AdminBookingController extends Controller {
             if (id.equals("")) {
                 JOptionPane.showMessageDialog(view, "Please enter a booking id");
             }else{
-
-
                 boolean result = model.deleteBooking(id);
                 if (result) {
                     view.update();
