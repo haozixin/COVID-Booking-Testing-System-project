@@ -12,6 +12,9 @@ import views.AdminBookingView;
 
 import java.util.List;
 
+/**
+ * Action about admin booking
+ */
 public class AdminBookingService extends Service{
     @Override
     public String execute(CurrentOperator currentOperator) {
