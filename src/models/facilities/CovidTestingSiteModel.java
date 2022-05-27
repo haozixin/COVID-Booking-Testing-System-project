@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Create the CovidTestingSiteModel class
+ */
 public class CovidTestingSiteModel extends EntityModel {
     public static final String className = "Testing Site";
     public static final String ADDRESS_FIELD = "address";
