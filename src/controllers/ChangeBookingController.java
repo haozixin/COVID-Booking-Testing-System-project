@@ -15,6 +15,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Controller for the ChangeBookingView
+ */
 public class ChangeBookingController extends Controller {
     private ChangeBookingView view;
     private BookingModel model;
