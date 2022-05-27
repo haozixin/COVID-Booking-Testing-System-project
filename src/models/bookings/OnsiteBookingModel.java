@@ -9,6 +9,9 @@ import models.bookings.BookingModel;
 
 import java.io.IOException;
 
+/**
+ * OnsiteBooking class is a subclass of Booking class.
+ */
 public class OnsiteBookingModel extends BookingModel {
 
 

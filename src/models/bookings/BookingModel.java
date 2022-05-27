@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- *
+ * Create the BookingModel class
  */
 public abstract class BookingModel extends EntityModel implements IOriginator {
 
