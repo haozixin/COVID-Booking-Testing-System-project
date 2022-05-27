@@ -1,5 +1,8 @@
 package mementos;
 
+/**
+ * Concrete Memento interface
+ */
 public interface IMemento {
     /**
      * Restore data to old version

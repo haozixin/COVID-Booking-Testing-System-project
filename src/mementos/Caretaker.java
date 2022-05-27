@@ -2,6 +2,9 @@ package mementos;
 
 import java.util.ArrayList;
 
+/**
+ * Concrete Caretaker class
+ */
 public abstract class Caretaker {
     public static final int HISTORY_SIZE = 3;
     protected ArrayList<IMemento> histories = new ArrayList<>();
