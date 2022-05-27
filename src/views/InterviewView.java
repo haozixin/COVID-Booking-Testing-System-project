@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * The view about the InterviewService
+ */
 public class InterviewView extends View {
     public static final String TAG1 = "Interview";
     public static final String TAG2 = "Create COVID-Test";

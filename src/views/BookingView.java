@@ -8,6 +8,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/**
+ * Create the BookingView class
+ */
 public abstract class BookingView extends View {
     protected JScrollPane outsideJp = new JScrollPane(panel);
     protected JLabel dateLabel = new JLabel("Date : ");

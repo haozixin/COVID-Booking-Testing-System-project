@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * The view about the CheckBookingService
+ */
 public class CheckBookingByPINView extends View {
     private BookingModel bookingModel;
 

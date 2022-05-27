@@ -2,6 +2,9 @@ package mementos;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+/**
+ * Concrete Originator interface
+ */
 public interface IOriginator {
     /**
      * Same data as memento, data will become history and will be restored when system need it

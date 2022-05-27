@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * The view about the SignUpService
+ */
 public class SignUpView extends View {
     private final UserModel theModel;
 

@@ -4,7 +4,9 @@ package models.testings;
 import models.EntityModel;
 import utility.Utility;
 
-
+/**
+ * Create the CovidTestModel class
+ */
 public class CovidTestModel extends EntityModel {
     public boolean isCreated = false;
     public static final String PATIENT_ID_FIELD = "patientId";

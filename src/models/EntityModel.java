@@ -6,6 +6,10 @@ import utility.Utility;
 
 import java.io.IOException;
 
+/**
+ * Create the EntityModel class
+ * Abstract class
+ */
 public abstract class EntityModel extends Model {
     public static final String ADDITIONAL_INFO_FIELD = "additionalInfo";
     protected ObjectNode entityInfo = new ObjectMapper().createObjectNode();

@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * The view about the HomeBookingService
+ */
 public class HomeBookingView extends BookingView{
     public static final String HAS_RAT_KIT = "Yes";
     CollectionModel collectionModel;

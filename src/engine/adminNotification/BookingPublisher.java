@@ -11,6 +11,9 @@ import webServiceAPI.WebServicesTarget;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *The concrete publisher class about booking notification
+ */
 public class BookingPublisher extends Publisher{
     public static final String WORK_AT_SITE_FIELD = "workAt(siteId)";
     private static BookingPublisher instance;
