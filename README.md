@@ -1,3 +1,5 @@
+COVID Booking & Testing System project - using web service to deal with data and implement some functions based on specification. using Java language with design patterns, principles and MVC architecture.
+
 # Notes
 
 1. Design documents are in the *docs* folder;
